@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TBTH Analytics</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+  <style>
+    :root {
+      --bg: #F2F2F7; --card: #fff; --card-hover: #F9F9FB; --text: #1C1C1E;
+      --text2: #6E6E73; --text3: #8E8E93; --border: #E5E5EA; --border2: #F2F2F7;
+      --blue: #007AFF; --green: #34C759; --red: #FF375F; --th-bg: #F9F9FB;
+    }
+    .dark {
+      --bg: #1C1C1E; --card: #2C2C2E; --card-hover: #3A3A3C; --text: #F2F2F7;
+      --text2: #AEAEB2; --text3: #8E8E93; --border: #3A3A3C; --border2: #2C2C2E;
+      --th-bg: #2C2C2E;
+    }
+    * { font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif; box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--bg); color: var(--text); padding: 32px 40px; transition: background 0.2s, color 0.2s; }
+    h1 { font-size: 28px; font-weight: 700; margin-bottom: 4px; }
+    .header { display: flex; align-items: center; gap: 12px; margin-bottom: 4px; }
+    .header img { height: 100px; border-radius: 8px; }
+    .subtitle { font-size: 13px; color: var(--text3); margin-bottom: 6px; }
+    .last-updated { font-size: 11px; color: var(--text3); margin-bottom: 16px; }
+
+    .controls { display: flex; gap: 10px; align-items: center; margin-bottom: 16px; flex-wrap: wrap; }
+    .seg-control { display: inline-flex; background: var(--border); border-radius: 10px; padding: 3px; }
+    .seg-control button { background: transparent; border: none; border-radius: 8px; padding: 6px 14px; font-size: 13px; font-weight: 500; color: var(--text2); cursor: pointer; transition: all 0.1s; }
+    .seg-control button.active { background: var(--card); color: var(--text); box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+    .search-input { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 7px 14px; font-size: 13px; color: var(--text); outline: none; width: 200px; }
+    .search-input:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(0,122,255,0.12); }
+    .search-input::placeholder { color: var(--text3); }
+    .toggle-btn { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 6px 12px; font-size: 12px; font-weight: 500; color: var(--text2); cursor: pointer; transition: all 0.1s; }
+    .toggle-btn:hover { border-color: var(--blue); color: var(--blue); }
+    .toggle-btn.active { background: var(--blue); color: #fff; border-color: var(--blue); }
+
+    /* Chart */
+    .chart-section { background: var(--card); border-radius: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.07); padding: 20px; margin-bottom: 20px; }
+    .chart-section h2 { font-size: 16px; font-weight: 600; margin-bottom: 12px; color: var(--text); }
+    .chart-wrap { height: 220px; }
+
+    /* Compare panel */
+    .compare-panel { background: var(--card); border-radius: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.07); padding: 16px 20px; margin-bottom: 20px; display: none; }
+    .compare-panel.visible { display: block; }
+    .compare-panel h2 { font-size: 16px; font-weight: 600; margin-bottom: 12px; color: var(--text); }
+    .compare-grid { display: grid; gap: 16px; }
+    .compare-card { background: var(--bg); border-radius: 10px; padding: 14px; }
+    .compare-card .title { font-size: 13px; font-weight: 600; margin-bottom: 8px; color: var(--text); }
+    .compare-card .metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+    .compare-card .metric { text-align: center; }
+    .compare-card .metric .val { font-size: 18px; font-weight: 700; color: var(--text); }
+    .compare-card .metric .lbl { font-size: 10px; color: var(--text3); text-transform: uppercase; }
+    .compare-clear { font-size: 12px; color: var(--blue); cursor: pointer; border: none; background: none; margin-left: 8px; }
+
+    /* Table */
+    .table-wrap { background: var(--card); border-radius: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.07); overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; font-size: 13px; white-space: nowrap; }
+    thead th {
+      position: sticky; top: 0; background: var(--th-bg); padding: 10px 14px;
+      text-align: right; font-weight: 600; color: var(--text2); font-size: 11px;
+      text-transform: uppercase; letter-spacing: 0.3px; border-bottom: 1px solid var(--border);
+    }
+    #group-row th { top: 0; z-index: 3; text-align: center; font-size: 10px; color: var(--text3); padding: 6px 14px; border-bottom: none; }
+    #group-row th.group-label { background: var(--blue); color: #fff; border-radius: 6px 6px 0 0; letter-spacing: 0.5px; }
+    #header-row th { top: 32px; z-index: 3; }
+    thead th:first-child { position: sticky; left: 0; z-index: 4; background: var(--th-bg); }
+    thead th:first-child, thead th:nth-child(2), thead th:nth-child(3), thead th:nth-child(4), thead th:nth-child(5) { text-align: left; }
+    thead th.sortable { cursor: pointer; user-select: none; }
+    thead th.sortable:hover { color: var(--blue); }
+    thead th .arrow { font-size: 10px; margin-left: 2px; }
+    tbody td { padding: 10px 14px; border-bottom: 1px solid var(--border2); text-align: right; color: var(--text); }
+    tbody td:first-child { text-align: left; font-weight: 500; max-width: 360px; overflow: hidden; text-overflow: ellipsis; position: sticky; left: 0; background: var(--card); z-index: 1; }
+    tbody td:nth-child(2), tbody td:nth-child(3), tbody td:nth-child(4) { text-align: left; color: var(--text3); }
+    tbody td:nth-child(5) { text-align: left; }
+    tbody tr:hover td { background: var(--card-hover); }
+    tbody tr.selected td { background: #007AFF18; }
+    .no-data { color: var(--text3); }
+    .video-link { color: var(--blue); text-decoration: none; }
+    .video-link:hover { text-decoration: underline; }
+    .badge { display: inline-block; border-radius: 6px; padding: 2px 8px; font-size: 11px; font-weight: 600; }
+    .badge-short { background: #FF375F15; color: var(--red); }
+    .badge-video { background: #007AFF15; color: var(--blue); }
+    .stat-bar { display: inline-block; height: 6px; border-radius: 3px; background: var(--blue); vertical-align: middle; margin-right: 6px; }
+    .green { color: var(--green); font-weight: 600; }
+    .benchmark { color: var(--text3); font-size: 10px; display: block; }
+
+    /* Thumbnail tooltip */
+    .thumb-tip { position: fixed; z-index: 100; pointer-events: none; border-radius: 8px; box-shadow: 0 4px 16px rgba(0,0,0,0.2); overflow: hidden; display: none; }
+    .thumb-tip img { display: block; width: 240px; }
+
+    /* Compare checkbox */
+    .cmp-check { width: 14px; height: 14px; cursor: pointer; accent-color: var(--blue); vertical-align: middle; margin-right: 6px; }
+  </style>
+</head>
+<body class="dark">
+  <div class="header">
+    <img src="logo.png" alt="TBTH">
+    <div>
+      <h1>TBTH Analytics</h1>
+      <div class="subtitle" id="subtitle">Loading...</div>
+      <div class="last-updated" id="last-updated"></div>
+    </div>
+  </div>
+
+  <div class="controls">
+    <div class="seg-control" id="type-filter">
+      <button data-filter="all" onclick="setFilter('all')">All</button>
+      <button class="active" data-filter="video" onclick="setFilter('video')">Videos</button>
+      <button data-filter="short" onclick="setFilter('short')">Shorts</button>
+    </div>
+    <div class="seg-control" id="season-filter"></div>
+    <div class="seg-control" id="visibility-filter">
+      <button data-vis="all" onclick="setVisibility('all')">All</button>
+      <button class="active" data-vis="public" onclick="setVisibility('public')">Public</button>
+      <button data-vis="unlisted" onclick="setVisibility('unlisted')">Unlisted</button>
+      <button data-vis="private" onclick="setVisibility('private')">Private</button>
+    </div>
+    <input class="search-input" id="search" placeholder="Search videos..." oninput="render()">
+    <button class="toggle-btn active" id="exclude-u2" onclick="toggleExcludeU2()">Exclude #TBTHU2</button>
+    <button class="toggle-btn active" id="exclude-paid" onclick="toggleExcludePaid()">Exclude Paid Views</button>
+    <button class="toggle-btn active" id="dark-toggle" onclick="toggleDark()">Dark Mode</button>
+    <button class="toggle-btn" onclick="exportCSV()">Export CSV</button>
+  </div>
+
+  <!-- Performance trend chart -->
+  <div class="chart-section">
+    <h2>Performance Trend (First 24h Views)</h2>
+    <div class="chart-wrap"><canvas id="trend-chart"></canvas></div>
+  </div>
+
+  <!-- Watch hours chart -->
+  <div class="chart-section">
+    <h2>Total Watch Hours by Day</h2>
+    <div class="chart-wrap"><canvas id="watch-chart"></canvas></div>
+  </div>
+
+  <!-- Compare panel -->
+  <div class="compare-panel" id="compare-panel">
+    <h2>Compare Videos <button class="compare-clear" onclick="clearCompare()">Clear all</button></h2>
+    <div class="compare-grid" id="compare-grid"></div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr id="group-row"></tr>
+        <tr id="header-row"></tr>
+      </thead>
+      <tbody id="table-body"></tbody>
+    </table>
+  </div>
+
+  <!-- Thumbnail tooltip -->
+  <div class="thumb-tip" id="thumb-tip"><img id="thumb-img" src=""></div>
+
+<script>
+const COLUMNS = [
+  { key: 'title',                  label: 'Video',              type: 'text' },
+  { key: 'published_at',           label: 'Published',          type: 'date' },
+  { key: 'release_day',            label: 'Release Day',        type: 'text' },
+  { key: 'release_time',           label: 'Release Time (HKT)', type: 'text' },
+  { key: 'type',                   label: 'Type',               type: 'badge' },
+  { key: 'season',                 label: 'Season',             type: 'text' },
+  { key: 'last_24h_views',         label: 'Last 24h',           type: 'number', group: 'views' },
+  { key: 'views_24h',              label: '24h',                type: 'number', group: 'views' },
+  { key: 'views_72h',              label: '72h',                type: 'number', group: 'views' },
+  { key: 'views_1wk',              label: '1wk',                type: 'number', group: 'views' },
+  { key: 'views_2wk',              label: '2wk',                type: 'number', group: 'views' },
+  { key: 'avg_view_duration_pct',  label: 'Avg Duration %',     type: 'percent' },
+  { key: 'avg_view_time_sec',      label: 'Avg View Time',      type: 'duration' },
+  { key: 'new_subscribers',        label: 'New Subs',           type: 'number' },
+  { key: 'total_views',            label: 'Total Views',        type: 'number' },
+  { key: 'ad_views',               label: 'Ad Views',           type: 'number' },
+  { key: 'ad_roi',                 label: 'Organic %',          type: 'percent' },
+  { key: 'likes',                  label: 'Likes',              type: 'number' },
+  { key: 'comments',               label: 'Comments',           type: 'number' },
+  { key: 'duration_sec',           label: 'Duration',           type: 'duration' },
+];
+
+const VIEW_COLS = ['views_24h', 'views_72h', 'views_1wk', 'views_2wk', 'last_24h_views', 'total_views'];
+const DAYS_NAME = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+
+let data = [];
+let benchmarks = {};
+let sortCol = 'published_at';
+let sortAsc = false;
+let typeFilter = 'video';
+let seasonFilter = 'all';
+let visibilityFilter = 'public';
+let excludeU2 = true;
+let excludePaid = true;
+let compareSet = new Set();
+let trendChart = null;
+let watchChart = null;
+let dailyWatchData = [];
+
+// --- Helpers ---
+function toHKT(utcStr) {
+  const d = new Date(utcStr);
+  const hkt = new Date(d.getTime() + 8 * 60 * 60 * 1000);
+  return { day: DAYS_NAME[hkt.getUTCDay()], time: `${String(hkt.getUTCHours()).padStart(2,'0')}:${String(hkt.getUTCMinutes()).padStart(2,'0')}` };
+}
+
+function parseSeason(title) {
+  const m = title.match(/\bS(\d+)\b/i) || title.match(/Season\s*(\d+)/i);
+  if (m) return 'S' + m[1];
+  if (/特備節目/.test(title)) return 'Special';
+  if (/trailer/i.test(title) || /teaser/i.test(title)) return 'Promo';
+  return 'Other';
+}
+
+function getViewValue(row, key) {
+  if (!excludePaid) return row[key];
+  const ad = row.ad_views || 0;
+  if (key === 'total_views') return row[key] != null ? row[key] - ad : null;
+  if (row.total_views && ad > 0 && row[key] != null) {
+    return Math.round(row[key] * Math.max(0, (row.total_views - ad) / row.total_views));
+  }
+  return row[key];
+}
+
+function viewColor(value, min, max) {
+  if (value == null || max === min) return '';
+  const ratio = Math.max(0, Math.min(1, (value - min) / (max - min)));
+  let r, g, b;
+  if (ratio < 0.5) { const t = ratio * 2; r = Math.round(220 - t * 50); g = Math.round(60 + t * 140); b = Math.round(50 + t * 10); }
+  else { const t = (ratio - 0.5) * 2; r = Math.round(170 - t * 120); g = Math.round(200 + t * 20); b = Math.round(60 - t * 10); }
+  return `color:rgb(${r},${g},${b});font-weight:600;`;
+}
+
+function getColumnRange(filtered, key) {
+  const vals = filtered.map(d => VIEW_COLS.includes(key) ? getViewValue(d, key) : d[key]).filter(v => v != null && v > 0);
+  if (!vals.length) return { min: 0, max: 0 };
+  return { min: Math.min(...vals), max: Math.max(...vals) };
+}
+
+function fmt(value, type) {
+  if (value == null || value === undefined) return '<span class="no-data">\u2014</span>';
+  switch (type) {
+    case 'date': return value.slice(0, 10);
+    case 'number': return Number(value).toLocaleString();
+    case 'percent': return Number(value).toFixed(1) + '%';
+    case 'duration': {
+      const s = Math.round(Number(value));
+      const h = Math.floor(s / 3600); const m = Math.floor((s % 3600) / 60); const sec = s % 60;
+      if (h > 0) return `${h}h ${m}m ${sec}s`;
+      return m > 0 ? `${m}m ${sec}s` : `${sec}s`;
+    }
+    case 'badge': return `<span class="badge badge-${value === 'Short' ? 'short' : 'video'}">${value}</span>`;
+    default: return value;
+  }
+}
+
+// --- Toggles ---
+function setFilter(f) { typeFilter = f; document.querySelectorAll('#type-filter button').forEach(b => b.classList.toggle('active', b.dataset.filter === f)); render(); }
+function setSeasonFilter(s) { seasonFilter = s; document.querySelectorAll('#season-filter button').forEach(b => b.classList.toggle('active', b.dataset.season === s)); render(); }
+function setVisibility(v) { visibilityFilter = v; document.querySelectorAll('#visibility-filter button').forEach(b => b.classList.toggle('active', b.dataset.vis === v)); render(); }
+function toggleExcludeU2() { excludeU2 = !excludeU2; document.getElementById('exclude-u2').classList.toggle('active', excludeU2); render(); }
+function toggleExcludePaid() { excludePaid = !excludePaid; document.getElementById('exclude-paid').classList.toggle('active', excludePaid); render(); }
+function toggleDark() {
+  document.body.classList.toggle('dark');
+  document.getElementById('dark-toggle').classList.toggle('active');
+  renderTrendChart();
+  renderWatchChart();
+}
+
+// --- Season filter ---
+function buildSeasonFilter() {
+  const seasons = [...new Set(data.map(d => d._season))].sort((a, b) => {
+    if (a === 'all') return -1; if (b === 'all') return 1;
+    const na = parseInt(a.replace('S', '')); const nb = parseInt(b.replace('S', ''));
+    if (!isNaN(na) && !isNaN(nb)) return na - nb;
+    return a.localeCompare(b);
+  });
+  document.getElementById('season-filter').innerHTML =
+    `<button class="active" data-season="all" onclick="setSeasonFilter('all')">All Seasons</button>` +
+    seasons.map(s => `<button data-season="${s}" onclick="setSeasonFilter('${s}')">${s}</button>`).join('');
+}
+
+// --- Benchmarks ---
+function computeBenchmarks(filtered) {
+  const bm = {};
+  VIEW_COLS.concat(['avg_view_duration_pct', 'new_subscribers']).forEach(key => {
+    const vals = filtered.map(d => VIEW_COLS.includes(key) ? getViewValue(d, key) : d[key]).filter(v => v != null);
+    bm[key] = vals.length ? vals.reduce((a, b) => a + b, 0) / vals.length : 0;
+  });
+  return bm;
+}
+
+// --- Compare ---
+function toggleCompare(vid) {
+  if (compareSet.has(vid)) compareSet.delete(vid); else compareSet.add(vid);
+  render();
+}
+function clearCompare() { compareSet.clear(); render(); }
+
+function renderCompare() {
+  const panel = document.getElementById('compare-panel');
+  if (compareSet.size < 2) { panel.classList.remove('visible'); return; }
+  panel.classList.add('visible');
+  const cols = compareSet.size <= 3 ? `repeat(${compareSet.size}, 1fr)` : 'repeat(2, 1fr)';
+  const grid = document.getElementById('compare-grid');
+  grid.style.gridTemplateColumns = cols;
+  grid.innerHTML = [...compareSet].map(vid => {
+    const v = data.find(d => d.video_id === vid);
+    if (!v) return '';
+    const organic = v.total_views && v.ad_views ? ((v.total_views - (v.ad_views||0)) / v.total_views * 100).toFixed(0) + '%' : '\u2014';
+    return `<div class="compare-card">
+      <div class="title">${v.title.slice(0, 60)}</div>
+      <div class="metrics">
+        <div class="metric"><div class="val">${fmt(v.views_24h, 'number')}</div><div class="lbl">24h Views</div></div>
+        <div class="metric"><div class="val">${fmt(v.views_72h, 'number')}</div><div class="lbl">72h Views</div></div>
+        <div class="metric"><div class="val">${fmt(v.total_views, 'number')}</div><div class="lbl">Total Views</div></div>
+        <div class="metric"><div class="val">${organic}</div><div class="lbl">Organic %</div></div>
+        <div class="metric"><div class="val">${fmt(v.avg_view_duration_pct, 'percent')}</div><div class="lbl">Avg Duration</div></div>
+        <div class="metric"><div class="val">${fmt(v.new_subscribers, 'number')}</div><div class="lbl">New Subs</div></div>
+        <div class="metric"><div class="val">${fmt(v.likes, 'number')}</div><div class="lbl">Likes</div></div>
+        <div class="metric"><div class="val">${fmt(v.comments, 'number')}</div><div class="lbl">Comments</div></div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// --- Trend Chart ---
+function renderTrendChart() {
+  const filtered = getFiltered().filter(d => (d.views_24h || 0) > 0).sort((a, b) => a.published_at.localeCompare(b.published_at));
+  if (trendChart) trendChart.destroy();
+  const isDark = document.body.classList.contains('dark');
+  const gridColor = isDark ? '#3A3A3C' : '#E5E5EA';
+  const textColor = isDark ? '#AEAEB2' : '#6E6E73';
+
+  const labels = filtered.map(d => {
+    const season = d._season || '';
+    const epMatch = d.title.match(/EP?\s*(\d+)/i);
+    const ep = epMatch ? 'EP' + epMatch[1] : '';
+    if (season && ep) return season + ' ' + ep;
+    if (season) return season;
+    return d.title.replace(/^#TBTH\s*\|?\s*/i, '').slice(0, 20);
+  });
+  const views24 = filtered.map(d => d.views_24h || 0);
+
+  // Compute rolling average (5-video window)
+  const window = 5;
+  const rolling = views24.map((_, i) => {
+    const start = Math.max(0, i - window + 1);
+    const slice = views24.slice(start, i + 1);
+    return slice.reduce((a, b) => a + b, 0) / slice.length;
+  });
+
+  // Benchmark line
+  const avg = views24.length ? views24.reduce((a, b) => a + b, 0) / views24.length : 0;
+
+  trendChart = new Chart(document.getElementById('trend-chart').getContext('2d'), {
+    type: 'bar',
+    data: {
+      labels,
+      datasets: [
+        { type: 'bar', label: 'First 24h Views', data: views24, backgroundColor: '#007AFF40', borderColor: '#007AFF', borderWidth: 1, borderRadius: 3, order: 2 },
+        { type: 'line', label: `Rolling Avg (${window})`, data: rolling, borderColor: '#FF9500', borderWidth: 2, pointRadius: 0, tension: 0.4, order: 1 },
+        { type: 'line', label: `Channel Avg (${Math.round(avg)})`, data: Array(labels.length).fill(avg), borderColor: '#8E8E93', borderWidth: 1, borderDash: [6, 4], pointRadius: 0, order: 0 },
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { position: 'bottom', labels: { font: { size: 11 }, color: textColor } } },
+      scales: {
+        x: { grid: { display: false }, ticks: { font: { size: 10 }, color: textColor, maxRotation: 45, autoSkip: true, maxTicksLimit: 20 }, border: { display: false } },
+        y: { grid: { color: gridColor }, ticks: { font: { size: 11 }, color: textColor }, border: { display: false } }
+      }
+    }
+  });
+}
+
+// --- Watch Hours Chart ---
+function renderWatchChart() {
+  if (!dailyWatchData.length) return;
+  if (watchChart) watchChart.destroy();
+  const isDark = document.body.classList.contains('dark');
+  const gridColor = isDark ? '#3A3A3C' : '#E5E5EA';
+  const textColor = isDark ? '#AEAEB2' : '#6E6E73';
+
+  const labels = dailyWatchData.map(d => d.date);
+  const hours = dailyWatchData.map(d => d.watch_hours);
+
+  // 7-day rolling average
+  const window = 7;
+  const rolling = hours.map((_, i) => {
+    const start = Math.max(0, i - window + 1);
+    const slice = hours.slice(start, i + 1);
+    return slice.reduce((a, b) => a + b, 0) / slice.length;
+  });
+
+  watchChart = new Chart(document.getElementById('watch-chart').getContext('2d'), {
+    type: 'bar',
+    data: {
+      labels,
+      datasets: [
+        { type: 'bar', label: 'Watch Hours', data: hours, backgroundColor: '#34C75940', borderColor: '#34C759', borderWidth: 1, borderRadius: 2, order: 2 },
+        { type: 'line', label: `7-Day Avg`, data: rolling, borderColor: '#FF9500', borderWidth: 2, pointRadius: 0, tension: 0.4, order: 1 },
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { position: 'bottom', labels: { font: { size: 11 }, color: textColor } } },
+      scales: {
+        x: { grid: { display: false }, ticks: { font: { size: 10 }, color: textColor, maxRotation: 45, autoSkip: true, maxTicksLimit: 30 }, border: { display: false } },
+        y: { grid: { color: gridColor }, ticks: { font: { size: 11 }, color: textColor }, border: { display: false }, title: { display: true, text: 'Hours', color: textColor, font: { size: 11 } } }
+      }
+    }
+  });
+}
+
+// --- Thumbnail tooltip ---
+function initThumbTip() {
+  const tip = document.getElementById('thumb-tip');
+  const img = document.getElementById('thumb-img');
+  document.getElementById('table-body').addEventListener('mouseover', e => {
+    const link = e.target.closest('.video-link');
+    if (!link) { tip.style.display = 'none'; return; }
+    const thumb = link.dataset.thumb;
+    if (!thumb) { tip.style.display = 'none'; return; }
+    img.src = thumb;
+    tip.style.display = 'block';
+  });
+  document.getElementById('table-body').addEventListener('mousemove', e => {
+    if (tip.style.display === 'block') {
+      tip.style.left = (e.clientX + 16) + 'px';
+      tip.style.top = (e.clientY - 80) + 'px';
+    }
+  });
+  document.getElementById('table-body').addEventListener('mouseout', e => {
+    if (e.target.closest('.video-link')) tip.style.display = 'none';
+  });
+}
+
+// --- CSV Export ---
+function exportCSV() {
+  const filtered = getFiltered();
+  const headers = COLUMNS.map(c => c.label);
+  const rows = filtered.map(row => COLUMNS.map(col => {
+    if (col.key === 'type') return row.is_short ? 'Short' : 'Video';
+    if (col.key === 'release_day') return toHKT(row.published_at).day;
+    if (col.key === 'release_time') return toHKT(row.published_at).time;
+    if (col.key === 'season') return row._season || '';
+    if (col.key === 'ad_roi') {
+      const ad = row.ad_views || 0;
+      return row.total_views ? ((row.total_views - ad) / row.total_views * 100).toFixed(1) : '';
+    }
+    const isView = VIEW_COLS.includes(col.key);
+    const val = isView ? getViewValue(row, col.key) : row[col.key];
+    return val != null ? val : '';
+  }));
+  const csv = [headers, ...rows].map(r => r.map(c => `"${String(c).replace(/"/g, '""')}"`).join(',')).join('\n');
+  const blob = new Blob([csv], { type: 'text/csv' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = `tbth-analytics-${new Date().toISOString().slice(0, 10)}.csv`;
+  a.click();
+}
+
+// --- Table ---
+function renderHeader() {
+  // Group row
+  const groupRow = document.getElementById('group-row');
+  let groupHtml = '<th></th>'; // checkbox column
+  let i = 0;
+  while (i < COLUMNS.length) {
+    const col = COLUMNS[i];
+    if (col.group === 'views') {
+      let span = 0;
+      while (i < COLUMNS.length && COLUMNS[i].group === 'views') { span++; i++; }
+      groupHtml += `<th colspan="${span}" class="group-label">Views</th>`;
+    } else {
+      groupHtml += '<th></th>';
+      i++;
+    }
+  }
+  groupRow.innerHTML = groupHtml;
+
+  // Column row
+  const row = document.getElementById('header-row');
+  row.innerHTML = '<th style="width:30px"></th>' + COLUMNS.map(col => {
+    const arrow = sortCol === col.key ? (sortAsc ? '\u25B2' : '\u25BC') : '';
+    return `<th class="sortable" data-key="${col.key}">${col.label} <span class="arrow">${arrow}</span></th>`;
+  }).join('');
+  row.querySelectorAll('th.sortable').forEach(th => {
+    th.onclick = () => {
+      const key = th.dataset.key;
+      if (sortCol === key) sortAsc = !sortAsc;
+      else { sortCol = key; sortAsc = true; }
+      render();
+    };
+  });
+}
+
+function getFiltered() {
+  const search = document.getElementById('search').value.toLowerCase();
+  return data.filter(d => {
+    if (typeFilter === 'video' && d.is_short) return false;
+    if (typeFilter === 'short' && !d.is_short) return false;
+    if (seasonFilter !== 'all' && d._season !== seasonFilter) return false;
+    if (visibilityFilter !== 'all' && (d.privacy_status || 'public') !== visibilityFilter) return false;
+    if (excludeU2 && d.title.startsWith('#TBTHU2')) return false;
+    if (search && !d.title.toLowerCase().includes(search)) return false;
+    return true;
+  });
+}
+
+function render() {
+  renderHeader();
+  const filtered = getFiltered();
+  benchmarks = computeBenchmarks(filtered);
+  const maxViews = Math.max(1, ...filtered.map(d => getViewValue(d, 'total_views') || 0));
+  const colRanges = {};
+  VIEW_COLS.forEach(key => { colRanges[key] = getColumnRange(filtered, key); });
+
+  const sorted = [...filtered].sort((a, b) => {
+    let va = a[sortCol], vb = b[sortCol];
+    if (VIEW_COLS.includes(sortCol)) { va = getViewValue(a, sortCol); vb = getViewValue(b, sortCol); }
+    if (sortCol === 'type') { va = a.is_short ? 1 : 0; vb = b.is_short ? 1 : 0; }
+    if (sortCol === 'release_day') { va = DAYS_NAME.indexOf(toHKT(a.published_at).day); vb = DAYS_NAME.indexOf(toHKT(b.published_at).day); }
+    if (sortCol === 'release_time') { va = toHKT(a.published_at).time; vb = toHKT(b.published_at).time; }
+    if (sortCol === 'season') { va = a._season; vb = b._season; }
+    if (sortCol === 'ad_roi') {
+      va = a.total_views ? (a.total_views - (a.ad_views||0)) / a.total_views : 0;
+      vb = b.total_views ? (b.total_views - (b.ad_views||0)) / b.total_views : 0;
+    }
+    if (va == null) return 1; if (vb == null) return -1;
+    if (typeof va === 'string') return sortAsc ? va.localeCompare(vb) : vb.localeCompare(va);
+    return sortAsc ? va - vb : vb - va;
+  });
+
+  const shorts = filtered.filter(d => d.is_short).length;
+  const videos = filtered.length - shorts;
+  document.getElementById('subtitle').textContent = `${filtered.length} results \u00B7 ${videos} Videos \u00B7 ${shorts} Shorts \u00B7 @TBTH.friends`;
+
+  document.getElementById('table-body').innerHTML = sorted.map(row => {
+    const isSelected = compareSet.has(row.video_id);
+    return `<tr class="${isSelected ? 'selected' : ''}">` +
+      `<td><input type="checkbox" class="cmp-check" ${isSelected ? 'checked' : ''} onchange="toggleCompare('${row.video_id}')"></td>` +
+      COLUMNS.map(col => {
+        if (col.key === 'title') {
+          const url = `https://www.youtube.com/watch?v=${row.video_id}`;
+          const title = row.title.length > 65 ? row.title.slice(0, 62) + '\u2026' : row.title;
+          const thumb = row.thumbnail || '';
+          return `<td><a class="video-link" href="${url}" target="_blank" title="${row.title}" data-thumb="${thumb}">${title}</a></td>`;
+        }
+        if (col.key === 'release_day') return `<td>${toHKT(row.published_at).day}</td>`;
+        if (col.key === 'release_time') return `<td>${toHKT(row.published_at).time}</td>`;
+        if (col.key === 'type') return `<td>${fmt(row.is_short ? 'Short' : 'Video', 'badge')}</td>`;
+        if (col.key === 'season') return `<td>${row._season}</td>`;
+        if (col.key === 'ad_roi') {
+          const ad = row.ad_views || 0;
+          const pct = row.total_views ? ((row.total_views - ad) / row.total_views * 100) : null;
+          const color = pct != null && pct < 50 ? `color:${getComputedStyle(document.documentElement).getPropertyValue('--red')};font-weight:600;` : '';
+          return `<td style="${color}">${pct != null ? pct.toFixed(1) + '%' : '<span class="no-data">\u2014</span>'}</td>`;
+        }
+
+        const isViewCol = VIEW_COLS.includes(col.key);
+        const val = isViewCol ? getViewValue(row, col.key) : row[col.key];
+
+        if (col.key === 'total_views' && val != null) {
+          const pct = Math.round((val / maxViews) * 80);
+          const range = colRanges[col.key];
+          const style = viewColor(val, range.min, range.max);
+          const bm = benchmarks[col.key];
+          const bmHtml = bm ? `<span class="benchmark">avg: ${Math.round(bm).toLocaleString()}</span>` : '';
+          return `<td style="${style}"><span class="stat-bar" style="width:${Math.max(2, pct)}px"></span>${fmt(val, col.type)}</td>`;
+        }
+        if (isViewCol && val != null) {
+          const range = colRanges[col.key];
+          const style = viewColor(val, range.min, range.max);
+          return `<td style="${style}">${fmt(val, col.type)}</td>`;
+        }
+        if (col.key === 'avg_view_duration_pct' && val != null && val > 25) return `<td class="green">${fmt(val, col.type)}</td>`;
+        if (col.key === 'new_subscribers' && val != null && val > 0) return `<td class="green">${fmt(val, col.type)}</td>`;
+        return `<td>${fmt(val, col.type)}</td>`;
+      }).join('') + '</tr>';
+  }).join('');
+
+  renderTrendChart();
+  renderWatchChart();
+  renderCompare();
+}
+
+// --- Init ---
+async function init() {
+  try {
+    const resp = await fetch('data/analytics.json');
+    const raw = await resp.json();
+
+    // Support both new {fetched_at, videos} and old flat array format
+    let fetchedAt = null;
+    if (Array.isArray(raw)) {
+      data = raw;
+    } else {
+      fetchedAt = raw.fetched_at || null;
+      data = raw.videos || [];
+      dailyWatchData = raw.daily_watch_hours || [];
+    }
+
+    // Enrich data
+    data.forEach(d => { d._season = parseSeason(d.title); });
+
+    // Last updated
+    if (fetchedAt) {
+      document.getElementById('last-updated').textContent = `Data last refreshed: ${fetchedAt}`;
+    }
+
+    buildSeasonFilter();
+    render();
+    initThumbTip();
+  } catch (e) {
+    document.getElementById('subtitle').textContent = 'Error loading data. Run fetch_analytics.py first.';
+  }
+}
+
+init();
+</script>
+</body>
+</html>
