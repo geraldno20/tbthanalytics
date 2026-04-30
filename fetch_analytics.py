@@ -218,13 +218,13 @@ def fetch_video_analytics(video_id, published_at, yt_analytics):
     return result
 
 
-def fetch_daily_watch_hours(yt_analytics):
-    """Fetch channel-level daily watch hours for the past year."""
+def fetch_daily_channel_stats(yt_analytics):
+    """Fetch channel-level daily watch hours and views for the past year."""
     today = datetime.now()
     start = (today - timedelta(days=365)).strftime("%Y-%m-%d")
     end = (today - timedelta(days=2)).strftime("%Y-%m-%d")
 
-    def query():
+    def query_daily():
         response = yt_analytics.reports().query(
             ids=f"channel=={CHANNEL_ID}",
             startDate=start,
@@ -236,8 +236,8 @@ def fetch_daily_watch_hours(yt_analytics):
         return [{"date": r[0], "watch_hours": round(r[1] / 60, 2), "views": r[2]}
                 for r in response.get("rows", [])]
 
-    result = api_call_with_retry(query, "daily watch hours")
-    return result if result is not None else []
+    daily = api_call_with_retry(query_daily, "daily channel stats")
+    return daily if daily is not None else []
 
 
 def run():
@@ -271,8 +271,8 @@ def run():
         results.append({**video, **detail, **analytics})
 
     # Fetch channel-level daily watch hours (1 API call)
-    print("\nFetching daily watch hours...")
-    daily_watch = fetch_daily_watch_hours(yt_analytics)
+    print("\nFetching daily channel stats...")
+    daily_watch = fetch_daily_channel_stats(yt_analytics)
     print(f"  Got {len(daily_watch)} days of data")
 
     output = DATA_DIR / "analytics.json"
