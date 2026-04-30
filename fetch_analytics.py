@@ -248,18 +248,22 @@ def fetch_channel_summary(youtube, yt_analytics):
     start_60 = (today - timedelta(days=62)).strftime("%Y-%m-%d")
     start_all = "2020-01-01"
 
-    # Current subscriber count from Data API
-    def query_subs():
-        resp = youtube.channels().list(
-            part="statistics",
-            id=CHANNEL_ID,
-        ).execute()
-        items = resp.get("items", [])
-        if items:
-            return int(items[0]["statistics"].get("subscriberCount", 0))
-        return 0
+    # Subscribers gained over entire channel lifetime via Analytics API
+    def query_lifetime_subs():
+        def q():
+            resp = yt_analytics.reports().query(
+                ids=f"channel=={CHANNEL_ID}",
+                startDate=start_all,
+                endDate=end,
+                metrics="subscribersGained,subscribersLost",
+            ).execute()
+            rows = resp.get("rows", [])
+            if rows:
+                return {"gained": rows[0][0], "lost": rows[0][1]}
+            return {"gained": 0, "lost": 0}
+        return api_call_with_retry(q, "lifetime subs") or {"gained": 0, "lost": 0}
 
-    subs = api_call_with_retry(query_subs, "subscriber count") or 0
+    lifetime_subs = query_lifetime_subs()
 
     # Subscribers gained in last 30 days vs previous 30 days
     def query_subs_gained(start, end_date):
@@ -279,7 +283,31 @@ def fetch_channel_summary(youtube, yt_analytics):
     subs_30 = query_subs_gained(start_30, end)
     subs_prev_30 = query_subs_gained(start_60, start_30)
 
-    # Unique viewers: lifetime and last 30 days vs previous 30 days
+    # Current subscriber count from Data API (rounded by YouTube)
+    def query_subs():
+        resp = youtube.channels().list(
+            part="statistics",
+            id=CHANNEL_ID,
+        ).execute()
+        items = resp.get("items", [])
+        if items:
+            return int(items[0]["statistics"].get("subscriberCount", 0))
+        return 0
+
+    subs_rounded = api_call_with_retry(query_subs, "subscriber count") or 0
+
+    # Try to get a more accurate count: use the rounded count as a reference,
+    # but also compute from lifetime gained-lost to get a better number
+    net_lifetime = lifetime_subs["gained"] - lifetime_subs["lost"]
+    # Use rounded count as the base since net_lifetime might not account for
+    # pre-Analytics subscribers. But we can use the relationship to estimate:
+    # If net_lifetime is close to subs_rounded, use net_lifetime as more precise
+    subs = subs_rounded
+    if net_lifetime > 0 and abs(net_lifetime - subs_rounded) <= 50:
+        subs = net_lifetime
+
+    # Unique viewers via Analytics API
+    # Try viewerPercentage first, fall back to summing daily views
     def query_unique_viewers(start, end_date):
         def q():
             resp = yt_analytics.reports().query(
@@ -288,15 +316,40 @@ def fetch_channel_summary(youtube, yt_analytics):
                 endDate=end_date,
                 metrics="uniqueViewers",
             ).execute()
+            print(f"    uniqueViewers response ({start}): {resp.get('rows', [])}")
             rows = resp.get("rows", [])
-            if rows:
+            if rows and rows[0][0] > 0:
                 return rows[0][0]
-            return 0
-        return api_call_with_retry(q, f"unique viewers {start}") or 0
+            return None
+        return api_call_with_retry(q, f"unique viewers {start}")
 
     uv_total = query_unique_viewers(start_all, end)
     uv_30 = query_unique_viewers(start_30, end)
     uv_prev_30 = query_unique_viewers(start_60, start_30)
+
+    # If uniqueViewers returned None/0, fall back to summing views from daily data
+    # (not unique but better than showing 0)
+    if not uv_total:
+        print("    uniqueViewers metric unavailable, falling back to views")
+
+        def query_views(start, end_date):
+            def q():
+                resp = yt_analytics.reports().query(
+                    ids=f"channel=={CHANNEL_ID}",
+                    startDate=start,
+                    endDate=end_date,
+                    metrics="views",
+                ).execute()
+                rows = resp.get("rows", [])
+                return rows[0][0] if rows else 0
+            return api_call_with_retry(q, f"views {start}") or 0
+
+        uv_total = query_views(start_all, end)
+        uv_30 = query_views(start_30, end)
+        uv_prev_30 = query_views(start_60, start_30)
+        viewer_metric = "views"
+    else:
+        viewer_metric = "unique_viewers"
 
     return {
         "subscribers": subs,
@@ -305,6 +358,7 @@ def fetch_channel_summary(youtube, yt_analytics):
         "unique_viewers_total": uv_total,
         "unique_viewers_30d": uv_30,
         "unique_viewers_prev_30d": uv_prev_30,
+        "viewer_metric": viewer_metric,
     }
 
 

@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-04-30 14:21",
+  "fetched_at": "2026-04-30 14:26",
   "videos": [
     {
       "video_id": "QN_MGZbvhcY",
@@ -162,7 +162,7 @@
       "likes": 0,
       "comments": 0,
       "duration_sec": 943,
-      "thumbnail": "https://i9.ytimg.com/vi/4G2TB9J7EAI/mqdefault.jpg?sqp=CNSMz88G&rs=AOn4CLA_IhR1ui3x6EO2etPBO_t78-JLjQ",
+      "thumbnail": "https://i9.ytimg.com/vi/4G2TB9J7EAI/mqdefault.jpg?sqp=CICPz88G&rs=AOn4CLB8bRYJ2vj-_6h-LQTvse3KSLSFCA",
       "privacy_status": "private",
       "is_short": true,
       "views_24h": 9,
@@ -1034,7 +1034,7 @@
       "likes": 0,
       "comments": 0,
       "duration_sec": 2849,
-      "thumbnail": "https://i9.ytimg.com/vi/YwH1dgAe_S4/mqdefault.jpg?sqp=CNSMz88G&rs=AOn4CLA9QT-B63_YDy5RqgmaJ6Lkf8Ap5w",
+      "thumbnail": "https://i9.ytimg.com/vi/YwH1dgAe_S4/mqdefault.jpg?sqp=CICPz88G&rs=AOn4CLCdW2-TW4n7qWqmHk2rDSohSSm_LQ",
       "privacy_status": "private",
       "is_short": true,
       "views_24h": 0,
@@ -1098,7 +1098,7 @@
       "likes": 1,
       "comments": 0,
       "duration_sec": 3446,
-      "thumbnail": "https://i9.ytimg.com/vi/3ZR_3chj_Kc/mqdefault.jpg?sqp=CNSMz88G&rs=AOn4CLCkjwY4aEJPmf3RJgX04tZthNZvmg",
+      "thumbnail": "https://i9.ytimg.com/vi/3ZR_3chj_Kc/mqdefault.jpg?sqp=CICPz88G&rs=AOn4CLA2P_PxlIn-YUaJKNgVGynrTV6b-A",
       "privacy_status": "private",
       "is_short": true,
       "views_24h": 17,
@@ -2807,7 +2807,7 @@
       "likes": 2,
       "comments": 0,
       "duration_sec": 4236,
-      "thumbnail": "https://i9.ytimg.com/vi/C_Ben7R7jSs/mqdefault.jpg?sqp=CNSMz88G&rs=AOn4CLBq3t0UKX0IWk0cLWAw6pGHNW4n8A",
+      "thumbnail": "https://i9.ytimg.com/vi/C_Ben7R7jSs/mqdefault.jpg?sqp=CICPz88G&rs=AOn4CLAwIm1Z-TZGjyygbPf8TWHLWvG1gg",
       "privacy_status": "private",
       "is_short": true,
       "views_24h": 73,
@@ -7164,11 +7164,12 @@
     }
   ],
   "channel_summary": {
-    "subscribers": 3940,
+    "subscribers": 3948,
     "subs_30d_change": 202,
     "subs_prev_30d_change": 186,
-    "unique_viewers_total": 0,
-    "unique_viewers_30d": 0,
-    "unique_viewers_prev_30d": 0
+    "unique_viewers_total": 127978,
+    "unique_viewers_30d": 11521,
+    "unique_viewers_prev_30d": 5561,
+    "viewer_metric": "views"
   }
 }
