@@ -91,6 +91,38 @@
 
     /* Compare checkbox */
     .cmp-check { width: 14px; height: 14px; cursor: pointer; accent-color: var(--blue); vertical-align: middle; margin-right: 6px; }
+
+    /* Mobile responsive */
+    @media (max-width: 768px) {
+      body { padding: 16px; }
+      h1 { font-size: 22px; }
+      .header { flex-wrap: wrap; gap: 8px; }
+      .header img { height: 60px; }
+      .controls { gap: 6px; }
+      .seg-control button { padding: 5px 10px; font-size: 12px; }
+      .search-input { width: 100%; }
+      .toggle-btn { font-size: 11px; padding: 5px 10px; }
+      .chart-section { padding: 14px; }
+      .chart-wrap { height: 180px; }
+      .chart-section select { width: 100% !important; }
+      .compare-card .metrics { grid-template-columns: repeat(2, 1fr); }
+      .compare-grid { grid-template-columns: 1fr !important; }
+      table { font-size: 12px; }
+      thead th { padding: 8px 10px; font-size: 10px; }
+      tbody td { padding: 8px 10px; }
+      tbody td:first-child { max-width: 200px; }
+      #group-row th { padding: 4px 10px; font-size: 9px; }
+    }
+
+    @media (max-width: 480px) {
+      body { padding: 10px; }
+      h1 { font-size: 18px; }
+      .header img { height: 48px; }
+      .controls { flex-direction: column; align-items: stretch; }
+      .seg-control { justify-content: center; }
+      .chart-wrap { height: 160px; }
+      tbody td:first-child { max-width: 150px; }
+    }
   </style>
 </head>
 <body class="dark">
@@ -144,6 +176,21 @@
       </select>
     </div>
     <div class="chart-wrap"><canvas id="avd-chart"></canvas></div>
+  </div>
+
+  <!-- Duration vs Performance scatter -->
+  <div class="chart-section">
+    <h2>Video Length vs Performance</h2>
+    <div style="margin-bottom:10px;">
+      <select id="scatter-metric" class="search-input" style="width:200px;" onchange="renderScatterChart()">
+        <option value="views_24h">First 24h Views</option>
+        <option value="total_views">Total Views</option>
+        <option value="avg_view_duration_pct" selected>AVD %</option>
+        <option value="likes">Likes</option>
+        <option value="new_subscribers">New Subs</option>
+      </select>
+    </div>
+    <div class="chart-wrap"><canvas id="scatter-chart"></canvas></div>
   </div>
 
   <!-- Compare panel -->
@@ -205,6 +252,7 @@ let compareSet = new Set();
 let trendChart = null;
 let watchChart = null;
 let avdChart = null;
+let scatterChart = null;
 let dailyWatchData = [];
 
 // --- Helpers ---
@@ -276,6 +324,7 @@ function toggleDark() {
   renderTrendChart();
   renderWatchChart();
   renderAVDChart();
+  renderScatterChart();
 }
 
 // --- Season filter ---
@@ -515,6 +564,58 @@ function renderAVDChart() {
   });
 }
 
+// --- Scatter Chart: Duration vs Performance ---
+function renderScatterChart() {
+  if (scatterChart) scatterChart.destroy();
+  const isDark = document.body.classList.contains('dark');
+  const gridColor = isDark ? '#3A3A3C' : '#E5E5EA';
+  const textColor = isDark ? '#AEAEB2' : '#6E6E73';
+
+  const metric = document.getElementById('scatter-metric').value;
+  const metricLabel = document.getElementById('scatter-metric').selectedOptions[0].text;
+  const filtered = getFiltered().filter(d => d.duration_sec > 0 && d[metric] != null);
+
+  const points = filtered.map(d => ({
+    x: Math.round(d.duration_sec / 60 * 10) / 10,
+    y: d[metric],
+    title: d.title.slice(0, 40),
+  }));
+
+  scatterChart = new Chart(document.getElementById('scatter-chart').getContext('2d'), {
+    type: 'scatter',
+    data: {
+      datasets: [{
+        label: metricLabel,
+        data: points,
+        backgroundColor: '#007AFF60',
+        borderColor: '#007AFF',
+        borderWidth: 1,
+        pointRadius: 5,
+        pointHoverRadius: 8,
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            label: ctx => {
+              const p = ctx.raw;
+              const yVal = metric.includes('pct') ? p.y.toFixed(1) + '%' : Math.round(p.y).toLocaleString();
+              return `${p.title} — ${p.x}min → ${yVal}`;
+            }
+          }
+        }
+      },
+      scales: {
+        x: { grid: { color: gridColor }, ticks: { font: { size: 11 }, color: textColor }, border: { display: false }, title: { display: true, text: 'Duration (minutes)', color: textColor, font: { size: 11 } } },
+        y: { grid: { color: gridColor }, ticks: { font: { size: 11 }, color: textColor, callback: v => metric.includes('pct') ? v + '%' : v.toLocaleString() }, border: { display: false }, title: { display: true, text: metricLabel, color: textColor, font: { size: 11 } } }
+      }
+    }
+  });
+}
+
 // --- Thumbnail tooltip ---
 function initThumbTip() {
   const tip = document.getElementById('thumb-tip');
@@ -687,6 +788,7 @@ function render() {
   renderWatchChart();
   buildAVDSelect();
   renderAVDChart();
+  renderScatterChart();
   renderCompare();
 }
 
