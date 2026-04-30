@@ -240,6 +240,74 @@ def fetch_daily_channel_stats(yt_analytics):
     return daily if daily is not None else []
 
 
+def fetch_channel_summary(youtube, yt_analytics):
+    """Fetch channel subscriber count and unique viewers (lifetime + last 30 days)."""
+    today = datetime.now()
+    end = (today - timedelta(days=2)).strftime("%Y-%m-%d")
+    start_30 = (today - timedelta(days=32)).strftime("%Y-%m-%d")
+    start_60 = (today - timedelta(days=62)).strftime("%Y-%m-%d")
+    start_all = "2020-01-01"
+
+    # Current subscriber count from Data API
+    def query_subs():
+        resp = youtube.channels().list(
+            part="statistics",
+            id=CHANNEL_ID,
+        ).execute()
+        items = resp.get("items", [])
+        if items:
+            return int(items[0]["statistics"].get("subscriberCount", 0))
+        return 0
+
+    subs = api_call_with_retry(query_subs, "subscriber count") or 0
+
+    # Subscribers gained in last 30 days vs previous 30 days
+    def query_subs_gained(start, end_date):
+        def q():
+            resp = yt_analytics.reports().query(
+                ids=f"channel=={CHANNEL_ID}",
+                startDate=start,
+                endDate=end_date,
+                metrics="subscribersGained,subscribersLost",
+            ).execute()
+            rows = resp.get("rows", [])
+            if rows:
+                return rows[0][0] - rows[0][1]  # net subscribers
+            return 0
+        return api_call_with_retry(q, f"subs gained {start}") or 0
+
+    subs_30 = query_subs_gained(start_30, end)
+    subs_prev_30 = query_subs_gained(start_60, start_30)
+
+    # Unique viewers: lifetime and last 30 days vs previous 30 days
+    def query_unique_viewers(start, end_date):
+        def q():
+            resp = yt_analytics.reports().query(
+                ids=f"channel=={CHANNEL_ID}",
+                startDate=start,
+                endDate=end_date,
+                metrics="uniqueViewers",
+            ).execute()
+            rows = resp.get("rows", [])
+            if rows:
+                return rows[0][0]
+            return 0
+        return api_call_with_retry(q, f"unique viewers {start}") or 0
+
+    uv_total = query_unique_viewers(start_all, end)
+    uv_30 = query_unique_viewers(start_30, end)
+    uv_prev_30 = query_unique_viewers(start_60, start_30)
+
+    return {
+        "subscribers": subs,
+        "subs_30d_change": subs_30,
+        "subs_prev_30d_change": subs_prev_30,
+        "unique_viewers_total": uv_total,
+        "unique_viewers_30d": uv_30,
+        "unique_viewers_prev_30d": uv_prev_30,
+    }
+
+
 def run():
     videos_file = DATA_DIR / "videos.json"
     if not videos_file.exists():
@@ -275,11 +343,18 @@ def run():
     daily_watch = fetch_daily_channel_stats(yt_analytics)
     print(f"  Got {len(daily_watch)} days of data")
 
+    # Fetch channel summary (subscribers, unique viewers)
+    print("\nFetching channel summary...")
+    channel_summary = fetch_channel_summary(youtube, yt_analytics)
+    print(f"  Subscribers: {channel_summary['subscribers']:,}")
+    print(f"  Unique viewers (total): {channel_summary['unique_viewers_total']:,}")
+
     output = DATA_DIR / "analytics.json"
     output_data = {
         "fetched_at": datetime.now().strftime("%Y-%m-%d %H:%M"),
         "videos": results,
         "daily_watch_hours": daily_watch,
+        "channel_summary": channel_summary,
     }
     output.write_text(json.dumps(output_data, indent=2))
 

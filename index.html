@@ -21,6 +21,14 @@
     h1 { font-size: 28px; font-weight: 700; margin-bottom: 4px; }
     .header { display: flex; align-items: center; gap: 12px; margin-bottom: 4px; }
     .header img { height: 100px; border-radius: 8px; }
+    .header-left { display: flex; align-items: center; gap: 12px; flex: 1; }
+    .kpi-cards { display: flex; gap: 12px; flex-shrink: 0; }
+    .kpi-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 12px 18px; text-align: center; min-width: 140px; }
+    .kpi-label { font-size: 11px; color: var(--text3); font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+    .kpi-value { font-size: 24px; font-weight: 700; color: var(--text); }
+    .kpi-change { font-size: 12px; font-weight: 600; margin-top: 2px; }
+    .kpi-change.up { color: var(--green); }
+    .kpi-change.down { color: var(--red); }
     .subtitle { font-size: 13px; color: var(--text3); margin-bottom: 6px; }
     .last-updated { font-size: 11px; color: var(--text3); margin-bottom: 16px; }
 
@@ -98,6 +106,10 @@
       h1 { font-size: 22px; }
       .header { flex-wrap: wrap; gap: 8px; }
       .header img { height: 60px; }
+      .header-left { flex-wrap: wrap; }
+      .kpi-cards { gap: 8px; }
+      .kpi-card { min-width: 110px; padding: 8px 12px; }
+      .kpi-value { font-size: 18px; }
       .controls { gap: 6px; }
       .seg-control button { padding: 5px 10px; font-size: 12px; }
       .search-input { width: 100%; }
@@ -118,6 +130,8 @@
       body { padding: 10px; }
       h1 { font-size: 18px; }
       .header img { height: 48px; }
+      .kpi-cards { flex-direction: column; width: 100%; }
+      .kpi-card { min-width: unset; }
       .controls { flex-direction: column; align-items: stretch; }
       .seg-control { justify-content: center; }
       .chart-wrap { height: 160px; }
@@ -127,11 +141,25 @@
 </head>
 <body class="dark">
   <div class="header">
-    <img src="logo.png" alt="TBTH">
-    <div>
-      <h1>TBTH Analytics</h1>
-      <div class="subtitle" id="subtitle">Loading...</div>
-      <div class="last-updated" id="last-updated"></div>
+    <div class="header-left">
+      <img src="logo.png" alt="TBTH">
+      <div>
+        <h1>TBTH Analytics</h1>
+        <div class="subtitle" id="subtitle">Loading...</div>
+        <div class="last-updated" id="last-updated"></div>
+      </div>
+    </div>
+    <div class="kpi-cards">
+      <div class="kpi-card">
+        <div class="kpi-label">Subscribers</div>
+        <div class="kpi-value" id="kpi-subs">—</div>
+        <div class="kpi-change" id="kpi-subs-change"></div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Unique Viewers</div>
+        <div class="kpi-value" id="kpi-uv">—</div>
+        <div class="kpi-change" id="kpi-uv-change"></div>
+      </div>
     </div>
   </div>
 
@@ -169,7 +197,7 @@
 
   <!-- Channel daily views chart -->
   <div class="chart-section">
-    <h2>Channel Daily Views</h2>
+    <h2>Channel Daily Views (Total)</h2>
     <div class="chart-wrap"><canvas id="views-chart"></canvas></div>
   </div>
 
@@ -393,6 +421,28 @@ function renderCompare() {
 }
 
 // --- Trend Chart ---
+function renderKPIs(cs) {
+  const fmt = n => n != null ? n.toLocaleString() : '—';
+  const changeHTML = (val, prev) => {
+    if (val == null) return '';
+    const delta = val;
+    const arrow = delta >= 0 ? '&#9650;' : '&#9660;';
+    const cls = delta >= 0 ? 'up' : 'down';
+    const sign = delta >= 0 ? '+' : '';
+    let trend = '';
+    if (prev != null) {
+      const diff = delta - prev;
+      trend = diff >= 0 ? ` (${diff >= 0 ? '+' : ''}${diff.toLocaleString()} vs prev 30d)` : ` (${diff.toLocaleString()} vs prev 30d)`;
+    }
+    return `<span class="kpi-change ${cls}">${arrow} ${sign}${delta.toLocaleString()} last 30d${trend}</span>`;
+  };
+
+  document.getElementById('kpi-subs').textContent = fmt(cs.subscribers);
+  document.getElementById('kpi-subs-change').innerHTML = changeHTML(cs.subs_30d_change, cs.subs_prev_30d_change);
+  document.getElementById('kpi-uv').textContent = fmt(cs.unique_viewers_total);
+  document.getElementById('kpi-uv-change').innerHTML = changeHTML(cs.unique_viewers_30d, cs.unique_viewers_prev_30d);
+}
+
 function renderTrendChart() {
   const filtered = getFiltered().filter(d => (d.views_24h || 0) > 0).sort((a, b) => a.published_at.localeCompare(b.published_at));
   if (trendChart) trendChart.destroy();
@@ -408,7 +458,7 @@ function renderTrendChart() {
     if (season) return season;
     return d.title.replace(/^#TBTH\s*\|?\s*/i, '').slice(0, 20);
   });
-  const views24 = filtered.map(d => d.views_24h || 0);
+  const views24 = filtered.map(d => getViewValue(d, 'views_24h') || 0);
 
   // Compute rolling average (5-video window)
   const window = 5;
@@ -618,11 +668,13 @@ function renderScatterChart() {
 
   const metric = document.getElementById('scatter-metric').value;
   const metricLabel = document.getElementById('scatter-metric').selectedOptions[0].text;
+  const viewMetrics = ['views_24h', 'total_views', 'likes', 'new_subscribers'];
+  const useGetView = viewMetrics.includes(metric);
   const filtered = getFiltered().filter(d => d.duration_sec > 0 && d[metric] != null);
 
   const points = filtered.map(d => ({
     x: Math.round(d.duration_sec / 60 * 10) / 10,
-    y: d[metric],
+    y: useGetView ? (getViewValue(d, metric) || 0) : d[metric],
     title: d.title.slice(0, 40),
   }));
 
@@ -852,6 +904,8 @@ async function init() {
       fetchedAt = raw.fetched_at || null;
       data = raw.videos || [];
       dailyWatchData = raw.daily_watch_hours || [];
+      const cs = raw.channel_summary || {};
+      renderKPIs(cs);
     }
 
     // Enrich data
