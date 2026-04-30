@@ -167,6 +167,12 @@
     <div class="chart-wrap"><canvas id="watch-chart"></canvas></div>
   </div>
 
+  <!-- Channel daily views chart -->
+  <div class="chart-section">
+    <h2>Channel Daily Views</h2>
+    <div class="chart-wrap"><canvas id="views-chart"></canvas></div>
+  </div>
+
   <!-- AVD over time chart -->
   <div class="chart-section">
     <h2>Avg View Duration % Over Time</h2>
@@ -251,6 +257,7 @@ let excludePaid = true;
 let compareSet = new Set();
 let trendChart = null;
 let watchChart = null;
+let viewsChart = null;
 let avdChart = null;
 let scatterChart = null;
 let dailyWatchData = [];
@@ -323,6 +330,7 @@ function toggleDark() {
   document.getElementById('dark-toggle').classList.toggle('active');
   renderTrendChart();
   renderWatchChart();
+  renderViewsChart();
   renderAVDChart();
   renderScatterChart();
 }
@@ -468,6 +476,43 @@ function renderWatchChart() {
       scales: {
         x: { grid: { display: false }, ticks: { font: { size: 10 }, color: textColor, maxRotation: 45, autoSkip: true, maxTicksLimit: 30 }, border: { display: false } },
         y: { grid: { color: gridColor }, ticks: { font: { size: 11 }, color: textColor }, border: { display: false }, title: { display: true, text: 'Hours', color: textColor, font: { size: 11 } } }
+      }
+    }
+  });
+}
+
+function renderViewsChart() {
+  if (!dailyWatchData.length) return;
+  if (viewsChart) viewsChart.destroy();
+  const isDark = document.body.classList.contains('dark');
+  const gridColor = isDark ? '#3A3A3C' : '#E5E5EA';
+  const textColor = isDark ? '#AEAEB2' : '#6E6E73';
+
+  const labels = dailyWatchData.map(d => d.date);
+  const views = dailyWatchData.map(d => d.views);
+
+  const window = 7;
+  const rolling = views.map((_, i) => {
+    const start = Math.max(0, i - window + 1);
+    const slice = views.slice(start, i + 1);
+    return slice.reduce((a, b) => a + b, 0) / slice.length;
+  });
+
+  viewsChart = new Chart(document.getElementById('views-chart').getContext('2d'), {
+    type: 'bar',
+    data: {
+      labels,
+      datasets: [
+        { type: 'bar', label: 'Daily Views', data: views, backgroundColor: '#007AFF40', borderColor: '#007AFF', borderWidth: 1, borderRadius: 2, order: 2 },
+        { type: 'line', label: '7-Day Avg', data: rolling, borderColor: '#FF9500', borderWidth: 2, pointRadius: 0, tension: 0.4, order: 1 },
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { position: 'bottom', labels: { font: { size: 11 }, color: textColor } } },
+      scales: {
+        x: { grid: { display: false }, ticks: { font: { size: 10 }, color: textColor, maxRotation: 45, autoSkip: true, maxTicksLimit: 30 }, border: { display: false } },
+        y: { grid: { color: gridColor }, ticks: { font: { size: 11 }, color: textColor }, border: { display: false }, title: { display: true, text: 'Views', color: textColor, font: { size: 11 } } }
       }
     }
   });
@@ -786,6 +831,7 @@ function render() {
 
   renderTrendChart();
   renderWatchChart();
+  renderViewsChart();
   buildAVDSelect();
   renderAVDChart();
   renderScatterChart();
