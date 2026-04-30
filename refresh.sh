@@ -15,4 +15,10 @@ echo "==> Fetching analytics..."
 python3 fetch_analytics.py
 
 echo ""
-echo "Done! Data refreshed at $(date)"
+echo "==> Pushing to GitHub..."
+git add -A
+git commit -m "Refresh data $(date '+%Y-%m-%d')" || echo "No changes to commit"
+git push
+
+echo ""
+echo "Done! Data refreshed and pushed at $(date)"
