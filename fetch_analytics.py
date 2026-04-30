@@ -21,6 +21,7 @@ from googleapiclient.discovery import build
 
 DATA_DIR = Path(__file__).parent / "data"
 CHANNEL_ID = "UC-obSTyigrLPiN-kiW1bgoA"
+SHORTS_CACHE = DATA_DIR / "shorts_cache.json"
 
 # Period definitions: label -> number of extra calendar days from publish date
 # (API date ranges are inclusive, so 0 = publish day only = ~24h)
@@ -81,11 +82,23 @@ def fetch_video_details(youtube, video_ids):
             }
         time.sleep(0.2)
 
-    # Detect Shorts via /shorts/ URL check
-    print("Detecting Shorts...")
+    # Detect Shorts via /shorts/ URL check, with caching
+    shorts_cache = {}
+    if SHORTS_CACHE.exists():
+        shorts_cache = json.loads(SHORTS_CACHE.read_text())
+
+    new_checks = [vid for vid in details if vid not in shorts_cache]
+    if new_checks:
+        print(f"Detecting Shorts ({len(new_checks)} new, {len(details) - len(new_checks)} cached)...")
+        for vid in new_checks:
+            shorts_cache[vid] = check_is_short(vid)
+            time.sleep(0.1)
+        SHORTS_CACHE.write_text(json.dumps(shorts_cache, indent=2))
+    else:
+        print("Detecting Shorts (all cached)...")
+
     for vid in details:
-        details[vid]["is_short"] = check_is_short(vid)
-        time.sleep(0.1)
+        details[vid]["is_short"] = shorts_cache.get(vid, False)
 
     shorts_count = sum(1 for d in details.values() if d["is_short"])
     print(f"  {shorts_count} Shorts, {len(details) - shorts_count} Videos")
