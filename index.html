@@ -437,6 +437,10 @@ function renderKPIs(cs) {
     return `<span class="kpi-change ${cls}">${arrow} ${sign}${delta.toLocaleString()} last 30d${trend}</span>`;
   };
 
+  // Update label based on whether we got unique viewers or fell back to total views
+  const uvLabel = cs.viewer_metric === 'unique_viewers' ? 'Unique Viewers' : 'Total Views';
+  document.querySelector('#kpi-uv').closest('.kpi-card').querySelector('.kpi-label').textContent = uvLabel;
+
   document.getElementById('kpi-subs').textContent = fmt(cs.subscribers);
   document.getElementById('kpi-subs-change').innerHTML = changeHTML(cs.subs_30d_change, cs.subs_prev_30d_change);
   document.getElementById('kpi-uv').textContent = fmt(cs.unique_viewers_total);
