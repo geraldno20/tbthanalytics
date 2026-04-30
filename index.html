@@ -135,6 +135,17 @@
     <div class="chart-wrap"><canvas id="watch-chart"></canvas></div>
   </div>
 
+  <!-- AVD over time chart -->
+  <div class="chart-section">
+    <h2>Avg View Duration % Over Time</h2>
+    <div style="margin-bottom:10px;">
+      <select id="avd-select" class="search-input" style="width:400px;" onchange="renderAVDChart()">
+        <option value="__avg__">Channel Average (all filtered videos)</option>
+      </select>
+    </div>
+    <div class="chart-wrap"><canvas id="avd-chart"></canvas></div>
+  </div>
+
   <!-- Compare panel -->
   <div class="compare-panel" id="compare-panel">
     <h2>Compare Videos <button class="compare-clear" onclick="clearCompare()">Clear all</button></h2>
@@ -193,6 +204,7 @@ let excludePaid = true;
 let compareSet = new Set();
 let trendChart = null;
 let watchChart = null;
+let avdChart = null;
 let dailyWatchData = [];
 
 // --- Helpers ---
@@ -263,6 +275,7 @@ function toggleDark() {
   document.getElementById('dark-toggle').classList.toggle('active');
   renderTrendChart();
   renderWatchChart();
+  renderAVDChart();
 }
 
 // --- Season filter ---
@@ -406,6 +419,97 @@ function renderWatchChart() {
       scales: {
         x: { grid: { display: false }, ticks: { font: { size: 10 }, color: textColor, maxRotation: 45, autoSkip: true, maxTicksLimit: 30 }, border: { display: false } },
         y: { grid: { color: gridColor }, ticks: { font: { size: 11 }, color: textColor }, border: { display: false }, title: { display: true, text: 'Hours', color: textColor, font: { size: 11 } } }
+      }
+    }
+  });
+}
+
+const AVD_PERIODS = ['24h', '72h', '1wk', '2wk', '1mo', '3mo', 'lifetime'];
+const AVD_LABELS = ['24h', '72h', '1 Week', '2 Weeks', '1 Month', '3 Months', 'Lifetime'];
+
+function buildAVDSelect() {
+  const select = document.getElementById('avd-select');
+  const filtered = getFiltered().filter(d => d.avd_over_time && Object.keys(d.avd_over_time).length > 0);
+  // Keep the first option, rebuild the rest
+  select.innerHTML = '<option value="__avg__">Channel Average (all filtered videos)</option>';
+  filtered.sort((a, b) => b.published_at.localeCompare(a.published_at)).forEach(d => {
+    const opt = document.createElement('option');
+    opt.value = d.video_id;
+    opt.textContent = d.title.slice(0, 70);
+    select.appendChild(opt);
+  });
+}
+
+function renderAVDChart() {
+  if (avdChart) avdChart.destroy();
+  const isDark = document.body.classList.contains('dark');
+  const gridColor = isDark ? '#3A3A3C' : '#E5E5EA';
+  const textColor = isDark ? '#AEAEB2' : '#6E6E73';
+
+  const selected = document.getElementById('avd-select').value;
+  const filtered = getFiltered().filter(d => d.avd_over_time && Object.keys(d.avd_over_time).length > 0);
+
+  const datasets = [];
+
+  if (selected === '__avg__') {
+    // Compute average AVD across all filtered videos at each time point
+    const avgData = AVD_PERIODS.map(period => {
+      const vals = filtered.map(d => d.avd_over_time[period]).filter(v => v != null);
+      return vals.length ? vals.reduce((a, b) => a + b, 0) / vals.length : null;
+    });
+    datasets.push({
+      label: 'Channel Average',
+      data: avgData,
+      borderColor: '#007AFF',
+      backgroundColor: '#007AFF20',
+      borderWidth: 2,
+      pointRadius: 5,
+      pointBackgroundColor: '#007AFF',
+      tension: 0.3,
+      fill: true,
+    });
+  } else {
+    const video = filtered.find(d => d.video_id === selected);
+    if (video) {
+      const videoData = AVD_PERIODS.map(p => video.avd_over_time[p] ?? null);
+      datasets.push({
+        label: video.title.slice(0, 50),
+        data: videoData,
+        borderColor: '#007AFF',
+        backgroundColor: '#007AFF20',
+        borderWidth: 2,
+        pointRadius: 5,
+        pointBackgroundColor: '#007AFF',
+        tension: 0.3,
+        fill: true,
+      });
+    }
+    // Also show channel average as reference
+    const avgData = AVD_PERIODS.map(period => {
+      const vals = filtered.map(d => d.avd_over_time[period]).filter(v => v != null);
+      return vals.length ? vals.reduce((a, b) => a + b, 0) / vals.length : null;
+    });
+    datasets.push({
+      label: 'Channel Average',
+      data: avgData,
+      borderColor: '#8E8E93',
+      borderWidth: 1,
+      borderDash: [6, 4],
+      pointRadius: 0,
+      tension: 0.3,
+      fill: false,
+    });
+  }
+
+  avdChart = new Chart(document.getElementById('avd-chart').getContext('2d'), {
+    type: 'line',
+    data: { labels: AVD_LABELS, datasets },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { position: 'bottom', labels: { font: { size: 11 }, color: textColor } } },
+      scales: {
+        x: { grid: { display: false }, ticks: { font: { size: 11 }, color: textColor }, border: { display: false } },
+        y: { grid: { color: gridColor }, ticks: { font: { size: 11 }, color: textColor, callback: v => v + '%' }, border: { display: false }, title: { display: true, text: 'AVD %', color: textColor, font: { size: 11 } } }
       }
     }
   });
@@ -581,6 +685,8 @@ function render() {
 
   renderTrendChart();
   renderWatchChart();
+  buildAVDSelect();
+  renderAVDChart();
   renderCompare();
 }
 

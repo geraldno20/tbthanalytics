@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-04-30 09:23",
+  "fetched_at": "2026-04-30 11:17",
   "videos": [
     {
       "video_id": "QN_MGZbvhcY",
@@ -16,11 +16,15 @@
       "views_72h": null,
       "views_1wk": null,
       "views_2wk": null,
-      "avg_view_duration_pct": null,
-      "avg_view_time_sec": null,
-      "new_subscribers": null,
-      "ad_views": 0,
-      "last_24h_views": 0
+      "views_1mo": null,
+      "views_3mo": null,
+      "views_lifetime": 0,
+      "avd_over_time": {
+        "24h": 0,
+        "lifetime": 0
+      },
+      "last_24h_views": 0,
+      "ad_views": 0
     },
     {
       "video_id": "OpPX3in1fcY",
@@ -37,11 +41,15 @@
       "views_72h": null,
       "views_1wk": null,
       "views_2wk": null,
-      "avg_view_duration_pct": null,
-      "avg_view_time_sec": null,
-      "new_subscribers": null,
-      "ad_views": 0,
-      "last_24h_views": 0
+      "views_1mo": null,
+      "views_3mo": null,
+      "views_lifetime": 0,
+      "avd_over_time": {
+        "24h": 0,
+        "lifetime": 0
+      },
+      "last_24h_views": 0,
+      "ad_views": 0
     },
     {
       "video_id": "GLcbo58isbE",
@@ -58,11 +66,15 @@
       "views_72h": null,
       "views_1wk": null,
       "views_2wk": null,
-      "avg_view_duration_pct": null,
-      "avg_view_time_sec": null,
-      "new_subscribers": null,
-      "ad_views": 0,
-      "last_24h_views": 0
+      "views_1mo": null,
+      "views_3mo": null,
+      "views_lifetime": 0,
+      "avd_over_time": {
+        "24h": 0,
+        "lifetime": 0
+      },
+      "last_24h_views": 0,
+      "ad_views": 0
     },
     {
       "video_id": "ebM8nn5WWvY",
@@ -79,11 +91,16 @@
       "views_72h": 0,
       "views_1wk": null,
       "views_2wk": null,
-      "avg_view_duration_pct": null,
-      "avg_view_time_sec": null,
-      "new_subscribers": null,
-      "ad_views": 0,
-      "last_24h_views": 2
+      "views_1mo": null,
+      "views_3mo": null,
+      "views_lifetime": 0,
+      "avd_over_time": {
+        "24h": 0,
+        "72h": 0,
+        "lifetime": 0
+      },
+      "last_24h_views": 0,
+      "ad_views": 0
     },
     {
       "video_id": "v_XlP5SX8QQ",
@@ -100,11 +117,16 @@
       "views_72h": 6,
       "views_1wk": null,
       "views_2wk": null,
-      "avg_view_duration_pct": null,
-      "avg_view_time_sec": null,
-      "new_subscribers": null,
-      "ad_views": 0,
-      "last_24h_views": 6
+      "views_1mo": null,
+      "views_3mo": null,
+      "views_lifetime": 6,
+      "avd_over_time": {
+        "24h": 7.5,
+        "72h": 7.5,
+        "lifetime": 7.5
+      },
+      "last_24h_views": 6,
+      "ad_views": 0
     },
     {
       "video_id": "MQilTE1riBY",
@@ -121,11 +143,16 @@
       "views_72h": 6,
       "views_1wk": null,
       "views_2wk": null,
-      "avg_view_duration_pct": null,
-      "avg_view_time_sec": null,
-      "new_subscribers": null,
-      "ad_views": 0,
-      "last_24h_views": 6
+      "views_1mo": null,
+      "views_3mo": null,
+      "views_lifetime": 6,
+      "avd_over_time": {
+        "24h": 5.0,
+        "72h": 5.0,
+        "lifetime": 5.0
+      },
+      "last_24h_views": 6,
+      "ad_views": 0
     },
     {
       "video_id": "4G2TB9J7EAI",
@@ -135,18 +162,24 @@
       "likes": 0,
       "comments": 0,
       "duration_sec": 943,
-      "thumbnail": "https://i9.ytimg.com/vi/4G2TB9J7EAI/mqdefault.jpg?sqp=CISAzs8G&rs=AOn4CLAqVEE57psmc9PLC90r6wPyYuPJCg",
+      "thumbnail": "https://i9.ytimg.com/vi/4G2TB9J7EAI/mqdefault.jpg?sqp=CPi1zs8G&rs=AOn4CLBgfYfdtaCG1OjIdBAxUivR8Hxw8g",
       "privacy_status": "private",
       "is_short": true,
       "views_24h": 9,
       "views_72h": 11,
       "views_1wk": 11,
       "views_2wk": null,
-      "avg_view_duration_pct": null,
-      "avg_view_time_sec": null,
-      "new_subscribers": null,
-      "ad_views": 0,
-      "last_24h_views": 0
+      "views_1mo": null,
+      "views_3mo": null,
+      "views_lifetime": 11,
+      "avd_over_time": {
+        "24h": 19.3,
+        "72h": 15.8,
+        "1wk": 15.8,
+        "lifetime": 15.8
+      },
+      "last_24h_views": 0,
+      "ad_views": 0
     },
     {
       "video_id": "VjDqJJkdn3k",
@@ -163,11 +196,17 @@
       "views_72h": 615,
       "views_1wk": 732,
       "views_2wk": null,
-      "avg_view_duration_pct": null,
-      "avg_view_time_sec": null,
-      "new_subscribers": null,
-      "ad_views": 0,
-      "last_24h_views": 12
+      "views_1mo": null,
+      "views_3mo": null,
+      "views_lifetime": 732,
+      "avd_over_time": {
+        "24h": 36.9,
+        "72h": 31.2,
+        "1wk": 31.0,
+        "lifetime": 31.0
+      },
+      "last_24h_views": 12,
+      "ad_views": 0
     },
     {
       "video_id": "R2GOnf1ZnH8",
@@ -184,11 +223,17 @@
       "views_72h": 27,
       "views_1wk": 34,
       "views_2wk": null,
-      "avg_view_duration_pct": null,
-      "avg_view_time_sec": null,
-      "new_subscribers": null,
-      "ad_views": 0,
-      "last_24h_views": 0
+      "views_1mo": null,
+      "views_3mo": null,
+      "views_lifetime": 34,
+      "avd_over_time": {
+        "24h": 69.7,
+        "72h": 64.4,
+        "1wk": 56.7,
+        "lifetime": 56.7
+      },
+      "last_24h_views": 0,
+      "ad_views": 0
     },
     {
       "video_id": "JFrZVm1r234",
@@ -208,8 +253,18 @@
       "avg_view_duration_pct": 27.3,
       "avg_view_time_sec": 267.4,
       "new_subscribers": 17,
-      "ad_views": 0,
-      "last_24h_views": 11
+      "views_1mo": null,
+      "views_3mo": null,
+      "views_lifetime": 2052,
+      "avd_over_time": {
+        "24h": 39.1,
+        "72h": 29.2,
+        "1wk": 26.9,
+        "2wk": 27.3,
+        "lifetime": 27.3
+      },
+      "last_24h_views": 11,
+      "ad_views": 0
     },
     {
       "video_id": "z0hc_6RvjQQ",
@@ -229,8 +284,18 @@
       "avg_view_duration_pct": 25.4,
       "avg_view_time_sec": 259.0,
       "new_subscribers": 0,
-      "ad_views": 0,
-      "last_24h_views": 0
+      "views_1mo": null,
+      "views_3mo": null,
+      "views_lifetime": 6,
+      "avd_over_time": {
+        "24h": 21.4,
+        "72h": 25.4,
+        "1wk": 25.4,
+        "2wk": 25.4,
+        "lifetime": 25.4
+      },
+      "last_24h_views": 0,
+      "ad_views": 0
     },
     {
       "video_id": "8hc52-ItRo4",
@@ -250,8 +315,18 @@
       "avg_view_duration_pct": 12.6,
       "avg_view_time_sec": 126.5,
       "new_subscribers": 0,
-      "ad_views": 0,
-      "last_24h_views": 0
+      "views_1mo": null,
+      "views_3mo": null,
+      "views_lifetime": 6,
+      "avd_over_time": {
+        "24h": 11.2,
+        "72h": 11.2,
+        "1wk": 14.3,
+        "2wk": 12.6,
+        "lifetime": 12.6
+      },
+      "last_24h_views": 0,
+      "ad_views": 0
     },
     {
       "video_id": "UsGRKQjDPWs",
@@ -271,8 +346,18 @@
       "avg_view_duration_pct": 24.4,
       "avg_view_time_sec": 250.6,
       "new_subscribers": 37,
-      "ad_views": 0,
-      "last_24h_views": 17
+      "views_1mo": null,
+      "views_3mo": null,
+      "views_lifetime": 2942,
+      "avd_over_time": {
+        "24h": 30.5,
+        "72h": 26.1,
+        "1wk": 24.5,
+        "2wk": 24.4,
+        "lifetime": 24.4
+      },
+      "last_24h_views": 17,
+      "ad_views": 0
     },
     {
       "video_id": "Bf2zbDZfnk8",
@@ -292,8 +377,18 @@
       "avg_view_duration_pct": 56.6,
       "avg_view_time_sec": 17.1,
       "new_subscribers": 0,
-      "ad_views": 0,
-      "last_24h_views": 0
+      "views_1mo": null,
+      "views_3mo": null,
+      "views_lifetime": 107,
+      "avd_over_time": {
+        "24h": 50.3,
+        "72h": 53.3,
+        "1wk": 58.6,
+        "2wk": 56.6,
+        "lifetime": 56.6
+      },
+      "last_24h_views": 0,
+      "ad_views": 0
     },
     {
       "video_id": "TouH9o7BnP0",
@@ -313,8 +408,18 @@
       "avg_view_duration_pct": 15.7,
       "avg_view_time_sec": 185.2,
       "new_subscribers": 0,
-      "ad_views": 0,
-      "last_24h_views": 2
+      "views_1mo": null,
+      "views_3mo": null,
+      "views_lifetime": 649,
+      "avd_over_time": {
+        "24h": 24.9,
+        "72h": 15.3,
+        "1wk": 13.8,
+        "2wk": 15.7,
+        "lifetime": 15.9
+      },
+      "last_24h_views": 2,
+      "ad_views": 0
     },
     {
       "video_id": "zGWouUvd1H0",
@@ -334,8 +439,18 @@
       "avg_view_duration_pct": 74.5,
       "avg_view_time_sec": 29.9,
       "new_subscribers": 0,
-      "ad_views": 0,
-      "last_24h_views": 0
+      "views_1mo": null,
+      "views_3mo": null,
+      "views_lifetime": 526,
+      "avd_over_time": {
+        "24h": 80.6,
+        "72h": 69.9,
+        "1wk": 77.7,
+        "2wk": 74.5,
+        "lifetime": 74.4
+      },
+      "last_24h_views": 0,
+      "ad_views": 0
     },
     {
       "video_id": "LprRhok2Q8M",
@@ -355,8 +470,18 @@
       "avg_view_duration_pct": 3.0,
       "avg_view_time_sec": 128.6,
       "new_subscribers": 0,
-      "ad_views": 0,
-      "last_24h_views": 0
+      "views_1mo": null,
+      "views_3mo": null,
+      "views_lifetime": 426,
+      "avd_over_time": {
+        "24h": 14.0,
+        "72h": 3.9,
+        "1wk": 2.9,
+        "2wk": 3.0,
+        "lifetime": 2.9
+      },
+      "last_24h_views": 0,
+      "ad_views": 0
     },
     {
       "video_id": "lpY6C58yz1Q",
@@ -376,8 +501,18 @@
       "avg_view_duration_pct": 89.7,
       "avg_view_time_sec": 24.7,
       "new_subscribers": 0,
-      "ad_views": 0,
-      "last_24h_views": 0
+      "views_1mo": null,
+      "views_3mo": null,
+      "views_lifetime": 246,
+      "avd_over_time": {
+        "24h": 90.6,
+        "72h": 89.9,
+        "1wk": 89.9,
+        "2wk": 89.7,
+        "lifetime": 88.9
+      },
+      "last_24h_views": 0,
+      "ad_views": 0
     },
     {
       "video_id": "9khEFM2AgLk",
@@ -397,8 +532,19 @@
       "avg_view_duration_pct": 39.1,
       "avg_view_time_sec": 62.3,
       "new_subscribers": 1,
-      "ad_views": 0,
-      "last_24h_views": 4
+      "views_1mo": 283,
+      "views_3mo": null,
+      "views_lifetime": 283,
+      "avd_over_time": {
+        "24h": 42.6,
+        "72h": 38.9,
+        "1wk": 37.8,
+        "2wk": 39.1,
+        "1mo": 39.3,
+        "lifetime": 39.3
+      },
+      "last_24h_views": 4,
+      "ad_views": 0
     },
     {
       "video_id": "Dzzzru5gd6E",
@@ -418,8 +564,19 @@
       "avg_view_duration_pct": 178.2,
       "avg_view_time_sec": 36.7,
       "new_subscribers": 0,
-      "ad_views": 0,
-      "last_24h_views": 0
+      "views_1mo": 234,
+      "views_3mo": null,
+      "views_lifetime": 234,
+      "avd_over_time": {
+        "24h": 323.6,
+        "72h": 192.9,
+        "1wk": 182.7,
+        "2wk": 178.2,
+        "1mo": 174.5,
+        "lifetime": 174.5
+      },
+      "last_24h_views": 0,
+      "ad_views": 0
     },
     {
       "video_id": "0Jt4W37xBGM",
@@ -439,8 +596,19 @@
       "avg_view_duration_pct": 14.0,
       "avg_view_time_sec": 112.9,
       "new_subscribers": 3,
-      "ad_views": 0,
-      "last_24h_views": 2
+      "views_1mo": 724,
+      "views_3mo": null,
+      "views_lifetime": 728,
+      "avd_over_time": {
+        "24h": 39.1,
+        "72h": 13.4,
+        "1wk": 13.2,
+        "2wk": 14.0,
+        "1mo": 16.6,
+        "lifetime": 16.7
+      },
+      "last_24h_views": 2,
+      "ad_views": 0
     },
     {
       "video_id": "TexvmIaYX80",
@@ -460,8 +628,19 @@
       "avg_view_duration_pct": 173.0,
       "avg_view_time_sec": 14.8,
       "new_subscribers": 0,
-      "ad_views": 0,
-      "last_24h_views": 0
+      "views_1mo": 217,
+      "views_3mo": null,
+      "views_lifetime": 218,
+      "avd_over_time": {
+        "24h": 131.2,
+        "72h": 181.4,
+        "1wk": 176.4,
+        "2wk": 173.0,
+        "1mo": 169.9,
+        "lifetime": 169.6
+      },
+      "last_24h_views": 0,
+      "ad_views": 0
     },
     {
       "video_id": "F58MOieYySA",
@@ -481,8 +660,19 @@
       "avg_view_duration_pct": 19.8,
       "avg_view_time_sec": 209.9,
       "new_subscribers": 0,
-      "ad_views": 0,
-      "last_24h_views": 1
+      "views_1mo": 139,
+      "views_3mo": null,
+      "views_lifetime": 156,
+      "avd_over_time": {
+        "24h": 21.2,
+        "72h": 21.1,
+        "1wk": 19.2,
+        "2wk": 19.8,
+        "1mo": 22.0,
+        "lifetime": 22.8
+      },
+      "last_24h_views": 1,
+      "ad_views": 0
     },
     {
       "video_id": "_MBtpPL-bK0",
@@ -502,8 +692,19 @@
       "avg_view_duration_pct": 42.0,
       "avg_view_time_sec": 17.3,
       "new_subscribers": 2,
-      "ad_views": 268,
-      "last_24h_views": 1
+      "views_1mo": 384,
+      "views_3mo": null,
+      "views_lifetime": 396,
+      "avd_over_time": {
+        "24h": 93.0,
+        "72h": 67.3,
+        "1wk": 53.6,
+        "2wk": 42.0,
+        "1mo": 43.7,
+        "lifetime": 44.5
+      },
+      "last_24h_views": 1,
+      "ad_views": 268
     },
     {
       "video_id": "pZcL9j76Wdg",
@@ -523,8 +724,19 @@
       "avg_view_duration_pct": 138.0,
       "avg_view_time_sec": 9.5,
       "new_subscribers": 0,
-      "ad_views": 0,
-      "last_24h_views": 0
+      "views_1mo": 719,
+      "views_3mo": null,
+      "views_lifetime": 725,
+      "avd_over_time": {
+        "24h": 163.9,
+        "72h": 140.4,
+        "1wk": 138.9,
+        "2wk": 138.0,
+        "1mo": 137.3,
+        "lifetime": 136.9
+      },
+      "last_24h_views": 0,
+      "ad_views": 0
     },
     {
       "video_id": "5i0hyY74jI8",
@@ -544,8 +756,19 @@
       "avg_view_duration_pct": 27.4,
       "avg_view_time_sec": 352.1,
       "new_subscribers": 0,
-      "ad_views": 0,
-      "last_24h_views": 0
+      "views_1mo": 28,
+      "views_3mo": null,
+      "views_lifetime": 29,
+      "avd_over_time": {
+        "24h": 20.6,
+        "72h": 24.6,
+        "1wk": 28.1,
+        "2wk": 27.4,
+        "1mo": 29.1,
+        "lifetime": 31.0
+      },
+      "last_24h_views": 0,
+      "ad_views": 0
     },
     {
       "video_id": "Km4ryBIiQ2s",
@@ -565,8 +788,19 @@
       "avg_view_duration_pct": 29.8,
       "avg_view_time_sec": 308.7,
       "new_subscribers": 1,
-      "ad_views": 0,
-      "last_24h_views": 1
+      "views_1mo": 260,
+      "views_3mo": null,
+      "views_lifetime": 322,
+      "avd_over_time": {
+        "24h": 37.3,
+        "72h": 31.9,
+        "1wk": 31.2,
+        "2wk": 29.8,
+        "1mo": 29.2,
+        "lifetime": 29.8
+      },
+      "last_24h_views": 1,
+      "ad_views": 0
     },
     {
       "video_id": "CvrXOJXThi8",
@@ -586,8 +820,19 @@
       "avg_view_duration_pct": 85.2,
       "avg_view_time_sec": 19.0,
       "new_subscribers": 1,
-      "ad_views": 0,
-      "last_24h_views": 0
+      "views_1mo": 97,
+      "views_3mo": null,
+      "views_lifetime": 107,
+      "avd_over_time": {
+        "24h": 135.2,
+        "72h": 93.3,
+        "1wk": 88.3,
+        "2wk": 85.2,
+        "1mo": 85.3,
+        "lifetime": 82.3
+      },
+      "last_24h_views": 0,
+      "ad_views": 0
     },
     {
       "video_id": "igX9sWQNIl0",
@@ -607,8 +852,19 @@
       "avg_view_duration_pct": 21.1,
       "avg_view_time_sec": 326.2,
       "new_subscribers": 3,
-      "ad_views": 0,
-      "last_24h_views": 4
+      "views_1mo": 717,
+      "views_3mo": null,
+      "views_lifetime": 821,
+      "avd_over_time": {
+        "24h": 27.2,
+        "72h": 21.4,
+        "1wk": 21.9,
+        "2wk": 21.1,
+        "1mo": 21.9,
+        "lifetime": 21.7
+      },
+      "last_24h_views": 4,
+      "ad_views": 0
     },
     {
       "video_id": "UFofUOkmYhQ",
@@ -628,8 +884,19 @@
       "avg_view_duration_pct": 60.9,
       "avg_view_time_sec": 27.5,
       "new_subscribers": 3,
-      "ad_views": 540,
-      "last_24h_views": 0
+      "views_1mo": 800,
+      "views_3mo": null,
+      "views_lifetime": 1072,
+      "avd_over_time": {
+        "24h": 63.2,
+        "72h": 63.5,
+        "1wk": 61.6,
+        "2wk": 60.9,
+        "1mo": 50.9,
+        "lifetime": 45.3
+      },
+      "last_24h_views": 0,
+      "ad_views": 540
     },
     {
       "video_id": "saqk69vuJTg",
@@ -649,8 +916,19 @@
       "avg_view_duration_pct": 120.4,
       "avg_view_time_sec": 12.8,
       "new_subscribers": 0,
-      "ad_views": 0,
-      "last_24h_views": 0
+      "views_1mo": 121,
+      "views_3mo": null,
+      "views_lifetime": 137,
+      "avd_over_time": {
+        "24h": 138.9,
+        "72h": 131.5,
+        "1wk": 122.3,
+        "2wk": 120.4,
+        "1mo": 112.8,
+        "lifetime": 606.9
+      },
+      "last_24h_views": 0,
+      "ad_views": 0
     },
     {
       "video_id": "UpA1xPtjta8",
@@ -670,8 +948,19 @@
       "avg_view_duration_pct": 66.9,
       "avg_view_time_sec": 22.3,
       "new_subscribers": 0,
-      "ad_views": 0,
-      "last_24h_views": 0
+      "views_1mo": 120,
+      "views_3mo": null,
+      "views_lifetime": 132,
+      "avd_over_time": {
+        "24h": 56.6,
+        "72h": 64.4,
+        "1wk": 67.5,
+        "2wk": 66.9,
+        "1mo": 63.8,
+        "lifetime": 63.5
+      },
+      "last_24h_views": 0,
+      "ad_views": 0
     },
     {
       "video_id": "3HjOdKHUesI",
@@ -691,8 +980,19 @@
       "avg_view_duration_pct": 27.8,
       "avg_view_time_sec": 178.7,
       "new_subscribers": 0,
-      "ad_views": 0,
-      "last_24h_views": 0
+      "views_1mo": 131,
+      "views_3mo": null,
+      "views_lifetime": 184,
+      "avd_over_time": {
+        "24h": 53.0,
+        "72h": 33.5,
+        "1wk": 30.5,
+        "2wk": 27.8,
+        "1mo": 29.0,
+        "lifetime": 30.2
+      },
+      "last_24h_views": 0,
+      "ad_views": 0
     },
     {
       "video_id": "PTejVT01Ejw",
@@ -712,8 +1012,19 @@
       "avg_view_duration_pct": 20.3,
       "avg_view_time_sec": 202.3,
       "new_subscribers": 0,
-      "ad_views": 0,
-      "last_24h_views": 0
+      "views_1mo": 199,
+      "views_3mo": null,
+      "views_lifetime": 260,
+      "avd_over_time": {
+        "24h": 32.4,
+        "72h": 25.0,
+        "1wk": 22.4,
+        "2wk": 20.3,
+        "1mo": 21.9,
+        "lifetime": 21.8
+      },
+      "last_24h_views": 0,
+      "ad_views": 0
     },
     {
       "video_id": "YwH1dgAe_S4",
@@ -723,7 +1034,7 @@
       "likes": 0,
       "comments": 0,
       "duration_sec": 2849,
-      "thumbnail": "https://i9.ytimg.com/vi/YwH1dgAe_S4/mqdefault.jpg?sqp=CISAzs8G&rs=AOn4CLAa0xATaEDHJvqfzgrN_vMBPHZF4A",
+      "thumbnail": "https://i9.ytimg.com/vi/YwH1dgAe_S4/mqdefault.jpg?sqp=CPi1zs8G&rs=AOn4CLCVCP1SSaHQQ47yZcQbM6j5UZtr4g",
       "privacy_status": "private",
       "is_short": true,
       "views_24h": 0,
@@ -733,8 +1044,19 @@
       "avg_view_duration_pct": 1.6,
       "avg_view_time_sec": 45.0,
       "new_subscribers": 0,
-      "ad_views": 0,
-      "last_24h_views": 0
+      "views_1mo": 2,
+      "views_3mo": null,
+      "views_lifetime": 2,
+      "avd_over_time": {
+        "24h": 0,
+        "72h": 1.6,
+        "1wk": 1.6,
+        "2wk": 1.6,
+        "1mo": 0.8,
+        "lifetime": 0.8
+      },
+      "last_24h_views": 0,
+      "ad_views": 0
     },
     {
       "video_id": "HGcHXiwdqhI",
@@ -754,8 +1076,19 @@
       "avg_view_duration_pct": 32.7,
       "avg_view_time_sec": 29.0,
       "new_subscribers": 0,
-      "ad_views": 0,
-      "last_24h_views": 0
+      "views_1mo": 14,
+      "views_3mo": null,
+      "views_lifetime": 21,
+      "avd_over_time": {
+        "24h": 54.0,
+        "72h": 37.1,
+        "1wk": 40.6,
+        "2wk": 32.7,
+        "1mo": 32.7,
+        "lifetime": 28.3
+      },
+      "last_24h_views": 0,
+      "ad_views": 0
     },
     {
       "video_id": "3ZR_3chj_Kc",
@@ -765,7 +1098,7 @@
       "likes": 1,
       "comments": 0,
       "duration_sec": 3446,
-      "thumbnail": "https://i9.ytimg.com/vi/3ZR_3chj_Kc/mqdefault.jpg?sqp=CISAzs8G&rs=AOn4CLBoY5gZ0LdeVbZj2QNlU2pc0WiL0Q",
+      "thumbnail": "https://i9.ytimg.com/vi/3ZR_3chj_Kc/mqdefault.jpg?sqp=CPi1zs8G&rs=AOn4CLDW36rVopB696i1WMnKpy6SNgpqKQ",
       "privacy_status": "private",
       "is_short": true,
       "views_24h": 17,
@@ -775,8 +1108,19 @@
       "avg_view_duration_pct": 4.2,
       "avg_view_time_sec": 143.3,
       "new_subscribers": 0,
-      "ad_views": 0,
-      "last_24h_views": 0
+      "views_1mo": 52,
+      "views_3mo": null,
+      "views_lifetime": 56,
+      "avd_over_time": {
+        "24h": 3.1,
+        "72h": 5.7,
+        "1wk": 5.1,
+        "2wk": 4.2,
+        "1mo": 4.2,
+        "lifetime": 4.1
+      },
+      "last_24h_views": 0,
+      "ad_views": 0
     },
     {
       "video_id": "qbBAD_Bi1pY",
@@ -796,8 +1140,19 @@
       "avg_view_duration_pct": 32.3,
       "avg_view_time_sec": 31.6,
       "new_subscribers": 0,
-      "ad_views": 0,
-      "last_24h_views": 0
+      "views_1mo": 30,
+      "views_3mo": null,
+      "views_lifetime": 41,
+      "avd_over_time": {
+        "24h": 67.0,
+        "72h": 32.8,
+        "1wk": 31.2,
+        "2wk": 32.3,
+        "1mo": 35.9,
+        "lifetime": 38.5
+      },
+      "last_24h_views": 0,
+      "ad_views": 0
     },
     {
       "video_id": "sLRzjY_XJXs",
@@ -817,8 +1172,19 @@
       "avg_view_duration_pct": 142.7,
       "avg_view_time_sec": 13.8,
       "new_subscribers": 0,
-      "ad_views": 0,
-      "last_24h_views": 0
+      "views_1mo": 231,
+      "views_3mo": null,
+      "views_lifetime": 251,
+      "avd_over_time": {
+        "24h": 156.9,
+        "72h": 140.1,
+        "1wk": 144.1,
+        "2wk": 142.7,
+        "1mo": 139.0,
+        "lifetime": 136.1
+      },
+      "last_24h_views": 0,
+      "ad_views": 0
     },
     {
       "video_id": "c_r3eHzv3nc",
@@ -838,8 +1204,19 @@
       "avg_view_duration_pct": 19.1,
       "avg_view_time_sec": 191.3,
       "new_subscribers": 0,
-      "ad_views": 0,
-      "last_24h_views": 3
+      "views_1mo": 172,
+      "views_3mo": null,
+      "views_lifetime": 202,
+      "avd_over_time": {
+        "24h": 24.8,
+        "72h": 20.6,
+        "1wk": 19.0,
+        "2wk": 19.1,
+        "1mo": 18.7,
+        "lifetime": 18.8
+      },
+      "last_24h_views": 3,
+      "ad_views": 0
     },
     {
       "video_id": "zzVZDkcV7rE",
@@ -859,8 +1236,19 @@
       "avg_view_duration_pct": 148.4,
       "avg_view_time_sec": 14.3,
       "new_subscribers": 0,
-      "ad_views": 0,
-      "last_24h_views": 0
+      "views_1mo": 117,
+      "views_3mo": null,
+      "views_lifetime": 135,
+      "avd_over_time": {
+        "24h": 188.4,
+        "72h": 155.6,
+        "1wk": 152.2,
+        "2wk": 148.4,
+        "1mo": 145.4,
+        "lifetime": 143.9
+      },
+      "last_24h_views": 0,
+      "ad_views": 0
     },
     {
       "video_id": "epUkYMt8sNI",
@@ -880,8 +1268,19 @@
       "avg_view_duration_pct": 32.5,
       "avg_view_time_sec": 34.2,
       "new_subscribers": 0,
-      "ad_views": 0,
-      "last_24h_views": 0
+      "views_1mo": 40,
+      "views_3mo": null,
+      "views_lifetime": 50,
+      "avd_over_time": {
+        "24h": 31.2,
+        "72h": 31.5,
+        "1wk": 31.8,
+        "2wk": 32.5,
+        "1mo": 34.3,
+        "lifetime": 32.2
+      },
+      "last_24h_views": 0,
+      "ad_views": 0
     },
     {
       "video_id": "CbqiKF1rE90",
@@ -901,8 +1300,19 @@
       "avg_view_duration_pct": 20.0,
       "avg_view_time_sec": 197.5,
       "new_subscribers": 1,
-      "ad_views": 0,
-      "last_24h_views": 2
+      "views_1mo": 307,
+      "views_3mo": null,
+      "views_lifetime": 431,
+      "avd_over_time": {
+        "24h": 28.8,
+        "72h": 25.6,
+        "1wk": 23.5,
+        "2wk": 20.0,
+        "1mo": 17.7,
+        "lifetime": 19.7
+      },
+      "last_24h_views": 2,
+      "ad_views": 0
     },
     {
       "video_id": "Hv4DZYg4Szk",
@@ -922,8 +1332,20 @@
       "avg_view_duration_pct": 36.9,
       "avg_view_time_sec": 40.0,
       "new_subscribers": 0,
-      "ad_views": 0,
-      "last_24h_views": 0
+      "views_1mo": 54,
+      "views_3mo": 77,
+      "views_lifetime": 77,
+      "avd_over_time": {
+        "24h": 29.6,
+        "72h": 32.1,
+        "1wk": 37.1,
+        "2wk": 36.9,
+        "1mo": 37.4,
+        "3mo": 38.7,
+        "lifetime": 38.7
+      },
+      "last_24h_views": 0,
+      "ad_views": 0
     },
     {
       "video_id": "vozBKcfrzfs",
@@ -943,8 +1365,20 @@
       "avg_view_duration_pct": 133.8,
       "avg_view_time_sec": 9.2,
       "new_subscribers": 0,
-      "ad_views": 0,
-      "last_24h_views": 0
+      "views_1mo": 172,
+      "views_3mo": 200,
+      "views_lifetime": 200,
+      "avd_over_time": {
+        "24h": 115.5,
+        "72h": 117.0,
+        "1wk": 135.1,
+        "2wk": 133.8,
+        "1mo": 134.6,
+        "3mo": 133.1,
+        "lifetime": 133.1
+      },
+      "last_24h_views": 0,
+      "ad_views": 0
     },
     {
       "video_id": "8ZoxyA7XANo",
@@ -964,8 +1398,20 @@
       "avg_view_duration_pct": 28.5,
       "avg_view_time_sec": 190.2,
       "new_subscribers": 1,
-      "ad_views": 0,
-      "last_24h_views": 2
+      "views_1mo": 142,
+      "views_3mo": 205,
+      "views_lifetime": 205,
+      "avd_over_time": {
+        "24h": 46.6,
+        "72h": 27.4,
+        "1wk": 27.6,
+        "2wk": 28.5,
+        "1mo": 27.7,
+        "3mo": 30.1,
+        "lifetime": 30.1
+      },
+      "last_24h_views": 2,
+      "ad_views": 0
     },
     {
       "video_id": "tZJmm45mDvg",
@@ -985,8 +1431,20 @@
       "avg_view_duration_pct": 42.2,
       "avg_view_time_sec": 45.2,
       "new_subscribers": 1,
-      "ad_views": 0,
-      "last_24h_views": 0
+      "views_1mo": 19,
+      "views_3mo": 27,
+      "views_lifetime": 27,
+      "avd_over_time": {
+        "24h": 37.4,
+        "72h": 35.1,
+        "1wk": 32.9,
+        "2wk": 42.2,
+        "1mo": 40.9,
+        "3mo": 39.5,
+        "lifetime": 39.5
+      },
+      "last_24h_views": 0,
+      "ad_views": 0
     },
     {
       "video_id": "zXB8BoXbeeI",
@@ -1006,8 +1464,20 @@
       "avg_view_duration_pct": 132.6,
       "avg_view_time_sec": 11.1,
       "new_subscribers": 0,
-      "ad_views": 0,
-      "last_24h_views": 0
+      "views_1mo": 410,
+      "views_3mo": 445,
+      "views_lifetime": 445,
+      "avd_over_time": {
+        "24h": 154.6,
+        "72h": 132.4,
+        "1wk": 131.4,
+        "2wk": 132.6,
+        "1mo": 131.8,
+        "3mo": 129.8,
+        "lifetime": 129.8
+      },
+      "last_24h_views": 0,
+      "ad_views": 0
     },
     {
       "video_id": "v9LIkglPxjI",
@@ -1027,8 +1497,20 @@
       "avg_view_duration_pct": 27.9,
       "avg_view_time_sec": 242.3,
       "new_subscribers": 0,
-      "ad_views": 0,
-      "last_24h_views": 1
+      "views_1mo": 109,
+      "views_3mo": 181,
+      "views_lifetime": 184,
+      "avd_over_time": {
+        "24h": 28.1,
+        "72h": 25.3,
+        "1wk": 27.7,
+        "2wk": 27.9,
+        "1mo": 30.2,
+        "3mo": 30.1,
+        "lifetime": 29.7
+      },
+      "last_24h_views": 1,
+      "ad_views": 0
     },
     {
       "video_id": "0jgguiLNDUI",
@@ -1048,8 +1530,20 @@
       "avg_view_duration_pct": 31.7,
       "avg_view_time_sec": 29.3,
       "new_subscribers": 0,
-      "ad_views": 0,
-      "last_24h_views": 0
+      "views_1mo": 18,
+      "views_3mo": 21,
+      "views_lifetime": 21,
+      "avd_over_time": {
+        "24h": 37.5,
+        "72h": 25.2,
+        "1wk": 33.2,
+        "2wk": 31.7,
+        "1mo": 30.4,
+        "3mo": 32.8,
+        "lifetime": 32.8
+      },
+      "last_24h_views": 0,
+      "ad_views": 0
     },
     {
       "video_id": "raZoG0s_j1c",
@@ -1069,8 +1563,20 @@
       "avg_view_duration_pct": 29.5,
       "avg_view_time_sec": 31.3,
       "new_subscribers": 0,
-      "ad_views": 0,
-      "last_24h_views": 0
+      "views_1mo": 48,
+      "views_3mo": 60,
+      "views_lifetime": 60,
+      "avd_over_time": {
+        "24h": 54.0,
+        "72h": 49.4,
+        "1wk": 29.3,
+        "2wk": 29.5,
+        "1mo": 33.0,
+        "3mo": 35.4,
+        "lifetime": 35.4
+      },
+      "last_24h_views": 0,
+      "ad_views": 0
     },
     {
       "video_id": "2KqK23MrCoA",
@@ -1090,8 +1596,20 @@
       "avg_view_duration_pct": 173.7,
       "avg_view_time_sec": 15.3,
       "new_subscribers": 0,
-      "ad_views": 0,
-      "last_24h_views": 0
+      "views_1mo": 172,
+      "views_3mo": 192,
+      "views_lifetime": 193,
+      "avd_over_time": {
+        "24h": 282.6,
+        "72h": 175.6,
+        "1wk": 170.5,
+        "2wk": 173.7,
+        "1mo": 169.9,
+        "3mo": 166.4,
+        "lifetime": 165.6
+      },
+      "last_24h_views": 0,
+      "ad_views": 0
     },
     {
       "video_id": "r367aYOCqck",
@@ -1111,8 +1629,20 @@
       "avg_view_duration_pct": 18.4,
       "avg_view_time_sec": 161.3,
       "new_subscribers": 0,
-      "ad_views": 0,
-      "last_24h_views": 1
+      "views_1mo": 63,
+      "views_3mo": 76,
+      "views_lifetime": 88,
+      "avd_over_time": {
+        "24h": 30.0,
+        "72h": 21.7,
+        "1wk": 18.6,
+        "2wk": 18.4,
+        "1mo": 19.9,
+        "3mo": 20.7,
+        "lifetime": 24.1
+      },
+      "last_24h_views": 1,
+      "ad_views": 0
     },
     {
       "video_id": "H6v3g37r8DI",
@@ -1132,8 +1662,20 @@
       "avg_view_duration_pct": 181.5,
       "avg_view_time_sec": 12.2,
       "new_subscribers": 0,
-      "ad_views": 0,
-      "last_24h_views": 0
+      "views_1mo": 168,
+      "views_3mo": 183,
+      "views_lifetime": 184,
+      "avd_over_time": {
+        "24h": 173.0,
+        "72h": 185.4,
+        "1wk": 181.1,
+        "2wk": 181.5,
+        "1mo": 179.6,
+        "3mo": 171.8,
+        "lifetime": 170.9
+      },
+      "last_24h_views": 0,
+      "ad_views": 0
     },
     {
       "video_id": "kUDAlETq28Y",
@@ -1153,8 +1695,20 @@
       "avg_view_duration_pct": 23.9,
       "avg_view_time_sec": 259.3,
       "new_subscribers": 1,
-      "ad_views": 0,
-      "last_24h_views": 1
+      "views_1mo": 123,
+      "views_3mo": 162,
+      "views_lifetime": 192,
+      "avd_over_time": {
+        "24h": 37.2,
+        "72h": 30.3,
+        "1wk": 23.9,
+        "2wk": 23.9,
+        "1mo": 25.5,
+        "3mo": 26.6,
+        "lifetime": 28.7
+      },
+      "last_24h_views": 1,
+      "ad_views": 0
     },
     {
       "video_id": "mjzImuEhx-A",
@@ -1174,8 +1728,20 @@
       "avg_view_duration_pct": 46.0,
       "avg_view_time_sec": 10.8,
       "new_subscribers": 0,
-      "ad_views": 0,
-      "last_24h_views": 0
+      "views_1mo": 169,
+      "views_3mo": 181,
+      "views_lifetime": 188,
+      "avd_over_time": {
+        "24h": 42.6,
+        "72h": 43.8,
+        "1wk": 46.9,
+        "2wk": 46.0,
+        "1mo": 47.0,
+        "3mo": 46.6,
+        "lifetime": 47.3
+      },
+      "last_24h_views": 0,
+      "ad_views": 0
     },
     {
       "video_id": "nzduf2KuzLo",
@@ -1195,8 +1761,20 @@
       "avg_view_duration_pct": 15.8,
       "avg_view_time_sec": 79.7,
       "new_subscribers": 0,
-      "ad_views": 0,
-      "last_24h_views": 0
+      "views_1mo": 124,
+      "views_3mo": 149,
+      "views_lifetime": 173,
+      "avd_over_time": {
+        "24h": 15.5,
+        "72h": 12.8,
+        "1wk": 15.7,
+        "2wk": 15.8,
+        "1mo": 17.5,
+        "3mo": 19.4,
+        "lifetime": 23.2
+      },
+      "last_24h_views": 0,
+      "ad_views": 0
     },
     {
       "video_id": "jafr5Jj98ug",
@@ -1216,8 +1794,20 @@
       "avg_view_duration_pct": 29.7,
       "avg_view_time_sec": 26.1,
       "new_subscribers": 0,
-      "ad_views": 0,
-      "last_24h_views": 0
+      "views_1mo": 17,
+      "views_3mo": 22,
+      "views_lifetime": 25,
+      "avd_over_time": {
+        "24h": 50.7,
+        "72h": 34.3,
+        "1wk": 23.0,
+        "2wk": 29.7,
+        "1mo": 36.3,
+        "3mo": 39.2,
+        "lifetime": 36.4
+      },
+      "last_24h_views": 0,
+      "ad_views": 0
     },
     {
       "video_id": "lCP2urih_5M",
@@ -1237,8 +1827,20 @@
       "avg_view_duration_pct": 14.5,
       "avg_view_time_sec": 15.6,
       "new_subscribers": 0,
-      "ad_views": 0,
-      "last_24h_views": 0
+      "views_1mo": 11,
+      "views_3mo": 30,
+      "views_lifetime": 34,
+      "avd_over_time": {
+        "24h": 14.1,
+        "72h": 13.9,
+        "1wk": 11.5,
+        "2wk": 14.5,
+        "1mo": 23.6,
+        "3mo": 32.8,
+        "lifetime": 31.5
+      },
+      "last_24h_views": 0,
+      "ad_views": 0
     },
     {
       "video_id": "oqXJZZGShhg",
@@ -1258,8 +1860,20 @@
       "avg_view_duration_pct": 34.3,
       "avg_view_time_sec": 34.0,
       "new_subscribers": 0,
-      "ad_views": 0,
-      "last_24h_views": 0
+      "views_1mo": 21,
+      "views_3mo": 38,
+      "views_lifetime": 172,
+      "avd_over_time": {
+        "24h": 45.3,
+        "72h": 55.9,
+        "1wk": 48.5,
+        "2wk": 34.3,
+        "1mo": 33.6,
+        "3mo": 42.2,
+        "lifetime": 42.6
+      },
+      "last_24h_views": 0,
+      "ad_views": 0
     },
     {
       "video_id": "rjNCcvZDx8k",
@@ -1279,8 +1893,20 @@
       "avg_view_duration_pct": 21.3,
       "avg_view_time_sec": 23.7,
       "new_subscribers": 0,
-      "ad_views": 0,
-      "last_24h_views": 0
+      "views_1mo": 24,
+      "views_3mo": 32,
+      "views_lifetime": 40,
+      "avd_over_time": {
+        "24h": 0,
+        "72h": 63.0,
+        "1wk": 18.1,
+        "2wk": 21.3,
+        "1mo": 27.4,
+        "3mo": 33.2,
+        "lifetime": 37.7
+      },
+      "last_24h_views": 0,
+      "ad_views": 0
     },
     {
       "video_id": "s8pPfhk-X4g",
@@ -1300,8 +1926,20 @@
       "avg_view_duration_pct": 49.5,
       "avg_view_time_sec": 50.2,
       "new_subscribers": 0,
-      "ad_views": 0,
-      "last_24h_views": 0
+      "views_1mo": 14,
+      "views_3mo": 29,
+      "views_lifetime": 31,
+      "avd_over_time": {
+        "24h": 44.2,
+        "72h": 43.8,
+        "1wk": 45.3,
+        "2wk": 49.5,
+        "1mo": 49.8,
+        "3mo": 48.0,
+        "lifetime": 50.1
+      },
+      "last_24h_views": 0,
+      "ad_views": 0
     },
     {
       "video_id": "tYuA6sPytZ4",
@@ -1321,8 +1959,20 @@
       "avg_view_duration_pct": 36.3,
       "avg_view_time_sec": 38.1,
       "new_subscribers": 0,
-      "ad_views": 0,
-      "last_24h_views": 0
+      "views_1mo": 11,
+      "views_3mo": 18,
+      "views_lifetime": 34,
+      "avd_over_time": {
+        "24h": 51.0,
+        "72h": 40.4,
+        "1wk": 40.4,
+        "2wk": 36.3,
+        "1mo": 37.4,
+        "3mo": 50.8,
+        "lifetime": 44.2
+      },
+      "last_24h_views": 0,
+      "ad_views": 0
     },
     {
       "video_id": "wDw0oqfl4Qw",
@@ -1342,8 +1992,20 @@
       "avg_view_duration_pct": 10.0,
       "avg_view_time_sec": 9.0,
       "new_subscribers": 0,
-      "ad_views": 0,
-      "last_24h_views": 0
+      "views_1mo": 6,
+      "views_3mo": 18,
+      "views_lifetime": 28,
+      "avd_over_time": {
+        "24h": 10.0,
+        "72h": 10.0,
+        "1wk": 10.0,
+        "2wk": 10.0,
+        "1mo": 25.8,
+        "3mo": 33.7,
+        "lifetime": 38.3
+      },
+      "last_24h_views": 0,
+      "ad_views": 0
     },
     {
       "video_id": "wXrJkYZsqKI",
@@ -1363,8 +2025,20 @@
       "avg_view_duration_pct": 28.9,
       "avg_view_time_sec": 23.7,
       "new_subscribers": 0,
-      "ad_views": 0,
-      "last_24h_views": 0
+      "views_1mo": 7,
+      "views_3mo": 14,
+      "views_lifetime": 17,
+      "avd_over_time": {
+        "24h": 0.1,
+        "72h": 33.2,
+        "1wk": 33.2,
+        "2wk": 28.9,
+        "1mo": 38.9,
+        "3mo": 29.8,
+        "lifetime": 28.4
+      },
+      "last_24h_views": 0,
+      "ad_views": 0
     },
     {
       "video_id": "yvN-FvYSWxs",
@@ -1384,8 +2058,20 @@
       "avg_view_duration_pct": 51.8,
       "avg_view_time_sec": 34.8,
       "new_subscribers": 0,
-      "ad_views": 0,
-      "last_24h_views": 0
+      "views_1mo": 17,
+      "views_3mo": 31,
+      "views_lifetime": 50,
+      "avd_over_time": {
+        "24h": 28.1,
+        "72h": 42.4,
+        "1wk": 61.6,
+        "2wk": 51.8,
+        "1mo": 47.8,
+        "3mo": 52.4,
+        "lifetime": 48.6
+      },
+      "last_24h_views": 0,
+      "ad_views": 0
     },
     {
       "video_id": "K2T5ZbJ7WE0",
@@ -1405,8 +2091,20 @@
       "avg_view_duration_pct": 20.0,
       "avg_view_time_sec": 20.4,
       "new_subscribers": 0,
-      "ad_views": 0,
-      "last_24h_views": 0
+      "views_1mo": 20,
+      "views_3mo": 34,
+      "views_lifetime": 41,
+      "avd_over_time": {
+        "24h": 3.4,
+        "72h": 26.4,
+        "1wk": 18.7,
+        "2wk": 20.0,
+        "1mo": 18.6,
+        "3mo": 19.2,
+        "lifetime": 21.6
+      },
+      "last_24h_views": 0,
+      "ad_views": 0
     },
     {
       "video_id": "NPzQiTVs1ts",
@@ -1426,8 +2124,20 @@
       "avg_view_duration_pct": 17.3,
       "avg_view_time_sec": 16.2,
       "new_subscribers": 0,
-      "ad_views": 0,
-      "last_24h_views": 0
+      "views_1mo": 9,
+      "views_3mo": 19,
+      "views_lifetime": 24,
+      "avd_over_time": {
+        "24h": 41.9,
+        "72h": 15.8,
+        "1wk": 17.3,
+        "2wk": 17.3,
+        "1mo": 37.5,
+        "3mo": 41.6,
+        "lifetime": 35.8
+      },
+      "last_24h_views": 0,
+      "ad_views": 0
     },
     {
       "video_id": "P1BJj8l0fxE",
@@ -1447,8 +2157,20 @@
       "avg_view_duration_pct": 16.4,
       "avg_view_time_sec": 16.7,
       "new_subscribers": 0,
-      "ad_views": 0,
-      "last_24h_views": 0
+      "views_1mo": 10,
+      "views_3mo": 23,
+      "views_lifetime": 26,
+      "avd_over_time": {
+        "24h": 0,
+        "72h": 31.6,
+        "1wk": 19.0,
+        "2wk": 16.4,
+        "1mo": 39.6,
+        "3mo": 38.4,
+        "lifetime": 40.6
+      },
+      "last_24h_views": 0,
+      "ad_views": 0
     },
     {
       "video_id": "Z9hy1l1s6yE",
@@ -1468,8 +2190,20 @@
       "avg_view_duration_pct": 22.6,
       "avg_view_time_sec": 25.2,
       "new_subscribers": 0,
-      "ad_views": 0,
-      "last_24h_views": 0
+      "views_1mo": 23,
+      "views_3mo": 40,
+      "views_lifetime": 51,
+      "avd_over_time": {
+        "24h": 8.3,
+        "72h": 31.3,
+        "1wk": 24.5,
+        "2wk": 22.6,
+        "1mo": 26.6,
+        "3mo": 27.7,
+        "lifetime": 33.5
+      },
+      "last_24h_views": 0,
+      "ad_views": 0
     },
     {
       "video_id": "aW3roqwd-yA",
@@ -1489,8 +2223,20 @@
       "avg_view_duration_pct": 12.8,
       "avg_view_time_sec": 14.0,
       "new_subscribers": 0,
-      "ad_views": 0,
-      "last_24h_views": 0
+      "views_1mo": 3,
+      "views_3mo": 7,
+      "views_lifetime": 12,
+      "avd_over_time": {
+        "24h": 12.8,
+        "72h": 12.8,
+        "1wk": 12.8,
+        "2wk": 12.8,
+        "1mo": 9.2,
+        "3mo": 9.9,
+        "lifetime": 16.7
+      },
+      "last_24h_views": 0,
+      "ad_views": 0
     },
     {
       "video_id": "bh2ihs7vA9E",
@@ -1510,8 +2256,20 @@
       "avg_view_duration_pct": 17.5,
       "avg_view_time_sec": 18.2,
       "new_subscribers": 0,
-      "ad_views": 0,
-      "last_24h_views": 0
+      "views_1mo": 8,
+      "views_3mo": 14,
+      "views_lifetime": 16,
+      "avd_over_time": {
+        "24h": 5.5,
+        "72h": 16.9,
+        "1wk": 29.6,
+        "2wk": 17.5,
+        "1mo": 20.4,
+        "3mo": 27.4,
+        "lifetime": 31.6
+      },
+      "last_24h_views": 0,
+      "ad_views": 0
     },
     {
       "video_id": "dok8a2FyuS4",
@@ -1531,8 +2289,20 @@
       "avg_view_duration_pct": 24.4,
       "avg_view_time_sec": 24.3,
       "new_subscribers": 0,
-      "ad_views": 0,
-      "last_24h_views": 0
+      "views_1mo": 13,
+      "views_3mo": 17,
+      "views_lifetime": 24,
+      "avd_over_time": {
+        "24h": 73.5,
+        "72h": 32.7,
+        "1wk": 32.7,
+        "2wk": 24.4,
+        "1mo": 28.4,
+        "3mo": 31.6,
+        "lifetime": 29.7
+      },
+      "last_24h_views": 0,
+      "ad_views": 0
     },
     {
       "video_id": "gYfHcRUcXoU",
@@ -1552,8 +2322,20 @@
       "avg_view_duration_pct": 37.1,
       "avg_view_time_sec": 28.3,
       "new_subscribers": 0,
-      "ad_views": 0,
-      "last_24h_views": 0
+      "views_1mo": 12,
+      "views_3mo": 13,
+      "views_lifetime": 17,
+      "avd_over_time": {
+        "24h": 31.7,
+        "72h": 38.2,
+        "1wk": 37.1,
+        "2wk": 37.1,
+        "1mo": 41.3,
+        "3mo": 38.2,
+        "lifetime": 35.3
+      },
+      "last_24h_views": 0,
+      "ad_views": 0
     },
     {
       "video_id": "hPduA5vo4UI",
@@ -1573,8 +2355,20 @@
       "avg_view_duration_pct": 23.0,
       "avg_view_time_sec": 20.3,
       "new_subscribers": 0,
-      "ad_views": 0,
-      "last_24h_views": 0
+      "views_1mo": 6,
+      "views_3mo": 12,
+      "views_lifetime": 12,
+      "avd_over_time": {
+        "24h": 27.1,
+        "72h": 27.1,
+        "1wk": 23.0,
+        "2wk": 23.0,
+        "1mo": 30.1,
+        "3mo": 35.2,
+        "lifetime": 35.2
+      },
+      "last_24h_views": 0,
+      "ad_views": 0
     },
     {
       "video_id": "hpNL6ld2NoA",
@@ -1594,8 +2388,20 @@
       "avg_view_duration_pct": 8.9,
       "avg_view_time_sec": 9.5,
       "new_subscribers": 0,
-      "ad_views": 0,
-      "last_24h_views": 0
+      "views_1mo": 6,
+      "views_3mo": 26,
+      "views_lifetime": 41,
+      "avd_over_time": {
+        "24h": 8.2,
+        "72h": 7.5,
+        "1wk": 5.3,
+        "2wk": 8.9,
+        "1mo": 25.6,
+        "3mo": 22.5,
+        "lifetime": 33.6
+      },
+      "last_24h_views": 0,
+      "ad_views": 0
     },
     {
       "video_id": "0dCH6wiZJkc",
@@ -1615,8 +2421,20 @@
       "avg_view_duration_pct": 7.8,
       "avg_view_time_sec": 6.0,
       "new_subscribers": 0,
-      "ad_views": 0,
-      "last_24h_views": 0
+      "views_1mo": 16,
+      "views_3mo": 23,
+      "views_lifetime": 28,
+      "avd_over_time": {
+        "24h": 4.5,
+        "72h": 4.3,
+        "1wk": 5.8,
+        "2wk": 7.8,
+        "1mo": 7.8,
+        "3mo": 7.9,
+        "lifetime": 13.9
+      },
+      "last_24h_views": 0,
+      "ad_views": 0
     },
     {
       "video_id": "1jLHapXroS8",
@@ -1636,8 +2454,20 @@
       "avg_view_duration_pct": 46.1,
       "avg_view_time_sec": 45.3,
       "new_subscribers": 0,
-      "ad_views": 0,
-      "last_24h_views": 0
+      "views_1mo": 4,
+      "views_3mo": 14,
+      "views_lifetime": 18,
+      "avd_over_time": {
+        "24h": 36.5,
+        "72h": 68.1,
+        "1wk": 68.1,
+        "2wk": 46.1,
+        "1mo": 41.8,
+        "3mo": 47.9,
+        "lifetime": 46.0
+      },
+      "last_24h_views": 0,
+      "ad_views": 0
     },
     {
       "video_id": "3obz8ICUMls",
@@ -1657,8 +2487,20 @@
       "avg_view_duration_pct": 21.3,
       "avg_view_time_sec": 20.6,
       "new_subscribers": 0,
-      "ad_views": 0,
-      "last_24h_views": 0
+      "views_1mo": 26,
+      "views_3mo": 30,
+      "views_lifetime": 36,
+      "avd_over_time": {
+        "24h": 0,
+        "72h": 23.6,
+        "1wk": 24.1,
+        "2wk": 21.3,
+        "1mo": 20.6,
+        "3mo": 19.6,
+        "lifetime": 24.8
+      },
+      "last_24h_views": 0,
+      "ad_views": 0
     },
     {
       "video_id": "5DRs120Apbc",
@@ -1678,8 +2520,20 @@
       "avg_view_duration_pct": 24.6,
       "avg_view_time_sec": 20.1,
       "new_subscribers": 0,
-      "ad_views": 0,
-      "last_24h_views": 0
+      "views_1mo": 10,
+      "views_3mo": 15,
+      "views_lifetime": 23,
+      "avd_over_time": {
+        "24h": 29.3,
+        "72h": 26.6,
+        "1wk": 25.3,
+        "2wk": 24.6,
+        "1mo": 31.1,
+        "3mo": 29.0,
+        "lifetime": 31.3
+      },
+      "last_24h_views": 0,
+      "ad_views": 0
     },
     {
       "video_id": "67wOyw4kT88",
@@ -1699,8 +2553,20 @@
       "avg_view_duration_pct": 45.8,
       "avg_view_time_sec": 36.0,
       "new_subscribers": 0,
-      "ad_views": 0,
-      "last_24h_views": 0
+      "views_1mo": 5,
+      "views_3mo": 12,
+      "views_lifetime": 19,
+      "avd_over_time": {
+        "24h": 0,
+        "72h": 0,
+        "1wk": 45.8,
+        "2wk": 45.8,
+        "1mo": 80.6,
+        "3mo": 61.9,
+        "lifetime": 69.9
+      },
+      "last_24h_views": 0,
+      "ad_views": 0
     },
     {
       "video_id": "6QQqnD1jDm0",
@@ -1720,8 +2586,20 @@
       "avg_view_duration_pct": 17.3,
       "avg_view_time_sec": 14.9,
       "new_subscribers": 0,
-      "ad_views": 0,
-      "last_24h_views": 0
+      "views_1mo": 10,
+      "views_3mo": 17,
+      "views_lifetime": 18,
+      "avd_over_time": {
+        "24h": 0,
+        "72h": 0,
+        "1wk": 5.8,
+        "2wk": 17.3,
+        "1mo": 27.9,
+        "3mo": 33.4,
+        "lifetime": 32.5
+      },
+      "last_24h_views": 0,
+      "ad_views": 0
     },
     {
       "video_id": "9UFSdgPA7U8",
@@ -1741,8 +2619,20 @@
       "avg_view_duration_pct": 34.8,
       "avg_view_time_sec": 33.0,
       "new_subscribers": 0,
-      "ad_views": 0,
-      "last_24h_views": 0
+      "views_1mo": 4,
+      "views_3mo": 5,
+      "views_lifetime": 7,
+      "avd_over_time": {
+        "24h": 34.8,
+        "72h": 34.8,
+        "1wk": 34.8,
+        "2wk": 34.8,
+        "1mo": 60.5,
+        "3mo": 63.9,
+        "lifetime": 48.8
+      },
+      "last_24h_views": 0,
+      "ad_views": 0
     },
     {
       "video_id": "9lX7q1L3apM",
@@ -1762,8 +2652,20 @@
       "avg_view_duration_pct": 25.1,
       "avg_view_time_sec": 23.3,
       "new_subscribers": 0,
-      "ad_views": 0,
-      "last_24h_views": 0
+      "views_1mo": 7,
+      "views_3mo": 11,
+      "views_lifetime": 13,
+      "avd_over_time": {
+        "24h": 10.7,
+        "72h": 48.7,
+        "1wk": 36.6,
+        "2wk": 25.1,
+        "1mo": 33.2,
+        "3mo": 30.5,
+        "lifetime": 26.2
+      },
+      "last_24h_views": 0,
+      "ad_views": 0
     },
     {
       "video_id": "CsHvG9xNm2Y",
@@ -1783,8 +2685,20 @@
       "avg_view_duration_pct": 23.3,
       "avg_view_time_sec": 26.1,
       "new_subscribers": 0,
-      "ad_views": 0,
-      "last_24h_views": 0
+      "views_1mo": 28,
+      "views_3mo": 32,
+      "views_lifetime": 33,
+      "avd_over_time": {
+        "24h": 7.5,
+        "72h": 34.1,
+        "1wk": 31.0,
+        "2wk": 23.3,
+        "1mo": 27.4,
+        "3mo": 26.9,
+        "lifetime": 26.1
+      },
+      "last_24h_views": 0,
+      "ad_views": 0
     },
     {
       "video_id": "GfKy2v3pjak",
@@ -1804,8 +2718,20 @@
       "avg_view_duration_pct": 12.4,
       "avg_view_time_sec": 11.4,
       "new_subscribers": 0,
-      "ad_views": 0,
-      "last_24h_views": 0
+      "views_1mo": 9,
+      "views_3mo": 19,
+      "views_lifetime": 26,
+      "avd_over_time": {
+        "24h": 15.2,
+        "72h": 11.7,
+        "1wk": 13.0,
+        "2wk": 12.4,
+        "1mo": 22.1,
+        "3mo": 43.1,
+        "lifetime": 41.5
+      },
+      "last_24h_views": 0,
+      "ad_views": 0
     },
     {
       "video_id": "iL-WBDd-0K8",
@@ -1825,8 +2751,20 @@
       "avg_view_duration_pct": 119.9,
       "avg_view_time_sec": 17.7,
       "new_subscribers": 0,
-      "ad_views": 0,
-      "last_24h_views": 0
+      "views_1mo": 121,
+      "views_3mo": 132,
+      "views_lifetime": 139,
+      "avd_over_time": {
+        "24h": 140.6,
+        "72h": 121.7,
+        "1wk": 121.0,
+        "2wk": 119.9,
+        "1mo": 119.8,
+        "3mo": 116.7,
+        "lifetime": 114.3
+      },
+      "last_24h_views": 0,
+      "ad_views": 0
     },
     {
       "video_id": "0RnmlVgT8H4",
@@ -1846,8 +2784,20 @@
       "avg_view_duration_pct": 13.4,
       "avg_view_time_sec": 158.3,
       "new_subscribers": 1,
-      "ad_views": 0,
-      "last_24h_views": 0
+      "views_1mo": 86,
+      "views_3mo": 100,
+      "views_lifetime": 118,
+      "avd_over_time": {
+        "24h": 14.0,
+        "72h": 13.4,
+        "1wk": 14.0,
+        "2wk": 13.4,
+        "1mo": 13.7,
+        "3mo": 14.8,
+        "lifetime": 19.0
+      },
+      "last_24h_views": 0,
+      "ad_views": 0
     },
     {
       "video_id": "C_Ben7R7jSs",
@@ -1857,7 +2807,7 @@
       "likes": 2,
       "comments": 0,
       "duration_sec": 4236,
-      "thumbnail": "https://i9.ytimg.com/vi/C_Ben7R7jSs/mqdefault.jpg?sqp=CISAzs8G&rs=AOn4CLCmYiTW3riSwMgtND093ckkQz-lCA",
+      "thumbnail": "https://i9.ytimg.com/vi/C_Ben7R7jSs/mqdefault.jpg?sqp=CPi1zs8G&rs=AOn4CLDHw4h9FwNWduiIVW0L4fsdcKg-3w",
       "privacy_status": "private",
       "is_short": true,
       "views_24h": 73,
@@ -1867,8 +2817,20 @@
       "avg_view_duration_pct": 5.3,
       "avg_view_time_sec": 223.0,
       "new_subscribers": 0,
-      "ad_views": 0,
-      "last_24h_views": 0
+      "views_1mo": 73,
+      "views_3mo": 73,
+      "views_lifetime": 73,
+      "avd_over_time": {
+        "24h": 5.3,
+        "72h": 5.3,
+        "1wk": 5.3,
+        "2wk": 5.3,
+        "1mo": 5.3,
+        "3mo": 5.3,
+        "lifetime": 5.3
+      },
+      "last_24h_views": 0,
+      "ad_views": 0
     },
     {
       "video_id": "OCxYRTq2lZg",
@@ -1888,8 +2850,20 @@
       "avg_view_duration_pct": 102.6,
       "avg_view_time_sec": 16.0,
       "new_subscribers": 0,
-      "ad_views": 0,
-      "last_24h_views": 0
+      "views_1mo": 193,
+      "views_3mo": 207,
+      "views_lifetime": 213,
+      "avd_over_time": {
+        "24h": 103.0,
+        "72h": 101.3,
+        "1wk": 104.0,
+        "2wk": 102.6,
+        "1mo": 103.0,
+        "3mo": 102.1,
+        "lifetime": 100.2
+      },
+      "last_24h_views": 0,
+      "ad_views": 0
     },
     {
       "video_id": "TZSFUE-qSqo",
@@ -1909,8 +2883,20 @@
       "avg_view_duration_pct": 19.7,
       "avg_view_time_sec": 163.3,
       "new_subscribers": 0,
-      "ad_views": 0,
-      "last_24h_views": 1
+      "views_1mo": 70,
+      "views_3mo": 86,
+      "views_lifetime": 120,
+      "avd_over_time": {
+        "24h": 23.2,
+        "72h": 20.5,
+        "1wk": 20.2,
+        "2wk": 19.7,
+        "1mo": 19.3,
+        "3mo": 23.3,
+        "lifetime": 26.4
+      },
+      "last_24h_views": 1,
+      "ad_views": 0
     },
     {
       "video_id": "S9Hmn7nr4Yw",
@@ -1930,8 +2916,20 @@
       "avg_view_duration_pct": 113.3,
       "avg_view_time_sec": 12.2,
       "new_subscribers": 0,
-      "ad_views": 0,
-      "last_24h_views": 0
+      "views_1mo": 165,
+      "views_3mo": 177,
+      "views_lifetime": 187,
+      "avd_over_time": {
+        "24h": 128.2,
+        "72h": 114.9,
+        "1wk": 112.8,
+        "2wk": 113.3,
+        "1mo": 113.1,
+        "3mo": 111.8,
+        "lifetime": 110.0
+      },
+      "last_24h_views": 0,
+      "ad_views": 0
     },
     {
       "video_id": "BbnAkLBQ9SQ",
@@ -1951,8 +2949,20 @@
       "avg_view_duration_pct": 19.5,
       "avg_view_time_sec": 198.6,
       "new_subscribers": 0,
-      "ad_views": 0,
-      "last_24h_views": 0
+      "views_1mo": 92,
+      "views_3mo": 108,
+      "views_lifetime": 125,
+      "avd_over_time": {
+        "24h": 16.2,
+        "72h": 15.3,
+        "1wk": 15.4,
+        "2wk": 19.5,
+        "1mo": 21.6,
+        "3mo": 25.7,
+        "lifetime": 30.7
+      },
+      "last_24h_views": 0,
+      "ad_views": 0
     },
     {
       "video_id": "LphEQwvOwE8",
@@ -1972,8 +2982,20 @@
       "avg_view_duration_pct": 0,
       "avg_view_time_sec": 0,
       "new_subscribers": 0,
-      "ad_views": 0,
-      "last_24h_views": 0
+      "views_1mo": 0,
+      "views_3mo": 0,
+      "views_lifetime": 0,
+      "avd_over_time": {
+        "24h": 0,
+        "72h": 0,
+        "1wk": 0,
+        "2wk": 0,
+        "1mo": 0,
+        "3mo": 0,
+        "lifetime": 0
+      },
+      "last_24h_views": 0,
+      "ad_views": 0
     },
     {
       "video_id": "mgYyl7Nt5pc",
@@ -1993,8 +3015,20 @@
       "avg_view_duration_pct": 79.5,
       "avg_view_time_sec": 16.3,
       "new_subscribers": 0,
-      "ad_views": 0,
-      "last_24h_views": 0
+      "views_1mo": 391,
+      "views_3mo": 400,
+      "views_lifetime": 418,
+      "avd_over_time": {
+        "24h": 87.1,
+        "72h": 79.7,
+        "1wk": 79.2,
+        "2wk": 79.5,
+        "1mo": 79.3,
+        "3mo": 79.8,
+        "lifetime": 80.2
+      },
+      "last_24h_views": 0,
+      "ad_views": 0
     },
     {
       "video_id": "nIiUdpyFqnw",
@@ -2014,8 +3048,20 @@
       "avg_view_duration_pct": 108.5,
       "avg_view_time_sec": 12.6,
       "new_subscribers": 0,
-      "ad_views": 0,
-      "last_24h_views": 0
+      "views_1mo": 248,
+      "views_3mo": 272,
+      "views_lifetime": 283,
+      "avd_over_time": {
+        "24h": 118.9,
+        "72h": 104.6,
+        "1wk": 109.2,
+        "2wk": 108.5,
+        "1mo": 110.7,
+        "3mo": 110.7,
+        "lifetime": 112.0
+      },
+      "last_24h_views": 0,
+      "ad_views": 0
     },
     {
       "video_id": "xoYoO92MelY",
@@ -2035,8 +3081,20 @@
       "avg_view_duration_pct": 81.7,
       "avg_view_time_sec": 8.6,
       "new_subscribers": 0,
-      "ad_views": 0,
-      "last_24h_views": 0
+      "views_1mo": 245,
+      "views_3mo": 256,
+      "views_lifetime": 272,
+      "avd_over_time": {
+        "24h": 112.9,
+        "72h": 81.9,
+        "1wk": 82.1,
+        "2wk": 81.7,
+        "1mo": 84.8,
+        "3mo": 84.3,
+        "lifetime": 84.6
+      },
+      "last_24h_views": 0,
+      "ad_views": 0
     },
     {
       "video_id": "QhzJ53z3-hQ",
@@ -2056,8 +3114,20 @@
       "avg_view_duration_pct": 174.1,
       "avg_view_time_sec": 20.3,
       "new_subscribers": 0,
-      "ad_views": 0,
-      "last_24h_views": 0
+      "views_1mo": 189,
+      "views_3mo": 206,
+      "views_lifetime": 215,
+      "avd_over_time": {
+        "24h": 105.0,
+        "72h": 192.8,
+        "1wk": 180.8,
+        "2wk": 174.1,
+        "1mo": 159.5,
+        "3mo": 150.9,
+        "lifetime": 147.4
+      },
+      "last_24h_views": 0,
+      "ad_views": 0
     },
     {
       "video_id": "2YtcWWJjqUU",
@@ -2077,8 +3147,20 @@
       "avg_view_duration_pct": 88.2,
       "avg_view_time_sec": 10.2,
       "new_subscribers": 0,
-      "ad_views": 0,
-      "last_24h_views": 0
+      "views_1mo": 187,
+      "views_3mo": 193,
+      "views_lifetime": 204,
+      "avd_over_time": {
+        "24h": 115.8,
+        "72h": 86.7,
+        "1wk": 89.8,
+        "2wk": 88.2,
+        "1mo": 86.8,
+        "3mo": 86.9,
+        "lifetime": 88.0
+      },
+      "last_24h_views": 0,
+      "ad_views": 0
     },
     {
       "video_id": "2ThRMC9F7_s",
@@ -2098,8 +3180,20 @@
       "avg_view_duration_pct": 0,
       "avg_view_time_sec": 0,
       "new_subscribers": 0,
-      "ad_views": 0,
-      "last_24h_views": 0
+      "views_1mo": 0,
+      "views_3mo": 0,
+      "views_lifetime": 0,
+      "avd_over_time": {
+        "24h": 0,
+        "72h": 0,
+        "1wk": 0,
+        "2wk": 0,
+        "1mo": 0,
+        "3mo": 0,
+        "lifetime": 0
+      },
+      "last_24h_views": 0,
+      "ad_views": 0
     },
     {
       "video_id": "K4FtbcJtozo",
@@ -2119,8 +3213,20 @@
       "avg_view_duration_pct": 3.3,
       "avg_view_time_sec": 54.4,
       "new_subscribers": 17,
-      "ad_views": 5204,
-      "last_24h_views": 0
+      "views_1mo": 5413,
+      "views_3mo": 5441,
+      "views_lifetime": 5544,
+      "avd_over_time": {
+        "24h": 17.8,
+        "72h": 15.5,
+        "1wk": 4.3,
+        "2wk": 3.3,
+        "1mo": 2.9,
+        "3mo": 2.9,
+        "lifetime": 3.3
+      },
+      "last_24h_views": 0,
+      "ad_views": 5204
     },
     {
       "video_id": "Ijq_vYuW5NQ",
@@ -2140,8 +3246,20 @@
       "avg_view_duration_pct": 76.9,
       "avg_view_time_sec": 14.4,
       "new_subscribers": 0,
-      "ad_views": 0,
-      "last_24h_views": 0
+      "views_1mo": 341,
+      "views_3mo": 352,
+      "views_lifetime": 359,
+      "avd_over_time": {
+        "24h": 101.1,
+        "72h": 77.9,
+        "1wk": 77.2,
+        "2wk": 76.9,
+        "1mo": 76.9,
+        "3mo": 77.5,
+        "lifetime": 77.6
+      },
+      "last_24h_views": 0,
+      "ad_views": 0
     },
     {
       "video_id": "nPNJoCUKcuE",
@@ -2161,8 +3279,20 @@
       "avg_view_duration_pct": 68.3,
       "avg_view_time_sec": 15.7,
       "new_subscribers": 0,
-      "ad_views": 0,
-      "last_24h_views": 0
+      "views_1mo": 196,
+      "views_3mo": 204,
+      "views_lifetime": 220,
+      "avd_over_time": {
+        "24h": 124.0,
+        "72h": 70.5,
+        "1wk": 69.5,
+        "2wk": 68.3,
+        "1mo": 67.7,
+        "3mo": 68.8,
+        "lifetime": 71.5
+      },
+      "last_24h_views": 0,
+      "ad_views": 0
     },
     {
       "video_id": "TxTthzNbtd0",
@@ -2182,8 +3312,20 @@
       "avg_view_duration_pct": 7.1,
       "avg_view_time_sec": 250.3,
       "new_subscribers": 0,
-      "ad_views": 0,
-      "last_24h_views": 0
+      "views_1mo": 35,
+      "views_3mo": 115,
+      "views_lifetime": 134,
+      "avd_over_time": {
+        "24h": 3.5,
+        "72h": 7.7,
+        "1wk": 7.1,
+        "2wk": 7.1,
+        "1mo": 6.3,
+        "3mo": 3.2,
+        "lifetime": 3.2
+      },
+      "last_24h_views": 0,
+      "ad_views": 0
     },
     {
       "video_id": "Z_qTCBK19ro",
@@ -2203,8 +3345,20 @@
       "avg_view_duration_pct": 2.5,
       "avg_view_time_sec": 41.1,
       "new_subscribers": 0,
-      "ad_views": 0,
-      "last_24h_views": 0
+      "views_1mo": 12,
+      "views_3mo": 28,
+      "views_lifetime": 33,
+      "avd_over_time": {
+        "24h": 2.4,
+        "72h": 2.2,
+        "1wk": 2.5,
+        "2wk": 2.5,
+        "1mo": 2.4,
+        "3mo": 2.7,
+        "lifetime": 3.0
+      },
+      "last_24h_views": 0,
+      "ad_views": 0
     },
     {
       "video_id": "f7T4XHWHxvA",
@@ -2224,8 +3378,20 @@
       "avg_view_duration_pct": 111.8,
       "avg_view_time_sec": 20.7,
       "new_subscribers": 2,
-      "ad_views": 3651,
-      "last_24h_views": 0
+      "views_1mo": 4916,
+      "views_3mo": 4924,
+      "views_lifetime": 4932,
+      "avd_over_time": {
+        "24h": 99.7,
+        "72h": 70.7,
+        "1wk": 83.7,
+        "2wk": 111.8,
+        "1mo": 152.7,
+        "3mo": 152.6,
+        "lifetime": 152.4
+      },
+      "last_24h_views": 0,
+      "ad_views": 3651
     },
     {
       "video_id": "OKkC-5c-XPk",
@@ -2245,8 +3411,20 @@
       "avg_view_duration_pct": 17.3,
       "avg_view_time_sec": 247.6,
       "new_subscribers": 2,
-      "ad_views": 0,
-      "last_24h_views": 1
+      "views_1mo": 226,
+      "views_3mo": 257,
+      "views_lifetime": 305,
+      "avd_over_time": {
+        "24h": 17.8,
+        "72h": 16.6,
+        "1wk": 18.1,
+        "2wk": 17.3,
+        "1mo": 14.7,
+        "3mo": 15.4,
+        "lifetime": 16.3
+      },
+      "last_24h_views": 1,
+      "ad_views": 0
     },
     {
       "video_id": "0QAIrRWBoFM",
@@ -2266,8 +3444,20 @@
       "avg_view_duration_pct": 115.4,
       "avg_view_time_sec": 16.9,
       "new_subscribers": 0,
-      "ad_views": 0,
-      "last_24h_views": 0
+      "views_1mo": 26,
+      "views_3mo": 31,
+      "views_lifetime": 41,
+      "avd_over_time": {
+        "24h": 136.5,
+        "72h": 123.4,
+        "1wk": 120.4,
+        "2wk": 115.4,
+        "1mo": 108.4,
+        "3mo": 98.4,
+        "lifetime": 89.2
+      },
+      "last_24h_views": 0,
+      "ad_views": 0
     },
     {
       "video_id": "d6R8Si-UA1Y",
@@ -2287,8 +3477,20 @@
       "avg_view_duration_pct": 78.9,
       "avg_view_time_sec": 15.2,
       "new_subscribers": 1,
-      "ad_views": 834,
-      "last_24h_views": 0
+      "views_1mo": 1169,
+      "views_3mo": 1174,
+      "views_lifetime": 1182,
+      "avd_over_time": {
+        "24h": 84.3,
+        "72h": 82.4,
+        "1wk": 85.2,
+        "2wk": 78.9,
+        "1mo": 78.9,
+        "3mo": 78.9,
+        "lifetime": 78.6
+      },
+      "last_24h_views": 0,
+      "ad_views": 834
     },
     {
       "video_id": "6gZxWkrcMDg",
@@ -2308,8 +3510,20 @@
       "avg_view_duration_pct": 60.3,
       "avg_view_time_sec": 22.8,
       "new_subscribers": 15,
-      "ad_views": 5931,
-      "last_24h_views": 0
+      "views_1mo": 6872,
+      "views_3mo": 6893,
+      "views_lifetime": 6902,
+      "avd_over_time": {
+        "24h": 41.0,
+        "72h": 36.9,
+        "1wk": 36.2,
+        "2wk": 60.3,
+        "1mo": 57.8,
+        "3mo": 57.7,
+        "lifetime": 57.7
+      },
+      "last_24h_views": 0,
+      "ad_views": 5931
     },
     {
       "video_id": "QehIgwU5ry4",
@@ -2329,8 +3543,20 @@
       "avg_view_duration_pct": 16.0,
       "avg_view_time_sec": 158.0,
       "new_subscribers": 0,
-      "ad_views": 0,
-      "last_24h_views": 0
+      "views_1mo": 212,
+      "views_3mo": 238,
+      "views_lifetime": 295,
+      "avd_over_time": {
+        "24h": 19.7,
+        "72h": 18.1,
+        "1wk": 16.9,
+        "2wk": 16.0,
+        "1mo": 16.1,
+        "3mo": 16.4,
+        "lifetime": 18.9
+      },
+      "last_24h_views": 0,
+      "ad_views": 0
     },
     {
       "video_id": "byZ_NkVgWFo",
@@ -2350,8 +3576,20 @@
       "avg_view_duration_pct": 55.7,
       "avg_view_time_sec": 12.8,
       "new_subscribers": 0,
-      "ad_views": 0,
-      "last_24h_views": 0
+      "views_1mo": 233,
+      "views_3mo": 238,
+      "views_lifetime": 241,
+      "avd_over_time": {
+        "24h": 57.7,
+        "72h": 56.3,
+        "1wk": 55.8,
+        "2wk": 55.7,
+        "1mo": 55.0,
+        "3mo": 53.9,
+        "lifetime": 53.7
+      },
+      "last_24h_views": 0,
+      "ad_views": 0
     },
     {
       "video_id": "uAigwS48-M0",
@@ -2371,8 +3609,20 @@
       "avg_view_duration_pct": 44.5,
       "avg_view_time_sec": 9.1,
       "new_subscribers": 0,
-      "ad_views": 0,
-      "last_24h_views": 0
+      "views_1mo": 142,
+      "views_3mo": 144,
+      "views_lifetime": 147,
+      "avd_over_time": {
+        "24h": 44.2,
+        "72h": 42.9,
+        "1wk": 43.9,
+        "2wk": 44.5,
+        "1mo": 44.2,
+        "3mo": 43.6,
+        "lifetime": 43.6
+      },
+      "last_24h_views": 0,
+      "ad_views": 0
     },
     {
       "video_id": "NNrVYEV5sQ8",
@@ -2392,8 +3642,20 @@
       "avg_view_duration_pct": 72.1,
       "avg_view_time_sec": 18.2,
       "new_subscribers": 0,
-      "ad_views": 0,
-      "last_24h_views": 0
+      "views_1mo": 34,
+      "views_3mo": 36,
+      "views_lifetime": 41,
+      "avd_over_time": {
+        "24h": 83.0,
+        "72h": 79.1,
+        "1wk": 79.0,
+        "2wk": 72.1,
+        "1mo": 69.9,
+        "3mo": 66.0,
+        "lifetime": 69.5
+      },
+      "last_24h_views": 0,
+      "ad_views": 0
     },
     {
       "video_id": "MiAhBZnQcno",
@@ -2413,8 +3675,20 @@
       "avg_view_duration_pct": 4.1,
       "avg_view_time_sec": 52.2,
       "new_subscribers": 13,
-      "ad_views": 2791,
-      "last_24h_views": 0
+      "views_1mo": 3222,
+      "views_3mo": 3351,
+      "views_lifetime": 3389,
+      "avd_over_time": {
+        "24h": 16.5,
+        "72h": 11.0,
+        "1wk": 6.8,
+        "2wk": 4.1,
+        "1mo": 3.6,
+        "3mo": 3.8,
+        "lifetime": 4.0
+      },
+      "last_24h_views": 0,
+      "ad_views": 2791
     },
     {
       "video_id": "aSlFra4t_2w",
@@ -2434,8 +3708,20 @@
       "avg_view_duration_pct": 51.0,
       "avg_view_time_sec": 10.9,
       "new_subscribers": 0,
-      "ad_views": 0,
-      "last_24h_views": 0
+      "views_1mo": 317,
+      "views_3mo": 322,
+      "views_lifetime": 340,
+      "avd_over_time": {
+        "24h": 51.3,
+        "72h": 51.2,
+        "1wk": 51.4,
+        "2wk": 51.0,
+        "1mo": 51.2,
+        "3mo": 51.0,
+        "lifetime": 53.4
+      },
+      "last_24h_views": 0,
+      "ad_views": 0
     },
     {
       "video_id": "ncIjmALv0Rc",
@@ -2455,8 +3741,20 @@
       "avg_view_duration_pct": 12.4,
       "avg_view_time_sec": 337.9,
       "new_subscribers": 5,
-      "ad_views": 0,
-      "last_24h_views": 1
+      "views_1mo": 411,
+      "views_3mo": 457,
+      "views_lifetime": 589,
+      "avd_over_time": {
+        "24h": 22.8,
+        "72h": 13.4,
+        "1wk": 12.7,
+        "2wk": 12.4,
+        "1mo": 13.7,
+        "3mo": 13.8,
+        "lifetime": 15.2
+      },
+      "last_24h_views": 1,
+      "ad_views": 0
     },
     {
       "video_id": "0i9t4IhGcTo",
@@ -2476,8 +3774,20 @@
       "avg_view_duration_pct": 71.0,
       "avg_view_time_sec": 25.0,
       "new_subscribers": 1,
-      "ad_views": 5763,
-      "last_24h_views": 0
+      "views_1mo": 1849,
+      "views_3mo": 6132,
+      "views_lifetime": 6148,
+      "avd_over_time": {
+        "24h": 84.6,
+        "72h": 69.2,
+        "1wk": 70.8,
+        "2wk": 71.0,
+        "1mo": 62.6,
+        "3mo": 65.8,
+        "lifetime": 65.7
+      },
+      "last_24h_views": 0,
+      "ad_views": 5763
     },
     {
       "video_id": "NtbrtCD2LuQ",
@@ -2497,8 +3807,20 @@
       "avg_view_duration_pct": 17.5,
       "avg_view_time_sec": 362.1,
       "new_subscribers": 0,
-      "ad_views": 0,
-      "last_24h_views": 2
+      "views_1mo": 143,
+      "views_3mo": 169,
+      "views_lifetime": 228,
+      "avd_over_time": {
+        "24h": 18.1,
+        "72h": 16.0,
+        "1wk": 20.8,
+        "2wk": 17.5,
+        "1mo": 18.0,
+        "3mo": 19.0,
+        "lifetime": 22.5
+      },
+      "last_24h_views": 2,
+      "ad_views": 0
     },
     {
       "video_id": "k7yJwMR2nQA",
@@ -2518,8 +3840,20 @@
       "avg_view_duration_pct": 55.7,
       "avg_view_time_sec": 16.7,
       "new_subscribers": 0,
-      "ad_views": 2287,
-      "last_24h_views": 0
+      "views_1mo": 192,
+      "views_3mo": 2498,
+      "views_lifetime": 2508,
+      "avd_over_time": {
+        "24h": 59.6,
+        "72h": 52.6,
+        "1wk": 55.3,
+        "2wk": 55.7,
+        "1mo": 54.9,
+        "3mo": 67.6,
+        "lifetime": 67.6
+      },
+      "last_24h_views": 0,
+      "ad_views": 2287
     },
     {
       "video_id": "7Rs_t0G4M14",
@@ -2539,8 +3873,20 @@
       "avg_view_duration_pct": 9.3,
       "avg_view_time_sec": 168.1,
       "new_subscribers": 0,
-      "ad_views": 24,
-      "last_24h_views": 0
+      "views_1mo": 157,
+      "views_3mo": 187,
+      "views_lifetime": 218,
+      "avd_over_time": {
+        "24h": 15.8,
+        "72h": 10.7,
+        "1wk": 11.7,
+        "2wk": 9.3,
+        "1mo": 9.8,
+        "3mo": 10.3,
+        "lifetime": 12.7
+      },
+      "last_24h_views": 0,
+      "ad_views": 24
     },
     {
       "video_id": "OcjujOcOA-Q",
@@ -2560,8 +3906,20 @@
       "avg_view_duration_pct": 120.0,
       "avg_view_time_sec": 32.1,
       "new_subscribers": 0,
-      "ad_views": 7529,
-      "last_24h_views": 0
+      "views_1mo": 178,
+      "views_3mo": 7736,
+      "views_lifetime": 7747,
+      "avd_over_time": {
+        "24h": 152.3,
+        "72h": 121.1,
+        "1wk": 120.6,
+        "2wk": 120.0,
+        "1mo": 118.1,
+        "3mo": 119.8,
+        "lifetime": 119.6
+      },
+      "last_24h_views": 0,
+      "ad_views": 7529
     },
     {
       "video_id": "_v8C3o73hD8",
@@ -2581,8 +3939,20 @@
       "avg_view_duration_pct": 21.2,
       "avg_view_time_sec": 312.5,
       "new_subscribers": 0,
-      "ad_views": 23,
-      "last_24h_views": 2
+      "views_1mo": 71,
+      "views_3mo": 136,
+      "views_lifetime": 173,
+      "avd_over_time": {
+        "24h": 29.0,
+        "72h": 26.0,
+        "1wk": 22.2,
+        "2wk": 21.2,
+        "1mo": 19.5,
+        "3mo": 16.6,
+        "lifetime": 19.0
+      },
+      "last_24h_views": 2,
+      "ad_views": 23
     },
     {
       "video_id": "qDGaGsgFpWA",
@@ -2602,8 +3972,20 @@
       "avg_view_duration_pct": 108.6,
       "avg_view_time_sec": 11.1,
       "new_subscribers": 0,
-      "ad_views": 0,
-      "last_24h_views": 0
+      "views_1mo": 175,
+      "views_3mo": 184,
+      "views_lifetime": 190,
+      "avd_over_time": {
+        "24h": 117.1,
+        "72h": 107.4,
+        "1wk": 107.4,
+        "2wk": 108.6,
+        "1mo": 107.9,
+        "3mo": 105.3,
+        "lifetime": 105.5
+      },
+      "last_24h_views": 0,
+      "ad_views": 0
     },
     {
       "video_id": "tgmQ3BGCcyk",
@@ -2623,8 +4005,20 @@
       "avg_view_duration_pct": 12.8,
       "avg_view_time_sec": 210.3,
       "new_subscribers": 0,
-      "ad_views": 163,
-      "last_24h_views": 1
+      "views_1mo": 151,
+      "views_3mo": 379,
+      "views_lifetime": 442,
+      "avd_over_time": {
+        "24h": 12.1,
+        "72h": 13.3,
+        "1wk": 13.3,
+        "2wk": 12.8,
+        "1mo": 13.3,
+        "3mo": 9.9,
+        "lifetime": 12.0
+      },
+      "last_24h_views": 1,
+      "ad_views": 163
     },
     {
       "video_id": "0RvvpgNxK4U",
@@ -2644,8 +4038,20 @@
       "avg_view_duration_pct": 156.8,
       "avg_view_time_sec": 20.0,
       "new_subscribers": 0,
-      "ad_views": 133,
-      "last_24h_views": 0
+      "views_1mo": 53,
+      "views_3mo": 200,
+      "views_lifetime": 207,
+      "avd_over_time": {
+        "24h": 208.2,
+        "72h": 170.3,
+        "1wk": 166.5,
+        "2wk": 156.8,
+        "1mo": 149.2,
+        "3mo": 99.2,
+        "lifetime": 98.4
+      },
+      "last_24h_views": 0,
+      "ad_views": 133
     },
     {
       "video_id": "EhgO0zGLRls",
@@ -2665,8 +4071,20 @@
       "avg_view_duration_pct": 24.3,
       "avg_view_time_sec": 17.2,
       "new_subscribers": 0,
-      "ad_views": 0,
-      "last_24h_views": 0
+      "views_1mo": 188,
+      "views_3mo": 205,
+      "views_lifetime": 218,
+      "avd_over_time": {
+        "24h": 57.0,
+        "72h": 21.8,
+        "1wk": 22.8,
+        "2wk": 24.3,
+        "1mo": 25.7,
+        "3mo": 26.0,
+        "lifetime": 27.8
+      },
+      "last_24h_views": 0,
+      "ad_views": 0
     },
     {
       "video_id": "QvWD3BGnsIo",
@@ -2686,8 +4104,20 @@
       "avg_view_duration_pct": 64.2,
       "avg_view_time_sec": 46.8,
       "new_subscribers": 0,
-      "ad_views": 0,
-      "last_24h_views": 0
+      "views_1mo": 45,
+      "views_3mo": 47,
+      "views_lifetime": 48,
+      "avd_over_time": {
+        "24h": 68.6,
+        "72h": 64.2,
+        "1wk": 64.2,
+        "2wk": 64.2,
+        "1mo": 64.2,
+        "3mo": 62.1,
+        "lifetime": 62.9
+      },
+      "last_24h_views": 0,
+      "ad_views": 0
     },
     {
       "video_id": "zJAc_9aD9Rs",
@@ -2707,8 +4137,20 @@
       "avg_view_duration_pct": 16.4,
       "avg_view_time_sec": 266.3,
       "new_subscribers": 0,
-      "ad_views": 150,
-      "last_24h_views": 1
+      "views_1mo": 113,
+      "views_3mo": 337,
+      "views_lifetime": 396,
+      "avd_over_time": {
+        "24h": 29.6,
+        "72h": 20.8,
+        "1wk": 15.6,
+        "2wk": 16.4,
+        "1mo": 15.7,
+        "3mo": 10.6,
+        "lifetime": 13.6
+      },
+      "last_24h_views": 1,
+      "ad_views": 150
     },
     {
       "video_id": "eQJTsDaFRO8",
@@ -2728,8 +4170,20 @@
       "avg_view_duration_pct": 139.8,
       "avg_view_time_sec": 25.9,
       "new_subscribers": 0,
-      "ad_views": 4640,
-      "last_24h_views": 0
+      "views_1mo": 46,
+      "views_3mo": 4708,
+      "views_lifetime": 4734,
+      "avd_over_time": {
+        "24h": 135.1,
+        "72h": 138.8,
+        "1wk": 141.4,
+        "2wk": 139.8,
+        "1mo": 133.7,
+        "3mo": 140.7,
+        "lifetime": 140.3
+      },
+      "last_24h_views": 0,
+      "ad_views": 4640
     },
     {
       "video_id": "J0-pjWVPOYY",
@@ -2749,8 +4203,20 @@
       "avg_view_duration_pct": 25.3,
       "avg_view_time_sec": 378.4,
       "new_subscribers": 0,
-      "ad_views": 0,
-      "last_24h_views": 1
+      "views_1mo": 97,
+      "views_3mo": 150,
+      "views_lifetime": 223,
+      "avd_over_time": {
+        "24h": 37.9,
+        "72h": 34.8,
+        "1wk": 28.7,
+        "2wk": 25.3,
+        "1mo": 24.2,
+        "3mo": 22.3,
+        "lifetime": 24.7
+      },
+      "last_24h_views": 1,
+      "ad_views": 0
     },
     {
       "video_id": "_idL-4W0gR8",
@@ -2770,8 +4236,20 @@
       "avg_view_duration_pct": 16.9,
       "avg_view_time_sec": 295.9,
       "new_subscribers": 0,
-      "ad_views": 0,
-      "last_24h_views": 0
+      "views_1mo": 69,
+      "views_3mo": 135,
+      "views_lifetime": 192,
+      "avd_over_time": {
+        "24h": 21.5,
+        "72h": 25.1,
+        "1wk": 19.4,
+        "2wk": 16.9,
+        "1mo": 15.1,
+        "3mo": 14.4,
+        "lifetime": 16.9
+      },
+      "last_24h_views": 0,
+      "ad_views": 0
     },
     {
       "video_id": "8z4FcTDbmPg",
@@ -2791,8 +4269,20 @@
       "avg_view_duration_pct": 162.4,
       "avg_view_time_sec": 19.0,
       "new_subscribers": 0,
-      "ad_views": 0,
-      "last_24h_views": 0
+      "views_1mo": 80,
+      "views_3mo": 113,
+      "views_lifetime": 128,
+      "avd_over_time": {
+        "24h": 221.6,
+        "72h": 203.0,
+        "1wk": 166.0,
+        "2wk": 162.4,
+        "1mo": 162.8,
+        "3mo": 137.1,
+        "lifetime": 128.2
+      },
+      "last_24h_views": 0,
+      "ad_views": 0
     },
     {
       "video_id": "yChX-4kX7WU",
@@ -2812,8 +4302,20 @@
       "avg_view_duration_pct": 113.8,
       "avg_view_time_sec": 20.2,
       "new_subscribers": 0,
-      "ad_views": 0,
-      "last_24h_views": 10
+      "views_1mo": 54,
+      "views_3mo": 70,
+      "views_lifetime": 168,
+      "avd_over_time": {
+        "24h": 146.4,
+        "72h": 131.3,
+        "1wk": 121.7,
+        "2wk": 113.8,
+        "1mo": 112.4,
+        "3mo": 102.1,
+        "lifetime": 87.8
+      },
+      "last_24h_views": 10,
+      "ad_views": 0
     },
     {
       "video_id": "6eCezfpfAdc",
@@ -2833,8 +4335,20 @@
       "avg_view_duration_pct": 28.3,
       "avg_view_time_sec": 333.7,
       "new_subscribers": 0,
-      "ad_views": 0,
-      "last_24h_views": 1
+      "views_1mo": 67,
+      "views_3mo": 118,
+      "views_lifetime": 178,
+      "avd_over_time": {
+        "24h": 29.1,
+        "72h": 25.8,
+        "1wk": 27.7,
+        "2wk": 28.3,
+        "1mo": 24.1,
+        "3mo": 22.3,
+        "lifetime": 25.4
+      },
+      "last_24h_views": 1,
+      "ad_views": 0
     },
     {
       "video_id": "z7vp_xhBlLE",
@@ -2854,8 +4368,20 @@
       "avg_view_duration_pct": 180.4,
       "avg_view_time_sec": 17.5,
       "new_subscribers": 0,
-      "ad_views": 0,
-      "last_24h_views": 0
+      "views_1mo": 60,
+      "views_3mo": 72,
+      "views_lifetime": 84,
+      "avd_over_time": {
+        "24h": 195.3,
+        "72h": 176.6,
+        "1wk": 186.9,
+        "2wk": 180.4,
+        "1mo": 178.3,
+        "3mo": 157.1,
+        "lifetime": 157.8
+      },
+      "last_24h_views": 0,
+      "ad_views": 0
     },
     {
       "video_id": "NgWGFu1Wq8k",
@@ -2875,8 +4401,20 @@
       "avg_view_duration_pct": 28.3,
       "avg_view_time_sec": 273.5,
       "new_subscribers": 0,
-      "ad_views": 0,
-      "last_24h_views": 1
+      "views_1mo": 66,
+      "views_3mo": 110,
+      "views_lifetime": 159,
+      "avd_over_time": {
+        "24h": 26.4,
+        "72h": 22.6,
+        "1wk": 21.5,
+        "2wk": 28.3,
+        "1mo": 26.5,
+        "3mo": 23.0,
+        "lifetime": 24.8
+      },
+      "last_24h_views": 1,
+      "ad_views": 0
     },
     {
       "video_id": "VHImsyrou2k",
@@ -2896,8 +4434,20 @@
       "avg_view_duration_pct": 155.1,
       "avg_view_time_sec": 18.2,
       "new_subscribers": 0,
-      "ad_views": 1845,
-      "last_24h_views": 0
+      "views_1mo": 67,
+      "views_3mo": 75,
+      "views_lifetime": 1932,
+      "avd_over_time": {
+        "24h": 169.3,
+        "72h": 163.4,
+        "1wk": 159.5,
+        "2wk": 155.1,
+        "1mo": 149.7,
+        "3mo": 142.2,
+        "lifetime": 107.0
+      },
+      "last_24h_views": 0,
+      "ad_views": 1845
     },
     {
       "video_id": "ZVOdS7J60ls",
@@ -2917,8 +4467,20 @@
       "avg_view_duration_pct": 23.5,
       "avg_view_time_sec": 378.9,
       "new_subscribers": 2,
-      "ad_views": 0,
-      "last_24h_views": 1
+      "views_1mo": 96,
+      "views_3mo": 127,
+      "views_lifetime": 226,
+      "avd_over_time": {
+        "24h": 26.4,
+        "72h": 25.6,
+        "1wk": 24.7,
+        "2wk": 23.5,
+        "1mo": 25.3,
+        "3mo": 21.0,
+        "lifetime": 21.8
+      },
+      "last_24h_views": 1,
+      "ad_views": 0
     },
     {
       "video_id": "VNFPxrwiyTs",
@@ -2938,8 +4500,20 @@
       "avg_view_duration_pct": 172.9,
       "avg_view_time_sec": 21.8,
       "new_subscribers": 0,
-      "ad_views": 0,
-      "last_24h_views": 0
+      "views_1mo": 89,
+      "views_3mo": 96,
+      "views_lifetime": 114,
+      "avd_over_time": {
+        "24h": 197.9,
+        "72h": 187.9,
+        "1wk": 175.7,
+        "2wk": 172.9,
+        "1mo": 169.6,
+        "3mo": 162.8,
+        "lifetime": 143.3
+      },
+      "last_24h_views": 0,
+      "ad_views": 0
     },
     {
       "video_id": "2DZrxHpEIsk",
@@ -2959,8 +4533,20 @@
       "avg_view_duration_pct": 27.1,
       "avg_view_time_sec": 376.5,
       "new_subscribers": 1,
-      "ad_views": 39,
-      "last_24h_views": 1
+      "views_1mo": 113,
+      "views_3mo": 157,
+      "views_lifetime": 276,
+      "avd_over_time": {
+        "24h": 31.0,
+        "72h": 26.2,
+        "1wk": 26.2,
+        "2wk": 27.1,
+        "1mo": 26.1,
+        "3mo": 23.9,
+        "lifetime": 22.2
+      },
+      "last_24h_views": 1,
+      "ad_views": 39
     },
     {
       "video_id": "DTmd6P1GJ5s",
@@ -2980,8 +4566,20 @@
       "avg_view_duration_pct": 131.0,
       "avg_view_time_sec": 17.7,
       "new_subscribers": 0,
-      "ad_views": 4176,
-      "last_24h_views": 0
+      "views_1mo": 34,
+      "views_3mo": 43,
+      "views_lifetime": 4249,
+      "avd_over_time": {
+        "24h": 103.5,
+        "72h": 144.2,
+        "1wk": 144.2,
+        "2wk": 131.0,
+        "1mo": 122.8,
+        "3mo": 122.8,
+        "lifetime": 96.2
+      },
+      "last_24h_views": 0,
+      "ad_views": 4176
     },
     {
       "video_id": "SGqZIlp7u9I",
@@ -3001,8 +4599,20 @@
       "avg_view_duration_pct": 32.0,
       "avg_view_time_sec": 501.4,
       "new_subscribers": 0,
-      "ad_views": 1464,
-      "last_24h_views": 2
+      "views_1mo": 94,
+      "views_3mo": 139,
+      "views_lifetime": 1723,
+      "avd_over_time": {
+        "24h": 31.9,
+        "72h": 33.6,
+        "1wk": 30.3,
+        "2wk": 32.0,
+        "1mo": 31.5,
+        "3mo": 25.4,
+        "lifetime": 6.5
+      },
+      "last_24h_views": 2,
+      "ad_views": 1464
     },
     {
       "video_id": "rjNguLYWzCQ",
@@ -3022,8 +4632,20 @@
       "avg_view_duration_pct": 156.6,
       "avg_view_time_sec": 27.8,
       "new_subscribers": 0,
-      "ad_views": 21907,
-      "last_24h_views": 0
+      "views_1mo": 68,
+      "views_3mo": 73,
+      "views_lifetime": 22057,
+      "avd_over_time": {
+        "24h": 152.0,
+        "72h": 158.0,
+        "1wk": 160.4,
+        "2wk": 156.6,
+        "1mo": 146.4,
+        "3mo": 141.6,
+        "lifetime": 123.3
+      },
+      "last_24h_views": 0,
+      "ad_views": 21907
     },
     {
       "video_id": "J1eBqqNQ--Q",
@@ -3043,8 +4665,20 @@
       "avg_view_duration_pct": 21.7,
       "avg_view_time_sec": 295.2,
       "new_subscribers": 0,
-      "ad_views": 0,
-      "last_24h_views": 1
+      "views_1mo": 100,
+      "views_3mo": 134,
+      "views_lifetime": 268,
+      "avd_over_time": {
+        "24h": 19.3,
+        "72h": 21.4,
+        "1wk": 20.1,
+        "2wk": 21.7,
+        "1mo": 21.3,
+        "3mo": 17.8,
+        "lifetime": 22.0
+      },
+      "last_24h_views": 1,
+      "ad_views": 0
     },
     {
       "video_id": "kwzipVt5RmI",
@@ -3064,8 +4698,20 @@
       "avg_view_duration_pct": 115.5,
       "avg_view_time_sec": 15.5,
       "new_subscribers": 0,
-      "ad_views": 0,
-      "last_24h_views": 0
+      "views_1mo": 55,
+      "views_3mo": 69,
+      "views_lifetime": 97,
+      "avd_over_time": {
+        "24h": 126.7,
+        "72h": 118.8,
+        "1wk": 117.8,
+        "2wk": 115.5,
+        "1mo": 110.3,
+        "3mo": 108.0,
+        "lifetime": 106.7
+      },
+      "last_24h_views": 0,
+      "ad_views": 0
     },
     {
       "video_id": "ga5bhAinWu4",
@@ -3085,8 +4731,20 @@
       "avg_view_duration_pct": 18.4,
       "avg_view_time_sec": 208.6,
       "new_subscribers": 1,
-      "ad_views": 39,
-      "last_24h_views": 1
+      "views_1mo": 169,
+      "views_3mo": 201,
+      "views_lifetime": 394,
+      "avd_over_time": {
+        "24h": 23.0,
+        "72h": 19.5,
+        "1wk": 19.4,
+        "2wk": 18.4,
+        "1mo": 19.5,
+        "3mo": 19.1,
+        "lifetime": 21.4
+      },
+      "last_24h_views": 1,
+      "ad_views": 39
     },
     {
       "video_id": "J1XwNAMNeFY",
@@ -3106,8 +4764,20 @@
       "avg_view_duration_pct": 81.3,
       "avg_view_time_sec": 12.6,
       "new_subscribers": 0,
-      "ad_views": 9427,
-      "last_24h_views": 0
+      "views_1mo": 1922,
+      "views_3mo": 1949,
+      "views_lifetime": 11434,
+      "avd_over_time": {
+        "24h": 98.5,
+        "72h": 80.7,
+        "1wk": 81.1,
+        "2wk": 81.3,
+        "1mo": 81.6,
+        "3mo": 81.9,
+        "lifetime": 110.0
+      },
+      "last_24h_views": 0,
+      "ad_views": 9427
     },
     {
       "video_id": "1XW6g04jkSU",
@@ -3127,8 +4797,20 @@
       "avg_view_duration_pct": 16.3,
       "avg_view_time_sec": 287.7,
       "new_subscribers": 0,
-      "ad_views": 0,
-      "last_24h_views": 1
+      "views_1mo": 111,
+      "views_3mo": 127,
+      "views_lifetime": 232,
+      "avd_over_time": {
+        "24h": 14.0,
+        "72h": 14.0,
+        "1wk": 16.5,
+        "2wk": 16.3,
+        "1mo": 16.9,
+        "3mo": 16.4,
+        "lifetime": 18.9
+      },
+      "last_24h_views": 1,
+      "ad_views": 0
     },
     {
       "video_id": "0DuLd63IJjg",
@@ -3148,8 +4830,20 @@
       "avg_view_duration_pct": 88.9,
       "avg_view_time_sec": 10.4,
       "new_subscribers": 0,
-      "ad_views": 0,
-      "last_24h_views": 0
+      "views_1mo": 2008,
+      "views_3mo": 2021,
+      "views_lifetime": 2065,
+      "avd_over_time": {
+        "24h": 107.9,
+        "72h": 87.9,
+        "1wk": 88.3,
+        "2wk": 88.9,
+        "1mo": 88.8,
+        "3mo": 88.8,
+        "lifetime": 88.2
+      },
+      "last_24h_views": 0,
+      "ad_views": 0
     },
     {
       "video_id": "y7a_BaSJr7c",
@@ -3169,8 +4863,20 @@
       "avg_view_duration_pct": 113.9,
       "avg_view_time_sec": 11.7,
       "new_subscribers": 0,
-      "ad_views": 5782,
-      "last_24h_views": 0
+      "views_1mo": 329,
+      "views_3mo": 340,
+      "views_lifetime": 6182,
+      "avd_over_time": {
+        "24h": 89.1,
+        "72h": 102.9,
+        "1wk": 114.6,
+        "2wk": 113.9,
+        "1mo": 114.7,
+        "3mo": 113.9,
+        "lifetime": 159.2
+      },
+      "last_24h_views": 0,
+      "ad_views": 5782
     },
     {
       "video_id": "b8c49EaPXRE",
@@ -3190,8 +4896,20 @@
       "avg_view_duration_pct": 31.6,
       "avg_view_time_sec": 278.1,
       "new_subscribers": 0,
-      "ad_views": 0,
-      "last_24h_views": 1
+      "views_1mo": 99,
+      "views_3mo": 127,
+      "views_lifetime": 245,
+      "avd_over_time": {
+        "24h": 100.1,
+        "72h": 100.1,
+        "1wk": 35.8,
+        "2wk": 31.6,
+        "1mo": 27.4,
+        "3mo": 26.6,
+        "lifetime": 27.1
+      },
+      "last_24h_views": 1,
+      "ad_views": 0
     },
     {
       "video_id": "aB95nPZk7Oo",
@@ -3211,8 +4929,20 @@
       "avg_view_duration_pct": 31.7,
       "avg_view_time_sec": 362.6,
       "new_subscribers": 0,
-      "ad_views": 0,
-      "last_24h_views": 2
+      "views_1mo": 113,
+      "views_3mo": 141,
+      "views_lifetime": 242,
+      "avd_over_time": {
+        "24h": 41.2,
+        "72h": 36.2,
+        "1wk": 36.5,
+        "2wk": 31.7,
+        "1mo": 29.9,
+        "3mo": 27.7,
+        "lifetime": 26.8
+      },
+      "last_24h_views": 2,
+      "ad_views": 0
     },
     {
       "video_id": "hC5iiTMJX3o",
@@ -3232,8 +4962,20 @@
       "avg_view_duration_pct": 119.8,
       "avg_view_time_sec": 7.8,
       "new_subscribers": 0,
-      "ad_views": 0,
-      "last_24h_views": 0
+      "views_1mo": 368,
+      "views_3mo": 385,
+      "views_lifetime": 406,
+      "avd_over_time": {
+        "24h": 107.8,
+        "72h": 115.5,
+        "1wk": 120.2,
+        "2wk": 119.8,
+        "1mo": 123.8,
+        "3mo": 124.2,
+        "lifetime": 122.7
+      },
+      "last_24h_views": 0,
+      "ad_views": 0
     },
     {
       "video_id": "qFWSvpgTy3Q",
@@ -3253,8 +4995,20 @@
       "avg_view_duration_pct": 33.5,
       "avg_view_time_sec": 282.7,
       "new_subscribers": 1,
-      "ad_views": 0,
-      "last_24h_views": 1
+      "views_1mo": 108,
+      "views_3mo": 138,
+      "views_lifetime": 301,
+      "avd_over_time": {
+        "24h": 35.0,
+        "72h": 35.2,
+        "1wk": 33.2,
+        "2wk": 33.5,
+        "1mo": 32.5,
+        "3mo": 29.0,
+        "lifetime": 26.7
+      },
+      "last_24h_views": 1,
+      "ad_views": 0
     },
     {
       "video_id": "RxFCjH9rYlU",
@@ -3274,8 +5028,20 @@
       "avg_view_duration_pct": 158.6,
       "avg_view_time_sec": 18.8,
       "new_subscribers": 0,
-      "ad_views": 0,
-      "last_24h_views": 0
+      "views_1mo": 59,
+      "views_3mo": 63,
+      "views_lifetime": 103,
+      "avd_over_time": {
+        "24h": 120.3,
+        "72h": 151.6,
+        "1wk": 147.0,
+        "2wk": 158.6,
+        "1mo": 153.0,
+        "3mo": 148.0,
+        "lifetime": 223.1
+      },
+      "last_24h_views": 0,
+      "ad_views": 0
     },
     {
       "video_id": "yJshuQVYt4E",
@@ -3295,8 +5061,20 @@
       "avg_view_duration_pct": 16.8,
       "avg_view_time_sec": 173.3,
       "new_subscribers": 2,
-      "ad_views": 0,
-      "last_24h_views": 0
+      "views_1mo": 168,
+      "views_3mo": 202,
+      "views_lifetime": 282,
+      "avd_over_time": {
+        "24h": 20.0,
+        "72h": 25.4,
+        "1wk": 14.9,
+        "2wk": 16.8,
+        "1mo": 17.3,
+        "3mo": 16.7,
+        "lifetime": 18.8
+      },
+      "last_24h_views": 0,
+      "ad_views": 0
     },
     {
       "video_id": "uqLNqnRNnuQ",
@@ -3316,8 +5094,20 @@
       "avg_view_duration_pct": 96.0,
       "avg_view_time_sec": 9.2,
       "new_subscribers": 0,
-      "ad_views": 0,
-      "last_24h_views": 1
+      "views_1mo": 958,
+      "views_3mo": 970,
+      "views_lifetime": 1004,
+      "avd_over_time": {
+        "24h": 150.2,
+        "72h": 95.0,
+        "1wk": 95.9,
+        "2wk": 96.0,
+        "1mo": 97.0,
+        "3mo": 97.4,
+        "lifetime": 99.1
+      },
+      "last_24h_views": 1,
+      "ad_views": 0
     },
     {
       "video_id": "ij-OE-lLN38",
@@ -3337,8 +5127,20 @@
       "avg_view_duration_pct": 29.9,
       "avg_view_time_sec": 248.6,
       "new_subscribers": 0,
-      "ad_views": 0,
-      "last_24h_views": 0
+      "views_1mo": 81,
+      "views_3mo": 113,
+      "views_lifetime": 206,
+      "avd_over_time": {
+        "24h": 32.6,
+        "72h": 29.6,
+        "1wk": 28.4,
+        "2wk": 29.9,
+        "1mo": 28.5,
+        "3mo": 27.2,
+        "lifetime": 30.2
+      },
+      "last_24h_views": 0,
+      "ad_views": 0
     },
     {
       "video_id": "Ydnj5CKyrNk",
@@ -3358,8 +5160,20 @@
       "avg_view_duration_pct": 156.5,
       "avg_view_time_sec": 18.2,
       "new_subscribers": 0,
-      "ad_views": 0,
-      "last_24h_views": 0
+      "views_1mo": 55,
+      "views_3mo": 67,
+      "views_lifetime": 85,
+      "avd_over_time": {
+        "24h": 0,
+        "72h": 163.3,
+        "1wk": 168.2,
+        "2wk": 156.5,
+        "1mo": 149.9,
+        "3mo": 137.4,
+        "lifetime": 124.8
+      },
+      "last_24h_views": 0,
+      "ad_views": 0
     },
     {
       "video_id": "8fJZLDGDa6E",
@@ -3379,8 +5193,20 @@
       "avg_view_duration_pct": 75.3,
       "avg_view_time_sec": 14.0,
       "new_subscribers": 0,
-      "ad_views": 0,
-      "last_24h_views": 0
+      "views_1mo": 259,
+      "views_3mo": 279,
+      "views_lifetime": 304,
+      "avd_over_time": {
+        "24h": 89.9,
+        "72h": 72.2,
+        "1wk": 74.2,
+        "2wk": 75.3,
+        "1mo": 74.9,
+        "3mo": 76.1,
+        "lifetime": 76.0
+      },
+      "last_24h_views": 0,
+      "ad_views": 0
     },
     {
       "video_id": "bMXkL4GIVnY",
@@ -3400,8 +5226,20 @@
       "avg_view_duration_pct": 20.3,
       "avg_view_time_sec": 177.8,
       "new_subscribers": 1,
-      "ad_views": 0,
-      "last_24h_views": 0
+      "views_1mo": 205,
+      "views_3mo": 254,
+      "views_lifetime": 398,
+      "avd_over_time": {
+        "24h": 31.1,
+        "72h": 22.5,
+        "1wk": 19.6,
+        "2wk": 20.3,
+        "1mo": 22.5,
+        "3mo": 22.9,
+        "lifetime": 23.5
+      },
+      "last_24h_views": 0,
+      "ad_views": 0
     },
     {
       "video_id": "9vdw5cCwO_A",
@@ -3421,8 +5259,20 @@
       "avg_view_duration_pct": 108.0,
       "avg_view_time_sec": 11.1,
       "new_subscribers": 0,
-      "ad_views": 0,
-      "last_24h_views": 0
+      "views_1mo": 686,
+      "views_3mo": 708,
+      "views_lifetime": 746,
+      "avd_over_time": {
+        "24h": 132.1,
+        "72h": 105.6,
+        "1wk": 107.2,
+        "2wk": 108.0,
+        "1mo": 107.8,
+        "3mo": 106.9,
+        "lifetime": 104.5
+      },
+      "last_24h_views": 0,
+      "ad_views": 0
     },
     {
       "video_id": "YGSSlXWclFA",
@@ -3442,8 +5292,20 @@
       "avg_view_duration_pct": 71.3,
       "avg_view_time_sec": 27.1,
       "new_subscribers": 12,
-      "ad_views": 0,
-      "last_24h_views": 0
+      "views_1mo": 408,
+      "views_3mo": 445,
+      "views_lifetime": 524,
+      "avd_over_time": {
+        "24h": 89.3,
+        "72h": 68.6,
+        "1wk": 70.2,
+        "2wk": 71.3,
+        "1mo": 72.9,
+        "3mo": 72.7,
+        "lifetime": 67.5
+      },
+      "last_24h_views": 0,
+      "ad_views": 0
     },
     {
       "video_id": "5y7EXR_eFc0",
@@ -3463,8 +5325,20 @@
       "avg_view_duration_pct": 25.1,
       "avg_view_time_sec": 280.4,
       "new_subscribers": 0,
-      "ad_views": 0,
-      "last_24h_views": 1
+      "views_1mo": 107,
+      "views_3mo": 135,
+      "views_lifetime": 272,
+      "avd_over_time": {
+        "24h": 0,
+        "72h": 0,
+        "1wk": 0,
+        "2wk": 25.1,
+        "1mo": 26.9,
+        "3mo": 26.2,
+        "lifetime": 23.5
+      },
+      "last_24h_views": 1,
+      "ad_views": 0
     }
   ],
   "daily_watch_hours": [
