@@ -239,6 +239,78 @@ def fetch_stories(token, ig_user_id):
     return stories
 
 
+def fetch_demographics(token, ig_user_id):
+    """Fetch demographic breakdowns for followers, reached, and engaged audiences."""
+    demographics = {}
+
+    for metric, label in [
+        ("follower_demographics", "followers"),
+        ("reached_audience_demographics", "reached"),
+        ("engaged_audience_demographics", "engaged"),
+    ]:
+        # These require timeframe for reached/engaged
+        params = {
+            "metric": metric,
+            "period": "lifetime",
+            "access_token": token,
+        }
+        if metric != "follower_demographics":
+            end = datetime.now() - timedelta(days=1)
+            start = end - timedelta(days=29)
+            params["period"] = "day"
+            params["since"] = int(start.timestamp())
+            params["until"] = int((end + timedelta(days=1)).timestamp())
+            params["metric_type"] = "total_value"
+
+        data = api_get(f"/{ig_user_id}/insights", params)
+        if not data or "data" not in data:
+            print(f"    {label}: no data")
+            continue
+
+        demo = {"age": {}, "gender": {}, "city": {}, "country": {}}
+        for metric_data in data["data"]:
+            # total_value format
+            breakdown = metric_data.get("total_value", {}).get("breakdowns", [])
+            if breakdown:
+                for bd in breakdown:
+                    dimension = bd.get("dimension_keys", [""])[0]
+                    for result in bd.get("results", []):
+                        keys = result.get("dimension_values", [])
+                        value = result.get("value", 0)
+                        if dimension == "age":
+                            demo["age"][keys[0]] = demo["age"].get(keys[0], 0) + value
+                        elif dimension == "gender":
+                            demo["gender"][keys[0]] = demo["gender"].get(keys[0], 0) + value
+                        elif dimension == "city":
+                            demo["city"][keys[0]] = demo["city"].get(keys[0], 0) + value
+                        elif dimension == "country":
+                            demo["country"][keys[0]] = demo["country"].get(keys[0], 0) + value
+
+            # values array format (follower_demographics)
+            values = metric_data.get("values", [])
+            if values:
+                for v in values:
+                    val = v.get("value", {})
+                    if isinstance(val, dict):
+                        for k, count in val.items():
+                            # Keys like "M.25-34", "F.18-24", "city.Tokyo"
+                            if "." in k:
+                                parts = k.split(".", 1)
+                                if parts[0] in ("M", "F", "U"):
+                                    demo["gender"][parts[0]] = demo["gender"].get(parts[0], 0) + count
+                                    demo["age"][parts[1]] = demo["age"].get(parts[1], 0) + count
+                            else:
+                                demo["city"][k] = demo["city"].get(k, 0) + count
+
+        # Sort and keep top entries for city/country
+        demo["city"] = dict(sorted(demo["city"].items(), key=lambda x: -x[1])[:10])
+        demo["country"] = dict(sorted(demo["country"].items(), key=lambda x: -x[1])[:10])
+        demographics[label] = demo
+        print(f"    {label}: {len(demo['age'])} age groups, {len(demo['gender'])} genders, {len(demo['city'])} cities")
+
+    return demographics
+
+
 def run():
     token, ig_user_id = load_token()
     if not token or not ig_user_id:
@@ -267,6 +339,9 @@ def run():
     stories = fetch_stories(token, ig_user_id)
     print(f"  Got {len(stories)} active stories")
 
+    print("Fetching demographics...")
+    demographics = fetch_demographics(token, ig_user_id)
+
     DATA_DIR.mkdir(parents=True, exist_ok=True)
     output = DATA_DIR / "instagram.json"
     output_data = {
@@ -276,6 +351,7 @@ def run():
         "daily": daily,
         "posts": posts,
         "stories": stories,
+        "demographics": demographics,
     }
     output.write_text(json.dumps(output_data, indent=2))
     print(f"\nSaved to {output}")

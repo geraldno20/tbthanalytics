@@ -298,6 +298,21 @@
       <div class="chart-body"><div class="chart-wrap"><canvas id="ig-reach-chart"></canvas></div></div>
     </details>
 
+    <details class="chart-section">
+      <summary>Audience Demographics — Age</summary>
+      <div class="chart-body"><div class="chart-wrap"><canvas id="ig-demo-age"></canvas></div></div>
+    </details>
+
+    <details class="chart-section">
+      <summary>Audience Demographics — Gender</summary>
+      <div class="chart-body"><div class="chart-wrap" style="height:200px;"><canvas id="ig-demo-gender"></canvas></div></div>
+    </details>
+
+    <details class="chart-section">
+      <summary>Audience Demographics — Top Cities</summary>
+      <div class="chart-body"><div class="chart-wrap"><canvas id="ig-demo-city"></canvas></div></div>
+    </details>
+
     <div class="controls" id="ig-controls" style="display:none;">
       <div class="seg-control" id="ig-type-filter">
         <button class="active" data-igtype="all" onclick="setIGTypeFilter('all')">All</button>
@@ -447,6 +462,114 @@ function renderInstagram() {
         scales: {
           x: { grid: { display: false }, ticks: { font: { size: 10 }, color: textColor, maxRotation: 45, autoSkip: true, maxTicksLimit: 20 }, border: { display: false } },
           y: { grid: { color: gridColor }, ticks: { font: { size: 11 }, color: textColor }, border: { display: false } }
+        }
+      }
+    });
+  }
+
+  // Demographics charts
+  const demo = igData.demographics || {};
+  const isDarkD = document.body.classList.contains('dark');
+  const gridColorD = isDarkD ? '#3A3A3C' : '#E5E5EA';
+  const textColorD = isDarkD ? '#AEAEB2' : '#6E6E73';
+  const cohortColors = { followers: '#E1306C', reached: '#833AB4', engaged: '#F77737' };
+  const cohortLabels = { followers: 'Followers', reached: 'Reached', engaged: 'Engaged' };
+
+  // Age chart — grouped bar
+  const ageGroups = ['13-17', '18-24', '25-34', '35-44', '45-54', '55-64', '65+'];
+  const ageCohorts = Object.keys(demo);
+  if (ageCohorts.length) {
+    new Chart(document.getElementById('ig-demo-age').getContext('2d'), {
+      type: 'bar',
+      data: {
+        labels: ageGroups,
+        datasets: ageCohorts.map(c => {
+          const d = demo[c].age || {};
+          const total = Object.values(d).reduce((a, b) => a + b, 0) || 1;
+          return {
+            label: cohortLabels[c] || c,
+            data: ageGroups.map(g => Math.round((d[g] || 0) / total * 1000) / 10),
+            backgroundColor: cohortColors[c] + '60',
+            borderColor: cohortColors[c],
+            borderWidth: 1, borderRadius: 3,
+          };
+        })
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { position: 'bottom', labels: { font: { size: 11 }, color: textColorD } } },
+        scales: {
+          x: { grid: { display: false }, ticks: { font: { size: 11 }, color: textColorD }, border: { display: false } },
+          y: { grid: { color: gridColorD }, ticks: { font: { size: 11 }, color: textColorD, callback: v => v + '%' }, border: { display: false }, title: { display: true, text: '% of audience', color: textColorD, font: { size: 11 } } }
+        }
+      }
+    });
+  }
+
+  // Gender chart — grouped bar
+  const genderLabels = { M: 'Male', F: 'Female', U: 'Unknown' };
+  const genderKeys = ['M', 'F', 'U'];
+  if (ageCohorts.length) {
+    new Chart(document.getElementById('ig-demo-gender').getContext('2d'), {
+      type: 'bar',
+      data: {
+        labels: genderKeys.map(g => genderLabels[g]),
+        datasets: ageCohorts.map(c => {
+          const d = demo[c].gender || {};
+          const total = Object.values(d).reduce((a, b) => a + b, 0) || 1;
+          return {
+            label: cohortLabels[c] || c,
+            data: genderKeys.map(g => Math.round((d[g] || 0) / total * 1000) / 10),
+            backgroundColor: cohortColors[c] + '60',
+            borderColor: cohortColors[c],
+            borderWidth: 1, borderRadius: 3,
+          };
+        })
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { position: 'bottom', labels: { font: { size: 11 }, color: textColorD } } },
+        scales: {
+          x: { grid: { display: false }, ticks: { font: { size: 11 }, color: textColorD }, border: { display: false } },
+          y: { grid: { color: gridColorD }, ticks: { font: { size: 11 }, color: textColorD, callback: v => v + '%' }, border: { display: false }, title: { display: true, text: '% of audience', color: textColorD, font: { size: 11 } } }
+        }
+      }
+    });
+  }
+
+  // City chart — horizontal bar, side by side
+  if (ageCohorts.length) {
+    // Merge all cities across cohorts, take top 10
+    const allCities = {};
+    ageCohorts.forEach(c => {
+      Object.entries(demo[c].city || {}).forEach(([city, count]) => {
+        allCities[city] = (allCities[city] || 0) + count;
+      });
+    });
+    const topCities = Object.entries(allCities).sort((a, b) => b[1] - a[1]).slice(0, 10).map(e => e[0]);
+
+    new Chart(document.getElementById('ig-demo-city').getContext('2d'), {
+      type: 'bar',
+      data: {
+        labels: topCities,
+        datasets: ageCohorts.map(c => {
+          const d = demo[c].city || {};
+          return {
+            label: cohortLabels[c] || c,
+            data: topCities.map(city => d[city] || 0),
+            backgroundColor: cohortColors[c] + '60',
+            borderColor: cohortColors[c],
+            borderWidth: 1, borderRadius: 3,
+          };
+        })
+      },
+      options: {
+        indexAxis: 'y',
+        responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { position: 'bottom', labels: { font: { size: 11 }, color: textColorD } } },
+        scales: {
+          x: { grid: { color: gridColorD }, ticks: { font: { size: 11 }, color: textColorD }, border: { display: false } },
+          y: { grid: { display: false }, ticks: { font: { size: 11 }, color: textColorD }, border: { display: false } }
         }
       }
     });
