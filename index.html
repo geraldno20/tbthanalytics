@@ -206,6 +206,7 @@
   <div class="platform-tabs">
     <button class="platform-tab active" onclick="switchTab('yt')">YouTube</button>
     <button class="platform-tab" onclick="switchTab('ig')">Instagram</button>
+    <button class="platform-tab" onclick="switchTab('th')">Threads</button>
   </div>
 
   <div id="yt-tab" class="tab-content active">
@@ -368,6 +369,58 @@
     </div>
   </div><!-- end #ig-tab -->
 
+  <div id="th-tab" class="tab-content">
+    <div class="kpi-cards" id="th-kpi-cards" style="margin-bottom:20px;">
+      <div class="kpi-card">
+        <div class="kpi-label">Followers</div>
+        <div class="kpi-value" id="th-kpi-followers">—</div>
+        <div class="kpi-change" id="th-kpi-followers-change"></div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Views (30d)</div>
+        <div class="kpi-value" id="th-kpi-views">—</div>
+        <div class="kpi-change" id="th-kpi-views-change"></div>
+      </div>
+    </div>
+
+    <details class="chart-section">
+      <summary>Daily Views</summary>
+      <div class="chart-body"><div class="chart-wrap"><canvas id="th-views-chart"></canvas></div></div>
+    </details>
+
+    <details class="chart-section">
+      <summary>Follower Count Over Time</summary>
+      <div class="chart-body"><div class="chart-wrap"><canvas id="th-followers-chart"></canvas></div></div>
+    </details>
+
+    <details class="chart-section">
+      <summary>Audience Demographics — Age</summary>
+      <div class="chart-body"><div class="chart-wrap"><canvas id="th-demo-age"></canvas></div></div>
+    </details>
+
+    <details class="chart-section">
+      <summary>Audience Demographics — Gender</summary>
+      <div class="chart-body"><div class="chart-wrap" style="height:200px;"><canvas id="th-demo-gender"></canvas></div></div>
+    </details>
+
+    <details class="chart-section">
+      <summary>Audience Demographics — Top Cities</summary>
+      <div class="chart-body"><div class="chart-wrap"><canvas id="th-demo-city"></canvas></div></div>
+    </details>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr id="th-header-row"></tr></thead>
+        <tbody id="th-table-body"></tbody>
+      </table>
+    </div>
+
+    <div id="th-no-data" style="text-align:center;padding:60px 20px;color:var(--text3);">
+      <p style="font-size:18px;font-weight:600;margin-bottom:8px;">Threads data not yet configured</p>
+      <p style="font-size:13px;">Run <code>python3 fetch_threads.py</code> after setting up Threads API access.</p>
+    </div>
+  </div><!-- end #th-tab -->
+
   <!-- Thumbnail tooltip -->
   <div class="thumb-tip" id="thumb-tip"><img id="thumb-img" src=""></div>
 
@@ -383,6 +436,7 @@ function switchTab(tab) {
   document.getElementById('kpi-cards').style.display = tab === 'yt' ? 'flex' : 'none';
 
   if (tab === 'ig') loadInstagram();
+  if (tab === 'th') loadThreads();
 }
 
 // --- Instagram ---
@@ -697,6 +751,237 @@ function initIGThumbTip() {
   tbody.addEventListener('mouseout', e => {
     if (e.target.closest('.ig-row')) tip.style.display = 'none';
   });
+}
+
+// --- Threads ---
+let thLoaded = false;
+let thData = null;
+
+async function loadThreads() {
+  if (thLoaded) return;
+  try {
+    const resp = await fetch('data/threads.json');
+    if (!resp.ok) { thLoaded = true; return; }
+    thData = await resp.json();
+    thLoaded = true;
+    document.getElementById('th-no-data').style.display = 'none';
+    renderThreads();
+  } catch (e) {
+    thLoaded = true;
+  }
+}
+
+function renderThreads() {
+  if (!thData) return;
+  renderCrossPlatform();
+  const fmt = n => n != null ? n.toLocaleString() : '—';
+  const cs = thData.account || {};
+
+  // KPIs
+  document.getElementById('th-kpi-followers').textContent = fmt(cs.followers_30d);
+  if (cs.followers_30d_change != null) {
+    const d = cs.followers_30d_change;
+    const cls = d >= 0 ? 'up' : 'down';
+    const arrow = d >= 0 ? '&#9650;' : '&#9660;';
+    document.getElementById('th-kpi-followers-change').innerHTML =
+      `<span class="kpi-change ${cls}">${arrow} ${d >= 0 ? '+' : ''}${d.toLocaleString()} last 30d</span>`;
+  }
+  document.getElementById('th-kpi-views').textContent = fmt(cs.views_30d);
+  if (cs.views_prev_30d != null && cs.views_30d != null) {
+    const d = cs.views_30d - cs.views_prev_30d;
+    const cls = d >= 0 ? 'up' : 'down';
+    const arrow = d >= 0 ? '&#9650;' : '&#9660;';
+    document.getElementById('th-kpi-views-change').innerHTML =
+      `<span class="kpi-change ${cls}">${arrow} ${d >= 0 ? '+' : ''}${d.toLocaleString()} vs prev 30d</span>`;
+  }
+
+  const isDark = document.body.classList.contains('dark');
+  const gridColor = isDark ? '#3A3A3C' : '#E5E5EA';
+  const textColor = isDark ? '#AEAEB2' : '#6E6E73';
+
+  // Daily views chart
+  const dailyViews = thData.daily_views || [];
+  if (dailyViews.length) {
+    new Chart(document.getElementById('th-views-chart').getContext('2d'), {
+      type: 'bar',
+      data: {
+        labels: dailyViews.map(d => d.date),
+        datasets: [{
+          label: 'Views', data: dailyViews.map(d => d.views || 0),
+          backgroundColor: '#00000040', borderColor: '#000000', borderWidth: 1, borderRadius: 2,
+        }]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: {
+          x: { grid: { display: false }, ticks: { font: { size: 10 }, color: textColor, maxRotation: 45, autoSkip: true, maxTicksLimit: 20 }, border: { display: false } },
+          y: { grid: { color: gridColor }, ticks: { font: { size: 11 }, color: textColor }, border: { display: false } }
+        }
+      }
+    });
+  }
+
+  // Follower count over time chart
+  const followerHistory = thData.follower_history || [];
+  if (followerHistory.length) {
+    new Chart(document.getElementById('th-followers-chart').getContext('2d'), {
+      type: 'line',
+      data: {
+        labels: followerHistory.map(d => d.date),
+        datasets: [{
+          label: 'Followers', data: followerHistory.map(d => d.followers),
+          borderColor: '#000000', borderWidth: 2, pointRadius: 2,
+          pointBackgroundColor: '#000000', tension: 0.3, fill: true,
+          backgroundColor: '#00000010',
+        }]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: {
+          x: { grid: { display: false }, ticks: { font: { size: 10 }, color: textColor, maxRotation: 45, autoSkip: true, maxTicksLimit: 20 }, border: { display: false } },
+          y: { grid: { color: gridColor }, ticks: { font: { size: 11 }, color: textColor }, border: { display: false } }
+        }
+      }
+    });
+  }
+
+  // Demographics charts
+  const demo = thData.demographics || {};
+  if (Object.keys(demo).length) {
+    // Age chart
+    if (demo.age) {
+      const ageGroups = ['13-17', '18-24', '25-34', '35-44', '45-54', '55-64', '65+'];
+      const total = Object.values(demo.age).reduce((a, b) => a + b, 0) || 1;
+      new Chart(document.getElementById('th-demo-age').getContext('2d'), {
+        type: 'bar',
+        data: {
+          labels: ageGroups,
+          datasets: [{
+            label: 'Followers', data: ageGroups.map(g => Math.round((demo.age[g] || 0) / total * 1000) / 10),
+            backgroundColor: '#00000040', borderColor: '#000000', borderWidth: 1, borderRadius: 3,
+          }]
+        },
+        options: {
+          responsive: true, maintainAspectRatio: false,
+          plugins: { legend: { display: false } },
+          scales: {
+            x: { grid: { display: false }, ticks: { font: { size: 11 }, color: textColor }, border: { display: false } },
+            y: { grid: { color: gridColor }, ticks: { font: { size: 11 }, color: textColor, callback: v => v + '%' }, border: { display: false }, title: { display: true, text: '% of followers', color: textColor, font: { size: 11 } } }
+          }
+        }
+      });
+    }
+
+    // Gender chart
+    if (demo.gender) {
+      const genderLabels = { M: 'Male', F: 'Female', U: 'Unknown' };
+      const genderKeys = ['M', 'F', 'U'];
+      const total = Object.values(demo.gender).reduce((a, b) => a + b, 0) || 1;
+      new Chart(document.getElementById('th-demo-gender').getContext('2d'), {
+        type: 'bar',
+        data: {
+          labels: genderKeys.map(g => genderLabels[g]),
+          datasets: [{
+            label: 'Followers', data: genderKeys.map(g => Math.round((demo.gender[g] || 0) / total * 1000) / 10),
+            backgroundColor: '#00000040', borderColor: '#000000', borderWidth: 1, borderRadius: 3,
+          }]
+        },
+        options: {
+          responsive: true, maintainAspectRatio: false,
+          plugins: { legend: { display: false } },
+          scales: {
+            x: { grid: { display: false }, ticks: { font: { size: 11 }, color: textColor }, border: { display: false } },
+            y: { grid: { color: gridColor }, ticks: { font: { size: 11 }, color: textColor, callback: v => v + '%' }, border: { display: false } }
+          }
+        }
+      });
+    }
+
+    // City chart
+    if (demo.city && Object.keys(demo.city).length) {
+      const cities = Object.entries(demo.city).sort((a, b) => b[1] - a[1]).slice(0, 10);
+      new Chart(document.getElementById('th-demo-city').getContext('2d'), {
+        type: 'bar',
+        data: {
+          labels: cities.map(c => c[0]),
+          datasets: [{
+            label: 'Followers', data: cities.map(c => c[1]),
+            backgroundColor: '#00000040', borderColor: '#000000', borderWidth: 1, borderRadius: 3,
+          }]
+        },
+        options: {
+          indexAxis: 'y',
+          responsive: true, maintainAspectRatio: false,
+          plugins: { legend: { display: false } },
+          scales: {
+            x: { grid: { color: gridColor }, ticks: { font: { size: 11 }, color: textColor }, border: { display: false } },
+            y: { grid: { display: false }, ticks: { font: { size: 11 }, color: textColor }, border: { display: false } }
+          }
+        }
+      });
+    }
+  }
+
+  // Posts table
+  const posts = thData.posts || [];
+  if (posts.length) {
+    const TH_COLS = [
+      { key: 'text', label: 'Thread', type: 'text' },
+      { key: 'media_type', label: 'Type', type: 'text' },
+      { key: 'timestamp', label: 'Date', type: 'text' },
+      { key: 'views', label: 'Views', type: 'num' },
+      { key: 'likes', label: 'Likes', type: 'num' },
+      { key: 'replies', label: 'Replies', type: 'num' },
+      { key: 'reposts', label: 'Reposts', type: 'num' },
+      { key: 'quotes', label: 'Quotes', type: 'num' },
+    ];
+
+    let thSortCol = 'timestamp';
+    let thSortAsc = false;
+
+    function renderTHTable() {
+      const arrow = col => col === thSortCol ? (thSortAsc ? ' ▲' : ' ▼') : '';
+      document.getElementById('th-header-row').innerHTML = TH_COLS.map(c =>
+        `<th style="cursor:pointer;" data-th-col="${c.key}">${c.label}${arrow(c.key)}</th>`
+      ).join('');
+
+      const sorted = [...posts].sort((a, b) => {
+        let va = a[thSortCol], vb = b[thSortCol];
+        if (thSortCol === 'text') { va = (va || '').toLowerCase(); vb = (vb || '').toLowerCase(); }
+        if (va == null) return 1; if (vb == null) return -1;
+        if (va < vb) return thSortAsc ? -1 : 1;
+        if (va > vb) return thSortAsc ? 1 : -1;
+        return 0;
+      });
+
+      document.getElementById('th-table-body').innerHTML = sorted.map(p => {
+        const link = p.permalink ? `<a href="${p.permalink}" target="_blank" class="video-link">${(p.text || '').slice(0, 80) || '(no text)'}</a>` : (p.text || '').slice(0, 80);
+        return `<tr>
+          <td style="max-width:300px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-align:left;">${link}</td>
+          <td>${p.media_type || 'TEXT_POST'}</td>
+          <td>${(p.timestamp || '').slice(0, 10)}</td>
+          <td>${fmt(p.views)}</td>
+          <td>${fmt(p.likes)}</td>
+          <td>${fmt(p.replies)}</td>
+          <td>${fmt(p.reposts)}</td>
+          <td>${fmt(p.quotes)}</td>
+        </tr>`;
+      }).join('');
+    }
+
+    renderTHTable();
+
+    document.getElementById('th-header-row').addEventListener('click', e => {
+      const th = e.target.closest('th');
+      if (!th) return;
+      const col = th.dataset.thCol;
+      if (col === thSortCol) { thSortAsc = !thSortAsc; }
+      else { thSortCol = col; thSortAsc = false; }
+      renderTHTable();
+    });
+  }
 }
 
 const COLUMNS = [
@@ -1406,16 +1691,20 @@ function renderCrossPlatform() {
   const ytSubsChange = channelSummary.subs_30d_change || 0;
   const igFollowers = igData?.account?.followers || 0;
   const igFollowersChange = igData?.account?.followers_30d_change || 0;
-  const totalAudience = ytSubs + igFollowers;
-  const totalChange = ytSubsChange + igFollowersChange;
+  const thFollowers = thData?.account?.followers_30d || 0;
+  const thFollowersChange = thData?.account?.followers_30d_change || 0;
+  const totalAudience = ytSubs + igFollowers + thFollowers;
+  const totalChange = ytSubsChange + igFollowersChange + thFollowersChange;
 
   const ytViewLabel = channelSummary.viewer_metric === 'unique_viewers' ? 'unique viewers' : 'views';
   const ytViews30d = channelSummary.unique_viewers_30d || 0;
   const ytViewsPrev = channelSummary.unique_viewers_prev_30d || 0;
   const igReach30d = igData?.account?.reach_30d || 0;
   const igReachPrev = igData?.account?.reach_prev_30d || 0;
-  const totalReach = ytViews30d + igReach30d;
-  const reachChange = (ytViews30d - ytViewsPrev) + (igReach30d - igReachPrev);
+  const thViews30d = thData?.account?.views_30d || 0;
+  const thViewsPrev = thData?.account?.views_prev_30d || 0;
+  const totalReach = ytViews30d + igReach30d + thViews30d;
+  const reachChange = (ytViews30d - ytViewsPrev) + (igReach30d - igReachPrev) + (thViews30d - thViewsPrev);
 
   const igEngaged = igData?.account?.accounts_engaged_30d || 0;
   const igEngagedPrev = igData?.account?.accounts_engaged_prev_30d || 0;
@@ -1432,13 +1721,13 @@ function renderCrossPlatform() {
     <div class="cross-card">
       <div class="cross-label">Total Audience</div>
       <div class="cross-value">${totalAudience.toLocaleString()}</div>
-      <div class="cross-breakdown">YT: ${ytSubs.toLocaleString()} subs · IG: ${igFollowers.toLocaleString()} followers</div>
+      <div class="cross-breakdown">YT: ${ytSubs.toLocaleString()}${igFollowers ? ' · IG: ' + igFollowers.toLocaleString() : ''}${thFollowers ? ' · TH: ' + thFollowers.toLocaleString() : ''}</div>
       ${changeHtml(totalChange)}
     </div>
     <div class="cross-card">
       <div class="cross-label">30-Day Reach</div>
       <div class="cross-value">${totalReach.toLocaleString()}</div>
-      <div class="cross-breakdown">YT: ${ytViews30d.toLocaleString()} ${ytViewLabel} · IG: ${igReach30d.toLocaleString()} reach</div>
+      <div class="cross-breakdown">YT: ${ytViews30d.toLocaleString()} ${ytViewLabel}${igReach30d ? ' · IG: ' + igReach30d.toLocaleString() + ' reach' : ''}${thViews30d ? ' · TH: ' + thViews30d.toLocaleString() + ' views' : ''}</div>
       ${changeHtml(reachChange)}
     </div>
     ${igEngaged ? `<div class="cross-card">
