@@ -201,6 +201,7 @@
         <div style="font-size:10px;color:var(--text3);margin-top:2px;" id="cross-reach-breakdown"></div>
       </div>
     </div>
+    <button class="toggle-btn active" id="dark-toggle" onclick="toggleDark()" style="align-self:flex-start;margin-top:8px;">Dark Mode</button>
   </div>
 
   <div class="cross-summary" id="cross-summary"></div>
@@ -241,7 +242,6 @@
     <input class="search-input" id="search" placeholder="Search videos..." oninput="render()">
     <button class="toggle-btn active" id="exclude-u2" onclick="toggleExcludeU2()">Exclude #TBTHU2</button>
     <button class="toggle-btn active" id="exclude-paid" onclick="toggleExcludePaid()">Exclude Paid Views</button>
-    <button class="toggle-btn active" id="dark-toggle" onclick="toggleDark()">Dark Mode</button>
     <button class="toggle-btn" onclick="exportCSV()">Export CSV</button>
   </div>
 
@@ -1919,6 +1919,10 @@ function renderProduction() {
 
   // Host Pareto Chart
   requestAnimationFrame(() => {
+    const isDark = document.body.classList.contains('dark');
+    const tickColor = isDark ? '#AEAEB2' : '#8E8E93';
+    const gridColor = isDark ? '#3A3A3C' : '#E5E5EA';
+
     const sortedHosts = Object.entries(hostCounts).sort((a, b) => b[1] - a[1]);
     const hostCtx = document.getElementById('prod-host-chart');
     if (hostCtx._chart) hostCtx._chart.destroy();
@@ -1937,8 +1941,8 @@ function renderProduction() {
         responsive: true, maintainAspectRatio: false,
         plugins: { legend: { display: false } },
         scales: {
-          y: { beginAtZero: true, ticks: { precision: 0, color: 'var(--text3)' }, grid: { color: 'var(--border)' } },
-          x: { ticks: { color: 'var(--text3)' }, grid: { display: false } }
+          y: { beginAtZero: true, ticks: { precision: 0, color: tickColor }, grid: { color: gridColor } },
+          x: { ticks: { color: tickColor }, grid: { display: false } }
         }
       }
     });
@@ -1967,8 +1971,8 @@ function renderProduction() {
         responsive: true, maintainAspectRatio: false,
         plugins: { legend: { display: false } },
         scales: {
-          y: { beginAtZero: true, ticks: { precision: 0, color: 'var(--text3)' }, grid: { color: 'var(--border)' } },
-          x: { ticks: { color: 'var(--text3)' }, grid: { display: false } }
+          y: { beginAtZero: true, ticks: { precision: 0, color: tickColor }, grid: { color: gridColor } },
+          x: { ticks: { color: tickColor }, grid: { display: false } }
         }
       }
     });
