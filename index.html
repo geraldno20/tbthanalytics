@@ -552,18 +552,18 @@ const COLUMNS = [
   { key: 'views_72h',              label: '72h',                type: 'number', group: 'views' },
   { key: 'views_1wk',              label: '1wk',                type: 'number', group: 'views' },
   { key: 'views_2wk',              label: '2wk',                type: 'number', group: 'views' },
-  { key: 'avg_view_duration_pct',  label: 'Avg Duration %',     type: 'percent' },
-  { key: 'avg_view_time_sec',      label: 'Avg View Time',      type: 'duration' },
-  { key: 'new_subscribers',        label: 'New Subs',           type: 'number' },
-  { key: 'total_views',            label: 'Total Views',        type: 'number' },
-  { key: 'ad_views',               label: 'Ad Views',           type: 'number' },
-  { key: 'ad_roi',                 label: 'Organic %',          type: 'percent' },
-  { key: 'likes',                  label: 'Likes',              type: 'number' },
-  { key: 'comments',               label: 'Comments',           type: 'number' },
-  { key: 'duration_sec',           label: 'Duration',           type: 'duration' },
+  { key: 'total_views',            label: 'Total',              type: 'number', group: 'views' },
+  { key: 'ad_views',               label: 'Ad Views',           type: 'number', group: 'views' },
+  { key: 'ad_roi',                 label: 'Organic %',          type: 'percent', group: 'views' },
+  { key: 'new_subscribers',        label: 'New Subs',           type: 'number', group: 'engagement' },
+  { key: 'likes',                  label: 'Likes',              type: 'number', group: 'engagement' },
+  { key: 'comments',               label: 'Comments',           type: 'number', group: 'engagement' },
+  { key: 'avg_view_duration_pct',  label: 'Avg Duration %',     type: 'percent', group: 'session' },
+  { key: 'avg_view_time_sec',      label: 'Avg View Time',      type: 'duration', group: 'session' },
+  { key: 'duration_sec',           label: 'Duration',           type: 'duration', group: 'session' },
 ];
 
-const VIEW_COLS = ['views_24h', 'views_72h', 'views_1wk', 'views_2wk', 'last_24h_views', 'total_views'];
+const VIEW_COLS = ['views_24h', 'views_72h', 'views_1wk', 'views_2wk', 'last_24h_views', 'total_views', 'ad_views'];
 const DAYS_NAME = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
 let data = [];
@@ -1109,14 +1109,16 @@ function exportCSV() {
 function renderHeader() {
   // Group row
   const groupRow = document.getElementById('group-row');
+  const GROUP_LABELS = { views: 'Views', engagement: 'Engagement', session: 'Session' };
   let groupHtml = '<th></th>'; // checkbox column
   let i = 0;
   while (i < COLUMNS.length) {
     const col = COLUMNS[i];
-    if (col.group === 'views') {
+    if (col.group) {
+      const grp = col.group;
       let span = 0;
-      while (i < COLUMNS.length && COLUMNS[i].group === 'views') { span++; i++; }
-      groupHtml += `<th colspan="${span}" class="group-label">Views</th>`;
+      while (i < COLUMNS.length && COLUMNS[i].group === grp) { span++; i++; }
+      groupHtml += `<th colspan="${span}" class="group-label">${GROUP_LABELS[grp] || grp}</th>`;
     } else {
       groupHtml += '<th></th>';
       i++;
