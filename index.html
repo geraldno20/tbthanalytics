@@ -192,11 +192,13 @@
         <div class="kpi-label">Total Subscribers</div>
         <div class="kpi-value" id="cross-subs">—</div>
         <div class="kpi-change" id="cross-subs-change"></div>
+        <div style="font-size:10px;color:var(--text3);margin-top:2px;" id="cross-subs-breakdown"></div>
       </div>
       <div class="kpi-card">
         <div class="kpi-label">30-Day Reach</div>
         <div class="kpi-value" id="cross-reach">—</div>
         <div class="kpi-change" id="cross-reach-change"></div>
+        <div style="font-size:10px;color:var(--text3);margin-top:2px;" id="cross-reach-breakdown"></div>
       </div>
     </div>
   </div>
@@ -1722,7 +1724,6 @@ function renderCrossPlatform() {
   const totalSubs = ytSubs + igFollowers + thFollowers;
   const totalSubsChange = ytSubsChange + igFollowersChange + thFollowersChange;
 
-  const ytViewLabel = channelSummary.viewer_metric === 'unique_viewers' ? 'unique viewers' : 'views';
   const ytViews30d = channelSummary.unique_viewers_30d || 0;
   const ytViewsPrev = channelSummary.unique_viewers_prev_30d || 0;
   const igReach30d = igData?.account?.reach_30d || 0;
@@ -1742,8 +1743,13 @@ function renderCrossPlatform() {
   // Header KPI cards
   document.getElementById('cross-subs').textContent = totalSubs.toLocaleString();
   document.getElementById('cross-subs-change').innerHTML = changeHtml(totalSubsChange);
+  document.getElementById('cross-subs-breakdown').textContent =
+    `YT: ${ytSubs.toLocaleString()}${igFollowers ? ' · IG: ' + igFollowers.toLocaleString() : ''}${thFollowers ? ' · TH: ' + thFollowers.toLocaleString() : ''}`;
   document.getElementById('cross-reach').textContent = totalReach.toLocaleString();
   document.getElementById('cross-reach-change').innerHTML = changeHtml(reachChange);
+  const ytViewLabel = channelSummary.viewer_metric === 'unique_viewers' ? 'unique viewers' : 'views';
+  document.getElementById('cross-reach-breakdown').textContent =
+    `YT: ${ytViews30d.toLocaleString()}${igReach30d ? ' · IG: ' + igReach30d.toLocaleString() : ''}${thViews30d ? ' · TH: ' + thViews30d.toLocaleString() : ''}`;
 
   // Cross-summary row: hide if nothing extra to show
   const el = document.getElementById('cross-summary');
