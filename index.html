@@ -187,6 +187,18 @@
         <div class="last-updated" id="last-updated"></div>
       </div>
     </div>
+    <div class="kpi-cards" id="cross-kpi-cards">
+      <div class="kpi-card">
+        <div class="kpi-label">Total Subscribers</div>
+        <div class="kpi-value" id="cross-subs">—</div>
+        <div class="kpi-change" id="cross-subs-change"></div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">30-Day Reach</div>
+        <div class="kpi-value" id="cross-reach">—</div>
+        <div class="kpi-change" id="cross-reach-change"></div>
+      </div>
+    </div>
   </div>
 
   <div class="cross-summary" id="cross-summary"></div>
@@ -1701,15 +1713,14 @@ function render() {
 
 // --- Cross-Platform Summary ---
 function renderCrossPlatform() {
-  const el = document.getElementById('cross-summary');
   const ytSubs = channelSummary.subscribers || 0;
   const ytSubsChange = channelSummary.subs_30d_change || 0;
   const igFollowers = igData?.account?.followers || 0;
   const igFollowersChange = igData?.account?.followers_30d_change || 0;
   const thFollowers = thData?.account?.followers_30d || thData?.account?.followers || 0;
   const thFollowersChange = thData?.account?.followers_30d_change || 0;
-  const totalAudience = ytSubs + igFollowers + thFollowers;
-  const totalChange = ytSubsChange + igFollowersChange + thFollowersChange;
+  const totalSubs = ytSubs + igFollowers + thFollowers;
+  const totalSubsChange = ytSubsChange + igFollowersChange + thFollowersChange;
 
   const ytViewLabel = channelSummary.viewer_metric === 'unique_viewers' ? 'unique viewers' : 'views';
   const ytViews30d = channelSummary.unique_viewers_30d || 0;
@@ -1721,37 +1732,22 @@ function renderCrossPlatform() {
   const totalReach = ytViews30d + igReach30d + thViews30d;
   const reachChange = (ytViews30d - ytViewsPrev) + (igReach30d - igReachPrev) + (thViews30d - thViewsPrev);
 
-  const igEngaged = igData?.account?.accounts_engaged_30d || 0;
-  const igEngagedPrev = igData?.account?.accounts_engaged_prev_30d || 0;
-  const engagedChange = igEngaged - igEngagedPrev;
-
-  const changeHtml = (val) => {
+  const changeHtml = (val, id) => {
     if (!val) return '';
     const cls = val >= 0 ? 'up' : 'down';
     const arrow = val >= 0 ? '&#9650;' : '&#9660;';
-    return `<div class="cross-change ${cls}">${arrow} ${val >= 0 ? '+' : ''}${val.toLocaleString()} last 30d</div>`;
+    return `<span class="kpi-change ${cls}">${arrow} ${val >= 0 ? '+' : ''}${val.toLocaleString()} last 30d</span>`;
   };
 
-  el.innerHTML = `
-    <div class="cross-card">
-      <div class="cross-label">Total Subscribers</div>
-      <div class="cross-value">${totalAudience.toLocaleString()}</div>
-      <div class="cross-breakdown">YT: ${ytSubs.toLocaleString()}${igFollowers ? ' · IG: ' + igFollowers.toLocaleString() : ''}${thFollowers ? ' · TH: ' + thFollowers.toLocaleString() : ''}</div>
-      ${changeHtml(totalChange)}
-    </div>
-    <div class="cross-card">
-      <div class="cross-label">30-Day Reach</div>
-      <div class="cross-value">${totalReach.toLocaleString()}</div>
-      <div class="cross-breakdown">YT: ${ytViews30d.toLocaleString()} ${ytViewLabel}${igReach30d ? ' · IG: ' + igReach30d.toLocaleString() + ' reach' : ''}${thViews30d ? ' · TH: ' + thViews30d.toLocaleString() + ' views' : ''}</div>
-      ${changeHtml(reachChange)}
-    </div>
-    ${igEngaged ? `<div class="cross-card">
-      <div class="cross-label">IG Engaged (30d)</div>
-      <div class="cross-value">${igEngaged.toLocaleString()}</div>
-      <div class="cross-breakdown">Instagram engaged accounts</div>
-      ${changeHtml(engagedChange)}
-    </div>` : ''}
-  `;
+  // Header KPI cards
+  document.getElementById('cross-subs').textContent = totalSubs.toLocaleString();
+  document.getElementById('cross-subs-change').innerHTML = changeHtml(totalSubsChange);
+  document.getElementById('cross-reach').textContent = totalReach.toLocaleString();
+  document.getElementById('cross-reach-change').innerHTML = changeHtml(reachChange);
+
+  // Cross-summary row: hide if nothing extra to show
+  const el = document.getElementById('cross-summary');
+  el.style.display = 'none';
 }
 
 // --- Content Performance: Videos vs Shorts ---
