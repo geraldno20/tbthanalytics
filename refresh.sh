@@ -7,6 +7,10 @@ trap 'echo ""; echo "Error on line $LINENO — aborting." >&2' ERR
 
 cd /Users/geraldyeung/code/tbth-analytics
 
+echo "==> Fetching episode metadata..."
+python3 fetch_episodes.py
+
+echo ""
 echo "==> Fetching video list..."
 python3 fetch_videos.py
 
