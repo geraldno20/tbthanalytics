@@ -1,0 +1,933 @@
+{
+  "fetched_at": "2026-05-01 13:24",
+  "episodes": [
+    {
+      "season": "1",
+      "episode": "Jennifer Lee",
+      "guest": "Done",
+      "interviewer": "Complete",
+      "recording_date": "4/24/25",
+      "release_date": "Complete"
+    },
+    {
+      "season": "1",
+      "episode": "Brian Lin",
+      "guest": "Done",
+      "interviewer": "Complete",
+      "recording_date": "5/1/25",
+      "release_date": "Complete"
+    },
+    {
+      "season": "1",
+      "episode": "Karen Ling",
+      "guest": "Done",
+      "interviewer": "Complete",
+      "recording_date": "5/8/25",
+      "release_date": "Complete"
+    },
+    {
+      "season": "1",
+      "episode": "Carol Chan",
+      "guest": "Done",
+      "interviewer": "Complete",
+      "recording_date": "5/15/25",
+      "release_date": "Complete"
+    },
+    {
+      "season": "1",
+      "episode": "Pierre Lam",
+      "guest": "Done",
+      "interviewer": "Complete",
+      "recording_date": "5/22/25",
+      "release_date": "Complete"
+    },
+    {
+      "season": "1",
+      "episode": "Wynne Tong",
+      "guest": "Done",
+      "interviewer": "Complete",
+      "recording_date": "5/29/25",
+      "release_date": "Complete"
+    },
+    {
+      "season": "1",
+      "episode": "Gerald Yeung",
+      "guest": "Done",
+      "interviewer": "Complete",
+      "recording_date": "6/5/25",
+      "release_date": "Complete"
+    },
+    {
+      "season": "1",
+      "episode": "Gladys Tse",
+      "guest": "Done",
+      "interviewer": "Complete",
+      "recording_date": "6/12/25",
+      "release_date": "Complete"
+    },
+    {
+      "season": "1",
+      "episode": "Vivian Wu",
+      "guest": "Done",
+      "interviewer": "Complete",
+      "recording_date": "6/19/25",
+      "release_date": "Complete"
+    },
+    {
+      "season": "",
+      "episode": "",
+      "guest": "",
+      "interviewer": "",
+      "recording_date": "",
+      "release_date": ""
+    },
+    {
+      "season": "2",
+      "episode": "Robert Sit",
+      "guest": "Done",
+      "interviewer": "Complete",
+      "recording_date": "7/3/2025",
+      "release_date": "Complete"
+    },
+    {
+      "season": "2",
+      "episode": "Helen Wong",
+      "guest": "Done",
+      "interviewer": "Complete",
+      "recording_date": "7/10/2025",
+      "release_date": "Complete"
+    },
+    {
+      "season": "2",
+      "episode": "Stephen Ng",
+      "guest": "Done",
+      "interviewer": "Complete",
+      "recording_date": "7/17/2025",
+      "release_date": "Complete"
+    },
+    {
+      "season": "2",
+      "episode": "Natalie Ko",
+      "guest": "Done",
+      "interviewer": "Complete",
+      "recording_date": "7/24/2025",
+      "release_date": "Complete"
+    },
+    {
+      "season": "2",
+      "episode": "Ivan Leung",
+      "guest": "Done",
+      "interviewer": "Complete",
+      "recording_date": "7/31/2025",
+      "release_date": "Complete"
+    },
+    {
+      "season": "2",
+      "episode": "Fong Tze Kit",
+      "guest": "Done",
+      "interviewer": "Complete",
+      "recording_date": "8/7/2025",
+      "release_date": "Complete"
+    },
+    {
+      "season": "2",
+      "episode": "Grace Lo",
+      "guest": "Done",
+      "interviewer": "Complete",
+      "recording_date": "8/14/2025",
+      "release_date": "Complete"
+    },
+    {
+      "season": "2",
+      "episode": "Jonathan So",
+      "guest": "Done",
+      "interviewer": "Complete",
+      "recording_date": "8/21/2025",
+      "release_date": "Complete"
+    },
+    {
+      "season": "2",
+      "episode": "Deanna Law",
+      "guest": "Done",
+      "interviewer": "Complete",
+      "recording_date": "8/28/2025",
+      "release_date": "Complete"
+    },
+    {
+      "season": "",
+      "episode": "",
+      "guest": "",
+      "interviewer": "",
+      "recording_date": "",
+      "release_date": ""
+    },
+    {
+      "season": "3",
+      "episode": "Mark Law",
+      "guest": "Done",
+      "interviewer": "Complete",
+      "recording_date": "9/11/2025",
+      "release_date": "Complete"
+    },
+    {
+      "season": "3",
+      "episode": "Dionne Hui",
+      "guest": "Done",
+      "interviewer": "Complete",
+      "recording_date": "9/18/2025",
+      "release_date": "Complete"
+    },
+    {
+      "season": "3",
+      "episode": "Clement Cheng",
+      "guest": "Done",
+      "interviewer": "Complete",
+      "recording_date": "9/25/2025",
+      "release_date": "Complete"
+    },
+    {
+      "season": "3",
+      "episode": "Ringo Ho",
+      "guest": "Done",
+      "interviewer": "Complete",
+      "recording_date": "10/2/2025",
+      "release_date": "Complete"
+    },
+    {
+      "season": "3",
+      "episode": "Karen Chiu",
+      "guest": "Done",
+      "interviewer": "Complete",
+      "recording_date": "10/9/2025",
+      "release_date": "Complete"
+    },
+    {
+      "season": "3",
+      "episode": "Gary Ho",
+      "guest": "Done",
+      "interviewer": "Complete",
+      "recording_date": "10/16/2025",
+      "release_date": "Complete"
+    },
+    {
+      "season": "3",
+      "episode": "Cassie Mak",
+      "guest": "Done",
+      "interviewer": "Complete",
+      "recording_date": "10/23/2025",
+      "release_date": "Complete"
+    },
+    {
+      "season": "3",
+      "episode": "Andre Lin",
+      "guest": "Done",
+      "interviewer": "Complete",
+      "recording_date": "10/30/2025",
+      "release_date": "Complete"
+    },
+    {
+      "season": "3",
+      "episode": "Jackie Au",
+      "guest": "Done",
+      "interviewer": "Complete",
+      "recording_date": "11/6/2025",
+      "release_date": "Complete"
+    },
+    {
+      "season": "",
+      "episode": "",
+      "guest": "",
+      "interviewer": "",
+      "recording_date": "",
+      "release_date": ""
+    },
+    {
+      "season": "4",
+      "episode": "Russell Fok",
+      "guest": "Done",
+      "interviewer": "Complete",
+      "recording_date": "11/20/2025",
+      "release_date": "Complete"
+    },
+    {
+      "season": "4",
+      "episode": "Janice Wong",
+      "guest": "Done",
+      "interviewer": "Complete",
+      "recording_date": "12/4/2025",
+      "release_date": "Complete"
+    },
+    {
+      "season": "4",
+      "episode": "Adrian Tso",
+      "guest": "Done",
+      "interviewer": "Complete",
+      "recording_date": "12/11/2025",
+      "release_date": "Complete"
+    },
+    {
+      "season": "4",
+      "episode": "Holiday Get Together",
+      "guest": "-",
+      "interviewer": "-",
+      "recording_date": "-",
+      "release_date": "Complete"
+    },
+    {
+      "season": "4",
+      "episode": "Year End Episode",
+      "guest": "Dec 12",
+      "interviewer": "Complete",
+      "recording_date": "12/18/2025",
+      "release_date": "Complete"
+    },
+    {
+      "season": "",
+      "episode": "",
+      "guest": "",
+      "interviewer": "",
+      "recording_date": "",
+      "release_date": ""
+    },
+    {
+      "season": "5",
+      "episode": "Jerry Hung",
+      "guest": "Done",
+      "interviewer": "",
+      "recording_date": "1/1/2026",
+      "release_date": ""
+    },
+    {
+      "season": "5",
+      "episode": "Jimmy Chan",
+      "guest": "Done",
+      "interviewer": "",
+      "recording_date": "1/8/2026",
+      "release_date": ""
+    },
+    {
+      "season": "5",
+      "episode": "Sunny Pau",
+      "guest": "Done",
+      "interviewer": "",
+      "recording_date": "1/15/2026",
+      "release_date": ""
+    },
+    {
+      "season": "5",
+      "episode": "Jac Lee",
+      "guest": "Done",
+      "interviewer": "",
+      "recording_date": "1/22/2026",
+      "release_date": ""
+    },
+    {
+      "season": "5",
+      "episode": "Jeffrey Chan",
+      "guest": "Done",
+      "interviewer": "",
+      "recording_date": "1/29/2026",
+      "release_date": ""
+    },
+    {
+      "season": "5",
+      "episode": "Lok Lam",
+      "guest": "Done",
+      "interviewer": "",
+      "recording_date": "2/5/2026",
+      "release_date": ""
+    },
+    {
+      "season": "",
+      "episode": "CNY HOLIDAY",
+      "guest": "",
+      "interviewer": "",
+      "recording_date": "",
+      "release_date": ""
+    },
+    {
+      "season": "5",
+      "episode": "Steph + Jody Part 1",
+      "guest": "Done",
+      "interviewer": "",
+      "recording_date": "2/12/2026",
+      "release_date": ""
+    },
+    {
+      "season": "5",
+      "episode": "Steph + Jody Part 2",
+      "guest": "Done",
+      "interviewer": "",
+      "recording_date": "N/A",
+      "release_date": ""
+    },
+    {
+      "season": "5",
+      "episode": "Mr Yuen Part 1",
+      "guest": "Done",
+      "interviewer": "",
+      "recording_date": "2/26/2026",
+      "release_date": ""
+    },
+    {
+      "season": "5",
+      "episode": "Mr Yuen Part 2",
+      "guest": "Done",
+      "interviewer": "",
+      "recording_date": "3/5/2026",
+      "release_date": ""
+    },
+    {
+      "season": "5",
+      "episode": "S5 Summary",
+      "guest": "Done",
+      "interviewer": "",
+      "recording_date": "3/12/2026",
+      "release_date": ""
+    },
+    {
+      "season": "",
+      "episode": "",
+      "guest": "",
+      "interviewer": "",
+      "recording_date": "",
+      "release_date": ""
+    },
+    {
+      "season": "6",
+      "episode": "Lung Sir",
+      "guest": "Done",
+      "interviewer": "",
+      "recording_date": "3/19/2026",
+      "release_date": ""
+    },
+    {
+      "season": "Nonsense",
+      "episode": "April Fools 2026",
+      "guest": "Done",
+      "interviewer": "",
+      "recording_date": "",
+      "release_date": ""
+    },
+    {
+      "season": "Nonsense",
+      "episode": "Soccer Video",
+      "guest": "Done",
+      "interviewer": "",
+      "recording_date": "",
+      "release_date": ""
+    },
+    {
+      "season": "6",
+      "episode": "Jeff Kwok",
+      "guest": "Done",
+      "interviewer": "",
+      "recording_date": "3/26 and 4/3",
+      "release_date": ""
+    },
+    {
+      "season": "6",
+      "episode": "Ms Leung Lai Mei",
+      "guest": "Done",
+      "interviewer": "",
+      "recording_date": "4/9/2026",
+      "release_date": ""
+    },
+    {
+      "season": "6",
+      "episode": "SPCCAC Denise Yam",
+      "guest": "Done",
+      "interviewer": "",
+      "recording_date": "4/16/2026",
+      "release_date": ""
+    },
+    {
+      "season": "6",
+      "episode": "Michael Wong",
+      "guest": "Done",
+      "interviewer": "",
+      "recording_date": "4/23/2026",
+      "release_date": ""
+    },
+    {
+      "season": "6",
+      "episode": "Clement Yeung",
+      "guest": "Done",
+      "interviewer": "",
+      "recording_date": "4/30/2026",
+      "release_date": ""
+    },
+    {
+      "season": "6",
+      "episode": "Eric Cheung",
+      "guest": "Done",
+      "interviewer": "",
+      "recording_date": "5/7/2026",
+      "release_date": ""
+    },
+    {
+      "season": "6",
+      "episode": "Kristen Chin",
+      "guest": "Done",
+      "interviewer": "",
+      "recording_date": "5/14/2026",
+      "release_date": ""
+    },
+    {
+      "season": "Nonsense",
+      "episode": "Tang East",
+      "guest": "Done",
+      "interviewer": "",
+      "recording_date": "5/21/2026",
+      "release_date": ""
+    },
+    {
+      "season": "6",
+      "episode": "1 year Anniversary",
+      "guest": "",
+      "interviewer": "",
+      "recording_date": "5/28/2026",
+      "release_date": ""
+    },
+    {
+      "season": "Nonsense",
+      "episode": "Ryan Kam Soccer",
+      "guest": "",
+      "interviewer": "",
+      "recording_date": "5/28/2026",
+      "release_date": ""
+    },
+    {
+      "season": "Nonsense",
+      "episode": "2024 Soccer",
+      "guest": "",
+      "interviewer": "",
+      "recording_date": "5/28/2026",
+      "release_date": ""
+    },
+    {
+      "season": "7",
+      "episode": "Jeff Shum",
+      "guest": "Done",
+      "interviewer": "",
+      "recording_date": "6/4/2026",
+      "release_date": ""
+    },
+    {
+      "season": "7",
+      "episode": "Ms Wong MK",
+      "guest": "Done",
+      "interviewer": "",
+      "recording_date": "6/11/2026",
+      "release_date": ""
+    },
+    {
+      "season": "7",
+      "episode": "Kevin Law",
+      "guest": "Mid April",
+      "interviewer": "",
+      "recording_date": "6/18/2026",
+      "release_date": ""
+    },
+    {
+      "season": "7",
+      "episode": "Anthony Choi",
+      "guest": "Done",
+      "interviewer": "",
+      "recording_date": "6/25/2026",
+      "release_date": ""
+    },
+    {
+      "season": "7",
+      "episode": "James Lam",
+      "guest": "Done",
+      "interviewer": "",
+      "recording_date": "7/2/2026",
+      "release_date": ""
+    },
+    {
+      "season": "7",
+      "episode": "Arthur Mui",
+      "guest": "",
+      "interviewer": "",
+      "recording_date": "7/9/2026",
+      "release_date": ""
+    },
+    {
+      "season": "7",
+      "episode": "Paulino Ho",
+      "guest": "",
+      "interviewer": "",
+      "recording_date": "7/16/2026",
+      "release_date": ""
+    },
+    {
+      "season": "7",
+      "episode": "Geoffrey Ko",
+      "guest": "May 22",
+      "interviewer": "",
+      "recording_date": "7/23/2026",
+      "release_date": ""
+    },
+    {
+      "season": "7",
+      "episode": "David Chen",
+      "guest": "",
+      "interviewer": "",
+      "recording_date": "7/30/2026",
+      "release_date": ""
+    },
+    {
+      "season": "7",
+      "episode": "S7 Summary",
+      "guest": "",
+      "interviewer": "",
+      "recording_date": "8/6/2026",
+      "release_date": ""
+    },
+    {
+      "season": "",
+      "episode": "",
+      "guest": "",
+      "interviewer": "",
+      "recording_date": "",
+      "release_date": ""
+    },
+    {
+      "season": "Done",
+      "episode": "Ma Sir ",
+      "guest": "Done",
+      "interviewer": "",
+      "recording_date": "",
+      "release_date": ""
+    },
+    {
+      "season": "Agreed",
+      "episode": "Karita Kan",
+      "guest": "",
+      "interviewer": "",
+      "recording_date": "",
+      "release_date": ""
+    },
+    {
+      "season": "Agreed",
+      "episode": "McDull",
+      "guest": "Losing Weight",
+      "interviewer": "",
+      "recording_date": "",
+      "release_date": ""
+    },
+    {
+      "season": "Agreed",
+      "episode": "Francis Tso",
+      "guest": "",
+      "interviewer": "",
+      "recording_date": "",
+      "release_date": ""
+    },
+    {
+      "season": "Agreed",
+      "episode": "Cora Ling",
+      "guest": "",
+      "interviewer": "",
+      "recording_date": "",
+      "release_date": ""
+    },
+    {
+      "season": "Agreed",
+      "episode": "Lok Man Lee",
+      "guest": "",
+      "interviewer": "",
+      "recording_date": "",
+      "release_date": ""
+    },
+    {
+      "season": "Agreed",
+      "episode": "Nick Bong Lee",
+      "guest": "",
+      "interviewer": "",
+      "recording_date": "",
+      "release_date": ""
+    },
+    {
+      "season": "Agreed",
+      "episode": "Clement Pang",
+      "guest": "",
+      "interviewer": "",
+      "recording_date": "",
+      "release_date": ""
+    },
+    {
+      "season": "Agreed",
+      "episode": "Zoie Teng",
+      "guest": "Check in later",
+      "interviewer": "",
+      "recording_date": "",
+      "release_date": ""
+    },
+    {
+      "season": "Agreed",
+      "episode": "Cherky",
+      "guest": "",
+      "interviewer": "",
+      "recording_date": "",
+      "release_date": ""
+    },
+    {
+      "season": "Agreed",
+      "episode": "Michael Tsang",
+      "guest": "",
+      "interviewer": "",
+      "recording_date": "",
+      "release_date": ""
+    },
+    {
+      "season": "Agreed",
+      "episode": "Tak Yee Yung",
+      "guest": "",
+      "interviewer": "",
+      "recording_date": "",
+      "release_date": ""
+    },
+    {
+      "season": "Agreed",
+      "episode": "Chris Wong",
+      "guest": "",
+      "interviewer": "",
+      "recording_date": "",
+      "release_date": ""
+    },
+    {
+      "season": "Agreed",
+      "episode": "Jason Kung",
+      "guest": "",
+      "interviewer": "",
+      "recording_date": "",
+      "release_date": ""
+    },
+    {
+      "season": "Agreed",
+      "episode": "Wilson Lok",
+      "guest": "",
+      "interviewer": "",
+      "recording_date": "",
+      "release_date": ""
+    },
+    {
+      "season": "Agreed",
+      "episode": "",
+      "guest": "",
+      "interviewer": "",
+      "recording_date": "",
+      "release_date": ""
+    },
+    {
+      "season": "Agreed",
+      "episode": "",
+      "guest": "",
+      "interviewer": "",
+      "recording_date": "",
+      "release_date": ""
+    },
+    {
+      "season": "Agreed",
+      "episode": "",
+      "guest": "",
+      "interviewer": "",
+      "recording_date": "",
+      "release_date": ""
+    },
+    {
+      "season": "",
+      "episode": "",
+      "guest": "",
+      "interviewer": "",
+      "recording_date": "",
+      "release_date": ""
+    },
+    {
+      "season": "",
+      "episode": "",
+      "guest": "",
+      "interviewer": "",
+      "recording_date": "",
+      "release_date": ""
+    },
+    {
+      "season": "",
+      "episode": "Kenneth King",
+      "guest": "",
+      "interviewer": "",
+      "recording_date": "",
+      "release_date": ""
+    },
+    {
+      "season": "",
+      "episode": "Jon Tam",
+      "guest": "",
+      "interviewer": "",
+      "recording_date": "",
+      "release_date": ""
+    },
+    {
+      "season": "",
+      "episode": "Lulu",
+      "guest": "",
+      "interviewer": "",
+      "recording_date": "",
+      "release_date": ""
+    },
+    {
+      "season": "",
+      "episode": "",
+      "guest": "",
+      "interviewer": "",
+      "recording_date": "",
+      "release_date": ""
+    },
+    {
+      "season": "??",
+      "episode": "James (Galen) Yip",
+      "guest": "",
+      "interviewer": "",
+      "recording_date": "",
+      "release_date": ""
+    },
+    {
+      "season": "",
+      "episode": "",
+      "guest": "",
+      "interviewer": "",
+      "recording_date": "",
+      "release_date": ""
+    },
+    {
+      "season": "",
+      "episode": "Lo Duc Him",
+      "guest": "",
+      "interviewer": "",
+      "recording_date": "",
+      "release_date": ""
+    },
+    {
+      "season": "",
+      "episode": "Beatrice Lau",
+      "guest": "",
+      "interviewer": "",
+      "recording_date": "",
+      "release_date": ""
+    },
+    {
+      "season": "",
+      "episode": "",
+      "guest": "",
+      "interviewer": "",
+      "recording_date": "",
+      "release_date": ""
+    },
+    {
+      "season": "",
+      "episode": "Tiff Leung",
+      "guest": "Check in in Nov",
+      "interviewer": "",
+      "recording_date": "",
+      "release_date": ""
+    },
+    {
+      "season": "",
+      "episode": "Rachel Ma",
+      "guest": "",
+      "interviewer": "",
+      "recording_date": "",
+      "release_date": ""
+    },
+    {
+      "season": "",
+      "episode": "Finsen Chiu",
+      "guest": "",
+      "interviewer": "",
+      "recording_date": "",
+      "release_date": ""
+    },
+    {
+      "season": "",
+      "episode": "Kelvin Lau",
+      "guest": "",
+      "interviewer": "",
+      "recording_date": "",
+      "release_date": ""
+    },
+    {
+      "season": "",
+      "episode": "Ms Leung",
+      "guest": "",
+      "interviewer": "",
+      "recording_date": "",
+      "release_date": ""
+    },
+    {
+      "season": "",
+      "episode": "Ms Yiu",
+      "guest": "",
+      "interviewer": "",
+      "recording_date": "",
+      "release_date": ""
+    },
+    {
+      "season": "",
+      "episode": "",
+      "guest": "",
+      "interviewer": "",
+      "recording_date": "",
+      "release_date": ""
+    },
+    {
+      "season": "",
+      "episode": "",
+      "guest": "",
+      "interviewer": "",
+      "recording_date": "",
+      "release_date": ""
+    },
+    {
+      "season": "",
+      "episode": "",
+      "guest": "",
+      "interviewer": "",
+      "recording_date": "",
+      "release_date": ""
+    },
+    {
+      "season": "",
+      "episode": "",
+      "guest": "",
+      "interviewer": "",
+      "recording_date": "",
+      "release_date": ""
+    },
+    {
+      "season": "",
+      "episode": "",
+      "guest": "",
+      "interviewer": "",
+      "recording_date": "",
+      "release_date": ""
+    },
+    {
+      "season": "",
+      "episode": "",
+      "guest": "",
+      "interviewer": "",
+      "recording_date": "",
+      "release_date": ""
+    },
+    {
+      "season": "#REF!",
+      "episode": "",
+      "guest": "",
+      "interviewer": "",
+      "recording_date": "",
+      "release_date": ""
+    }
+  ]
+}
