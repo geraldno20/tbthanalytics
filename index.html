@@ -454,11 +454,13 @@ function setIGTypeFilter(type) {
 
 async function loadInstagram() {
   if (igLoaded) return;
+  igLoaded = true;
   try {
-    const resp = await fetch('data/instagram.json');
-    if (!resp.ok) { igLoaded = true; return; }
-    igData = await resp.json();
-    igLoaded = true;
+    if (!igData) {
+      const resp = await fetch('data/instagram.json');
+      if (!resp.ok) return;
+      igData = await resp.json();
+    }
     document.getElementById('ig-no-data').style.display = 'none';
     document.getElementById('ig-controls').style.display = 'flex';
     renderInstagram();
@@ -762,11 +764,13 @@ let thData = null;
 
 async function loadThreads() {
   if (thLoaded) return;
+  thLoaded = true;
   try {
-    const resp = await fetch('data/threads.json');
-    if (!resp.ok) { thLoaded = true; return; }
-    thData = await resp.json();
-    thLoaded = true;
+    if (!thData) {
+      const resp = await fetch('data/threads.json');
+      if (!resp.ok) return;
+      thData = await resp.json();
+    }
     document.getElementById('th-no-data').style.display = 'none';
     // Defer rendering to next frame so canvases have dimensions
     requestAnimationFrame(() => renderThreads());
@@ -1853,6 +1857,18 @@ async function init() {
     buildSeasonFilter();
     render();
     initThumbTip();
+
+    // Preload IG and Threads data for cross-platform summary
+    // (charts render later when user switches tabs)
+    try {
+      const igResp = await fetch('data/instagram.json');
+      if (igResp.ok) { igData = await igResp.json(); }
+    } catch (e) {}
+    try {
+      const thResp = await fetch('data/threads.json');
+      if (thResp.ok) { thData = await thResp.json(); }
+    } catch (e) {}
+    renderCrossPlatform();
   } catch (e) {
     document.getElementById('subtitle').textContent = 'Error loading data. Run fetch_analytics.py first.';
   }
