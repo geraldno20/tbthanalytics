@@ -1,13 +1,14 @@
 """
-Fetches Instagram analytics using the Instagram Graph API.
+Fetches Instagram analytics using the new Instagram API (graph.instagram.com).
 Metrics: account-level (followers, reach, impressions), post-level, stories.
 Saves results to data/instagram.json.
 
 Setup:
 1. Create a Meta Developer app at https://developers.facebook.com/
-2. Add Instagram Graph API product
-3. Generate a long-lived access token
+2. Add "Instagram API" use case
+3. Generate an access token (starts with IGAA...)
 4. Save it to ig_token.json: {"access_token": "YOUR_TOKEN", "ig_user_id": "YOUR_IG_USER_ID"}
+   ig_user_id is numeric, find it via GET /me in Graph API Explorer
 """
 
 import json
@@ -20,7 +21,7 @@ from urllib.error import HTTPError
 
 DATA_DIR = Path(__file__).parent / "data"
 TOKEN_FILE = Path(__file__).parent / "ig_token.json"
-API_BASE = "https://graph.facebook.com/v21.0"
+API_BASE = "https://graph.instagram.com/v21.0"
 
 
 def load_token():
@@ -33,7 +34,7 @@ def load_token():
 
 
 def api_get(endpoint, params=None, retries=3):
-    """Make a GET request to the Instagram Graph API."""
+    """Make a GET request to the Instagram API."""
     if params is None:
         params = {}
     url = f"{API_BASE}{endpoint}?{urlencode(params)}"
@@ -55,7 +56,7 @@ def api_get(endpoint, params=None, retries=3):
 
 
 def fetch_account_info(token, ig_user_id):
-    """Fetch basic account info: followers, media count, etc."""
+    """Fetch basic account info."""
     data = api_get(f"/{ig_user_id}", {
         "fields": "username,name,followers_count,follows_count,media_count,biography,profile_picture_url",
         "access_token": token,
@@ -73,10 +74,9 @@ def fetch_account_info(token, ig_user_id):
 
 
 def fetch_account_insights(token, ig_user_id):
-    """Fetch account-level insights (reach, impressions, follower count) for last 30 + prev 30 days."""
+    """Fetch account-level insights for last 30 + prev 30 days."""
     results = {}
 
-    # Last 30 days
     end = datetime.now() - timedelta(days=1)
     start_30 = end - timedelta(days=29)
     start_60 = start_30 - timedelta(days=30)
@@ -86,22 +86,29 @@ def fetch_account_insights(token, ig_user_id):
         ("prev_30d", start_60, start_30 - timedelta(days=1)),
     ]:
         data = api_get(f"/{ig_user_id}/insights", {
-            "metric": "reach,impressions,follower_count",
+            "metric": "reach,follower_count,accounts_engaged,total_interactions,profile_views",
             "period": "day",
             "since": int(since.timestamp()),
             "until": int((until + timedelta(days=1)).timestamp()),
             "access_token": token,
         })
+
         if not data or "data" not in data:
             continue
 
         for metric_data in data["data"]:
             metric_name = metric_data["name"]
             values = metric_data.get("values", [])
+
+            # Check for total_value format (new API)
+            total_value = metric_data.get("total_value", {}).get("value")
+            if total_value is not None:
+                results[f"{metric_name}_{label}"] = total_value
+                continue
+
             total = sum(v.get("value", 0) for v in values)
 
             if metric_name == "follower_count":
-                # follower_count is cumulative, take the last value
                 if values:
                     results[f"followers_{label}"] = values[-1].get("value", 0)
                     if label == "30d":
@@ -112,7 +119,6 @@ def fetch_account_insights(token, ig_user_id):
             else:
                 results[f"{metric_name}_{label}"] = total
 
-    # Compute follower change
     if "followers_30d" in results and "followers_prev_30d" in results:
         results["followers_30d_change"] = results["followers_30d"] - results["followers_prev_30d"]
 
@@ -125,7 +131,7 @@ def fetch_daily_insights(token, ig_user_id):
     start = end - timedelta(days=29)
 
     data = api_get(f"/{ig_user_id}/insights", {
-        "metric": "reach,impressions",
+        "metric": "reach,accounts_engaged,total_interactions",
         "period": "day",
         "since": int(start.timestamp()),
         "until": int((end + timedelta(days=1)).timestamp()),
@@ -134,7 +140,6 @@ def fetch_daily_insights(token, ig_user_id):
     if not data or "data" not in data:
         return []
 
-    # Merge reach and impressions by date
     daily = {}
     for metric_data in data["data"]:
         metric_name = metric_data["name"]
@@ -148,8 +153,7 @@ def fetch_daily_insights(token, ig_user_id):
 
 
 def fetch_media(token, ig_user_id, limit=100):
-    """Fetch recent media (posts, reels, carousels) with insights."""
-    # Get media list
+    """Fetch recent media with insights."""
     data = api_get(f"/{ig_user_id}/media", {
         "fields": "id,caption,media_type,media_url,thumbnail_url,timestamp,permalink,like_count,comments_count",
         "limit": min(limit, 100),
@@ -174,18 +178,25 @@ def fetch_media(token, ig_user_id, limit=100):
             "comments": item.get("comments_count", 0),
         }
 
-        # Fetch per-post insights (reach, impressions, saves, shares)
-        metrics = "reach,impressions,saved,shares"
-        if media_type == "VIDEO" or media_type == "REEL":
-            metrics += ",plays,video_views"
+        # Fetch per-post insights
+        metrics = "reach,likes,comments,shares,saved,total_interactions"
 
         insights = api_get(f"/{media_id}/insights", {
             "metric": metrics,
             "access_token": token,
         })
+        # If that fails (unsupported metric for this type), try without shares
+        if not insights or "data" not in (insights or {}):
+            insights = api_get(f"/{media_id}/insights", {
+                "metric": "reach,likes,comments,saved,total_interactions",
+                "access_token": token,
+            })
         if insights and "data" in insights:
             for m in insights["data"]:
-                post[m["name"]] = m.get("values", [{}])[0].get("value", 0)
+                val = m.get("values", [{}])[0].get("value")
+                if val is None:
+                    val = m.get("total_value", {}).get("value", 0)
+                post[m["name"]] = val
 
         posts.append(post)
         time.sleep(0.2)
@@ -212,12 +223,15 @@ def fetch_stories(token, ig_user_id):
         }
 
         insights = api_get(f"/{story_id}/insights", {
-            "metric": "reach,impressions,replies,exits",
+            "metric": "reach,replies,total_interactions",
             "access_token": token,
         })
         if insights and "data" in insights:
             for m in insights["data"]:
-                story[m["name"]] = m.get("values", [{}])[0].get("value", 0)
+                val = m.get("values", [{}])[0].get("value")
+                if val is None:
+                    val = m.get("total_value", {}).get("value", 0)
+                story[m["name"]] = val
 
         stories.append(story)
         time.sleep(0.2)
