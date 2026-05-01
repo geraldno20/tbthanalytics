@@ -287,7 +287,7 @@
     </div>
 
     <details class="chart-section">
-      <summary>Followers Over Time</summary>
+      <summary>Followers Gain Over Time</summary>
       <div class="chart-body"><div class="chart-wrap"><canvas id="ig-followers-chart"></canvas></div></div>
     </details>
 
@@ -407,14 +407,17 @@ function renderInstagram() {
     const isDark = document.body.classList.contains('dark');
     const gridColor = isDark ? '#3A3A3C' : '#E5E5EA';
     const textColor = isDark ? '#AEAEB2' : '#6E6E73';
+    // Compute daily gains from cumulative follower count
+    const gains = followerHistory.map((d, i) => i === 0 ? 0 : d.followers - followerHistory[i - 1].followers);
     new Chart(document.getElementById('ig-followers-chart').getContext('2d'), {
-      type: 'line',
+      type: 'bar',
       data: {
         labels: followerHistory.map(d => d.date),
         datasets: [{
-          label: 'Followers', data: followerHistory.map(d => d.followers),
-          borderColor: '#E1306C', borderWidth: 2, pointRadius: 0, tension: 0.4,
-          fill: true, backgroundColor: '#E1306C15',
+          label: 'Followers Gained', data: gains,
+          backgroundColor: gains.map(g => g >= 0 ? '#E1306C40' : '#FF375F40'),
+          borderColor: gains.map(g => g >= 0 ? '#E1306C' : '#FF375F'),
+          borderWidth: 1, borderRadius: 2,
         }]
       },
       options: {
@@ -431,19 +434,60 @@ function renderInstagram() {
   // Posts table
   const posts = igData.posts || [];
   if (posts.length) {
-    const cols = ['Caption', 'Type', 'Date', 'Likes', 'Comments', 'Saves', 'Shares', 'Reach', 'Interactions'];
-    document.getElementById('ig-header-row').innerHTML = cols.map(c => `<th>${c}</th>`).join('');
-    document.getElementById('ig-table-body').innerHTML = posts.map(p => `<tr class="ig-row" data-thumb="${p.thumbnail || ''}">
-      <td style="max-width:300px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${(p.caption || '').slice(0, 80)}</td>
-      <td>${p.media_type || ''}</td>
-      <td>${(p.timestamp || '').slice(0, 10)}</td>
-      <td>${fmt(p.likes)}</td>
-      <td>${fmt(p.comments)}</td>
-      <td>${fmt(p.saves)}</td>
-      <td>${fmt(p.shares)}</td>
-      <td>${fmt(p.reach)}</td>
-      <td>${fmt(p.total_interactions)}</td>
-    </tr>`).join('');
+    const IG_COLS = [
+      { key: 'caption', label: 'Caption', type: 'text' },
+      { key: 'media_type', label: 'Type', type: 'text' },
+      { key: 'timestamp', label: 'Date', type: 'text' },
+      { key: 'likes', label: 'Likes', type: 'num' },
+      { key: 'comments', label: 'Comments', type: 'num' },
+      { key: 'saves', label: 'Saves', type: 'num' },
+      { key: 'shares', label: 'Shares', type: 'num' },
+      { key: 'reach', label: 'Reach', type: 'num' },
+      { key: 'total_interactions', label: 'Interactions', type: 'num' },
+    ];
+
+    let igSortCol = 'timestamp';
+    let igSortAsc = false;
+
+    function renderIGTable() {
+      const arrow = col => col === igSortCol ? (igSortAsc ? ' ▲' : ' ▼') : '';
+      document.getElementById('ig-header-row').innerHTML = IG_COLS.map(c =>
+        `<th style="cursor:pointer;" data-ig-col="${c.key}">${c.label}${arrow(c.key)}</th>`
+      ).join('');
+
+      const sorted = [...posts].sort((a, b) => {
+        let va = a[igSortCol], vb = b[igSortCol];
+        if (igSortCol === 'caption') { va = (va || '').toLowerCase(); vb = (vb || '').toLowerCase(); }
+        if (va == null) return 1; if (vb == null) return -1;
+        if (va < vb) return igSortAsc ? -1 : 1;
+        if (va > vb) return igSortAsc ? 1 : -1;
+        return 0;
+      });
+
+      document.getElementById('ig-table-body').innerHTML = sorted.map(p => `<tr class="ig-row" data-thumb="${p.thumbnail || ''}">
+        <td style="max-width:300px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${(p.caption || '').slice(0, 80)}</td>
+        <td>${p.media_type || ''}</td>
+        <td>${(p.timestamp || '').slice(0, 10)}</td>
+        <td>${fmt(p.likes)}</td>
+        <td>${fmt(p.comments)}</td>
+        <td>${fmt(p.saves)}</td>
+        <td>${fmt(p.shares)}</td>
+        <td>${fmt(p.reach)}</td>
+        <td>${fmt(p.total_interactions)}</td>
+      </tr>`).join('');
+    }
+
+    renderIGTable();
+
+    document.getElementById('ig-header-row').addEventListener('click', e => {
+      const th = e.target.closest('th');
+      if (!th) return;
+      const col = th.dataset.igCol;
+      if (col === igSortCol) { igSortAsc = !igSortAsc; }
+      else { igSortCol = col; igSortAsc = false; }
+      renderIGTable();
+    });
+
     initIGThumbTip();
   }
 }
