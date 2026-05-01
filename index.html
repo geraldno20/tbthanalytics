@@ -280,7 +280,7 @@
         <div class="kpi-change" id="ig-kpi-reach-change"></div>
       </div>
       <div class="kpi-card">
-        <div class="kpi-label">Impressions (30d)</div>
+        <div class="kpi-label">Engaged (30d)</div>
         <div class="kpi-value" id="ig-kpi-impressions">—</div>
         <div class="kpi-change" id="ig-kpi-impressions-change"></div>
       </div>
@@ -292,7 +292,7 @@
     </details>
 
     <details class="chart-section">
-      <summary>Daily Reach &amp; Impressions</summary>
+      <summary>Daily Reach &amp; Engagement</summary>
       <div class="chart-body"><div class="chart-wrap"><canvas id="ig-reach-chart"></canvas></div></div>
     </details>
 
@@ -366,9 +366,9 @@ function renderInstagram() {
     document.getElementById('ig-kpi-reach-change').innerHTML =
       `<span class="kpi-change ${cls}">${arrow} ${d >= 0 ? '+' : ''}${d.toLocaleString()} vs prev 30d</span>`;
   }
-  document.getElementById('ig-kpi-impressions').textContent = fmt(cs.impressions_30d);
-  if (cs.impressions_prev_30d != null && cs.impressions_30d != null) {
-    const d = cs.impressions_30d - cs.impressions_prev_30d;
+  document.getElementById('ig-kpi-impressions').textContent = fmt(cs.accounts_engaged_30d);
+  if (cs.accounts_engaged_prev_30d != null && cs.accounts_engaged_30d != null) {
+    const d = cs.accounts_engaged_30d - cs.accounts_engaged_prev_30d;
     const cls = d >= 0 ? 'up' : 'down';
     const arrow = d >= 0 ? '&#9650;' : '&#9660;';
     document.getElementById('ig-kpi-impressions-change').innerHTML =
@@ -387,7 +387,7 @@ function renderInstagram() {
         labels: daily.map(d => d.date),
         datasets: [
           { type: 'bar', label: 'Reach', data: daily.map(d => d.reach || 0), backgroundColor: '#E1306C40', borderColor: '#E1306C', borderWidth: 1, borderRadius: 2, order: 2 },
-          { type: 'line', label: 'Impressions', data: daily.map(d => d.impressions || 0), borderColor: '#833AB4', borderWidth: 2, pointRadius: 0, tension: 0.4, order: 1 },
+          { type: 'line', label: 'Engaged Accounts', data: daily.map(d => d.accounts_engaged || 0), borderColor: '#833AB4', borderWidth: 2, pointRadius: 0, tension: 0.4, order: 1 },
         ]
       },
       options: {
@@ -431,7 +431,7 @@ function renderInstagram() {
   // Posts table
   const posts = igData.posts || [];
   if (posts.length) {
-    const cols = ['Caption', 'Type', 'Date', 'Likes', 'Comments', 'Saves', 'Shares', 'Reach', 'Impressions'];
+    const cols = ['Caption', 'Type', 'Date', 'Likes', 'Comments', 'Saves', 'Shares', 'Reach', 'Interactions'];
     document.getElementById('ig-header-row').innerHTML = cols.map(c => `<th>${c}</th>`).join('');
     document.getElementById('ig-table-body').innerHTML = posts.map(p => `<tr>
       <td style="max-width:300px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${(p.caption || '').slice(0, 80)}</td>
@@ -442,7 +442,7 @@ function renderInstagram() {
       <td>${fmt(p.saves)}</td>
       <td>${fmt(p.shares)}</td>
       <td>${fmt(p.reach)}</td>
-      <td>${fmt(p.impressions)}</td>
+      <td>${fmt(p.total_interactions)}</td>
     </tr>`).join('');
   }
 }
