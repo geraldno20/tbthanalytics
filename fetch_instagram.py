@@ -242,71 +242,55 @@ def fetch_stories(token, ig_user_id):
 def fetch_demographics(token, ig_user_id):
     """Fetch demographic breakdowns for followers, reached, and engaged audiences."""
     demographics = {}
+    end = datetime.now() - timedelta(days=1)
+    start = end - timedelta(days=29)
 
-    for metric, label in [
-        ("follower_demographics", "followers"),
+    metrics_to_try = [
         ("reached_audience_demographics", "reached"),
         ("engaged_audience_demographics", "engaged"),
-    ]:
-        # These require timeframe for reached/engaged
-        params = {
-            "metric": metric,
-            "period": "lifetime",
-            "access_token": token,
-        }
-        if metric != "follower_demographics":
-            end = datetime.now() - timedelta(days=1)
-            start = end - timedelta(days=29)
-            params["period"] = "day"
-            params["since"] = int(start.timestamp())
-            params["until"] = int((end + timedelta(days=1)).timestamp())
-            params["metric_type"] = "total_value"
+        ("follower_demographics", "followers"),
+    ]
 
-        data = api_get(f"/{ig_user_id}/insights", params)
-        if not data or "data" not in data:
-            print(f"    {label}: no data")
-            continue
-
+    for metric, label in metrics_to_try:
         demo = {"age": {}, "gender": {}, "city": {}, "country": {}}
-        for metric_data in data["data"]:
-            # total_value format
-            breakdown = metric_data.get("total_value", {}).get("breakdowns", [])
-            if breakdown:
-                for bd in breakdown:
-                    dimension = bd.get("dimension_keys", [""])[0]
+        has_data = False
+
+        for breakdown in ["age", "gender", "city", "country"]:
+            params = {
+                "metric": metric,
+                "period": "lifetime",
+                "breakdown": breakdown,
+                "metric_type": "total_value",
+                "access_token": token,
+            }
+            if metric != "follower_demographics":
+                params["since"] = int(start.timestamp())
+                params["until"] = int((end + timedelta(days=1)).timestamp())
+
+            data = api_get(f"/{ig_user_id}/insights", params)
+            if not data or not data.get("data"):
+                continue
+
+            for metric_data in data["data"]:
+                breakdowns = metric_data.get("total_value", {}).get("breakdowns", [])
+                for bd in breakdowns:
                     for result in bd.get("results", []):
-                        keys = result.get("dimension_values", [])
+                        key = result.get("dimension_values", [""])[0]
                         value = result.get("value", 0)
-                        if dimension == "age":
-                            demo["age"][keys[0]] = demo["age"].get(keys[0], 0) + value
-                        elif dimension == "gender":
-                            demo["gender"][keys[0]] = demo["gender"].get(keys[0], 0) + value
-                        elif dimension == "city":
-                            demo["city"][keys[0]] = demo["city"].get(keys[0], 0) + value
-                        elif dimension == "country":
-                            demo["country"][keys[0]] = demo["country"].get(keys[0], 0) + value
+                        if key and value:
+                            demo[breakdown][key] = demo[breakdown].get(key, 0) + value
+                            has_data = True
 
-            # values array format (follower_demographics)
-            values = metric_data.get("values", [])
-            if values:
-                for v in values:
-                    val = v.get("value", {})
-                    if isinstance(val, dict):
-                        for k, count in val.items():
-                            # Keys like "M.25-34", "F.18-24", "city.Tokyo"
-                            if "." in k:
-                                parts = k.split(".", 1)
-                                if parts[0] in ("M", "F", "U"):
-                                    demo["gender"][parts[0]] = demo["gender"].get(parts[0], 0) + count
-                                    demo["age"][parts[1]] = demo["age"].get(parts[1], 0) + count
-                            else:
-                                demo["city"][k] = demo["city"].get(k, 0) + count
+            time.sleep(0.2)
 
-        # Sort and keep top entries for city/country
-        demo["city"] = dict(sorted(demo["city"].items(), key=lambda x: -x[1])[:10])
-        demo["country"] = dict(sorted(demo["country"].items(), key=lambda x: -x[1])[:10])
-        demographics[label] = demo
-        print(f"    {label}: {len(demo['age'])} age groups, {len(demo['gender'])} genders, {len(demo['city'])} cities")
+        if has_data:
+            # Sort and keep top entries for city/country
+            demo["city"] = dict(sorted(demo["city"].items(), key=lambda x: -x[1])[:10])
+            demo["country"] = dict(sorted(demo["country"].items(), key=lambda x: -x[1])[:10])
+            demographics[label] = demo
+            print(f"    {label}: {len(demo['age'])} age groups, {len(demo['gender'])} genders, {len(demo['city'])} cities")
+        else:
+            print(f"    {label}: no data (not enough users)")
 
     return demographics
 
