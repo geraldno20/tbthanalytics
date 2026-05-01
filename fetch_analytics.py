@@ -319,26 +319,25 @@ def fetch_channel_summary(youtube, yt_analytics):
     if net_lifetime > 0 and abs(net_lifetime - subs_rounded) <= 50:
         subs = net_lifetime
 
-    # Unique viewers via Analytics API
-    # Try viewerPercentage first, fall back to summing daily views
+    # Unique viewers via Analytics API — try once, skip retries if metric unavailable
     def query_unique_viewers(start, end_date):
-        def q():
+        try:
             resp = yt_analytics.reports().query(
                 ids=f"channel=={CHANNEL_ID}",
                 startDate=start,
                 endDate=end_date,
                 metrics="uniqueViewers",
             ).execute()
-            print(f"    uniqueViewers response ({start}): {resp.get('rows', [])}")
             rows = resp.get("rows", [])
             if rows and rows[0][0] > 0:
                 return rows[0][0]
             return None
-        return api_call_with_retry(q, f"unique viewers {start}")
+        except Exception:
+            return None
 
     uv_total = query_unique_viewers(start_all, end)
-    uv_30 = query_unique_viewers(start_30, end)
-    uv_prev_30 = query_unique_viewers(start_60, start_30)
+    uv_30 = query_unique_viewers(start_30, end) if uv_total else None
+    uv_prev_30 = query_unique_viewers(start_60, start_30) if uv_total else None
 
     # If uniqueViewers returned None/0, fall back to summing views from daily data
     # (not unique but better than showing 0)
