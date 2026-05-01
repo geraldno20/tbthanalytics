@@ -23,7 +23,7 @@ SHEETS_TOKEN = ROOT / "sheets_token.json"
 SCOPES = ["https://www.googleapis.com/auth/spreadsheets.readonly"]
 
 SPREADSHEET_ID = "1PoUfMdia4D78XlpmOfQUogsGAfLVslvxokcKXD5Ylts"
-RANGE = "Scheduling!A:H"
+RANGE = "Scheduling!A:K"
 
 
 def get_sheets_credentials():
