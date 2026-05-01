@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-05-01 13:46",
+  "fetched_at": "2026-05-01 14:02",
   "episodes": [
     {
       "season": "1",
@@ -850,7 +850,7 @@
     {
       "season": "",
       "episode": "",
-      "guest": "Kenneth King",
+      "guest": "",
       "host": "",
       "recording": "",
       "teaser_upload": "",
@@ -858,6 +858,33 @@
     },
     {
       "season": "",
+      "episode": "",
+      "guest": "",
+      "host": "",
+      "recording": "",
+      "teaser_upload": "",
+      "teaser_release": ""
+    },
+    {
+      "season": "",
+      "episode": "",
+      "guest": "",
+      "host": "",
+      "recording": "",
+      "teaser_upload": "",
+      "teaser_release": ""
+    },
+    {
+      "season": "Check back",
+      "episode": "",
+      "guest": "Kenneth King",
+      "host": "",
+      "recording": "",
+      "teaser_upload": "",
+      "teaser_release": ""
+    },
+    {
+      "season": "Check back",
       "episode": "",
       "guest": "Jon Tam",
       "host": "",
@@ -866,7 +893,7 @@
       "teaser_release": ""
     },
     {
-      "season": "",
+      "season": "Check back",
       "episode": "",
       "guest": "Lulu",
       "host": "",
@@ -875,16 +902,7 @@
       "teaser_release": ""
     },
     {
-      "season": "",
-      "episode": "",
-      "guest": "",
-      "host": "",
-      "recording": "",
-      "teaser_upload": "",
-      "teaser_release": ""
-    },
-    {
-      "season": "??",
+      "season": "Check back",
       "episode": "",
       "guest": "James (Galen) Yip",
       "host": "",
@@ -893,16 +911,7 @@
       "teaser_release": ""
     },
     {
-      "season": "",
-      "episode": "",
-      "guest": "",
-      "host": "",
-      "recording": "",
-      "teaser_upload": "",
-      "teaser_release": ""
-    },
-    {
-      "season": "",
+      "season": "Check back",
       "episode": "",
       "guest": "Lo Duc Him",
       "host": "",
@@ -911,7 +920,7 @@
       "teaser_release": ""
     },
     {
-      "season": "",
+      "season": "Check back",
       "episode": "",
       "guest": "Beatrice Lau",
       "host": "",
@@ -920,16 +929,7 @@
       "teaser_release": ""
     },
     {
-      "season": "",
-      "episode": "",
-      "guest": "",
-      "host": "",
-      "recording": "",
-      "teaser_upload": "",
-      "teaser_release": ""
-    },
-    {
-      "season": "",
+      "season": "Check back",
       "episode": "",
       "guest": "Tiff Leung",
       "host": "",
@@ -938,7 +938,7 @@
       "teaser_release": ""
     },
     {
-      "season": "",
+      "season": "Check back",
       "episode": "",
       "guest": "Rachel Ma",
       "host": "",
@@ -947,7 +947,7 @@
       "teaser_release": ""
     },
     {
-      "season": "",
+      "season": "Check back",
       "episode": "",
       "guest": "Finsen Chiu",
       "host": "",
@@ -956,7 +956,7 @@
       "teaser_release": ""
     },
     {
-      "season": "",
+      "season": "Check back",
       "episode": "",
       "guest": "Kelvin Lau",
       "host": "",
@@ -965,7 +965,7 @@
       "teaser_release": ""
     },
     {
-      "season": "",
+      "season": "Check back",
       "episode": "",
       "guest": "Ms Leung",
       "host": "",
@@ -974,7 +974,7 @@
       "teaser_release": ""
     },
     {
-      "season": "",
+      "season": "Check back",
       "episode": "",
       "guest": "Ms Yiu",
       "host": "",
