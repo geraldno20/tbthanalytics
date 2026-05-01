@@ -102,6 +102,14 @@
     .thumb-tip { position: fixed; z-index: 100; pointer-events: none; border-radius: 8px; box-shadow: 0 4px 16px rgba(0,0,0,0.2); overflow: hidden; display: none; }
     .thumb-tip img { display: block; width: 240px; }
 
+    /* Platform tabs */
+    .platform-tabs { display: flex; gap: 0; margin-bottom: 20px; border-bottom: 2px solid var(--border); }
+    .platform-tab { padding: 10px 24px; font-size: 14px; font-weight: 600; color: var(--text3); cursor: pointer; border: none; background: none; border-bottom: 3px solid transparent; margin-bottom: -2px; transition: all 0.15s; }
+    .platform-tab:hover { color: var(--text2); }
+    .platform-tab.active { color: var(--text); border-bottom-color: var(--blue); }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+
     /* Compare checkbox */
     .cmp-check { width: 14px; height: 14px; cursor: pointer; accent-color: var(--blue); vertical-align: middle; margin-right: 6px; }
 
@@ -154,7 +162,7 @@
         <div class="last-updated" id="last-updated"></div>
       </div>
     </div>
-    <div class="kpi-cards">
+    <div class="kpi-cards" id="kpi-cards">
       <div class="kpi-card">
         <div class="kpi-label">Subscribers</div>
         <div class="kpi-value" id="kpi-subs">—</div>
@@ -168,6 +176,12 @@
     </div>
   </div>
 
+  <div class="platform-tabs">
+    <button class="platform-tab active" onclick="switchTab('yt')">YouTube</button>
+    <button class="platform-tab" onclick="switchTab('ig')">Instagram</button>
+  </div>
+
+  <div id="yt-tab" class="tab-content active">
   <div class="controls">
     <div class="seg-control" id="type-filter">
       <button data-filter="all" onclick="setFilter('all')">All</button>
@@ -251,11 +265,188 @@
       <tbody id="table-body"></tbody>
     </table>
   </div>
+  </div><!-- end #yt-tab -->
+
+  <div id="ig-tab" class="tab-content">
+    <div class="kpi-cards" id="ig-kpi-cards" style="margin-bottom:20px;">
+      <div class="kpi-card">
+        <div class="kpi-label">Followers</div>
+        <div class="kpi-value" id="ig-kpi-followers">—</div>
+        <div class="kpi-change" id="ig-kpi-followers-change"></div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Reach (30d)</div>
+        <div class="kpi-value" id="ig-kpi-reach">—</div>
+        <div class="kpi-change" id="ig-kpi-reach-change"></div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Impressions (30d)</div>
+        <div class="kpi-value" id="ig-kpi-impressions">—</div>
+        <div class="kpi-change" id="ig-kpi-impressions-change"></div>
+      </div>
+    </div>
+
+    <details class="chart-section">
+      <summary>Followers Over Time</summary>
+      <div class="chart-body"><div class="chart-wrap"><canvas id="ig-followers-chart"></canvas></div></div>
+    </details>
+
+    <details class="chart-section">
+      <summary>Daily Reach &amp; Impressions</summary>
+      <div class="chart-body"><div class="chart-wrap"><canvas id="ig-reach-chart"></canvas></div></div>
+    </details>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr id="ig-header-row"></tr></thead>
+        <tbody id="ig-table-body"></tbody>
+      </table>
+    </div>
+
+    <div id="ig-no-data" style="text-align:center;padding:60px 20px;color:var(--text3);">
+      <p style="font-size:18px;font-weight:600;margin-bottom:8px;">Instagram data not yet configured</p>
+      <p style="font-size:13px;">Run <code>python3 fetch_instagram.py</code> after setting up Meta API access.</p>
+    </div>
+  </div><!-- end #ig-tab -->
 
   <!-- Thumbnail tooltip -->
   <div class="thumb-tip" id="thumb-tip"><img id="thumb-img" src=""></div>
 
 <script>
+// --- Platform tab switching ---
+function switchTab(tab) {
+  document.querySelectorAll('.platform-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelector(`.platform-tab[onclick="switchTab('${tab}')"]`).classList.add('active');
+  document.getElementById(tab + '-tab').classList.add('active');
+
+  // Show/hide YT KPIs vs IG KPIs
+  document.getElementById('kpi-cards').style.display = tab === 'yt' ? 'flex' : 'none';
+
+  if (tab === 'ig') loadInstagram();
+}
+
+// --- Instagram ---
+let igLoaded = false;
+let igData = null;
+
+async function loadInstagram() {
+  if (igLoaded) return;
+  try {
+    const resp = await fetch('data/instagram.json');
+    if (!resp.ok) { igLoaded = true; return; }
+    igData = await resp.json();
+    igLoaded = true;
+    document.getElementById('ig-no-data').style.display = 'none';
+    renderInstagram();
+  } catch (e) {
+    igLoaded = true;
+  }
+}
+
+function renderInstagram() {
+  if (!igData) return;
+  const fmt = n => n != null ? n.toLocaleString() : '—';
+  const cs = igData.account || {};
+
+  // KPIs
+  document.getElementById('ig-kpi-followers').textContent = fmt(cs.followers);
+  if (cs.followers_30d_change != null) {
+    const d = cs.followers_30d_change;
+    const cls = d >= 0 ? 'up' : 'down';
+    const arrow = d >= 0 ? '&#9650;' : '&#9660;';
+    document.getElementById('ig-kpi-followers-change').innerHTML =
+      `<span class="kpi-change ${cls}">${arrow} ${d >= 0 ? '+' : ''}${d.toLocaleString()} last 30d</span>`;
+  }
+  document.getElementById('ig-kpi-reach').textContent = fmt(cs.reach_30d);
+  if (cs.reach_prev_30d != null && cs.reach_30d != null) {
+    const d = cs.reach_30d - cs.reach_prev_30d;
+    const cls = d >= 0 ? 'up' : 'down';
+    const arrow = d >= 0 ? '&#9650;' : '&#9660;';
+    document.getElementById('ig-kpi-reach-change').innerHTML =
+      `<span class="kpi-change ${cls}">${arrow} ${d >= 0 ? '+' : ''}${d.toLocaleString()} vs prev 30d</span>`;
+  }
+  document.getElementById('ig-kpi-impressions').textContent = fmt(cs.impressions_30d);
+  if (cs.impressions_prev_30d != null && cs.impressions_30d != null) {
+    const d = cs.impressions_30d - cs.impressions_prev_30d;
+    const cls = d >= 0 ? 'up' : 'down';
+    const arrow = d >= 0 ? '&#9650;' : '&#9660;';
+    document.getElementById('ig-kpi-impressions-change').innerHTML =
+      `<span class="kpi-change ${cls}">${arrow} ${d >= 0 ? '+' : ''}${d.toLocaleString()} vs prev 30d</span>`;
+  }
+
+  // Daily chart
+  const daily = igData.daily || [];
+  if (daily.length) {
+    const isDark = document.body.classList.contains('dark');
+    const gridColor = isDark ? '#3A3A3C' : '#E5E5EA';
+    const textColor = isDark ? '#AEAEB2' : '#6E6E73';
+    new Chart(document.getElementById('ig-reach-chart').getContext('2d'), {
+      type: 'bar',
+      data: {
+        labels: daily.map(d => d.date),
+        datasets: [
+          { type: 'bar', label: 'Reach', data: daily.map(d => d.reach || 0), backgroundColor: '#E1306C40', borderColor: '#E1306C', borderWidth: 1, borderRadius: 2, order: 2 },
+          { type: 'line', label: 'Impressions', data: daily.map(d => d.impressions || 0), borderColor: '#833AB4', borderWidth: 2, pointRadius: 0, tension: 0.4, order: 1 },
+        ]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { position: 'bottom', labels: { font: { size: 11 }, color: textColor } } },
+        scales: {
+          x: { grid: { display: false }, ticks: { font: { size: 10 }, color: textColor, maxRotation: 45, autoSkip: true, maxTicksLimit: 30 }, border: { display: false } },
+          y: { grid: { color: gridColor }, ticks: { font: { size: 11 }, color: textColor }, border: { display: false } }
+        }
+      }
+    });
+  }
+
+  // Followers over time chart
+  const followerHistory = igData.follower_history || [];
+  if (followerHistory.length) {
+    const isDark = document.body.classList.contains('dark');
+    const gridColor = isDark ? '#3A3A3C' : '#E5E5EA';
+    const textColor = isDark ? '#AEAEB2' : '#6E6E73';
+    new Chart(document.getElementById('ig-followers-chart').getContext('2d'), {
+      type: 'line',
+      data: {
+        labels: followerHistory.map(d => d.date),
+        datasets: [{
+          label: 'Followers', data: followerHistory.map(d => d.followers),
+          borderColor: '#E1306C', borderWidth: 2, pointRadius: 0, tension: 0.4,
+          fill: true, backgroundColor: '#E1306C15',
+        }]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: {
+          x: { grid: { display: false }, ticks: { font: { size: 10 }, color: textColor, maxRotation: 45, autoSkip: true, maxTicksLimit: 20 }, border: { display: false } },
+          y: { grid: { color: gridColor }, ticks: { font: { size: 11 }, color: textColor }, border: { display: false } }
+        }
+      }
+    });
+  }
+
+  // Posts table
+  const posts = igData.posts || [];
+  if (posts.length) {
+    const cols = ['Caption', 'Type', 'Date', 'Likes', 'Comments', 'Saves', 'Shares', 'Reach', 'Impressions'];
+    document.getElementById('ig-header-row').innerHTML = cols.map(c => `<th>${c}</th>`).join('');
+    document.getElementById('ig-table-body').innerHTML = posts.map(p => `<tr>
+      <td style="max-width:300px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${(p.caption || '').slice(0, 80)}</td>
+      <td>${p.media_type || ''}</td>
+      <td>${(p.timestamp || '').slice(0, 10)}</td>
+      <td>${fmt(p.likes)}</td>
+      <td>${fmt(p.comments)}</td>
+      <td>${fmt(p.saves)}</td>
+      <td>${fmt(p.shares)}</td>
+      <td>${fmt(p.reach)}</td>
+      <td>${fmt(p.impressions)}</td>
+    </tr>`).join('');
+  }
+}
+
 const COLUMNS = [
   { key: 'title',                  label: 'Video',              type: 'text' },
   { key: 'published_at',           label: 'Published',          type: 'date' },
