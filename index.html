@@ -175,12 +175,6 @@
     .content-type-card .type-metric .val { font-size: 18px; font-weight: 700; color: var(--text); }
     .content-type-card .type-metric .lbl { font-size: 10px; color: var(--text3); text-transform: uppercase; letter-spacing: 0.3px; }
     .content-type-card .type-metric .winner { color: var(--green); }
-
-    /* Heatmap table */
-    .heatmap-table { width: 100%; border-collapse: separate; border-spacing: 3px; }
-    .heatmap-table th { font-size: 10px; color: var(--text3); font-weight: 500; padding: 4px 6px; text-align: center; }
-    .heatmap-table td.hm-label { font-size: 11px; color: var(--text3); font-weight: 500; padding: 4px 8px; text-align: left; }
-    .heatmap-table td.hm-cell { text-align: center; border-radius: 6px; padding: 6px 4px; }
   </style>
 </head>
 <body class="dark">
@@ -281,12 +275,6 @@
       </div>
       <div class="chart-wrap"><canvas id="scatter-chart"></canvas></div>
     </div>
-  </details>
-
-  <!-- Best Time to Post -->
-  <details class="chart-section">
-    <summary>Best Time to Post (HKT)</summary>
-    <div class="chart-body" id="best-time-grid"></div>
   </details>
 
   <!-- Content Performance: Videos vs Shorts -->
@@ -1407,7 +1395,6 @@ function render() {
   renderAVDChart();
   renderScatterChart();
   renderCompare();
-  renderBestTime();
   renderContentCompare();
   renderCrossPlatform();
 }
@@ -1461,68 +1448,6 @@ function renderCrossPlatform() {
       ${changeHtml(engagedChange)}
     </div>` : ''}
   `;
-}
-
-// --- Best Time to Post Heatmap ---
-function renderBestTime() {
-  const container = document.getElementById('best-time-grid');
-  const search = document.getElementById('search').value.toLowerCase();
-  const all = data.filter(d => {
-    if (seasonFilter !== 'all' && d._season !== seasonFilter) return false;
-    if (visibilityFilter !== 'all' && (d.privacy_status || 'public') !== visibilityFilter) return false;
-    if (excludeU2 && d.title.startsWith('#TBTHU2')) return false;
-    if (search && !d.title.toLowerCase().includes(search)) return false;
-    return true;
-  });
-
-  const TIME_SLOTS = ['00-03', '04-07', '08-11', '12-15', '16-19', '20-23'];
-  const DAYS = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
-
-  const grid = {};
-  DAYS.forEach(d => { grid[d] = {}; TIME_SLOTS.forEach(t => { grid[d][t] = { total: 0, count: 0 }; }); });
-
-  all.forEach(v => {
-    const hkt = toHKT(v.published_at);
-    const hour = parseInt(hkt.time.split(':')[0]);
-    const slot = TIME_SLOTS[Math.floor(hour / 4)];
-    const day = hkt.day;
-    if (grid[day] && grid[day][slot]) {
-      grid[day][slot].total += getViewValue(v, 'views_24h') || 0;
-      grid[day][slot].count++;
-    }
-  });
-
-  let maxAvg = 0;
-  DAYS.forEach(d => TIME_SLOTS.forEach(t => {
-    const cell = grid[d][t];
-    if (cell.count > 0) maxAvg = Math.max(maxAvg, cell.total / cell.count);
-  }));
-
-  let html = '<table class="heatmap-table"><thead><tr><th></th>';
-  TIME_SLOTS.forEach(t => { html += `<th>${t} HKT</th>`; });
-  html += '</tr></thead><tbody>';
-
-  DAYS.forEach(d => {
-    html += `<tr><td class="hm-label">${d}</td>`;
-    TIME_SLOTS.forEach(t => {
-      const cell = grid[d][t];
-      if (cell.count === 0) {
-        html += `<td class="hm-cell" style="background:var(--border2);"><span style="font-size:10px;color:var(--text3);">\u2014</span></td>`;
-      } else {
-        const avg = Math.round(cell.total / cell.count);
-        const intensity = maxAvg > 0 ? (avg / maxAvg) : 0;
-        const alpha = (0.1 + intensity * 0.55).toFixed(2);
-        html += `<td class="hm-cell" style="background:rgba(0,122,255,${alpha});">
-          <div style="font-size:14px;font-weight:700;color:var(--text);">${avg.toLocaleString()}</div>
-          <div style="font-size:9px;color:var(--text3);">${cell.count} vid${cell.count > 1 ? 's' : ''}</div>
-        </td>`;
-      }
-    });
-    html += '</tr>';
-  });
-  html += '</tbody></table>';
-  html += `<div style="font-size:11px;color:var(--text3);margin-top:8px;">Avg first 24h views by publish time (Hong Kong Time). Darker = better performance.</div>`;
-  container.innerHTML = html;
 }
 
 // --- Content Performance: Videos vs Shorts ---
