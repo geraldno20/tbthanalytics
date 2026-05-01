@@ -187,18 +187,6 @@
         <div class="last-updated" id="last-updated"></div>
       </div>
     </div>
-    <div class="kpi-cards" id="kpi-cards">
-      <div class="kpi-card">
-        <div class="kpi-label">Subscribers</div>
-        <div class="kpi-value" id="kpi-subs">—</div>
-        <div class="kpi-change" id="kpi-subs-change"></div>
-      </div>
-      <div class="kpi-card">
-        <div class="kpi-label">Unique Viewers</div>
-        <div class="kpi-value" id="kpi-uv">—</div>
-        <div class="kpi-change" id="kpi-uv-change"></div>
-      </div>
-    </div>
   </div>
 
   <div class="cross-summary" id="cross-summary"></div>
@@ -210,6 +198,18 @@
   </div>
 
   <div id="yt-tab" class="tab-content active">
+  <div class="kpi-cards" id="kpi-cards" style="margin-bottom:20px;">
+    <div class="kpi-card">
+      <div class="kpi-label">Subscribers</div>
+      <div class="kpi-value" id="kpi-subs">—</div>
+      <div class="kpi-change" id="kpi-subs-change"></div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Unique Viewers</div>
+      <div class="kpi-value" id="kpi-uv">—</div>
+      <div class="kpi-change" id="kpi-uv-change"></div>
+    </div>
+  </div>
   <div class="controls">
     <div class="seg-control" id="type-filter">
       <button data-filter="all" onclick="setFilter('all')">All</button>
@@ -431,9 +431,6 @@ function switchTab(tab) {
   document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
   document.querySelector(`.platform-tab[onclick="switchTab('${tab}')"]`).classList.add('active');
   document.getElementById(tab + '-tab').classList.add('active');
-
-  // Show/hide YT KPIs vs IG KPIs
-  document.getElementById('kpi-cards').style.display = tab === 'yt' ? 'flex' : 'none';
 
   if (tab === 'ig') loadInstagram();
   if (tab === 'th') loadThreads();
