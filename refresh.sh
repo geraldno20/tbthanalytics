@@ -11,8 +11,16 @@ echo "==> Fetching video list..."
 python3 fetch_videos.py
 
 echo ""
-echo "==> Fetching analytics..."
+echo "==> Fetching YouTube analytics..."
 python3 fetch_analytics.py
+
+echo ""
+echo "==> Fetching Instagram analytics..."
+python3 fetch_instagram.py
+
+echo ""
+echo "==> Fetching Threads analytics..."
+python3 fetch_threads.py
 
 echo ""
 echo "==> Pushing to GitHub..."
