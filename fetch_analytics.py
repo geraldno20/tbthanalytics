@@ -26,7 +26,7 @@ SHORTS_CACHE = DATA_DIR / "shorts_cache.json"
 # Period definitions: label -> number of extra calendar days from publish date
 # (API date ranges are inclusive, so 0 = publish day only = ~24h)
 PERIODS = {
-    "24h": 0,
+    "24h": 1,
     "72h": 2,
     "1wk": 6,
     "2wk": 13,
