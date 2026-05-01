@@ -1877,8 +1877,10 @@ function renderProduction() {
       }
       // Count hosts for Nonsense too
       if (ep.host && ep.host !== '-') {
-        ep.host.split(/[&,+]/).map(h => h.trim()).filter(Boolean).forEach(h => {
-          hostCounts[h] = (hostCounts[h] || 0) + 1;
+        const hosts = ep.host.split(/[&,+]/).map(h => h.trim()).filter(Boolean);
+        const share = 1 / hosts.length;
+        hosts.forEach(h => {
+          hostCounts[h] = (hostCounts[h] || 0) + share;
         });
       }
       scheduled.push(ep);
@@ -1896,8 +1898,10 @@ function renderProduction() {
 
     // Count hosts
     if (ep.host && ep.host !== '-') {
-      ep.host.split(/[&,+]/).map(h => h.trim()).filter(Boolean).forEach(h => {
-        hostCounts[h] = (hostCounts[h] || 0) + 1;
+      const hosts = ep.host.split(/[&,+]/).map(h => h.trim()).filter(Boolean);
+      const share = 1 / hosts.length;
+      hosts.forEach(h => {
+        hostCounts[h] = (hostCounts[h] || 0) + share;
       });
     }
   });
