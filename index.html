@@ -76,6 +76,8 @@
     }
     #group-row th { top: 0; z-index: 3; text-align: center; font-size: 10px; color: var(--text3); padding: 6px 14px; border-bottom: none; }
     #group-row th.group-label { background: var(--blue); color: #fff; border-radius: 6px 6px 0 0; letter-spacing: 0.5px; }
+    #group-row th.group-engagement { background: var(--green); }
+    #group-row th.group-session { background: #AF52DE; }
     #header-row th { top: 32px; z-index: 3; }
     thead th:first-child { position: sticky; left: 0; z-index: 4; background: var(--th-bg); }
     thead th:first-child, thead th:nth-child(2), thead th:nth-child(3), thead th:nth-child(4), thead th:nth-child(5) { text-align: left; }
@@ -1118,7 +1120,7 @@ function renderHeader() {
       const grp = col.group;
       let span = 0;
       while (i < COLUMNS.length && COLUMNS[i].group === grp) { span++; i++; }
-      groupHtml += `<th colspan="${span}" class="group-label">${GROUP_LABELS[grp] || grp}</th>`;
+      groupHtml += `<th colspan="${span}" class="group-label group-${grp}">${GROUP_LABELS[grp] || grp}</th>`;
     } else {
       groupHtml += '<th></th>';
       i++;
