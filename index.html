@@ -603,6 +603,7 @@ function parseSeason(title) {
 function getViewValue(row, key) {
   if (!excludePaid) return row[key];
   const ad = row.ad_views || 0;
+  if (key === 'ad_views') return 0;
   if (key === 'total_views') return row[key] != null ? row[key] - ad : null;
   if (row.total_views && ad > 0 && row[key] != null) {
     return Math.round(row[key] * Math.max(0, (row.total_views - ad) / row.total_views));
