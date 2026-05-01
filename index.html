@@ -151,7 +151,36 @@
       .seg-control { justify-content: center; }
       .chart-wrap { height: 160px; }
       tbody td:first-child { max-width: 150px; }
+      .cross-summary { flex-direction: column; }
+      .content-compare { grid-template-columns: 1fr; }
     }
+
+    /* Cross-platform summary */
+    .cross-summary { display: flex; gap: 12px; margin-bottom: 16px; }
+    .cross-card { flex: 1; background: linear-gradient(135deg, var(--card) 0%, var(--card-hover) 100%); border: 1px solid var(--border); border-radius: 12px; padding: 14px 18px; }
+    .cross-card .cross-label { font-size: 10px; color: var(--text3); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+    .cross-card .cross-value { font-size: 26px; font-weight: 700; color: var(--text); }
+    .cross-card .cross-breakdown { font-size: 11px; color: var(--text3); margin-top: 3px; }
+    .cross-card .cross-change { font-size: 12px; font-weight: 600; margin-top: 2px; }
+    .cross-card .cross-change.up { color: var(--green); }
+    .cross-card .cross-change.down { color: var(--red); }
+
+    /* Content compare */
+    .content-compare { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .content-type-card { background: var(--bg); border-radius: 10px; padding: 16px 20px; }
+    .content-type-card .type-header { display: flex; align-items: baseline; gap: 8px; margin-bottom: 14px; }
+    .content-type-card .type-title { font-size: 16px; font-weight: 700; }
+    .content-type-card .type-count { font-size: 12px; color: var(--text3); }
+    .content-type-card .type-metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .content-type-card .type-metric .val { font-size: 18px; font-weight: 700; color: var(--text); }
+    .content-type-card .type-metric .lbl { font-size: 10px; color: var(--text3); text-transform: uppercase; letter-spacing: 0.3px; }
+    .content-type-card .type-metric .winner { color: var(--green); }
+
+    /* Heatmap table */
+    .heatmap-table { width: 100%; border-collapse: separate; border-spacing: 3px; }
+    .heatmap-table th { font-size: 10px; color: var(--text3); font-weight: 500; padding: 4px 6px; text-align: center; }
+    .heatmap-table td.hm-label { font-size: 11px; color: var(--text3); font-weight: 500; padding: 4px 8px; text-align: left; }
+    .heatmap-table td.hm-cell { text-align: center; border-radius: 6px; padding: 6px 4px; }
   </style>
 </head>
 <body class="dark">
@@ -177,6 +206,8 @@
       </div>
     </div>
   </div>
+
+  <div class="cross-summary" id="cross-summary"></div>
 
   <div class="platform-tabs">
     <button class="platform-tab active" onclick="switchTab('yt')">YouTube</button>
@@ -249,6 +280,20 @@
         </select>
       </div>
       <div class="chart-wrap"><canvas id="scatter-chart"></canvas></div>
+    </div>
+  </details>
+
+  <!-- Best Time to Post -->
+  <details class="chart-section">
+    <summary>Best Time to Post (HKT)</summary>
+    <div class="chart-body" id="best-time-grid"></div>
+  </details>
+
+  <!-- Content Performance: Videos vs Shorts -->
+  <details class="chart-section">
+    <summary>Content Performance: Videos vs Shorts</summary>
+    <div class="chart-body">
+      <div class="content-compare" id="content-compare"></div>
     </div>
   </details>
 
@@ -382,6 +427,7 @@ async function loadInstagram() {
 
 function renderInstagram() {
   if (!igData) return;
+  renderCrossPlatform();
   const fmt = n => n != null ? n.toLocaleString() : '—';
   const cs = igData.account || {};
 
@@ -707,6 +753,7 @@ let viewsChart = null;
 let avdChart = null;
 let scatterChart = null;
 let dailyWatchData = [];
+let channelSummary = {};
 
 // --- Helpers ---
 function toHKT(utcStr) {
@@ -1360,6 +1407,192 @@ function render() {
   renderAVDChart();
   renderScatterChart();
   renderCompare();
+  renderBestTime();
+  renderContentCompare();
+  renderCrossPlatform();
+}
+
+// --- Cross-Platform Summary ---
+function renderCrossPlatform() {
+  const el = document.getElementById('cross-summary');
+  const ytSubs = channelSummary.subscribers || 0;
+  const ytSubsChange = channelSummary.subs_30d_change || 0;
+  const igFollowers = igData?.account?.followers || 0;
+  const igFollowersChange = igData?.account?.followers_30d_change || 0;
+  const totalAudience = ytSubs + igFollowers;
+  const totalChange = ytSubsChange + igFollowersChange;
+
+  const ytViewLabel = channelSummary.viewer_metric === 'unique_viewers' ? 'unique viewers' : 'views';
+  const ytViews30d = channelSummary.unique_viewers_30d || 0;
+  const ytViewsPrev = channelSummary.unique_viewers_prev_30d || 0;
+  const igReach30d = igData?.account?.reach_30d || 0;
+  const igReachPrev = igData?.account?.reach_prev_30d || 0;
+  const totalReach = ytViews30d + igReach30d;
+  const reachChange = (ytViews30d - ytViewsPrev) + (igReach30d - igReachPrev);
+
+  const igEngaged = igData?.account?.accounts_engaged_30d || 0;
+  const igEngagedPrev = igData?.account?.accounts_engaged_prev_30d || 0;
+  const engagedChange = igEngaged - igEngagedPrev;
+
+  const changeHtml = (val) => {
+    if (!val) return '';
+    const cls = val >= 0 ? 'up' : 'down';
+    const arrow = val >= 0 ? '&#9650;' : '&#9660;';
+    return `<div class="cross-change ${cls}">${arrow} ${val >= 0 ? '+' : ''}${val.toLocaleString()} last 30d</div>`;
+  };
+
+  el.innerHTML = `
+    <div class="cross-card">
+      <div class="cross-label">Total Audience</div>
+      <div class="cross-value">${totalAudience.toLocaleString()}</div>
+      <div class="cross-breakdown">YT: ${ytSubs.toLocaleString()} subs · IG: ${igFollowers.toLocaleString()} followers</div>
+      ${changeHtml(totalChange)}
+    </div>
+    <div class="cross-card">
+      <div class="cross-label">30-Day Reach</div>
+      <div class="cross-value">${totalReach.toLocaleString()}</div>
+      <div class="cross-breakdown">YT: ${ytViews30d.toLocaleString()} ${ytViewLabel} · IG: ${igReach30d.toLocaleString()} reach</div>
+      ${changeHtml(reachChange)}
+    </div>
+    ${igEngaged ? `<div class="cross-card">
+      <div class="cross-label">IG Engaged (30d)</div>
+      <div class="cross-value">${igEngaged.toLocaleString()}</div>
+      <div class="cross-breakdown">Instagram engaged accounts</div>
+      ${changeHtml(engagedChange)}
+    </div>` : ''}
+  `;
+}
+
+// --- Best Time to Post Heatmap ---
+function renderBestTime() {
+  const container = document.getElementById('best-time-grid');
+  const search = document.getElementById('search').value.toLowerCase();
+  const all = data.filter(d => {
+    if (seasonFilter !== 'all' && d._season !== seasonFilter) return false;
+    if (visibilityFilter !== 'all' && (d.privacy_status || 'public') !== visibilityFilter) return false;
+    if (excludeU2 && d.title.startsWith('#TBTHU2')) return false;
+    if (search && !d.title.toLowerCase().includes(search)) return false;
+    return true;
+  });
+
+  const TIME_SLOTS = ['00-03', '04-07', '08-11', '12-15', '16-19', '20-23'];
+  const DAYS = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+
+  const grid = {};
+  DAYS.forEach(d => { grid[d] = {}; TIME_SLOTS.forEach(t => { grid[d][t] = { total: 0, count: 0 }; }); });
+
+  all.forEach(v => {
+    const hkt = toHKT(v.published_at);
+    const hour = parseInt(hkt.time.split(':')[0]);
+    const slot = TIME_SLOTS[Math.floor(hour / 4)];
+    const day = hkt.day;
+    if (grid[day] && grid[day][slot]) {
+      grid[day][slot].total += getViewValue(v, 'views_24h') || 0;
+      grid[day][slot].count++;
+    }
+  });
+
+  let maxAvg = 0;
+  DAYS.forEach(d => TIME_SLOTS.forEach(t => {
+    const cell = grid[d][t];
+    if (cell.count > 0) maxAvg = Math.max(maxAvg, cell.total / cell.count);
+  }));
+
+  let html = '<table class="heatmap-table"><thead><tr><th></th>';
+  TIME_SLOTS.forEach(t => { html += `<th>${t} HKT</th>`; });
+  html += '</tr></thead><tbody>';
+
+  DAYS.forEach(d => {
+    html += `<tr><td class="hm-label">${d}</td>`;
+    TIME_SLOTS.forEach(t => {
+      const cell = grid[d][t];
+      if (cell.count === 0) {
+        html += `<td class="hm-cell" style="background:var(--border2);"><span style="font-size:10px;color:var(--text3);">\u2014</span></td>`;
+      } else {
+        const avg = Math.round(cell.total / cell.count);
+        const intensity = maxAvg > 0 ? (avg / maxAvg) : 0;
+        const alpha = (0.1 + intensity * 0.55).toFixed(2);
+        html += `<td class="hm-cell" style="background:rgba(0,122,255,${alpha});">
+          <div style="font-size:14px;font-weight:700;color:var(--text);">${avg.toLocaleString()}</div>
+          <div style="font-size:9px;color:var(--text3);">${cell.count} vid${cell.count > 1 ? 's' : ''}</div>
+        </td>`;
+      }
+    });
+    html += '</tr>';
+  });
+  html += '</tbody></table>';
+  html += `<div style="font-size:11px;color:var(--text3);margin-top:8px;">Avg first 24h views by publish time (Hong Kong Time). Darker = better performance.</div>`;
+  container.innerHTML = html;
+}
+
+// --- Content Performance: Videos vs Shorts ---
+function renderContentCompare() {
+  const container = document.getElementById('content-compare');
+  const search = document.getElementById('search').value.toLowerCase();
+  const all = data.filter(d => {
+    if (seasonFilter !== 'all' && d._season !== seasonFilter) return false;
+    if (visibilityFilter !== 'all' && (d.privacy_status || 'public') !== visibilityFilter) return false;
+    if (excludeU2 && d.title.startsWith('#TBTHU2')) return false;
+    if (search && !d.title.toLowerCase().includes(search)) return false;
+    return true;
+  });
+
+  const videos = all.filter(d => !d.is_short);
+  const shorts = all.filter(d => d.is_short);
+
+  function computeStats(items) {
+    if (!items.length) return null;
+    const avg = arr => arr.length ? arr.reduce((a, b) => a + b, 0) / arr.length : 0;
+    const v24 = items.map(d => getViewValue(d, 'views_24h')).filter(v => v != null);
+    const vTotal = items.map(d => getViewValue(d, 'total_views')).filter(v => v != null);
+    const avd = items.map(d => d.avg_view_duration_pct).filter(v => v != null);
+    const lk = items.map(d => d.likes).filter(v => v != null);
+    const sb = items.map(d => d.new_subscribers).filter(v => v != null);
+    const engRates = items.filter(d => d.total_views > 0).map(d => ((d.likes || 0) + (d.comments || 0)) / d.total_views * 100);
+    return {
+      count: items.length,
+      avg24h: Math.round(avg(v24)),
+      avgTotal: Math.round(avg(vTotal)),
+      avgAVD: avg(avd).toFixed(1),
+      avgLikes: Math.round(avg(lk)),
+      avgSubs: avg(sb).toFixed(1),
+      engRate: avg(engRates).toFixed(2),
+    };
+  }
+
+  const vStats = computeStats(videos);
+  const sStats = computeStats(shorts);
+
+  const METRICS = [
+    { key: 'avg24h', label: 'Avg First 24h Views', higher: true },
+    { key: 'avgTotal', label: 'Avg Total Views', higher: true },
+    { key: 'avgAVD', label: 'Avg Duration %', higher: true, suffix: '%' },
+    { key: 'engRate', label: 'Engagement Rate', higher: true, suffix: '%' },
+    { key: 'avgLikes', label: 'Avg Likes', higher: true },
+    { key: 'avgSubs', label: 'Avg New Subs', higher: true },
+  ];
+
+  function renderCard(label, stats, otherStats, color) {
+    if (!stats) return `<div class="content-type-card"><div class="type-header"><div class="type-title" style="color:${color}">${label}</div></div><div style="color:var(--text3);font-size:13px;">No data</div></div>`;
+    return `<div class="content-type-card">
+      <div class="type-header">
+        <div class="type-title" style="color:${color}">${label}</div>
+        <div class="type-count">${stats.count} items</div>
+      </div>
+      <div class="type-metrics">
+        ${METRICS.map(m => {
+          const val = parseFloat(stats[m.key]);
+          const otherVal = otherStats ? parseFloat(otherStats[m.key]) : 0;
+          const isWinner = otherStats && m.higher ? val > otherVal : false;
+          const suffix = m.suffix || '';
+          const display = m.key === 'engRate' || m.key === 'avgAVD' ? stats[m.key] + suffix : val.toLocaleString() + suffix;
+          return `<div class="type-metric"><div class="val${isWinner ? ' winner' : ''}">${display}</div><div class="lbl">${m.label}</div></div>`;
+        }).join('')}
+      </div>
+    </div>`;
+  }
+
+  container.innerHTML = renderCard('Videos', vStats, sStats, 'var(--blue)') + renderCard('Shorts', sStats, vStats, 'var(--red)');
 }
 
 // --- Init ---
@@ -1377,6 +1610,7 @@ async function init() {
       data = raw.videos || [];
       dailyWatchData = raw.daily_watch_hours || [];
       const cs = raw.channel_summary || {};
+      channelSummary = cs;
       renderKPIs(cs);
     }
 
