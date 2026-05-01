@@ -407,8 +407,8 @@ function renderInstagram() {
     const isDark = document.body.classList.contains('dark');
     const gridColor = isDark ? '#3A3A3C' : '#E5E5EA';
     const textColor = isDark ? '#AEAEB2' : '#6E6E73';
-    // Compute daily gains from cumulative follower count
-    const gains = followerHistory.map((d, i) => i === 0 ? 0 : d.followers - followerHistory[i - 1].followers);
+    // follower_count values from the API are already daily gains, not cumulative
+    const gains = followerHistory.map(d => d.followers);
     new Chart(document.getElementById('ig-followers-chart').getContext('2d'), {
       type: 'bar',
       data: {
