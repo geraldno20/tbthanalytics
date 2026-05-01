@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-05-01 14:07",
+  "fetched_at": "2026-05-01 14:09",
   "episodes": [
     {
       "season": "1",
@@ -9,7 +9,10 @@
       "host": "GG",
       "recording": "Done",
       "teaser_upload": "Complete",
-      "teaser_release": "4/24/25"
+      "teaser_release": "4/24/25",
+      "episode_upload": "Complete",
+      "episode_release": "5/1/25",
+      "2m_release": "Done"
     },
     {
       "season": "1",
@@ -19,7 +22,10 @@
       "host": "GG",
       "recording": "Done",
       "teaser_upload": "Complete",
-      "teaser_release": "5/1/25"
+      "teaser_release": "5/1/25",
+      "episode_upload": "Complete",
+      "episode_release": "5/8/25",
+      "2m_release": "Done"
     },
     {
       "season": "1",
@@ -29,7 +35,10 @@
       "host": "GG",
       "recording": "Done",
       "teaser_upload": "Complete",
-      "teaser_release": "5/8/25"
+      "teaser_release": "5/8/25",
+      "episode_upload": "Complete",
+      "episode_release": "5/15/25",
+      "2m_release": "Done"
     },
     {
       "season": "1",
@@ -39,7 +48,10 @@
       "host": "GG",
       "recording": "Done",
       "teaser_upload": "Complete",
-      "teaser_release": "5/15/25"
+      "teaser_release": "5/15/25",
+      "episode_upload": "Complete",
+      "episode_release": "5/22/25",
+      "2m_release": "Done"
     },
     {
       "season": "1",
@@ -49,7 +61,10 @@
       "host": "GG",
       "recording": "Done",
       "teaser_upload": "Complete",
-      "teaser_release": "5/22/25"
+      "teaser_release": "5/22/25",
+      "episode_upload": "Complete",
+      "episode_release": "5/29/25",
+      "2m_release": "Done"
     },
     {
       "season": "1",
@@ -59,7 +74,10 @@
       "host": "GG",
       "recording": "Done",
       "teaser_upload": "Complete",
-      "teaser_release": "5/29/25"
+      "teaser_release": "5/29/25",
+      "episode_upload": "Complete",
+      "episode_release": "6/5/25",
+      "2m_release": "Done"
     },
     {
       "season": "1",
@@ -69,7 +87,10 @@
       "host": "GG",
       "recording": "Done",
       "teaser_upload": "Complete",
-      "teaser_release": "6/5/25"
+      "teaser_release": "6/5/25",
+      "episode_upload": "Complete",
+      "episode_release": "6/12/25",
+      "2m_release": "Done"
     },
     {
       "season": "1",
@@ -79,7 +100,10 @@
       "host": "GG",
       "recording": "Done",
       "teaser_upload": "Complete",
-      "teaser_release": "6/12/25"
+      "teaser_release": "6/12/25",
+      "episode_upload": "Complete",
+      "episode_release": "6/19/25",
+      "2m_release": "Done"
     },
     {
       "season": "1",
@@ -89,7 +113,10 @@
       "host": "GG",
       "recording": "Done",
       "teaser_upload": "Complete",
-      "teaser_release": "6/19/25"
+      "teaser_release": "6/19/25",
+      "episode_upload": "Complete",
+      "episode_release": "6/26/25",
+      "2m_release": "Done"
     },
     {
       "season": "",
@@ -99,7 +126,10 @@
       "host": "",
       "recording": "",
       "teaser_upload": "",
-      "teaser_release": ""
+      "teaser_release": "",
+      "episode_upload": "",
+      "episode_release": "",
+      "2m_release": ""
     },
     {
       "season": "2",
@@ -109,7 +139,10 @@
       "host": "GG",
       "recording": "Done",
       "teaser_upload": "Complete",
-      "teaser_release": "7/3/2025"
+      "teaser_release": "7/3/2025",
+      "episode_upload": "Complete",
+      "episode_release": "7/10/2025",
+      "2m_release": "Done"
     },
     {
       "season": "2",
@@ -119,7 +152,10 @@
       "host": "GG",
       "recording": "Done",
       "teaser_upload": "Complete",
-      "teaser_release": "7/10/2025"
+      "teaser_release": "7/10/2025",
+      "episode_upload": "Complete",
+      "episode_release": "7/17/2025",
+      "2m_release": "Done"
     },
     {
       "season": "2",
@@ -129,7 +165,10 @@
       "host": "GG",
       "recording": "Done",
       "teaser_upload": "Complete",
-      "teaser_release": "7/17/2025"
+      "teaser_release": "7/17/2025",
+      "episode_upload": "Complete",
+      "episode_release": "7/24/2025",
+      "2m_release": "Done"
     },
     {
       "season": "2",
@@ -139,7 +178,10 @@
       "host": "GG",
       "recording": "Done",
       "teaser_upload": "Complete",
-      "teaser_release": "7/24/2025"
+      "teaser_release": "7/24/2025",
+      "episode_upload": "Complete",
+      "episode_release": "7/31/2025",
+      "2m_release": "Done"
     },
     {
       "season": "2",
@@ -149,7 +191,10 @@
       "host": "GG",
       "recording": "Done",
       "teaser_upload": "Complete",
-      "teaser_release": "7/31/2025"
+      "teaser_release": "7/31/2025",
+      "episode_upload": "Complete",
+      "episode_release": "8/7/2025",
+      "2m_release": "Done"
     },
     {
       "season": "2",
@@ -159,7 +204,10 @@
       "host": "GG",
       "recording": "Done",
       "teaser_upload": "Complete",
-      "teaser_release": "8/7/2025"
+      "teaser_release": "8/7/2025",
+      "episode_upload": "Complete",
+      "episode_release": "8/14/2025",
+      "2m_release": "Done"
     },
     {
       "season": "2",
@@ -169,7 +217,10 @@
       "host": "GG",
       "recording": "Done",
       "teaser_upload": "Complete",
-      "teaser_release": "8/14/2025"
+      "teaser_release": "8/14/2025",
+      "episode_upload": "Complete",
+      "episode_release": "8/21/2025",
+      "2m_release": "Done"
     },
     {
       "season": "2",
@@ -179,7 +230,10 @@
       "host": "GG",
       "recording": "Done",
       "teaser_upload": "Complete",
-      "teaser_release": "8/21/2025"
+      "teaser_release": "8/21/2025",
+      "episode_upload": "Complete",
+      "episode_release": "8/28/2025",
+      "2m_release": "Done"
     },
     {
       "season": "2",
@@ -189,7 +243,10 @@
       "host": "GG",
       "recording": "Done",
       "teaser_upload": "Complete",
-      "teaser_release": "8/28/2025"
+      "teaser_release": "8/28/2025",
+      "episode_upload": "Complete",
+      "episode_release": "9/4/2025",
+      "2m_release": "Done"
     },
     {
       "season": "",
@@ -199,7 +256,10 @@
       "host": "",
       "recording": "",
       "teaser_upload": "",
-      "teaser_release": ""
+      "teaser_release": "",
+      "episode_upload": "",
+      "episode_release": "",
+      "2m_release": ""
     },
     {
       "season": "3",
@@ -209,7 +269,10 @@
       "host": "GG",
       "recording": "Done",
       "teaser_upload": "Complete",
-      "teaser_release": "9/11/2025"
+      "teaser_release": "9/11/2025",
+      "episode_upload": "Complete",
+      "episode_release": "9/18/2025",
+      "2m_release": "Done"
     },
     {
       "season": "3",
@@ -219,7 +282,10 @@
       "host": "GG",
       "recording": "Done",
       "teaser_upload": "Complete",
-      "teaser_release": "9/18/2025"
+      "teaser_release": "9/18/2025",
+      "episode_upload": "Complete",
+      "episode_release": "9/25/2025",
+      "2m_release": "Done"
     },
     {
       "season": "3",
@@ -229,7 +295,10 @@
       "host": "GG",
       "recording": "Done",
       "teaser_upload": "Complete",
-      "teaser_release": "9/25/2025"
+      "teaser_release": "9/25/2025",
+      "episode_upload": "Complete",
+      "episode_release": "10/2/2025",
+      "2m_release": "Done"
     },
     {
       "season": "3",
@@ -239,7 +308,10 @@
       "host": "GG",
       "recording": "Done",
       "teaser_upload": "Complete",
-      "teaser_release": "10/2/2025"
+      "teaser_release": "10/2/2025",
+      "episode_upload": "Complete",
+      "episode_release": "10/9/2025",
+      "2m_release": "Done"
     },
     {
       "season": "3",
@@ -249,7 +321,10 @@
       "host": "GG",
       "recording": "Done",
       "teaser_upload": "Complete",
-      "teaser_release": "10/9/2025"
+      "teaser_release": "10/9/2025",
+      "episode_upload": "Complete",
+      "episode_release": "10/16/2025",
+      "2m_release": "Done"
     },
     {
       "season": "3",
@@ -259,7 +334,10 @@
       "host": "GG",
       "recording": "Done",
       "teaser_upload": "Complete",
-      "teaser_release": "10/16/2025"
+      "teaser_release": "10/16/2025",
+      "episode_upload": "Complete",
+      "episode_release": "10/23/2025",
+      "2m_release": "Done"
     },
     {
       "season": "3",
@@ -269,7 +347,10 @@
       "host": "GG",
       "recording": "Done",
       "teaser_upload": "Complete",
-      "teaser_release": "10/23/2025"
+      "teaser_release": "10/23/2025",
+      "episode_upload": "Complete",
+      "episode_release": "10/30/2025",
+      "2m_release": "Done"
     },
     {
       "season": "3",
@@ -279,7 +360,10 @@
       "host": "GG",
       "recording": "Done",
       "teaser_upload": "Complete",
-      "teaser_release": "10/30/2025"
+      "teaser_release": "10/30/2025",
+      "episode_upload": "Complete",
+      "episode_release": "11/6/2025",
+      "2m_release": "Done"
     },
     {
       "season": "3",
@@ -289,7 +373,10 @@
       "host": "GG",
       "recording": "Done",
       "teaser_upload": "Complete",
-      "teaser_release": "11/6/2025"
+      "teaser_release": "11/6/2025",
+      "episode_upload": "Complete",
+      "episode_release": "11/13/2025",
+      "2m_release": "Done"
     },
     {
       "season": "",
@@ -299,7 +386,10 @@
       "host": "",
       "recording": "",
       "teaser_upload": "",
-      "teaser_release": ""
+      "teaser_release": "",
+      "episode_upload": "",
+      "episode_release": "",
+      "2m_release": ""
     },
     {
       "season": "4",
@@ -309,7 +399,10 @@
       "host": "GG",
       "recording": "Done",
       "teaser_upload": "Complete",
-      "teaser_release": "11/20/2025"
+      "teaser_release": "11/20/2025",
+      "episode_upload": "Complete",
+      "episode_release": "12/5/2025",
+      "2m_release": "Done"
     },
     {
       "season": "4",
@@ -319,7 +412,10 @@
       "host": "GG",
       "recording": "Done",
       "teaser_upload": "Complete",
-      "teaser_release": "12/4/2025"
+      "teaser_release": "12/4/2025",
+      "episode_upload": "Complete",
+      "episode_release": "12/11/2025",
+      "2m_release": "Done"
     },
     {
       "season": "4",
@@ -329,7 +425,10 @@
       "host": "GG",
       "recording": "Done",
       "teaser_upload": "Complete",
-      "teaser_release": "12/11/2025"
+      "teaser_release": "12/11/2025",
+      "episode_upload": "Complete",
+      "episode_release": "12/18/2025",
+      "2m_release": "Done"
     },
     {
       "season": "4",
@@ -339,7 +438,10 @@
       "host": "Community",
       "recording": "-",
       "teaser_upload": "-",
-      "teaser_release": "-"
+      "teaser_release": "-",
+      "episode_upload": "Complete",
+      "episode_release": "12/14/2025",
+      "2m_release": "N/A"
     },
     {
       "season": "4",
@@ -349,7 +451,10 @@
       "host": "FTK & GG",
       "recording": "Dec 12",
       "teaser_upload": "Complete",
-      "teaser_release": "12/18/2025"
+      "teaser_release": "12/18/2025",
+      "episode_upload": "Complete",
+      "episode_release": "12/25/2025",
+      "2m_release": "N/A"
     },
     {
       "season": "",
@@ -359,7 +464,10 @@
       "host": "",
       "recording": "",
       "teaser_upload": "",
-      "teaser_release": ""
+      "teaser_release": "",
+      "episode_upload": "",
+      "episode_release": "",
+      "2m_release": ""
     },
     {
       "season": "5",
@@ -369,7 +477,10 @@
       "host": "GG",
       "recording": "Done",
       "teaser_upload": "",
-      "teaser_release": "1/1/2026"
+      "teaser_release": "1/1/2026",
+      "episode_upload": "",
+      "episode_release": "1/8/2026",
+      "2m_release": "Done"
     },
     {
       "season": "5",
@@ -379,7 +490,10 @@
       "host": "GG",
       "recording": "Done",
       "teaser_upload": "",
-      "teaser_release": "1/8/2026"
+      "teaser_release": "1/8/2026",
+      "episode_upload": "",
+      "episode_release": "1/15/2026",
+      "2m_release": "Done"
     },
     {
       "season": "5",
@@ -389,7 +503,10 @@
       "host": "GG",
       "recording": "Done",
       "teaser_upload": "",
-      "teaser_release": "1/15/2026"
+      "teaser_release": "1/15/2026",
+      "episode_upload": "",
+      "episode_release": "1/22/2026",
+      "2m_release": "Done"
     },
     {
       "season": "5",
@@ -399,7 +516,10 @@
       "host": "GG",
       "recording": "Done",
       "teaser_upload": "",
-      "teaser_release": "1/22/2026"
+      "teaser_release": "1/22/2026",
+      "episode_upload": "",
+      "episode_release": "1/29/2026",
+      "2m_release": ""
     },
     {
       "season": "5",
@@ -409,7 +529,10 @@
       "host": "GG",
       "recording": "Done",
       "teaser_upload": "",
-      "teaser_release": "1/29/2026"
+      "teaser_release": "1/29/2026",
+      "episode_upload": "",
+      "episode_release": "2/5/2026",
+      "2m_release": ""
     },
     {
       "season": "5",
@@ -419,7 +542,10 @@
       "host": "FTK",
       "recording": "Done",
       "teaser_upload": "",
-      "teaser_release": "2/5/2026"
+      "teaser_release": "2/5/2026",
+      "episode_upload": "",
+      "episode_release": "2/12/2026",
+      "2m_release": ""
     },
     {
       "season": "-",
@@ -429,7 +555,10 @@
       "host": "",
       "recording": "-",
       "teaser_upload": "",
-      "teaser_release": "-"
+      "teaser_release": "-",
+      "episode_upload": "",
+      "episode_release": "2/19/2026",
+      "2m_release": ""
     },
     {
       "season": "5",
@@ -439,7 +568,10 @@
       "host": "GG",
       "recording": "Done",
       "teaser_upload": "",
-      "teaser_release": "2/12/2026"
+      "teaser_release": "2/12/2026",
+      "episode_upload": "",
+      "episode_release": "2/25/2026",
+      "2m_release": ""
     },
     {
       "season": "5",
@@ -449,7 +581,10 @@
       "host": "GG",
       "recording": "Done",
       "teaser_upload": "",
-      "teaser_release": "N/A"
+      "teaser_release": "N/A",
+      "episode_upload": "",
+      "episode_release": "2/26/2026",
+      "2m_release": ""
     },
     {
       "season": "5",
@@ -459,7 +594,10 @@
       "host": "GG",
       "recording": "Done",
       "teaser_upload": "",
-      "teaser_release": "2/26/2026"
+      "teaser_release": "2/26/2026",
+      "episode_upload": "",
+      "episode_release": "3/5/2026",
+      "2m_release": ""
     },
     {
       "season": "5",
@@ -469,7 +607,10 @@
       "host": "GG",
       "recording": "Done",
       "teaser_upload": "",
-      "teaser_release": "3/5/2026"
+      "teaser_release": "3/5/2026",
+      "episode_upload": "",
+      "episode_release": "3/12/2026",
+      "2m_release": ""
     },
     {
       "season": "5",
@@ -479,7 +620,10 @@
       "host": "FTK & GG",
       "recording": "Done",
       "teaser_upload": "",
-      "teaser_release": "3/12/2026"
+      "teaser_release": "3/12/2026",
+      "episode_upload": "",
+      "episode_release": "3/19/2026",
+      "2m_release": ""
     },
     {
       "season": "",
@@ -489,7 +633,10 @@
       "host": "",
       "recording": "",
       "teaser_upload": "",
-      "teaser_release": ""
+      "teaser_release": "",
+      "episode_upload": "",
+      "episode_release": "",
+      "2m_release": ""
     },
     {
       "season": "6",
@@ -499,7 +646,10 @@
       "host": "Jerry",
       "recording": "Done",
       "teaser_upload": "",
-      "teaser_release": "3/19/2026"
+      "teaser_release": "3/19/2026",
+      "episode_upload": "",
+      "episode_release": "3/26/2026",
+      "2m_release": ""
     },
     {
       "season": "Nonsense",
@@ -509,7 +659,10 @@
       "host": "DJ & GG",
       "recording": "Done",
       "teaser_upload": "",
-      "teaser_release": ""
+      "teaser_release": "",
+      "episode_upload": "",
+      "episode_release": "4/1/2026",
+      "2m_release": ""
     },
     {
       "season": "Nonsense",
@@ -519,7 +672,10 @@
       "host": "-",
       "recording": "Done",
       "teaser_upload": "",
-      "teaser_release": ""
+      "teaser_release": "",
+      "episode_upload": "",
+      "episode_release": "4/2/2016",
+      "2m_release": ""
     },
     {
       "season": "6",
@@ -529,7 +685,10 @@
       "host": "GG",
       "recording": "Done",
       "teaser_upload": "",
-      "teaser_release": "3/26 and 4/3"
+      "teaser_release": "3/26 and 4/3",
+      "episode_upload": "",
+      "episode_release": "4/9/2026",
+      "2m_release": ""
     },
     {
       "season": "6",
@@ -539,7 +698,10 @@
       "host": "GG",
       "recording": "Done",
       "teaser_upload": "",
-      "teaser_release": "4/9/2026"
+      "teaser_release": "4/9/2026",
+      "episode_upload": "",
+      "episode_release": "4/16/2026",
+      "2m_release": ""
     },
     {
       "season": "6",
@@ -549,7 +711,10 @@
       "host": "Sunny",
       "recording": "Done",
       "teaser_upload": "",
-      "teaser_release": "4/16/2026"
+      "teaser_release": "4/16/2026",
+      "episode_upload": "",
+      "episode_release": "4/23/2026",
+      "2m_release": ""
     },
     {
       "season": "6",
@@ -559,7 +724,10 @@
       "host": "GG",
       "recording": "Done",
       "teaser_upload": "",
-      "teaser_release": "4/23/2026"
+      "teaser_release": "4/23/2026",
+      "episode_upload": "",
+      "episode_release": "4/30/2026",
+      "2m_release": ""
     },
     {
       "season": "6",
@@ -569,7 +737,10 @@
       "host": "Janice",
       "recording": "Done",
       "teaser_upload": "",
-      "teaser_release": "4/30/2026"
+      "teaser_release": "4/30/2026",
+      "episode_upload": "",
+      "episode_release": "5/7/2026",
+      "2m_release": ""
     },
     {
       "season": "6",
@@ -579,7 +750,10 @@
       "host": "GG",
       "recording": "Done",
       "teaser_upload": "",
-      "teaser_release": "5/7/2026"
+      "teaser_release": "5/7/2026",
+      "episode_upload": "",
+      "episode_release": "5/14/2026",
+      "2m_release": ""
     },
     {
       "season": "6",
@@ -589,7 +763,10 @@
       "host": "Jackie",
       "recording": "Done",
       "teaser_upload": "",
-      "teaser_release": "5/14/2026"
+      "teaser_release": "5/14/2026",
+      "episode_upload": "",
+      "episode_release": "5/21/2026",
+      "2m_release": ""
     },
     {
       "season": "Nonsense",
@@ -599,7 +776,10 @@
       "host": "Community",
       "recording": "Done",
       "teaser_upload": "",
-      "teaser_release": "5/21/2026"
+      "teaser_release": "5/21/2026",
+      "episode_upload": "",
+      "episode_release": "5/28/2026",
+      "2m_release": ""
     },
     {
       "season": "6",
@@ -609,7 +789,10 @@
       "host": "",
       "recording": "",
       "teaser_upload": "",
-      "teaser_release": "5/28/2026"
+      "teaser_release": "5/28/2026",
+      "episode_upload": "",
+      "episode_release": "6/4/2026",
+      "2m_release": ""
     },
     {
       "season": "Nonsense",
@@ -619,7 +802,10 @@
       "host": "",
       "recording": "",
       "teaser_upload": "",
-      "teaser_release": "5/28/2026"
+      "teaser_release": "5/28/2026",
+      "episode_upload": "",
+      "episode_release": "6/9/2026",
+      "2m_release": ""
     },
     {
       "season": "Nonsense",
@@ -629,7 +815,10 @@
       "host": "",
       "recording": "",
       "teaser_upload": "",
-      "teaser_release": "5/28/2026"
+      "teaser_release": "5/28/2026",
+      "episode_upload": "",
+      "episode_release": "6/10/2026",
+      "2m_release": ""
     },
     {
       "season": "7",
@@ -639,7 +828,10 @@
       "host": "",
       "recording": "Done",
       "teaser_upload": "",
-      "teaser_release": "6/4/2026"
+      "teaser_release": "6/4/2026",
+      "episode_upload": "",
+      "episode_release": "6/18/2026",
+      "2m_release": ""
     },
     {
       "season": "7",
@@ -649,7 +841,10 @@
       "host": "",
       "recording": "Done",
       "teaser_upload": "",
-      "teaser_release": "6/11/2026"
+      "teaser_release": "6/11/2026",
+      "episode_upload": "",
+      "episode_release": "6/25/2026",
+      "2m_release": ""
     },
     {
       "season": "7",
@@ -659,7 +854,10 @@
       "host": "",
       "recording": "Mid April",
       "teaser_upload": "",
-      "teaser_release": "6/18/2026"
+      "teaser_release": "6/18/2026",
+      "episode_upload": "",
+      "episode_release": "7/2/2026",
+      "2m_release": ""
     },
     {
       "season": "7",
@@ -669,7 +867,10 @@
       "host": "",
       "recording": "Done",
       "teaser_upload": "",
-      "teaser_release": "6/25/2026"
+      "teaser_release": "6/25/2026",
+      "episode_upload": "",
+      "episode_release": "7/9/2026",
+      "2m_release": ""
     },
     {
       "season": "7",
@@ -679,7 +880,10 @@
       "host": "",
       "recording": "Done",
       "teaser_upload": "",
-      "teaser_release": "7/2/2026"
+      "teaser_release": "7/2/2026",
+      "episode_upload": "",
+      "episode_release": "7/16/2026",
+      "2m_release": ""
     },
     {
       "season": "7",
@@ -689,7 +893,10 @@
       "host": "",
       "recording": "",
       "teaser_upload": "",
-      "teaser_release": "7/9/2026"
+      "teaser_release": "7/9/2026",
+      "episode_upload": "",
+      "episode_release": "7/23/2026",
+      "2m_release": ""
     },
     {
       "season": "7",
@@ -699,7 +906,10 @@
       "host": "",
       "recording": "",
       "teaser_upload": "",
-      "teaser_release": "7/16/2026"
+      "teaser_release": "7/16/2026",
+      "episode_upload": "",
+      "episode_release": "7/30/2026",
+      "2m_release": ""
     },
     {
       "season": "7",
@@ -709,7 +919,10 @@
       "host": "",
       "recording": "May 22",
       "teaser_upload": "",
-      "teaser_release": "7/23/2026"
+      "teaser_release": "7/23/2026",
+      "episode_upload": "",
+      "episode_release": "7/30/2026",
+      "2m_release": ""
     },
     {
       "season": "7",
@@ -719,7 +932,10 @@
       "host": "",
       "recording": "",
       "teaser_upload": "",
-      "teaser_release": "7/30/2026"
+      "teaser_release": "7/30/2026",
+      "episode_upload": "",
+      "episode_release": "8/6/2026",
+      "2m_release": ""
     },
     {
       "season": "7",
@@ -729,7 +945,10 @@
       "host": "",
       "recording": "",
       "teaser_upload": "",
-      "teaser_release": "8/6/2026"
+      "teaser_release": "8/6/2026",
+      "episode_upload": "",
+      "episode_release": "8/13/2026",
+      "2m_release": ""
     },
     {
       "season": "",
@@ -739,7 +958,10 @@
       "host": "",
       "recording": "",
       "teaser_upload": "",
-      "teaser_release": ""
+      "teaser_release": "",
+      "episode_upload": "",
+      "episode_release": "",
+      "2m_release": ""
     },
     {
       "season": "Done",
@@ -749,7 +971,10 @@
       "host": "",
       "recording": "Done",
       "teaser_upload": "",
-      "teaser_release": ""
+      "teaser_release": "",
+      "episode_upload": "",
+      "episode_release": "",
+      "2m_release": ""
     },
     {
       "season": "Agreed",
@@ -759,7 +984,10 @@
       "host": "",
       "recording": "",
       "teaser_upload": "",
-      "teaser_release": ""
+      "teaser_release": "",
+      "episode_upload": "",
+      "episode_release": "",
+      "2m_release": ""
     },
     {
       "season": "Agreed",
@@ -769,7 +997,10 @@
       "host": "",
       "recording": "Losing Weight",
       "teaser_upload": "",
-      "teaser_release": ""
+      "teaser_release": "",
+      "episode_upload": "",
+      "episode_release": "",
+      "2m_release": ""
     },
     {
       "season": "Agreed",
@@ -779,7 +1010,10 @@
       "host": "",
       "recording": "",
       "teaser_upload": "",
-      "teaser_release": ""
+      "teaser_release": "",
+      "episode_upload": "",
+      "episode_release": "",
+      "2m_release": ""
     },
     {
       "season": "Agreed",
@@ -789,7 +1023,10 @@
       "host": "",
       "recording": "",
       "teaser_upload": "",
-      "teaser_release": ""
+      "teaser_release": "",
+      "episode_upload": "",
+      "episode_release": "",
+      "2m_release": ""
     },
     {
       "season": "Agreed",
@@ -799,7 +1036,10 @@
       "host": "",
       "recording": "",
       "teaser_upload": "",
-      "teaser_release": ""
+      "teaser_release": "",
+      "episode_upload": "",
+      "episode_release": "",
+      "2m_release": ""
     },
     {
       "season": "Agreed",
@@ -809,7 +1049,10 @@
       "host": "",
       "recording": "",
       "teaser_upload": "",
-      "teaser_release": ""
+      "teaser_release": "",
+      "episode_upload": "",
+      "episode_release": "",
+      "2m_release": ""
     },
     {
       "season": "Agreed",
@@ -819,7 +1062,10 @@
       "host": "",
       "recording": "",
       "teaser_upload": "",
-      "teaser_release": ""
+      "teaser_release": "",
+      "episode_upload": "",
+      "episode_release": "",
+      "2m_release": ""
     },
     {
       "season": "Agreed",
@@ -829,7 +1075,10 @@
       "host": "",
       "recording": "Check in later",
       "teaser_upload": "",
-      "teaser_release": ""
+      "teaser_release": "",
+      "episode_upload": "",
+      "episode_release": "",
+      "2m_release": ""
     },
     {
       "season": "Agreed",
@@ -839,7 +1088,10 @@
       "host": "",
       "recording": "",
       "teaser_upload": "",
-      "teaser_release": ""
+      "teaser_release": "",
+      "episode_upload": "",
+      "episode_release": "",
+      "2m_release": ""
     },
     {
       "season": "Agreed",
@@ -849,7 +1101,10 @@
       "host": "",
       "recording": "",
       "teaser_upload": "",
-      "teaser_release": ""
+      "teaser_release": "",
+      "episode_upload": "",
+      "episode_release": "",
+      "2m_release": ""
     },
     {
       "season": "Agreed",
@@ -859,7 +1114,10 @@
       "host": "",
       "recording": "",
       "teaser_upload": "",
-      "teaser_release": ""
+      "teaser_release": "",
+      "episode_upload": "",
+      "episode_release": "",
+      "2m_release": ""
     },
     {
       "season": "Agreed",
@@ -869,7 +1127,10 @@
       "host": "",
       "recording": "",
       "teaser_upload": "",
-      "teaser_release": ""
+      "teaser_release": "",
+      "episode_upload": "",
+      "episode_release": "",
+      "2m_release": ""
     },
     {
       "season": "Agreed",
@@ -879,7 +1140,10 @@
       "host": "",
       "recording": "",
       "teaser_upload": "",
-      "teaser_release": ""
+      "teaser_release": "",
+      "episode_upload": "",
+      "episode_release": "",
+      "2m_release": ""
     },
     {
       "season": "Agreed",
@@ -889,7 +1153,10 @@
       "host": "",
       "recording": "",
       "teaser_upload": "",
-      "teaser_release": ""
+      "teaser_release": "",
+      "episode_upload": "",
+      "episode_release": "",
+      "2m_release": ""
     },
     {
       "season": "Agreed",
@@ -899,7 +1166,10 @@
       "host": "",
       "recording": "",
       "teaser_upload": "",
-      "teaser_release": ""
+      "teaser_release": "",
+      "episode_upload": "",
+      "episode_release": "",
+      "2m_release": ""
     },
     {
       "season": "Agreed",
@@ -909,7 +1179,10 @@
       "host": "",
       "recording": "",
       "teaser_upload": "",
-      "teaser_release": ""
+      "teaser_release": "",
+      "episode_upload": "",
+      "episode_release": "",
+      "2m_release": ""
     },
     {
       "season": "Agreed",
@@ -919,7 +1192,10 @@
       "host": "",
       "recording": "",
       "teaser_upload": "",
-      "teaser_release": ""
+      "teaser_release": "",
+      "episode_upload": "",
+      "episode_release": "",
+      "2m_release": ""
     },
     {
       "season": "",
@@ -929,7 +1205,10 @@
       "host": "",
       "recording": "",
       "teaser_upload": "",
-      "teaser_release": ""
+      "teaser_release": "",
+      "episode_upload": "",
+      "episode_release": "",
+      "2m_release": ""
     },
     {
       "season": "",
@@ -939,7 +1218,10 @@
       "host": "",
       "recording": "",
       "teaser_upload": "",
-      "teaser_release": ""
+      "teaser_release": "",
+      "episode_upload": "",
+      "episode_release": "",
+      "2m_release": ""
     },
     {
       "season": "",
@@ -949,7 +1231,10 @@
       "host": "",
       "recording": "",
       "teaser_upload": "",
-      "teaser_release": ""
+      "teaser_release": "",
+      "episode_upload": "",
+      "episode_release": "",
+      "2m_release": ""
     },
     {
       "season": "",
@@ -959,7 +1244,10 @@
       "host": "",
       "recording": "",
       "teaser_upload": "",
-      "teaser_release": ""
+      "teaser_release": "",
+      "episode_upload": "",
+      "episode_release": "",
+      "2m_release": ""
     },
     {
       "season": "",
@@ -969,7 +1257,10 @@
       "host": "",
       "recording": "",
       "teaser_upload": "",
-      "teaser_release": ""
+      "teaser_release": "",
+      "episode_upload": "",
+      "episode_release": "",
+      "2m_release": ""
     },
     {
       "season": "Check back",
@@ -979,7 +1270,10 @@
       "host": "",
       "recording": "",
       "teaser_upload": "",
-      "teaser_release": ""
+      "teaser_release": "",
+      "episode_upload": "",
+      "episode_release": "",
+      "2m_release": ""
     },
     {
       "season": "Check back",
@@ -989,7 +1283,10 @@
       "host": "",
       "recording": "",
       "teaser_upload": "",
-      "teaser_release": ""
+      "teaser_release": "",
+      "episode_upload": "",
+      "episode_release": "",
+      "2m_release": ""
     },
     {
       "season": "Check back",
@@ -999,7 +1296,10 @@
       "host": "",
       "recording": "",
       "teaser_upload": "",
-      "teaser_release": ""
+      "teaser_release": "",
+      "episode_upload": "",
+      "episode_release": "",
+      "2m_release": ""
     },
     {
       "season": "Check back",
@@ -1009,7 +1309,10 @@
       "host": "",
       "recording": "",
       "teaser_upload": "",
-      "teaser_release": ""
+      "teaser_release": "",
+      "episode_upload": "",
+      "episode_release": "",
+      "2m_release": ""
     },
     {
       "season": "Check back",
@@ -1019,7 +1322,10 @@
       "host": "",
       "recording": "",
       "teaser_upload": "",
-      "teaser_release": ""
+      "teaser_release": "",
+      "episode_upload": "",
+      "episode_release": "",
+      "2m_release": ""
     },
     {
       "season": "Check back",
@@ -1029,7 +1335,10 @@
       "host": "",
       "recording": "",
       "teaser_upload": "",
-      "teaser_release": ""
+      "teaser_release": "",
+      "episode_upload": "",
+      "episode_release": "",
+      "2m_release": ""
     },
     {
       "season": "Check back",
@@ -1039,7 +1348,10 @@
       "host": "",
       "recording": "Check in in Nov",
       "teaser_upload": "",
-      "teaser_release": ""
+      "teaser_release": "",
+      "episode_upload": "",
+      "episode_release": "",
+      "2m_release": ""
     },
     {
       "season": "Check back",
@@ -1049,7 +1361,10 @@
       "host": "",
       "recording": "",
       "teaser_upload": "",
-      "teaser_release": ""
+      "teaser_release": "",
+      "episode_upload": "",
+      "episode_release": "",
+      "2m_release": ""
     },
     {
       "season": "Check back",
@@ -1059,7 +1374,10 @@
       "host": "",
       "recording": "",
       "teaser_upload": "",
-      "teaser_release": ""
+      "teaser_release": "",
+      "episode_upload": "",
+      "episode_release": "",
+      "2m_release": ""
     },
     {
       "season": "Check back",
@@ -1069,7 +1387,10 @@
       "host": "",
       "recording": "",
       "teaser_upload": "",
-      "teaser_release": ""
+      "teaser_release": "",
+      "episode_upload": "",
+      "episode_release": "",
+      "2m_release": ""
     },
     {
       "season": "Check back",
@@ -1079,7 +1400,10 @@
       "host": "",
       "recording": "",
       "teaser_upload": "",
-      "teaser_release": ""
+      "teaser_release": "",
+      "episode_upload": "",
+      "episode_release": "",
+      "2m_release": ""
     },
     {
       "season": "Check back",
@@ -1089,7 +1413,10 @@
       "host": "",
       "recording": "",
       "teaser_upload": "",
-      "teaser_release": ""
+      "teaser_release": "",
+      "episode_upload": "",
+      "episode_release": "",
+      "2m_release": ""
     },
     {
       "season": "",
@@ -1099,7 +1426,10 @@
       "host": "",
       "recording": "",
       "teaser_upload": "",
-      "teaser_release": ""
+      "teaser_release": "",
+      "episode_upload": "",
+      "episode_release": "",
+      "2m_release": ""
     },
     {
       "season": "",
@@ -1109,7 +1439,10 @@
       "host": "",
       "recording": "",
       "teaser_upload": "",
-      "teaser_release": ""
+      "teaser_release": "",
+      "episode_upload": "",
+      "episode_release": "",
+      "2m_release": ""
     },
     {
       "season": "",
@@ -1119,7 +1452,10 @@
       "host": "",
       "recording": "",
       "teaser_upload": "",
-      "teaser_release": ""
+      "teaser_release": "",
+      "episode_upload": "",
+      "episode_release": "",
+      "2m_release": ""
     },
     {
       "season": "",
@@ -1129,7 +1465,10 @@
       "host": "",
       "recording": "",
       "teaser_upload": "",
-      "teaser_release": ""
+      "teaser_release": "",
+      "episode_upload": "",
+      "episode_release": "",
+      "2m_release": ""
     },
     {
       "season": "",
@@ -1139,7 +1478,10 @@
       "host": "",
       "recording": "",
       "teaser_upload": "",
-      "teaser_release": ""
+      "teaser_release": "",
+      "episode_upload": "",
+      "episode_release": "",
+      "2m_release": ""
     },
     {
       "season": "",
@@ -1149,7 +1491,10 @@
       "host": "",
       "recording": "",
       "teaser_upload": "",
-      "teaser_release": ""
+      "teaser_release": "",
+      "episode_upload": "",
+      "episode_release": "",
+      "2m_release": ""
     },
     {
       "season": "0",
@@ -1159,7 +1504,10 @@
       "host": "",
       "recording": "",
       "teaser_upload": "",
-      "teaser_release": ""
+      "teaser_release": "",
+      "episode_upload": "",
+      "episode_release": "",
+      "2m_release": ""
     }
   ]
 }

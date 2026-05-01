@@ -488,7 +488,7 @@
             <th style="text-align:left;" class="sortable" data-col="host" onclick="sortProdTable('host')">Host <span class="arrow"></span></th>
             <th style="text-align:left;">Recording</th>
             <th style="text-align:left;">Upload</th>
-            <th style="text-align:left;" class="sortable" data-col="teaser_release" onclick="sortProdTable('teaser_release')">Release Date <span class="arrow"></span></th>
+            <th style="text-align:left;" class="sortable" data-col="episode_release" onclick="sortProdTable('episode_release')">Release Date <span class="arrow"></span></th>
           </tr>
         </thead>
         <tbody id="prod-table-body"></tbody>
@@ -1870,7 +1870,7 @@ function renderProduction() {
     if (s === 'Nonsense' || s === 'Done' || s === '??' || s === '0' || s === '#REF!') {
       // Special content — count as scheduled if it has a date
       if (s === 'Nonsense') {
-        const rd = parseReleaseDate(ep.teaser_release);
+        const rd = parseReleaseDate(ep.episode_release);
         if (rd && rd <= today) aired++;
         else if (rd) planned++;
         else aired++; // Nonsense with no date, assume aired
@@ -1890,7 +1890,7 @@ function renderProduction() {
     seasons.add('S' + s);
     scheduled.push(ep);
 
-    const rd = parseReleaseDate(ep.teaser_release);
+    const rd = parseReleaseDate(ep.episode_release);
     if (rd && rd <= today) aired++;
     else planned++;
 
@@ -2052,7 +2052,7 @@ function renderProdTable() {
       if (prodSortCol === 'season' || prodSortCol === 'episode') {
         va = parseInt(va) || 9999;
         vb = parseInt(vb) || 9999;
-      } else if (prodSortCol === 'teaser_release') {
+      } else if (prodSortCol === 'episode_release') {
         va = parseReleaseDate(va) || new Date(9999, 0);
         vb = parseReleaseDate(vb) || new Date(9999, 0);
         return prodSortAsc ? va - vb : vb - va;
@@ -2071,7 +2071,7 @@ function renderProdTable() {
   }
 
   tbody.innerHTML = rows.map(ep => {
-    const rd = parseReleaseDate(ep.teaser_release);
+    const rd = parseReleaseDate(ep.episode_release);
     const isPast = rd && rd <= today;
     const isFuture = rd && rd > today;
 
@@ -2087,7 +2087,7 @@ function renderProdTable() {
     else if (ep.teaser_upload === '-') uploadBadge = '<span style="color:var(--text3);">—</span>';
     else uploadBadge = '<span style="color:var(--text3);">—</span>';
 
-    let relDate = ep.teaser_release || '—';
+    let relDate = ep.episode_release || '—';
     if (isFuture) relDate = `<span style="color:var(--blue);font-weight:500;">${relDate}</span>`;
     else if (isPast) relDate = `<span style="color:var(--text3);">${relDate}</span>`;
 
