@@ -45,6 +45,10 @@ def api_get(endpoint, params=None, retries=3):
             return json.loads(resp.read().decode())
         except HTTPError as e:
             body = e.read().decode() if e.fp else ""
+            # Don't retry "Not enough users" — it won't change
+            if "Not enough users" in body:
+                print(f"  Skipped ({endpoint}): not enough users for demographics")
+                return None
             print(f"  API error ({endpoint}), attempt {attempt + 1}/{retries}: {e.code} {body[:200]}")
             if attempt < retries - 1:
                 time.sleep(2 ** attempt)
