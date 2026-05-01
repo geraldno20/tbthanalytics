@@ -46,6 +46,11 @@
     /* Chart */
     .chart-section { background: var(--card); border-radius: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.07); padding: 20px; margin-bottom: 20px; }
     .chart-section h2 { font-size: 16px; font-weight: 600; margin-bottom: 12px; color: var(--text); }
+    .chart-section summary { font-size: 16px; font-weight: 600; color: var(--text); cursor: pointer; list-style: none; display: flex; align-items: center; gap: 8px; }
+    .chart-section summary::-webkit-details-marker { display: none; }
+    .chart-section summary::before { content: '▶'; font-size: 11px; color: var(--text3); transition: transform 0.2s; }
+    .chart-section[open] summary::before { transform: rotate(90deg); }
+    .chart-section .chart-body { margin-top: 12px; }
     .chart-wrap { height: 220px; }
 
     /* Compare panel */
@@ -184,48 +189,52 @@
   </div>
 
   <!-- Performance trend chart -->
-  <div class="chart-section">
-    <h2>Performance Trend (First 24h Views)</h2>
-    <div class="chart-wrap"><canvas id="trend-chart"></canvas></div>
-  </div>
+  <details class="chart-section">
+    <summary>First 24h Views Performance by Video</summary>
+    <div class="chart-body"><div class="chart-wrap"><canvas id="trend-chart"></canvas></div></div>
+  </details>
 
   <!-- Watch hours chart -->
-  <div class="chart-section">
-    <h2>Total Watch Hours by Day</h2>
-    <div class="chart-wrap"><canvas id="watch-chart"></canvas></div>
-  </div>
+  <details class="chart-section">
+    <summary>Channel Watch Hours by Day</summary>
+    <div class="chart-body"><div class="chart-wrap"><canvas id="watch-chart"></canvas></div></div>
+  </details>
 
   <!-- Channel daily views chart -->
-  <div class="chart-section">
-    <h2>Channel Daily Views (Total)</h2>
-    <div class="chart-wrap"><canvas id="views-chart"></canvas></div>
-  </div>
+  <details class="chart-section">
+    <summary>Channel Daily Views (Total)</summary>
+    <div class="chart-body"><div class="chart-wrap"><canvas id="views-chart"></canvas></div></div>
+  </details>
 
   <!-- AVD over time chart -->
-  <div class="chart-section">
-    <h2>Avg View Duration % Over Time</h2>
-    <div style="margin-bottom:10px;">
-      <select id="avd-select" class="search-input" style="width:400px;" onchange="renderAVDChart()">
-        <option value="__avg__">Channel Average (all filtered videos)</option>
-      </select>
+  <details class="chart-section">
+    <summary>Avg View Duration % Over Time</summary>
+    <div class="chart-body">
+      <div style="margin-bottom:10px;">
+        <select id="avd-select" class="search-input" style="width:400px;" onchange="renderAVDChart()">
+          <option value="__avg__">Channel Average (all filtered videos)</option>
+        </select>
+      </div>
+      <div class="chart-wrap"><canvas id="avd-chart"></canvas></div>
     </div>
-    <div class="chart-wrap"><canvas id="avd-chart"></canvas></div>
-  </div>
+  </details>
 
   <!-- Duration vs Performance scatter -->
-  <div class="chart-section">
-    <h2>Video Length vs Performance</h2>
-    <div style="margin-bottom:10px;">
-      <select id="scatter-metric" class="search-input" style="width:200px;" onchange="renderScatterChart()">
-        <option value="views_24h">First 24h Views</option>
-        <option value="total_views">Total Views</option>
-        <option value="avg_view_duration_pct" selected>AVD %</option>
-        <option value="likes">Likes</option>
-        <option value="new_subscribers">New Subs</option>
-      </select>
+  <details class="chart-section">
+    <summary>Video Length vs Performance</summary>
+    <div class="chart-body">
+      <div style="margin-bottom:10px;">
+        <select id="scatter-metric" class="search-input" style="width:200px;" onchange="renderScatterChart()">
+          <option value="views_24h">First 24h Views</option>
+          <option value="total_views">Total Views</option>
+          <option value="avg_view_duration_pct" selected>AVD %</option>
+          <option value="likes">Likes</option>
+          <option value="new_subscribers">New Subs</option>
+        </select>
+      </div>
+      <div class="chart-wrap"><canvas id="scatter-chart"></canvas></div>
     </div>
-    <div class="chart-wrap"><canvas id="scatter-chart"></canvas></div>
-  </div>
+  </details>
 
   <!-- Compare panel -->
   <div class="compare-panel" id="compare-panel">
