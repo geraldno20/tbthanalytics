@@ -433,7 +433,7 @@ function renderInstagram() {
   if (posts.length) {
     const cols = ['Caption', 'Type', 'Date', 'Likes', 'Comments', 'Saves', 'Shares', 'Reach', 'Interactions'];
     document.getElementById('ig-header-row').innerHTML = cols.map(c => `<th>${c}</th>`).join('');
-    document.getElementById('ig-table-body').innerHTML = posts.map(p => `<tr>
+    document.getElementById('ig-table-body').innerHTML = posts.map(p => `<tr class="ig-row" data-thumb="${p.thumbnail || ''}">
       <td style="max-width:300px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${(p.caption || '').slice(0, 80)}</td>
       <td>${p.media_type || ''}</td>
       <td>${(p.timestamp || '').slice(0, 10)}</td>
@@ -444,7 +444,31 @@ function renderInstagram() {
       <td>${fmt(p.reach)}</td>
       <td>${fmt(p.total_interactions)}</td>
     </tr>`).join('');
+    initIGThumbTip();
   }
+}
+
+function initIGThumbTip() {
+  const tip = document.getElementById('thumb-tip');
+  const img = document.getElementById('thumb-img');
+  const tbody = document.getElementById('ig-table-body');
+  tbody.addEventListener('mouseover', e => {
+    const row = e.target.closest('.ig-row');
+    if (!row) { tip.style.display = 'none'; return; }
+    const thumb = row.dataset.thumb;
+    if (!thumb) { tip.style.display = 'none'; return; }
+    img.src = thumb;
+    tip.style.display = 'block';
+  });
+  tbody.addEventListener('mousemove', e => {
+    if (tip.style.display === 'block') {
+      tip.style.left = (e.clientX + 16) + 'px';
+      tip.style.top = (e.clientY - 80) + 'px';
+    }
+  });
+  tbody.addEventListener('mouseout', e => {
+    if (e.target.closest('.ig-row')) tip.style.display = 'none';
+  });
 }
 
 const COLUMNS = [
