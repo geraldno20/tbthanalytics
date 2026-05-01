@@ -46,8 +46,8 @@ def api_get(endpoint, params=None, retries=3):
             return json.loads(resp.read().decode())
         except HTTPError as e:
             body = e.read().decode() if e.fp else ""
-            if "Not enough" in body:
-                print(f"  Skipped ({endpoint}): not enough data for this metric")
+            if "Not enough" in body or "Low Follower Count" in body:
+                print(f"  Skipped ({endpoint}): not enough followers for this metric")
                 return None
             print(f"  API error ({endpoint}), attempt {attempt + 1}/{retries}: {e.code} {body[:200]}")
             if attempt < retries - 1:
@@ -67,6 +67,7 @@ def fetch_user_info(token):
     })
     if not data:
         return None, {}
+
     return data.get("id"), {
         "user_id": data.get("id"),
         "username": data.get("username"),
@@ -226,7 +227,7 @@ def run():
     daily_views = insights.pop("daily_views", [])
     account.update(insights)
     print(f"  Views (30d): {account.get('views_30d', 0):,}")
-    print(f"  Followers: {account.get('followers_30d', 0):,}")
+    print(f"  Followers (30d): {account.get('followers_30d', 0):,}")
 
     print("Fetching threads...")
     posts = fetch_threads_posts(token, user_id)
