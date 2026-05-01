@@ -466,6 +466,11 @@
       <div class="chart-body"><div class="chart-wrap"><canvas id="prod-season-chart"></canvas></div></div>
     </details>
 
+    <details class="chart-section" open>
+      <summary>Guests by Class Year</summary>
+      <div class="chart-body"><div class="chart-wrap"><canvas id="prod-classyear-chart"></canvas></div></div>
+    </details>
+
     <div style="margin-bottom:12px;">
       <div id="prod-season-filter" class="seg-control" style="display:inline-flex;gap:0;border:1px solid var(--border);border-radius:8px;overflow:hidden;">
         <button class="active" data-prodseason="all" onclick="setProdSeasonFilter('all')" style="padding:6px 14px;font-size:12px;font-weight:600;border:none;cursor:pointer;background:var(--blue);color:#fff;">All</button>
@@ -479,6 +484,7 @@
             <th style="text-align:left;" class="sortable" data-col="season" onclick="sortProdTable('season')">Season <span class="arrow"></span></th>
             <th style="text-align:left;" class="sortable" data-col="episode" onclick="sortProdTable('episode')">Ep# <span class="arrow"></span></th>
             <th style="text-align:left;" class="sortable" data-col="guest" onclick="sortProdTable('guest')">Guest <span class="arrow"></span></th>
+            <th style="text-align:left;" class="sortable" data-col="class_year" onclick="sortProdTable('class_year')">Class Year <span class="arrow"></span></th>
             <th style="text-align:left;" class="sortable" data-col="host" onclick="sortProdTable('host')">Host <span class="arrow"></span></th>
             <th style="text-align:left;">Recording</th>
             <th style="text-align:left;">Upload</th>
@@ -1976,6 +1982,37 @@ function renderProduction() {
         }
       }
     });
+
+    // Class Year pareto chart
+    const yearCounts = {};
+    scheduled.forEach(ep => {
+      if (ep.class_year && ep.class_year.trim() && ep.class_year !== '-') {
+        yearCounts[ep.class_year.trim()] = (yearCounts[ep.class_year.trim()] || 0) + 1;
+      }
+    });
+    const sortedYears = Object.entries(yearCounts).sort((a, b) => b[1] - a[1]);
+    const yearCtx = document.getElementById('prod-classyear-chart');
+    if (yearCtx._chart) yearCtx._chart.destroy();
+    yearCtx._chart = new Chart(yearCtx, {
+      type: 'bar',
+      data: {
+        labels: sortedYears.map(y => y[0]),
+        datasets: [{
+          label: 'Guests',
+          data: sortedYears.map(y => y[1]),
+          backgroundColor: '#AF52DE',
+          borderRadius: 4,
+        }]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: {
+          y: { beginAtZero: true, ticks: { precision: 0, color: tickColor }, grid: { color: gridColor } },
+          x: { ticks: { color: tickColor }, grid: { display: false } }
+        }
+      }
+    });
   });
 
   // Store for table rendering
@@ -2060,6 +2097,7 @@ function renderProdTable() {
       <td style="text-align:left;">${seasonLabel}</td>
       <td style="text-align:left;">${ep.episode || '—'}</td>
       <td style="text-align:left;font-weight:500;">${ep.guest}</td>
+      <td style="text-align:left;">${ep.class_year || '—'}</td>
       <td style="text-align:left;">${ep.host || '—'}</td>
       <td style="text-align:left;">${recBadge}</td>
       <td style="text-align:left;">${uploadBadge}</td>
