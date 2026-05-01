@@ -100,7 +100,7 @@
 
     /* Thumbnail tooltip */
     .thumb-tip { position: fixed; z-index: 100; pointer-events: none; border-radius: 8px; box-shadow: 0 4px 16px rgba(0,0,0,0.2); overflow: hidden; display: none; }
-    .thumb-tip img { display: block; width: 240px; }
+    .thumb-tip img { display: block; width: 160px; }
 
     /* Platform tabs */
     .platform-tabs { display: flex; gap: 0; margin-bottom: 20px; border-bottom: 2px solid var(--border); }
@@ -296,6 +296,15 @@
       <div class="chart-body"><div class="chart-wrap"><canvas id="ig-reach-chart"></canvas></div></div>
     </details>
 
+    <div class="controls" id="ig-controls" style="display:none;">
+      <div class="seg-control" id="ig-type-filter">
+        <button class="active" data-igtype="all" onclick="setIGTypeFilter('all')">All</button>
+        <button data-igtype="IMAGE" onclick="setIGTypeFilter('IMAGE')">Image</button>
+        <button data-igtype="VIDEO" onclick="setIGTypeFilter('VIDEO')">Video</button>
+        <button data-igtype="CAROUSEL_ALBUM" onclick="setIGTypeFilter('CAROUSEL_ALBUM')">Carousel</button>
+      </div>
+    </div>
+
     <div class="table-wrap">
       <table>
         <thead><tr id="ig-header-row"></tr></thead>
@@ -329,6 +338,15 @@ function switchTab(tab) {
 // --- Instagram ---
 let igLoaded = false;
 let igData = null;
+let igTypeFilter = 'all';
+
+function setIGTypeFilter(type) {
+  igTypeFilter = type;
+  document.querySelectorAll('#ig-type-filter button').forEach(b =>
+    b.classList.toggle('active', b.dataset.igtype === type)
+  );
+  if (window._renderIGTable) window._renderIGTable();
+}
 
 async function loadInstagram() {
   if (igLoaded) return;
@@ -338,6 +356,7 @@ async function loadInstagram() {
     igData = await resp.json();
     igLoaded = true;
     document.getElementById('ig-no-data').style.display = 'none';
+    document.getElementById('ig-controls').style.display = 'flex';
     renderInstagram();
   } catch (e) {
     igLoaded = true;
@@ -449,13 +468,19 @@ function renderInstagram() {
     let igSortCol = 'timestamp';
     let igSortAsc = false;
 
-    function renderIGTable() {
+    function getFilteredPosts() {
+      if (igTypeFilter === 'all') return posts;
+      return posts.filter(p => p.media_type === igTypeFilter);
+    }
+
+    window._renderIGTable = function renderIGTable() {
+      const filtered = getFilteredPosts();
       const arrow = col => col === igSortCol ? (igSortAsc ? ' ▲' : ' ▼') : '';
       document.getElementById('ig-header-row').innerHTML = IG_COLS.map(c =>
         `<th style="cursor:pointer;" data-ig-col="${c.key}">${c.label}${arrow(c.key)}</th>`
       ).join('');
 
-      const sorted = [...posts].sort((a, b) => {
+      const sorted = [...filtered].sort((a, b) => {
         let va = a[igSortCol], vb = b[igSortCol];
         if (igSortCol === 'caption') { va = (va || '').toLowerCase(); vb = (vb || '').toLowerCase(); }
         if (va == null) return 1; if (vb == null) return -1;
@@ -477,7 +502,7 @@ function renderInstagram() {
       </tr>`).join('');
     }
 
-    renderIGTable();
+    window._renderIGTable();
 
     document.getElementById('ig-header-row').addEventListener('click', e => {
       const th = e.target.closest('th');
@@ -485,7 +510,7 @@ function renderInstagram() {
       const col = th.dataset.igCol;
       if (col === igSortCol) { igSortAsc = !igSortAsc; }
       else { igSortCol = col; igSortAsc = false; }
-      renderIGTable();
+      window._renderIGTable();
     });
 
     initIGThumbTip();
