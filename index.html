@@ -467,6 +467,11 @@
     </details>
 
     <details class="chart-section" open>
+      <summary>Episode Growth Over Time</summary>
+      <div class="chart-body"><div class="chart-wrap"><canvas id="prod-growth-chart"></canvas></div></div>
+    </details>
+
+    <details class="chart-section" open>
       <summary>Guests by Class Year</summary>
       <div class="chart-body"><div class="chart-wrap"><canvas id="prod-classyear-chart"></canvas></div></div>
     </details>
@@ -1957,7 +1962,7 @@ function renderProduction() {
       }
     });
 
-    // Season episode count chart
+    // Season episode count chart (bars only)
     const seasonCounts = {};
     scheduled.forEach(ep => {
       const label = isNumericSeason(ep.season) ? 'S' + ep.season : ep.season;
@@ -1965,8 +1970,6 @@ function renderProduction() {
     });
     const seasonLabels = sortedSeasons.filter(s => seasonCounts[s]);
     const seasonData = seasonLabels.map(s => seasonCounts[s] || 0);
-    let cumulative = 0;
-    const cumulativeData = seasonData.map(v => { cumulative += v; return cumulative; });
     const seasonCtx = document.getElementById('prod-season-chart');
     if (seasonCtx._chart) seasonCtx._chart.destroy();
     seasonCtx._chart = new Chart(seasonCtx, {
@@ -1978,28 +1981,67 @@ function renderProduction() {
           data: seasonData,
           backgroundColor: '#34C759',
           borderRadius: 4,
-          order: 2,
-        }, {
-          label: 'Cumulative',
-          data: cumulativeData,
-          type: 'line',
-          borderColor: '#FF9500',
-          backgroundColor: 'transparent',
-          pointBackgroundColor: '#FF9500',
-          pointRadius: 4,
-          borderWidth: 2,
-          tension: 0.3,
-          order: 1,
-          yAxisID: 'y1',
         }]
       },
       options: {
         responsive: true, maintainAspectRatio: false,
-        plugins: { legend: { labels: { color: tickColor, font: { size: 11 } } } },
+        plugins: { legend: { display: false } },
         scales: {
           y: { beginAtZero: true, ticks: { precision: 0, color: tickColor }, grid: { color: gridColor } },
-          y1: { beginAtZero: true, position: 'right', ticks: { precision: 0, color: '#FF9500' }, grid: { display: false } },
           x: { ticks: { color: tickColor }, grid: { display: false } }
+        }
+      }
+    });
+
+    // Episode growth over time chart
+    const datedEps = scheduled
+      .map(ep => ({ date: parseReleaseDate(ep.episode_release), season: ep.season, guest: ep.guest }))
+      .filter(e => e.date)
+      .sort((a, b) => a.date - b.date);
+    const growthLabels = [];
+    const growthData = [];
+    datedEps.forEach((ep, i) => {
+      const d = ep.date;
+      growthLabels.push(`${d.getMonth()+1}/${d.getDate()}/${String(d.getFullYear()).slice(2)}`);
+      growthData.push(i + 1);
+    });
+    const growthCtx = document.getElementById('prod-growth-chart');
+    if (growthCtx._chart) growthCtx._chart.destroy();
+    growthCtx._chart = new Chart(growthCtx, {
+      type: 'line',
+      data: {
+        labels: growthLabels,
+        datasets: [{
+          label: 'Total Episodes',
+          data: growthData,
+          borderColor: '#FF9500',
+          backgroundColor: 'rgba(255,149,0,0.1)',
+          pointBackgroundColor: '#FF9500',
+          pointRadius: 3,
+          borderWidth: 2,
+          tension: 0.2,
+          fill: true,
+        }]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              title: (items) => {
+                const idx = items[0].dataIndex;
+                const ep = datedEps[idx];
+                const s = isNumericSeason(ep.season) ? 'S' + ep.season : ep.season;
+                return `${s} — ${ep.guest}`;
+              },
+              label: (item) => `Episode #${item.raw} · ${item.label}`
+            }
+          }
+        },
+        scales: {
+          y: { beginAtZero: true, ticks: { precision: 0, color: tickColor }, grid: { color: gridColor } },
+          x: { ticks: { color: tickColor, maxRotation: 45, autoSkip: true, maxTicksLimit: 15 }, grid: { display: false } }
         }
       }
     });
