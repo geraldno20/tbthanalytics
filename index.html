@@ -1892,7 +1892,7 @@ function renderProduction() {
 
     const rd = parseReleaseDate(ep.episode_release);
     if (rd && rd <= today) aired++;
-    else planned++;
+    else if (rd) planned++;
 
     // Count hosts
     if (ep.host && ep.host !== '-') {
