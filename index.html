@@ -499,6 +499,9 @@ function renderInstagram() {
       `<span class="kpi-change ${cls}">${arrow} ${d >= 0 ? '+' : ''}${d.toLocaleString()} vs prev 30d</span>`;
   }
 
+  // Open all chart sections so canvases have dimensions for Chart.js
+  document.querySelectorAll('#ig-tab details.chart-section').forEach(d => d.open = true);
+
   // Daily chart
   const daily = igData.daily || [];
   if (daily.length) {
@@ -765,7 +768,8 @@ async function loadThreads() {
     thData = await resp.json();
     thLoaded = true;
     document.getElementById('th-no-data').style.display = 'none';
-    renderThreads();
+    // Defer rendering to next frame so canvases have dimensions
+    requestAnimationFrame(() => renderThreads());
   } catch (e) {
     thLoaded = true;
   }
@@ -798,6 +802,9 @@ function renderThreads() {
   const isDark = document.body.classList.contains('dark');
   const gridColor = isDark ? '#3A3A3C' : '#E5E5EA';
   const textColor = isDark ? '#AEAEB2' : '#6E6E73';
+
+  // Open all chart sections so canvases have dimensions for Chart.js
+  document.querySelectorAll('#th-tab details.chart-section').forEach(d => d.open = true);
 
   // Daily views chart
   const dailyViews = thData.daily_views || [];
