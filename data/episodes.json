@@ -1,933 +1,1049 @@
 {
-  "fetched_at": "2026-05-01 13:24",
+  "fetched_at": "2026-05-01 13:46",
   "episodes": [
     {
       "season": "1",
-      "episode": "Jennifer Lee",
-      "guest": "Done",
-      "interviewer": "Complete",
-      "recording_date": "4/24/25",
-      "release_date": "Complete"
+      "episode": "1",
+      "guest": "Jennifer Lee",
+      "host": "GG",
+      "recording": "Done",
+      "teaser_upload": "Complete",
+      "teaser_release": "4/24/25"
     },
     {
       "season": "1",
-      "episode": "Brian Lin",
-      "guest": "Done",
-      "interviewer": "Complete",
-      "recording_date": "5/1/25",
-      "release_date": "Complete"
+      "episode": "2",
+      "guest": "Brian Lin",
+      "host": "GG",
+      "recording": "Done",
+      "teaser_upload": "Complete",
+      "teaser_release": "5/1/25"
     },
     {
       "season": "1",
-      "episode": "Karen Ling",
-      "guest": "Done",
-      "interviewer": "Complete",
-      "recording_date": "5/8/25",
-      "release_date": "Complete"
+      "episode": "3",
+      "guest": "Karen Ling",
+      "host": "GG",
+      "recording": "Done",
+      "teaser_upload": "Complete",
+      "teaser_release": "5/8/25"
     },
     {
       "season": "1",
-      "episode": "Carol Chan",
-      "guest": "Done",
-      "interviewer": "Complete",
-      "recording_date": "5/15/25",
-      "release_date": "Complete"
+      "episode": "4",
+      "guest": "Carol Chan",
+      "host": "GG",
+      "recording": "Done",
+      "teaser_upload": "Complete",
+      "teaser_release": "5/15/25"
     },
     {
       "season": "1",
-      "episode": "Pierre Lam",
-      "guest": "Done",
-      "interviewer": "Complete",
-      "recording_date": "5/22/25",
-      "release_date": "Complete"
+      "episode": "5",
+      "guest": "Pierre Lam",
+      "host": "GG",
+      "recording": "Done",
+      "teaser_upload": "Complete",
+      "teaser_release": "5/22/25"
     },
     {
       "season": "1",
-      "episode": "Wynne Tong",
-      "guest": "Done",
-      "interviewer": "Complete",
-      "recording_date": "5/29/25",
-      "release_date": "Complete"
+      "episode": "6",
+      "guest": "Wynne Tong",
+      "host": "GG",
+      "recording": "Done",
+      "teaser_upload": "Complete",
+      "teaser_release": "5/29/25"
     },
     {
       "season": "1",
-      "episode": "Gerald Yeung",
-      "guest": "Done",
-      "interviewer": "Complete",
-      "recording_date": "6/5/25",
-      "release_date": "Complete"
+      "episode": "7",
+      "guest": "Gerald Yeung",
+      "host": "GG",
+      "recording": "Done",
+      "teaser_upload": "Complete",
+      "teaser_release": "6/5/25"
     },
     {
       "season": "1",
-      "episode": "Gladys Tse",
-      "guest": "Done",
-      "interviewer": "Complete",
-      "recording_date": "6/12/25",
-      "release_date": "Complete"
+      "episode": "8",
+      "guest": "Gladys Tse",
+      "host": "GG",
+      "recording": "Done",
+      "teaser_upload": "Complete",
+      "teaser_release": "6/12/25"
     },
     {
       "season": "1",
-      "episode": "Vivian Wu",
-      "guest": "Done",
-      "interviewer": "Complete",
-      "recording_date": "6/19/25",
-      "release_date": "Complete"
+      "episode": "9",
+      "guest": "Vivian Wu",
+      "host": "GG",
+      "recording": "Done",
+      "teaser_upload": "Complete",
+      "teaser_release": "6/19/25"
     },
     {
       "season": "",
       "episode": "",
       "guest": "",
-      "interviewer": "",
-      "recording_date": "",
-      "release_date": ""
+      "host": "",
+      "recording": "",
+      "teaser_upload": "",
+      "teaser_release": ""
     },
     {
       "season": "2",
-      "episode": "Robert Sit",
-      "guest": "Done",
-      "interviewer": "Complete",
-      "recording_date": "7/3/2025",
-      "release_date": "Complete"
+      "episode": "1",
+      "guest": "Robert Sit",
+      "host": "GG",
+      "recording": "Done",
+      "teaser_upload": "Complete",
+      "teaser_release": "7/3/2025"
     },
     {
       "season": "2",
-      "episode": "Helen Wong",
-      "guest": "Done",
-      "interviewer": "Complete",
-      "recording_date": "7/10/2025",
-      "release_date": "Complete"
+      "episode": "2",
+      "guest": "Helen Wong",
+      "host": "GG",
+      "recording": "Done",
+      "teaser_upload": "Complete",
+      "teaser_release": "7/10/2025"
     },
     {
       "season": "2",
-      "episode": "Stephen Ng",
-      "guest": "Done",
-      "interviewer": "Complete",
-      "recording_date": "7/17/2025",
-      "release_date": "Complete"
+      "episode": "3",
+      "guest": "Stephen Ng",
+      "host": "GG",
+      "recording": "Done",
+      "teaser_upload": "Complete",
+      "teaser_release": "7/17/2025"
     },
     {
       "season": "2",
-      "episode": "Natalie Ko",
-      "guest": "Done",
-      "interviewer": "Complete",
-      "recording_date": "7/24/2025",
-      "release_date": "Complete"
+      "episode": "4",
+      "guest": "Natalie Ko",
+      "host": "GG",
+      "recording": "Done",
+      "teaser_upload": "Complete",
+      "teaser_release": "7/24/2025"
     },
     {
       "season": "2",
-      "episode": "Ivan Leung",
-      "guest": "Done",
-      "interviewer": "Complete",
-      "recording_date": "7/31/2025",
-      "release_date": "Complete"
+      "episode": "5",
+      "guest": "Ivan Leung",
+      "host": "GG",
+      "recording": "Done",
+      "teaser_upload": "Complete",
+      "teaser_release": "7/31/2025"
     },
     {
       "season": "2",
-      "episode": "Fong Tze Kit",
-      "guest": "Done",
-      "interviewer": "Complete",
-      "recording_date": "8/7/2025",
-      "release_date": "Complete"
+      "episode": "6",
+      "guest": "Fong Tze Kit",
+      "host": "GG",
+      "recording": "Done",
+      "teaser_upload": "Complete",
+      "teaser_release": "8/7/2025"
     },
     {
       "season": "2",
-      "episode": "Grace Lo",
-      "guest": "Done",
-      "interviewer": "Complete",
-      "recording_date": "8/14/2025",
-      "release_date": "Complete"
+      "episode": "7",
+      "guest": "Grace Lo",
+      "host": "GG",
+      "recording": "Done",
+      "teaser_upload": "Complete",
+      "teaser_release": "8/14/2025"
     },
     {
       "season": "2",
-      "episode": "Jonathan So",
-      "guest": "Done",
-      "interviewer": "Complete",
-      "recording_date": "8/21/2025",
-      "release_date": "Complete"
+      "episode": "8",
+      "guest": "Jonathan So",
+      "host": "GG",
+      "recording": "Done",
+      "teaser_upload": "Complete",
+      "teaser_release": "8/21/2025"
     },
     {
       "season": "2",
-      "episode": "Deanna Law",
-      "guest": "Done",
-      "interviewer": "Complete",
-      "recording_date": "8/28/2025",
-      "release_date": "Complete"
+      "episode": "9",
+      "guest": "Deanna Law",
+      "host": "GG",
+      "recording": "Done",
+      "teaser_upload": "Complete",
+      "teaser_release": "8/28/2025"
     },
     {
       "season": "",
       "episode": "",
       "guest": "",
-      "interviewer": "",
-      "recording_date": "",
-      "release_date": ""
+      "host": "",
+      "recording": "",
+      "teaser_upload": "",
+      "teaser_release": ""
     },
     {
       "season": "3",
-      "episode": "Mark Law",
-      "guest": "Done",
-      "interviewer": "Complete",
-      "recording_date": "9/11/2025",
-      "release_date": "Complete"
+      "episode": "1",
+      "guest": "Mark Law",
+      "host": "GG",
+      "recording": "Done",
+      "teaser_upload": "Complete",
+      "teaser_release": "9/11/2025"
     },
     {
       "season": "3",
-      "episode": "Dionne Hui",
-      "guest": "Done",
-      "interviewer": "Complete",
-      "recording_date": "9/18/2025",
-      "release_date": "Complete"
+      "episode": "2",
+      "guest": "Dionne Hui",
+      "host": "GG",
+      "recording": "Done",
+      "teaser_upload": "Complete",
+      "teaser_release": "9/18/2025"
     },
     {
       "season": "3",
-      "episode": "Clement Cheng",
-      "guest": "Done",
-      "interviewer": "Complete",
-      "recording_date": "9/25/2025",
-      "release_date": "Complete"
+      "episode": "3",
+      "guest": "Clement Cheng",
+      "host": "GG",
+      "recording": "Done",
+      "teaser_upload": "Complete",
+      "teaser_release": "9/25/2025"
     },
     {
       "season": "3",
-      "episode": "Ringo Ho",
-      "guest": "Done",
-      "interviewer": "Complete",
-      "recording_date": "10/2/2025",
-      "release_date": "Complete"
+      "episode": "4",
+      "guest": "Ringo Ho",
+      "host": "GG",
+      "recording": "Done",
+      "teaser_upload": "Complete",
+      "teaser_release": "10/2/2025"
     },
     {
       "season": "3",
-      "episode": "Karen Chiu",
-      "guest": "Done",
-      "interviewer": "Complete",
-      "recording_date": "10/9/2025",
-      "release_date": "Complete"
+      "episode": "5",
+      "guest": "Karen Chiu",
+      "host": "GG",
+      "recording": "Done",
+      "teaser_upload": "Complete",
+      "teaser_release": "10/9/2025"
     },
     {
       "season": "3",
-      "episode": "Gary Ho",
-      "guest": "Done",
-      "interviewer": "Complete",
-      "recording_date": "10/16/2025",
-      "release_date": "Complete"
+      "episode": "6",
+      "guest": "Gary Ho",
+      "host": "GG",
+      "recording": "Done",
+      "teaser_upload": "Complete",
+      "teaser_release": "10/16/2025"
     },
     {
       "season": "3",
-      "episode": "Cassie Mak",
-      "guest": "Done",
-      "interviewer": "Complete",
-      "recording_date": "10/23/2025",
-      "release_date": "Complete"
+      "episode": "7",
+      "guest": "Cassie Mak",
+      "host": "GG",
+      "recording": "Done",
+      "teaser_upload": "Complete",
+      "teaser_release": "10/23/2025"
     },
     {
       "season": "3",
-      "episode": "Andre Lin",
-      "guest": "Done",
-      "interviewer": "Complete",
-      "recording_date": "10/30/2025",
-      "release_date": "Complete"
+      "episode": "8",
+      "guest": "Andre Lin",
+      "host": "GG",
+      "recording": "Done",
+      "teaser_upload": "Complete",
+      "teaser_release": "10/30/2025"
     },
     {
       "season": "3",
-      "episode": "Jackie Au",
-      "guest": "Done",
-      "interviewer": "Complete",
-      "recording_date": "11/6/2025",
-      "release_date": "Complete"
+      "episode": "9",
+      "guest": "Jackie Au",
+      "host": "GG",
+      "recording": "Done",
+      "teaser_upload": "Complete",
+      "teaser_release": "11/6/2025"
     },
     {
       "season": "",
       "episode": "",
       "guest": "",
-      "interviewer": "",
-      "recording_date": "",
-      "release_date": ""
+      "host": "",
+      "recording": "",
+      "teaser_upload": "",
+      "teaser_release": ""
     },
     {
       "season": "4",
-      "episode": "Russell Fok",
-      "guest": "Done",
-      "interviewer": "Complete",
-      "recording_date": "11/20/2025",
-      "release_date": "Complete"
+      "episode": "1",
+      "guest": "Russell Fok",
+      "host": "GG",
+      "recording": "Done",
+      "teaser_upload": "Complete",
+      "teaser_release": "11/20/2025"
     },
     {
       "season": "4",
-      "episode": "Janice Wong",
-      "guest": "Done",
-      "interviewer": "Complete",
-      "recording_date": "12/4/2025",
-      "release_date": "Complete"
+      "episode": "2",
+      "guest": "Janice Wong",
+      "host": "GG",
+      "recording": "Done",
+      "teaser_upload": "Complete",
+      "teaser_release": "12/4/2025"
     },
     {
       "season": "4",
-      "episode": "Adrian Tso",
-      "guest": "Done",
-      "interviewer": "Complete",
-      "recording_date": "12/11/2025",
-      "release_date": "Complete"
+      "episode": "3",
+      "guest": "Adrian Tso",
+      "host": "GG",
+      "recording": "Done",
+      "teaser_upload": "Complete",
+      "teaser_release": "12/11/2025"
     },
     {
       "season": "4",
-      "episode": "Holiday Get Together",
-      "guest": "-",
-      "interviewer": "-",
-      "recording_date": "-",
-      "release_date": "Complete"
+      "episode": "4",
+      "guest": "Holiday Get Together",
+      "host": "Community",
+      "recording": "-",
+      "teaser_upload": "-",
+      "teaser_release": "-"
     },
     {
       "season": "4",
-      "episode": "Year End Episode",
-      "guest": "Dec 12",
-      "interviewer": "Complete",
-      "recording_date": "12/18/2025",
-      "release_date": "Complete"
+      "episode": "5",
+      "guest": "Year End Episode",
+      "host": "FTK & GG",
+      "recording": "Dec 12",
+      "teaser_upload": "Complete",
+      "teaser_release": "12/18/2025"
     },
     {
       "season": "",
       "episode": "",
       "guest": "",
-      "interviewer": "",
-      "recording_date": "",
-      "release_date": ""
+      "host": "",
+      "recording": "",
+      "teaser_upload": "",
+      "teaser_release": ""
     },
     {
       "season": "5",
-      "episode": "Jerry Hung",
-      "guest": "Done",
-      "interviewer": "",
-      "recording_date": "1/1/2026",
-      "release_date": ""
+      "episode": "1",
+      "guest": "Jerry Hung",
+      "host": "GG",
+      "recording": "Done",
+      "teaser_upload": "",
+      "teaser_release": "1/1/2026"
     },
     {
       "season": "5",
-      "episode": "Jimmy Chan",
-      "guest": "Done",
-      "interviewer": "",
-      "recording_date": "1/8/2026",
-      "release_date": ""
+      "episode": "2",
+      "guest": "Jimmy Chan",
+      "host": "GG",
+      "recording": "Done",
+      "teaser_upload": "",
+      "teaser_release": "1/8/2026"
     },
     {
       "season": "5",
-      "episode": "Sunny Pau",
-      "guest": "Done",
-      "interviewer": "",
-      "recording_date": "1/15/2026",
-      "release_date": ""
+      "episode": "3",
+      "guest": "Sunny Pau",
+      "host": "GG",
+      "recording": "Done",
+      "teaser_upload": "",
+      "teaser_release": "1/15/2026"
     },
     {
       "season": "5",
-      "episode": "Jac Lee",
-      "guest": "Done",
-      "interviewer": "",
-      "recording_date": "1/22/2026",
-      "release_date": ""
+      "episode": "4",
+      "guest": "Jac Lee",
+      "host": "GG",
+      "recording": "Done",
+      "teaser_upload": "",
+      "teaser_release": "1/22/2026"
     },
     {
       "season": "5",
-      "episode": "Jeffrey Chan",
-      "guest": "Done",
-      "interviewer": "",
-      "recording_date": "1/29/2026",
-      "release_date": ""
+      "episode": "5",
+      "guest": "Jeffrey Chan",
+      "host": "GG",
+      "recording": "Done",
+      "teaser_upload": "",
+      "teaser_release": "1/29/2026"
     },
     {
       "season": "5",
-      "episode": "Lok Lam",
-      "guest": "Done",
-      "interviewer": "",
-      "recording_date": "2/5/2026",
-      "release_date": ""
+      "episode": "6",
+      "guest": "Lok Lam",
+      "host": "FTK",
+      "recording": "Done",
+      "teaser_upload": "",
+      "teaser_release": "2/5/2026"
     },
     {
-      "season": "",
-      "episode": "CNY HOLIDAY",
-      "guest": "",
-      "interviewer": "",
-      "recording_date": "",
-      "release_date": ""
-    },
-    {
-      "season": "5",
-      "episode": "Steph + Jody Part 1",
-      "guest": "Done",
-      "interviewer": "",
-      "recording_date": "2/12/2026",
-      "release_date": ""
+      "season": "-",
+      "episode": "-",
+      "guest": "CNY HOLIDAY",
+      "host": "",
+      "recording": "-",
+      "teaser_upload": "",
+      "teaser_release": "-"
     },
     {
       "season": "5",
-      "episode": "Steph + Jody Part 2",
-      "guest": "Done",
-      "interviewer": "",
-      "recording_date": "N/A",
-      "release_date": ""
+      "episode": "7",
+      "guest": "Steph + Jody Part 1",
+      "host": "GG",
+      "recording": "Done",
+      "teaser_upload": "",
+      "teaser_release": "2/12/2026"
     },
     {
       "season": "5",
-      "episode": "Mr Yuen Part 1",
-      "guest": "Done",
-      "interviewer": "",
-      "recording_date": "2/26/2026",
-      "release_date": ""
+      "episode": "8",
+      "guest": "Steph + Jody Part 2",
+      "host": "GG",
+      "recording": "Done",
+      "teaser_upload": "",
+      "teaser_release": "N/A"
     },
     {
       "season": "5",
-      "episode": "Mr Yuen Part 2",
-      "guest": "Done",
-      "interviewer": "",
-      "recording_date": "3/5/2026",
-      "release_date": ""
+      "episode": "9",
+      "guest": "Mr Yuen Part 1",
+      "host": "GG",
+      "recording": "Done",
+      "teaser_upload": "",
+      "teaser_release": "2/26/2026"
     },
     {
       "season": "5",
-      "episode": "S5 Summary",
-      "guest": "Done",
-      "interviewer": "",
-      "recording_date": "3/12/2026",
-      "release_date": ""
+      "episode": "10",
+      "guest": "Mr Yuen Part 2",
+      "host": "GG",
+      "recording": "Done",
+      "teaser_upload": "",
+      "teaser_release": "3/5/2026"
     },
     {
-      "season": "",
-      "episode": "",
-      "guest": "",
-      "interviewer": "",
-      "recording_date": "",
-      "release_date": ""
-    },
-    {
-      "season": "6",
-      "episode": "Lung Sir",
-      "guest": "Done",
-      "interviewer": "",
-      "recording_date": "3/19/2026",
-      "release_date": ""
-    },
-    {
-      "season": "Nonsense",
-      "episode": "April Fools 2026",
-      "guest": "Done",
-      "interviewer": "",
-      "recording_date": "",
-      "release_date": ""
-    },
-    {
-      "season": "Nonsense",
-      "episode": "Soccer Video",
-      "guest": "Done",
-      "interviewer": "",
-      "recording_date": "",
-      "release_date": ""
-    },
-    {
-      "season": "6",
-      "episode": "Jeff Kwok",
-      "guest": "Done",
-      "interviewer": "",
-      "recording_date": "3/26 and 4/3",
-      "release_date": ""
-    },
-    {
-      "season": "6",
-      "episode": "Ms Leung Lai Mei",
-      "guest": "Done",
-      "interviewer": "",
-      "recording_date": "4/9/2026",
-      "release_date": ""
-    },
-    {
-      "season": "6",
-      "episode": "SPCCAC Denise Yam",
-      "guest": "Done",
-      "interviewer": "",
-      "recording_date": "4/16/2026",
-      "release_date": ""
-    },
-    {
-      "season": "6",
-      "episode": "Michael Wong",
-      "guest": "Done",
-      "interviewer": "",
-      "recording_date": "4/23/2026",
-      "release_date": ""
-    },
-    {
-      "season": "6",
-      "episode": "Clement Yeung",
-      "guest": "Done",
-      "interviewer": "",
-      "recording_date": "4/30/2026",
-      "release_date": ""
-    },
-    {
-      "season": "6",
-      "episode": "Eric Cheung",
-      "guest": "Done",
-      "interviewer": "",
-      "recording_date": "5/7/2026",
-      "release_date": ""
-    },
-    {
-      "season": "6",
-      "episode": "Kristen Chin",
-      "guest": "Done",
-      "interviewer": "",
-      "recording_date": "5/14/2026",
-      "release_date": ""
-    },
-    {
-      "season": "Nonsense",
-      "episode": "Tang East",
-      "guest": "Done",
-      "interviewer": "",
-      "recording_date": "5/21/2026",
-      "release_date": ""
-    },
-    {
-      "season": "6",
-      "episode": "1 year Anniversary",
-      "guest": "",
-      "interviewer": "",
-      "recording_date": "5/28/2026",
-      "release_date": ""
-    },
-    {
-      "season": "Nonsense",
-      "episode": "Ryan Kam Soccer",
-      "guest": "",
-      "interviewer": "",
-      "recording_date": "5/28/2026",
-      "release_date": ""
-    },
-    {
-      "season": "Nonsense",
-      "episode": "2024 Soccer",
-      "guest": "",
-      "interviewer": "",
-      "recording_date": "5/28/2026",
-      "release_date": ""
-    },
-    {
-      "season": "7",
-      "episode": "Jeff Shum",
-      "guest": "Done",
-      "interviewer": "",
-      "recording_date": "6/4/2026",
-      "release_date": ""
-    },
-    {
-      "season": "7",
-      "episode": "Ms Wong MK",
-      "guest": "Done",
-      "interviewer": "",
-      "recording_date": "6/11/2026",
-      "release_date": ""
-    },
-    {
-      "season": "7",
-      "episode": "Kevin Law",
-      "guest": "Mid April",
-      "interviewer": "",
-      "recording_date": "6/18/2026",
-      "release_date": ""
-    },
-    {
-      "season": "7",
-      "episode": "Anthony Choi",
-      "guest": "Done",
-      "interviewer": "",
-      "recording_date": "6/25/2026",
-      "release_date": ""
-    },
-    {
-      "season": "7",
-      "episode": "James Lam",
-      "guest": "Done",
-      "interviewer": "",
-      "recording_date": "7/2/2026",
-      "release_date": ""
-    },
-    {
-      "season": "7",
-      "episode": "Arthur Mui",
-      "guest": "",
-      "interviewer": "",
-      "recording_date": "7/9/2026",
-      "release_date": ""
-    },
-    {
-      "season": "7",
-      "episode": "Paulino Ho",
-      "guest": "",
-      "interviewer": "",
-      "recording_date": "7/16/2026",
-      "release_date": ""
-    },
-    {
-      "season": "7",
-      "episode": "Geoffrey Ko",
-      "guest": "May 22",
-      "interviewer": "",
-      "recording_date": "7/23/2026",
-      "release_date": ""
-    },
-    {
-      "season": "7",
-      "episode": "David Chen",
-      "guest": "",
-      "interviewer": "",
-      "recording_date": "7/30/2026",
-      "release_date": ""
-    },
-    {
-      "season": "7",
-      "episode": "S7 Summary",
-      "guest": "",
-      "interviewer": "",
-      "recording_date": "8/6/2026",
-      "release_date": ""
+      "season": "5",
+      "episode": "11",
+      "guest": "S5 Summary",
+      "host": "FTK & GG",
+      "recording": "Done",
+      "teaser_upload": "",
+      "teaser_release": "3/12/2026"
     },
     {
       "season": "",
       "episode": "",
       "guest": "",
-      "interviewer": "",
-      "recording_date": "",
-      "release_date": ""
+      "host": "",
+      "recording": "",
+      "teaser_upload": "",
+      "teaser_release": ""
+    },
+    {
+      "season": "6",
+      "episode": "1",
+      "guest": "Lung Sir",
+      "host": "Jerry",
+      "recording": "Done",
+      "teaser_upload": "",
+      "teaser_release": "3/19/2026"
+    },
+    {
+      "season": "Nonsense",
+      "episode": "N/A",
+      "guest": "April Fools 2026",
+      "host": "DJ & GG",
+      "recording": "Done",
+      "teaser_upload": "",
+      "teaser_release": ""
+    },
+    {
+      "season": "Nonsense",
+      "episode": "N/A",
+      "guest": "Soccer Video",
+      "host": "-",
+      "recording": "Done",
+      "teaser_upload": "",
+      "teaser_release": ""
+    },
+    {
+      "season": "6",
+      "episode": "2",
+      "guest": "Jeff Kwok",
+      "host": "GG",
+      "recording": "Done",
+      "teaser_upload": "",
+      "teaser_release": "3/26 and 4/3"
+    },
+    {
+      "season": "6",
+      "episode": "3",
+      "guest": "Ms Leung Lai Mei",
+      "host": "GG",
+      "recording": "Done",
+      "teaser_upload": "",
+      "teaser_release": "4/9/2026"
+    },
+    {
+      "season": "6",
+      "episode": "4",
+      "guest": "SPCCAC Denise Yam",
+      "host": "Sunny",
+      "recording": "Done",
+      "teaser_upload": "",
+      "teaser_release": "4/16/2026"
+    },
+    {
+      "season": "6",
+      "episode": "5",
+      "guest": "Michael Wong",
+      "host": "GG",
+      "recording": "Done",
+      "teaser_upload": "",
+      "teaser_release": "4/23/2026"
+    },
+    {
+      "season": "6",
+      "episode": "6",
+      "guest": "Clement Yeung",
+      "host": "Janice",
+      "recording": "Done",
+      "teaser_upload": "",
+      "teaser_release": "4/30/2026"
+    },
+    {
+      "season": "6",
+      "episode": "7",
+      "guest": "Eric Cheung",
+      "host": "GG",
+      "recording": "Done",
+      "teaser_upload": "",
+      "teaser_release": "5/7/2026"
+    },
+    {
+      "season": "6",
+      "episode": "8",
+      "guest": "Kristen Chin",
+      "host": "Jackie",
+      "recording": "Done",
+      "teaser_upload": "",
+      "teaser_release": "5/14/2026"
+    },
+    {
+      "season": "Nonsense",
+      "episode": "N/A",
+      "guest": "Tang East",
+      "host": "Community",
+      "recording": "Done",
+      "teaser_upload": "",
+      "teaser_release": "5/21/2026"
+    },
+    {
+      "season": "6",
+      "episode": "9",
+      "guest": "1 year Anniversary",
+      "host": "",
+      "recording": "",
+      "teaser_upload": "",
+      "teaser_release": "5/28/2026"
+    },
+    {
+      "season": "Nonsense",
+      "episode": "N/A",
+      "guest": "Ryan Kam Soccer",
+      "host": "",
+      "recording": "",
+      "teaser_upload": "",
+      "teaser_release": "5/28/2026"
+    },
+    {
+      "season": "Nonsense",
+      "episode": "N/A",
+      "guest": "2024 Soccer",
+      "host": "",
+      "recording": "",
+      "teaser_upload": "",
+      "teaser_release": "5/28/2026"
+    },
+    {
+      "season": "7",
+      "episode": "1",
+      "guest": "Jeff Shum",
+      "host": "",
+      "recording": "Done",
+      "teaser_upload": "",
+      "teaser_release": "6/4/2026"
+    },
+    {
+      "season": "7",
+      "episode": "2",
+      "guest": "Ms Wong MK",
+      "host": "",
+      "recording": "Done",
+      "teaser_upload": "",
+      "teaser_release": "6/11/2026"
+    },
+    {
+      "season": "7",
+      "episode": "3",
+      "guest": "Kevin Law",
+      "host": "",
+      "recording": "Mid April",
+      "teaser_upload": "",
+      "teaser_release": "6/18/2026"
+    },
+    {
+      "season": "7",
+      "episode": "4",
+      "guest": "Anthony Choi",
+      "host": "",
+      "recording": "Done",
+      "teaser_upload": "",
+      "teaser_release": "6/25/2026"
+    },
+    {
+      "season": "7",
+      "episode": "5",
+      "guest": "James Lam",
+      "host": "",
+      "recording": "Done",
+      "teaser_upload": "",
+      "teaser_release": "7/2/2026"
+    },
+    {
+      "season": "7",
+      "episode": "6",
+      "guest": "Arthur Mui",
+      "host": "",
+      "recording": "",
+      "teaser_upload": "",
+      "teaser_release": "7/9/2026"
+    },
+    {
+      "season": "7",
+      "episode": "7",
+      "guest": "Paulino Ho",
+      "host": "",
+      "recording": "",
+      "teaser_upload": "",
+      "teaser_release": "7/16/2026"
+    },
+    {
+      "season": "7",
+      "episode": "8",
+      "guest": "Geoffrey Ko",
+      "host": "",
+      "recording": "May 22",
+      "teaser_upload": "",
+      "teaser_release": "7/23/2026"
+    },
+    {
+      "season": "7",
+      "episode": "9",
+      "guest": "David Chen",
+      "host": "",
+      "recording": "",
+      "teaser_upload": "",
+      "teaser_release": "7/30/2026"
+    },
+    {
+      "season": "7",
+      "episode": "10",
+      "guest": "S7 Summary",
+      "host": "",
+      "recording": "",
+      "teaser_upload": "",
+      "teaser_release": "8/6/2026"
+    },
+    {
+      "season": "",
+      "episode": "",
+      "guest": "",
+      "host": "",
+      "recording": "",
+      "teaser_upload": "",
+      "teaser_release": ""
     },
     {
       "season": "Done",
-      "episode": "Ma Sir ",
-      "guest": "Done",
-      "interviewer": "",
-      "recording_date": "",
-      "release_date": ""
+      "episode": "",
+      "guest": "Ma Sir ",
+      "host": "",
+      "recording": "Done",
+      "teaser_upload": "",
+      "teaser_release": ""
     },
     {
       "season": "Agreed",
-      "episode": "Karita Kan",
-      "guest": "",
-      "interviewer": "",
-      "recording_date": "",
-      "release_date": ""
+      "episode": "",
+      "guest": "Karita Kan",
+      "host": "",
+      "recording": "",
+      "teaser_upload": "",
+      "teaser_release": ""
     },
     {
       "season": "Agreed",
-      "episode": "McDull",
-      "guest": "Losing Weight",
-      "interviewer": "",
-      "recording_date": "",
-      "release_date": ""
+      "episode": "",
+      "guest": "McDull",
+      "host": "",
+      "recording": "Losing Weight",
+      "teaser_upload": "",
+      "teaser_release": ""
     },
     {
       "season": "Agreed",
-      "episode": "Francis Tso",
-      "guest": "",
-      "interviewer": "",
-      "recording_date": "",
-      "release_date": ""
+      "episode": "",
+      "guest": "Francis Tso",
+      "host": "",
+      "recording": "",
+      "teaser_upload": "",
+      "teaser_release": ""
     },
     {
       "season": "Agreed",
-      "episode": "Cora Ling",
-      "guest": "",
-      "interviewer": "",
-      "recording_date": "",
-      "release_date": ""
+      "episode": "",
+      "guest": "Cora Ling",
+      "host": "",
+      "recording": "",
+      "teaser_upload": "",
+      "teaser_release": ""
     },
     {
       "season": "Agreed",
-      "episode": "Lok Man Lee",
-      "guest": "",
-      "interviewer": "",
-      "recording_date": "",
-      "release_date": ""
+      "episode": "",
+      "guest": "Lok Man Lee",
+      "host": "",
+      "recording": "",
+      "teaser_upload": "",
+      "teaser_release": ""
     },
     {
       "season": "Agreed",
-      "episode": "Nick Bong Lee",
-      "guest": "",
-      "interviewer": "",
-      "recording_date": "",
-      "release_date": ""
+      "episode": "",
+      "guest": "Nick Bong Lee",
+      "host": "",
+      "recording": "",
+      "teaser_upload": "",
+      "teaser_release": ""
     },
     {
       "season": "Agreed",
-      "episode": "Clement Pang",
-      "guest": "",
-      "interviewer": "",
-      "recording_date": "",
-      "release_date": ""
+      "episode": "",
+      "guest": "Clement Pang",
+      "host": "",
+      "recording": "",
+      "teaser_upload": "",
+      "teaser_release": ""
     },
     {
       "season": "Agreed",
-      "episode": "Zoie Teng",
-      "guest": "Check in later",
-      "interviewer": "",
-      "recording_date": "",
-      "release_date": ""
+      "episode": "",
+      "guest": "Zoie Teng",
+      "host": "",
+      "recording": "Check in later",
+      "teaser_upload": "",
+      "teaser_release": ""
     },
     {
       "season": "Agreed",
-      "episode": "Cherky",
-      "guest": "",
-      "interviewer": "",
-      "recording_date": "",
-      "release_date": ""
+      "episode": "",
+      "guest": "Cherky",
+      "host": "",
+      "recording": "",
+      "teaser_upload": "",
+      "teaser_release": ""
     },
     {
       "season": "Agreed",
-      "episode": "Michael Tsang",
-      "guest": "",
-      "interviewer": "",
-      "recording_date": "",
-      "release_date": ""
+      "episode": "",
+      "guest": "Michael Tsang",
+      "host": "",
+      "recording": "",
+      "teaser_upload": "",
+      "teaser_release": ""
     },
     {
       "season": "Agreed",
-      "episode": "Tak Yee Yung",
-      "guest": "",
-      "interviewer": "",
-      "recording_date": "",
-      "release_date": ""
+      "episode": "",
+      "guest": "Tak Yee Yung",
+      "host": "",
+      "recording": "",
+      "teaser_upload": "",
+      "teaser_release": ""
     },
     {
       "season": "Agreed",
-      "episode": "Chris Wong",
-      "guest": "",
-      "interviewer": "",
-      "recording_date": "",
-      "release_date": ""
+      "episode": "",
+      "guest": "Chris Wong",
+      "host": "",
+      "recording": "",
+      "teaser_upload": "",
+      "teaser_release": ""
     },
     {
       "season": "Agreed",
-      "episode": "Jason Kung",
-      "guest": "",
-      "interviewer": "",
-      "recording_date": "",
-      "release_date": ""
+      "episode": "",
+      "guest": "Jason Kung",
+      "host": "",
+      "recording": "",
+      "teaser_upload": "",
+      "teaser_release": ""
     },
     {
       "season": "Agreed",
-      "episode": "Wilson Lok",
-      "guest": "",
-      "interviewer": "",
-      "recording_date": "",
-      "release_date": ""
+      "episode": "",
+      "guest": "Wilson Lok",
+      "host": "",
+      "recording": "",
+      "teaser_upload": "",
+      "teaser_release": ""
     },
     {
       "season": "Agreed",
       "episode": "",
       "guest": "",
-      "interviewer": "",
-      "recording_date": "",
-      "release_date": ""
+      "host": "",
+      "recording": "",
+      "teaser_upload": "",
+      "teaser_release": ""
     },
     {
       "season": "Agreed",
       "episode": "",
       "guest": "",
-      "interviewer": "",
-      "recording_date": "",
-      "release_date": ""
+      "host": "",
+      "recording": "",
+      "teaser_upload": "",
+      "teaser_release": ""
     },
     {
       "season": "Agreed",
       "episode": "",
       "guest": "",
-      "interviewer": "",
-      "recording_date": "",
-      "release_date": ""
+      "host": "",
+      "recording": "",
+      "teaser_upload": "",
+      "teaser_release": ""
     },
     {
       "season": "",
       "episode": "",
       "guest": "",
-      "interviewer": "",
-      "recording_date": "",
-      "release_date": ""
+      "host": "",
+      "recording": "",
+      "teaser_upload": "",
+      "teaser_release": ""
     },
     {
       "season": "",
       "episode": "",
       "guest": "",
-      "interviewer": "",
-      "recording_date": "",
-      "release_date": ""
+      "host": "",
+      "recording": "",
+      "teaser_upload": "",
+      "teaser_release": ""
     },
     {
       "season": "",
-      "episode": "Kenneth King",
-      "guest": "",
-      "interviewer": "",
-      "recording_date": "",
-      "release_date": ""
+      "episode": "",
+      "guest": "Kenneth King",
+      "host": "",
+      "recording": "",
+      "teaser_upload": "",
+      "teaser_release": ""
     },
     {
       "season": "",
-      "episode": "Jon Tam",
-      "guest": "",
-      "interviewer": "",
-      "recording_date": "",
-      "release_date": ""
+      "episode": "",
+      "guest": "Jon Tam",
+      "host": "",
+      "recording": "",
+      "teaser_upload": "",
+      "teaser_release": ""
     },
     {
       "season": "",
-      "episode": "Lulu",
-      "guest": "",
-      "interviewer": "",
-      "recording_date": "",
-      "release_date": ""
+      "episode": "",
+      "guest": "Lulu",
+      "host": "",
+      "recording": "",
+      "teaser_upload": "",
+      "teaser_release": ""
     },
     {
       "season": "",
       "episode": "",
       "guest": "",
-      "interviewer": "",
-      "recording_date": "",
-      "release_date": ""
+      "host": "",
+      "recording": "",
+      "teaser_upload": "",
+      "teaser_release": ""
     },
     {
       "season": "??",
-      "episode": "James (Galen) Yip",
-      "guest": "",
-      "interviewer": "",
-      "recording_date": "",
-      "release_date": ""
+      "episode": "",
+      "guest": "James (Galen) Yip",
+      "host": "",
+      "recording": "",
+      "teaser_upload": "",
+      "teaser_release": ""
     },
     {
       "season": "",
       "episode": "",
       "guest": "",
-      "interviewer": "",
-      "recording_date": "",
-      "release_date": ""
+      "host": "",
+      "recording": "",
+      "teaser_upload": "",
+      "teaser_release": ""
     },
     {
       "season": "",
-      "episode": "Lo Duc Him",
-      "guest": "",
-      "interviewer": "",
-      "recording_date": "",
-      "release_date": ""
+      "episode": "",
+      "guest": "Lo Duc Him",
+      "host": "",
+      "recording": "",
+      "teaser_upload": "",
+      "teaser_release": ""
     },
     {
       "season": "",
-      "episode": "Beatrice Lau",
-      "guest": "",
-      "interviewer": "",
-      "recording_date": "",
-      "release_date": ""
+      "episode": "",
+      "guest": "Beatrice Lau",
+      "host": "",
+      "recording": "",
+      "teaser_upload": "",
+      "teaser_release": ""
     },
     {
       "season": "",
       "episode": "",
       "guest": "",
-      "interviewer": "",
-      "recording_date": "",
-      "release_date": ""
+      "host": "",
+      "recording": "",
+      "teaser_upload": "",
+      "teaser_release": ""
     },
     {
       "season": "",
-      "episode": "Tiff Leung",
-      "guest": "Check in in Nov",
-      "interviewer": "",
-      "recording_date": "",
-      "release_date": ""
+      "episode": "",
+      "guest": "Tiff Leung",
+      "host": "",
+      "recording": "Check in in Nov",
+      "teaser_upload": "",
+      "teaser_release": ""
     },
     {
       "season": "",
-      "episode": "Rachel Ma",
-      "guest": "",
-      "interviewer": "",
-      "recording_date": "",
-      "release_date": ""
+      "episode": "",
+      "guest": "Rachel Ma",
+      "host": "",
+      "recording": "",
+      "teaser_upload": "",
+      "teaser_release": ""
     },
     {
       "season": "",
-      "episode": "Finsen Chiu",
-      "guest": "",
-      "interviewer": "",
-      "recording_date": "",
-      "release_date": ""
+      "episode": "",
+      "guest": "Finsen Chiu",
+      "host": "",
+      "recording": "",
+      "teaser_upload": "",
+      "teaser_release": ""
     },
     {
       "season": "",
-      "episode": "Kelvin Lau",
-      "guest": "",
-      "interviewer": "",
-      "recording_date": "",
-      "release_date": ""
+      "episode": "",
+      "guest": "Kelvin Lau",
+      "host": "",
+      "recording": "",
+      "teaser_upload": "",
+      "teaser_release": ""
     },
     {
       "season": "",
-      "episode": "Ms Leung",
-      "guest": "",
-      "interviewer": "",
-      "recording_date": "",
-      "release_date": ""
+      "episode": "",
+      "guest": "Ms Leung",
+      "host": "",
+      "recording": "",
+      "teaser_upload": "",
+      "teaser_release": ""
     },
     {
       "season": "",
-      "episode": "Ms Yiu",
-      "guest": "",
-      "interviewer": "",
-      "recording_date": "",
-      "release_date": ""
+      "episode": "",
+      "guest": "Ms Yiu",
+      "host": "",
+      "recording": "",
+      "teaser_upload": "",
+      "teaser_release": ""
     },
     {
       "season": "",
       "episode": "",
       "guest": "",
-      "interviewer": "",
-      "recording_date": "",
-      "release_date": ""
+      "host": "",
+      "recording": "",
+      "teaser_upload": "",
+      "teaser_release": ""
     },
     {
       "season": "",
       "episode": "",
       "guest": "",
-      "interviewer": "",
-      "recording_date": "",
-      "release_date": ""
+      "host": "",
+      "recording": "",
+      "teaser_upload": "",
+      "teaser_release": ""
     },
     {
       "season": "",
       "episode": "",
       "guest": "",
-      "interviewer": "",
-      "recording_date": "",
-      "release_date": ""
+      "host": "",
+      "recording": "",
+      "teaser_upload": "",
+      "teaser_release": ""
     },
     {
       "season": "",
       "episode": "",
       "guest": "",
-      "interviewer": "",
-      "recording_date": "",
-      "release_date": ""
+      "host": "",
+      "recording": "",
+      "teaser_upload": "",
+      "teaser_release": ""
     },
     {
       "season": "",
       "episode": "",
       "guest": "",
-      "interviewer": "",
-      "recording_date": "",
-      "release_date": ""
+      "host": "",
+      "recording": "",
+      "teaser_upload": "",
+      "teaser_release": ""
     },
     {
       "season": "",
       "episode": "",
       "guest": "",
-      "interviewer": "",
-      "recording_date": "",
-      "release_date": ""
+      "host": "",
+      "recording": "",
+      "teaser_upload": "",
+      "teaser_release": ""
     },
     {
-      "season": "#REF!",
+      "season": "0",
       "episode": "",
       "guest": "",
-      "interviewer": "",
-      "recording_date": "",
-      "release_date": ""
+      "host": "",
+      "recording": "",
+      "teaser_upload": "",
+      "teaser_release": ""
     }
   ]
 }
