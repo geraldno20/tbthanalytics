@@ -804,6 +804,7 @@ function renderThreads() {
   const textColor = isDark ? '#AEAEB2' : '#6E6E73';
 
   // Open all chart sections so canvases have dimensions for Chart.js
+  // Only open sections that have data to render
   document.querySelectorAll('#th-tab details.chart-section').forEach(d => d.open = true);
 
   // Daily views chart
@@ -829,8 +830,9 @@ function renderThreads() {
     });
   }
 
-  // Follower count over time chart
+  // Follower count over time chart — hide if no data
   const followerHistory = thData.follower_history || [];
+  document.getElementById('th-followers-chart').closest('details').style.display = followerHistory.length ? '' : 'none';
   if (followerHistory.length) {
     new Chart(document.getElementById('th-followers-chart').getContext('2d'), {
       type: 'line',
@@ -854,9 +856,14 @@ function renderThreads() {
     });
   }
 
-  // Demographics charts
+  // Demographics charts — hide sections if no data
   const demo = thData.demographics || {};
-  if (Object.keys(demo).length) {
+  const hasDemos = Object.keys(demo).length > 0;
+  document.getElementById('th-demo-age').closest('details').style.display = hasDemos && demo.age ? '' : 'none';
+  document.getElementById('th-demo-gender').closest('details').style.display = hasDemos && demo.gender ? '' : 'none';
+  document.getElementById('th-demo-city').closest('details').style.display = hasDemos && demo.city && Object.keys(demo.city).length ? '' : 'none';
+
+  if (hasDemos) {
     // Age chart
     if (demo.age) {
       const ageGroups = ['13-17', '18-24', '25-34', '35-44', '45-54', '55-64', '65+'];
