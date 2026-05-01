@@ -22,8 +22,8 @@ CLIENT_SECRET = ROOT / "client_secret.json"
 SHEETS_TOKEN = ROOT / "sheets_token.json"
 SCOPES = ["https://www.googleapis.com/auth/spreadsheets.readonly"]
 
-SPREADSHEET_ID = "1Hw6-1enNE2QnSOVTtiMWGLNf6Kx7kUIfaBErJgvawog"
-RANGE = "Sheet1!A:F"
+SPREADSHEET_ID = "1PoUfMdia4D78XlpmOfQUogsGAfLVslvxokcKXD5Ylts"
+RANGE = "Scheduling!A:G"
 
 
 def get_sheets_credentials():
@@ -62,20 +62,20 @@ def run():
     print(f"  Columns: {headers}")
     print(f"  {len(rows) - 1} episodes found")
 
+    # Normalize headers to snake_case keys
+    def to_key(h):
+        return h.strip().lower().replace(" ", "_").replace("#", "num")
+
+    keys = [to_key(h) for h in headers]
+    print(f"  Keys: {keys}")
+
     episodes = []
     for row in rows[1:]:
         # Pad row to ensure we have all columns
         while len(row) < len(headers):
             row.append("")
 
-        episode = {
-            "season": row[0],
-            "episode": row[1],
-            "guest": row[2],
-            "interviewer": row[3],
-            "recording_date": row[4],
-            "release_date": row[5],
-        }
+        episode = {keys[i]: row[i] for i in range(len(keys))}
         episodes.append(episode)
 
     DATA_DIR.mkdir(parents=True, exist_ok=True)

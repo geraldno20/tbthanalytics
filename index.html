@@ -209,6 +209,7 @@
     <button class="platform-tab active" onclick="switchTab('yt')">YouTube</button>
     <button class="platform-tab" onclick="switchTab('ig')">Instagram</button>
     <button class="platform-tab" onclick="switchTab('th')">Threads</button>
+    <button class="platform-tab" onclick="switchTab('prod')">YouTube Production</button>
   </div>
 
   <div id="yt-tab" class="tab-content active">
@@ -435,6 +436,72 @@
     </div>
   </div><!-- end #th-tab -->
 
+  <div id="prod-tab" class="tab-content">
+    <div class="kpi-cards" id="prod-kpi-cards" style="margin-bottom:20px;">
+      <div class="kpi-card">
+        <div class="kpi-label">Episodes Aired</div>
+        <div class="kpi-value" id="prod-kpi-aired">—</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Planned / Scheduled</div>
+        <div class="kpi-value" id="prod-kpi-planned">—</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Agreed (Unscheduled)</div>
+        <div class="kpi-value" id="prod-kpi-agreed">—</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Declined</div>
+        <div class="kpi-value" id="prod-kpi-declined">—</div>
+      </div>
+    </div>
+
+    <details class="chart-section" open>
+      <summary>Episodes per Host</summary>
+      <div class="chart-body"><div class="chart-wrap"><canvas id="prod-host-chart"></canvas></div></div>
+    </details>
+
+    <details class="chart-section" open>
+      <summary>Episodes per Season</summary>
+      <div class="chart-body"><div class="chart-wrap"><canvas id="prod-season-chart"></canvas></div></div>
+    </details>
+
+    <div style="margin-bottom:12px;">
+      <div id="prod-season-filter" class="seg-control" style="display:inline-flex;gap:0;border:1px solid var(--border);border-radius:8px;overflow:hidden;">
+        <button class="active" data-prodseason="all" onclick="setProdSeasonFilter('all')" style="padding:6px 14px;font-size:12px;font-weight:600;border:none;cursor:pointer;background:var(--blue);color:#fff;">All</button>
+      </div>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr id="prod-header-row">
+            <th style="text-align:left;" class="sortable" data-col="season" onclick="sortProdTable('season')">Season <span class="arrow"></span></th>
+            <th style="text-align:left;" class="sortable" data-col="episode" onclick="sortProdTable('episode')">Ep# <span class="arrow"></span></th>
+            <th style="text-align:left;" class="sortable" data-col="guest" onclick="sortProdTable('guest')">Guest <span class="arrow"></span></th>
+            <th style="text-align:left;" class="sortable" data-col="host" onclick="sortProdTable('host')">Host <span class="arrow"></span></th>
+            <th style="text-align:left;">Recording</th>
+            <th style="text-align:left;">Upload</th>
+            <th style="text-align:left;" class="sortable" data-col="teaser_release" onclick="sortProdTable('teaser_release')">Release Date <span class="arrow"></span></th>
+          </tr>
+        </thead>
+        <tbody id="prod-table-body"></tbody>
+      </table>
+    </div>
+
+    <div id="prod-no-data" style="text-align:center;padding:60px 20px;color:var(--text3);">
+      <p style="font-size:18px;font-weight:600;margin-bottom:8px;">Episode data not yet configured</p>
+      <p style="font-size:13px;">Run <code>python3 fetch_episodes.py</code> after setting up Sheets API access.</p>
+    </div>
+
+    <details class="chart-section" id="prod-agreed-section" style="display:none;">
+      <summary>Agreed Guests (Unscheduled)</summary>
+      <div class="chart-body">
+        <div id="prod-agreed-list" style="display:flex;flex-wrap:wrap;gap:8px;"></div>
+      </div>
+    </details>
+  </div><!-- end #prod-tab -->
+
   <!-- Thumbnail tooltip -->
   <div class="thumb-tip" id="thumb-tip"><img id="thumb-img" src=""></div>
 
@@ -448,6 +515,7 @@ function switchTab(tab) {
 
   if (tab === 'ig') loadInstagram();
   if (tab === 'th') loadThreads();
+  if (tab === 'prod') loadProduction();
 }
 
 // --- Instagram ---
@@ -1714,6 +1782,288 @@ function render() {
 }
 
 // --- Cross-Platform Summary ---
+// --- YouTube Production ---
+let prodLoaded = false;
+let prodData = null;
+let prodSortCol = null;
+let prodSortAsc = true;
+let prodSeasonFilter = 'all';
+
+function parseReleaseDate(str) {
+  if (!str || str === '-' || str === 'N/A') return null;
+  // Handle "3/26 and 4/3" — take the first date
+  const first = str.split(/\s+and\s+/i)[0].trim();
+  // Try M/D/YYYY or M/D/YY
+  const parts = first.split('/');
+  if (parts.length < 2) return null;
+  let m = parseInt(parts[0]), d = parseInt(parts[1]);
+  let y = parts[2] ? parseInt(parts[2]) : null;
+  if (!y || isNaN(m) || isNaN(d)) return null;
+  if (y < 100) y += 2000;
+  return new Date(y, m - 1, d);
+}
+
+function isNumericSeason(s) {
+  return /^\d+$/.test(s);
+}
+
+function setProdSeasonFilter(s) {
+  prodSeasonFilter = s;
+  document.querySelectorAll('#prod-season-filter button').forEach(b => {
+    const active = b.dataset.prodseason === s;
+    b.classList.toggle('active', active);
+    b.style.background = active ? 'var(--blue)' : 'var(--card)';
+    b.style.color = active ? '#fff' : 'var(--text2)';
+  });
+  renderProdTable();
+}
+
+function sortProdTable(col) {
+  if (prodSortCol === col) { prodSortAsc = !prodSortAsc; }
+  else { prodSortCol = col; prodSortAsc = true; }
+  renderProdTable();
+}
+
+async function loadProduction() {
+  if (prodLoaded) return;
+  prodLoaded = true;
+  try {
+    const resp = await fetch('data/episodes.json');
+    if (!resp.ok) return;
+    prodData = await resp.json();
+    document.getElementById('prod-no-data').style.display = 'none';
+    renderProduction();
+  } catch (e) {
+    prodLoaded = false;
+  }
+}
+
+function renderProduction() {
+  if (!prodData || !prodData.episodes) return;
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  const eps = prodData.episodes.filter(e => e.guest && e.guest.trim() && e.season !== '-' && e.season !== '');
+
+  // Categorize
+  let aired = 0, planned = 0, agreed = 0, declined = 0;
+  const scheduled = []; // episodes with numeric season
+  const seasons = new Set();
+  const hostCounts = {};
+
+  eps.forEach(ep => {
+    const s = ep.season;
+    if (s === 'Agreed') {
+      if (ep.guest.trim()) agreed++;
+      return;
+    }
+    if (s === 'Declined' || s === 'No') {
+      declined++;
+      return;
+    }
+    if (s === 'Nonsense' || s === 'Done' || s === '??' || s === '0' || s === '#REF!') {
+      // Special content — count as scheduled if it has a date
+      if (s === 'Nonsense') {
+        const rd = parseReleaseDate(ep.teaser_release);
+        if (rd && rd <= today) aired++;
+        else if (rd) planned++;
+        else aired++; // Nonsense with no date, assume aired
+      }
+      // Count hosts for Nonsense too
+      if (ep.host && ep.host !== '-') {
+        ep.host.split(/[&,+]/).map(h => h.trim()).filter(Boolean).forEach(h => {
+          hostCounts[h] = (hostCounts[h] || 0) + 1;
+        });
+      }
+      scheduled.push(ep);
+      if (s === 'Nonsense') seasons.add('Nonsense');
+      return;
+    }
+    if (!isNumericSeason(s)) return;
+
+    seasons.add('S' + s);
+    scheduled.push(ep);
+
+    const rd = parseReleaseDate(ep.teaser_release);
+    if (rd && rd <= today) aired++;
+    else planned++;
+
+    // Count hosts
+    if (ep.host && ep.host !== '-') {
+      ep.host.split(/[&,+]/).map(h => h.trim()).filter(Boolean).forEach(h => {
+        hostCounts[h] = (hostCounts[h] || 0) + 1;
+      });
+    }
+  });
+
+  // KPIs
+  document.getElementById('prod-kpi-aired').textContent = aired;
+  document.getElementById('prod-kpi-planned').textContent = planned;
+  document.getElementById('prod-kpi-agreed').textContent = agreed;
+  document.getElementById('prod-kpi-declined').textContent = declined;
+
+  // Build season filter buttons
+  const filterEl = document.getElementById('prod-season-filter');
+  const sortedSeasons = [...seasons].sort((a, b) => {
+    if (a === 'Nonsense') return 1;
+    if (b === 'Nonsense') return -1;
+    return parseInt(a.replace('S', '')) - parseInt(b.replace('S', ''));
+  });
+  filterEl.innerHTML = '<button class="active" data-prodseason="all" onclick="setProdSeasonFilter(\'all\')" style="padding:6px 14px;font-size:12px;font-weight:600;border:none;cursor:pointer;background:var(--blue);color:#fff;">All</button>';
+  sortedSeasons.forEach(s => {
+    filterEl.innerHTML += `<button data-prodseason="${s}" onclick="setProdSeasonFilter('${s}')" style="padding:6px 14px;font-size:12px;font-weight:600;border:none;cursor:pointer;background:var(--card);color:var(--text2);">${s}</button>`;
+  });
+
+  // Open chart sections for proper rendering
+  document.querySelectorAll('#prod-tab details.chart-section').forEach(d => d.open = true);
+
+  // Host Pareto Chart
+  requestAnimationFrame(() => {
+    const sortedHosts = Object.entries(hostCounts).sort((a, b) => b[1] - a[1]);
+    const hostCtx = document.getElementById('prod-host-chart');
+    if (hostCtx._chart) hostCtx._chart.destroy();
+    hostCtx._chart = new Chart(hostCtx, {
+      type: 'bar',
+      data: {
+        labels: sortedHosts.map(h => h[0]),
+        datasets: [{
+          label: 'Episodes Hosted',
+          data: sortedHosts.map(h => h[1]),
+          backgroundColor: '#007AFF',
+          borderRadius: 4,
+        }]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: {
+          y: { beginAtZero: true, ticks: { precision: 0, color: 'var(--text3)' }, grid: { color: 'var(--border)' } },
+          x: { ticks: { color: 'var(--text3)' }, grid: { display: false } }
+        }
+      }
+    });
+
+    // Season episode count chart
+    const seasonCounts = {};
+    scheduled.forEach(ep => {
+      const label = isNumericSeason(ep.season) ? 'S' + ep.season : ep.season;
+      seasonCounts[label] = (seasonCounts[label] || 0) + 1;
+    });
+    const seasonLabels = sortedSeasons.filter(s => seasonCounts[s]);
+    const seasonCtx = document.getElementById('prod-season-chart');
+    if (seasonCtx._chart) seasonCtx._chart.destroy();
+    seasonCtx._chart = new Chart(seasonCtx, {
+      type: 'bar',
+      data: {
+        labels: seasonLabels,
+        datasets: [{
+          label: 'Episodes',
+          data: seasonLabels.map(s => seasonCounts[s] || 0),
+          backgroundColor: '#34C759',
+          borderRadius: 4,
+        }]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: {
+          y: { beginAtZero: true, ticks: { precision: 0, color: 'var(--text3)' }, grid: { color: 'var(--border)' } },
+          x: { ticks: { color: 'var(--text3)' }, grid: { display: false } }
+        }
+      }
+    });
+  });
+
+  // Store for table rendering
+  window._prodScheduled = scheduled;
+  renderProdTable();
+
+  // Agreed guests list
+  const agreedGuests = eps.filter(e => e.season === 'Agreed' && e.guest.trim());
+  if (agreedGuests.length) {
+    document.getElementById('prod-agreed-section').style.display = '';
+    document.getElementById('prod-agreed-list').innerHTML = agreedGuests.map(e => {
+      const note = e.recording && e.recording !== '-' ? ` <span style="font-size:11px;color:var(--text3);">(${e.recording})</span>` : '';
+      return `<span class="badge" style="background:var(--bg);color:var(--text);padding:6px 12px;font-size:13px;border:1px solid var(--border);border-radius:8px;">${e.guest}${note}</span>`;
+    }).join('');
+  }
+}
+
+function renderProdTable() {
+  const tbody = document.getElementById('prod-table-body');
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  let rows = window._prodScheduled || [];
+
+  // Filter by season
+  if (prodSeasonFilter !== 'all') {
+    rows = rows.filter(ep => {
+      const label = isNumericSeason(ep.season) ? 'S' + ep.season : ep.season;
+      return label === prodSeasonFilter;
+    });
+  }
+
+  // Sort
+  if (prodSortCol) {
+    rows = [...rows].sort((a, b) => {
+      let va = a[prodSortCol] || '', vb = b[prodSortCol] || '';
+      if (prodSortCol === 'season' || prodSortCol === 'episode') {
+        va = parseInt(va) || 9999;
+        vb = parseInt(vb) || 9999;
+      } else if (prodSortCol === 'teaser_release') {
+        va = parseReleaseDate(va) || new Date(9999, 0);
+        vb = parseReleaseDate(vb) || new Date(9999, 0);
+        return prodSortAsc ? va - vb : vb - va;
+      }
+      if (va < vb) return prodSortAsc ? -1 : 1;
+      if (va > vb) return prodSortAsc ? 1 : -1;
+      return 0;
+    });
+  }
+
+  // Update sort arrows
+  document.querySelectorAll('#prod-header-row th.sortable .arrow').forEach(a => a.textContent = '');
+  if (prodSortCol) {
+    const th = document.querySelector(`#prod-header-row th[data-col="${prodSortCol}"] .arrow`);
+    if (th) th.textContent = prodSortAsc ? ' \u25B2' : ' \u25BC';
+  }
+
+  tbody.innerHTML = rows.map(ep => {
+    const rd = parseReleaseDate(ep.teaser_release);
+    const isPast = rd && rd <= today;
+    const isFuture = rd && rd > today;
+
+    // Status badges
+    let recBadge = '';
+    if (ep.recording === 'Done') recBadge = '<span class="badge" style="background:#34C75915;color:#34C759;">Done</span>';
+    else if (ep.recording === '-') recBadge = '<span style="color:var(--text3);">—</span>';
+    else if (ep.recording) recBadge = `<span class="badge" style="background:#FF950015;color:#FF9500;">${ep.recording}</span>`;
+    else recBadge = '<span style="color:var(--text3);">—</span>';
+
+    let uploadBadge = '';
+    if (ep.teaser_upload === 'Complete') uploadBadge = '<span class="badge" style="background:#34C75915;color:#34C759;">Complete</span>';
+    else if (ep.teaser_upload === '-') uploadBadge = '<span style="color:var(--text3);">—</span>';
+    else uploadBadge = '<span style="color:var(--text3);">—</span>';
+
+    let relDate = ep.teaser_release || '—';
+    if (isFuture) relDate = `<span style="color:var(--blue);font-weight:500;">${relDate}</span>`;
+    else if (isPast) relDate = `<span style="color:var(--text3);">${relDate}</span>`;
+
+    const seasonLabel = isNumericSeason(ep.season) ? 'S' + ep.season : ep.season;
+
+    return `<tr>
+      <td style="text-align:left;">${seasonLabel}</td>
+      <td style="text-align:left;">${ep.episode || '—'}</td>
+      <td style="text-align:left;font-weight:500;">${ep.guest}</td>
+      <td style="text-align:left;">${ep.host || '—'}</td>
+      <td style="text-align:left;">${recBadge}</td>
+      <td style="text-align:left;">${uploadBadge}</td>
+      <td style="text-align:left;">${relDate}</td>
+    </tr>`;
+  }).join('');
+}
+
 function renderCrossPlatform() {
   const ytSubs = channelSummary.subscribers || 0;
   const ytSubsChange = channelSummary.subs_30d_change || 0;
