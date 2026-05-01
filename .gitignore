@@ -1,6 +1,7 @@
 __pycache__/
 client_secret.json
 token.json
+sheets_token.json
 ig_token.json
 threads_token.json
 test_*.py
