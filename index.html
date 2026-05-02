@@ -179,6 +179,21 @@
     .content-type-card .type-metric .val { font-size: 18px; font-weight: 700; color: var(--text); }
     .content-type-card .type-metric .lbl { font-size: 10px; color: var(--text3); text-transform: uppercase; letter-spacing: 0.3px; }
     .content-type-card .type-metric .winner { color: var(--green); }
+
+    /* Print / PDF export */
+    @media print {
+      body { background: #fff; color: #000; padding: 16px; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .toggle-btn, .seg-control, .search-input, .platform-tabs, .cmp-check, .compare-panel, #fin-filters { display: none !important; }
+      .tab-content { display: none !important; }
+      .tab-content.print-active { display: block !important; }
+      .chart-section { break-inside: avoid; box-shadow: none; border: 1px solid #ddd; }
+      .chart-section[open] summary::before { content: ''; }
+      details.chart-section { open: true; }
+      .table-wrap { box-shadow: none; border: 1px solid #ddd; }
+      .kpi-card { box-shadow: none; border: 1px solid #ddd; }
+      .header img { height: 60px; }
+      canvas { max-height: 200px; }
+    }
   </style>
 </head>
 <body class="dark">
@@ -206,6 +221,7 @@
       </div>
     </div>
     <button class="toggle-btn active" id="dark-toggle" onclick="toggleDark()" style="align-self:flex-start;margin-top:8px;">Dark Mode</button>
+    <button class="toggle-btn" onclick="exportPDF()" style="align-self:flex-start;margin-top:8px;">Export PDF</button>
   </div>
 
   <div class="cross-summary" id="cross-summary"></div>
@@ -598,7 +614,17 @@
       <div class="chart-body"><div class="chart-wrap"><canvas id="fin-monthly-chart"></canvas></div></div>
     </details>
 
-    <div class="table-wrap" style="margin-top:20px;">
+    <div class="controls" id="fin-filters" style="margin-top:20px;">
+      <select class="search-input" id="fin-filter-category" onchange="renderFinances()" style="width:160px;">
+        <option value="all">All Categories</option>
+      </select>
+      <select class="search-input" id="fin-filter-payer" onchange="renderFinances()" style="width:140px;">
+        <option value="all">All Payers</option>
+      </select>
+      <input class="search-input" id="fin-search" placeholder="Search expenses..." oninput="renderFinances()" style="width:180px;">
+    </div>
+
+    <div class="table-wrap" style="margin-top:12px;">
       <table>
         <thead><tr id="fin-header-row"></tr></thead>
         <tbody id="fin-table-body"></tbody>
@@ -1303,6 +1329,22 @@ function toggleDark() {
   renderAVDChart();
   renderRetentionChart();
   renderScatterChart();
+}
+
+function exportPDF() {
+  // Mark the active tab for print
+  const activeTab = document.querySelector('.tab-content.active');
+  if (activeTab) activeTab.classList.add('print-active');
+  // Open all details for print
+  const closedDetails = [];
+  document.querySelectorAll('.tab-content.active details:not([open])').forEach(d => {
+    d.open = true;
+    closedDetails.push(d);
+  });
+  window.print();
+  // Restore after print
+  if (activeTab) activeTab.classList.remove('print-active');
+  closedDetails.forEach(d => d.open = false);
 }
 
 // --- Season filter ---
@@ -2614,12 +2656,37 @@ function renderFinances() {
     };
   }).filter(r => r.rawAmount > 0);
 
-  // KPIs
-  const total = rows.reduce((s, r) => s + r.amountNum, 0);
+  // Populate filter dropdowns (preserve current selection)
+  const allCategories = [...new Set(rows.map(r => r.category))].sort();
+  const allPayers = [...new Set(rows.map(r => r.paid_by && r.paid_by.trim() ? r.paid_by.trim() : 'Unassigned'))].sort();
+
+  const catSelect = document.getElementById('fin-filter-category');
+  const curCatVal = catSelect.value;
+  catSelect.innerHTML = '<option value="all">All Categories</option>' + allCategories.map(c => `<option value="${c}" ${c === curCatVal ? 'selected' : ''}>${c}</option>`).join('');
+
+  const paySelect = document.getElementById('fin-filter-payer');
+  const curPayVal = paySelect.value;
+  paySelect.innerHTML = '<option value="all">All Payers</option>' + allPayers.map(p => `<option value="${p}" ${p === curPayVal ? 'selected' : ''}>${p}</option>`).join('');
+
+  // Apply filters
+  const filterCat = catSelect.value;
+  const filterPayer = paySelect.value;
+  const filterSearch = (document.getElementById('fin-search').value || '').toLowerCase();
+
+  const filtered = rows.filter(r => {
+    if (filterCat !== 'all' && r.category !== filterCat) return false;
+    const payer = r.paid_by && r.paid_by.trim() ? r.paid_by.trim() : 'Unassigned';
+    if (filterPayer !== 'all' && payer !== filterPayer) return false;
+    if (filterSearch && !r.expense.toLowerCase().includes(filterSearch) && !r.category.toLowerCase().includes(filterSearch)) return false;
+    return true;
+  });
+
+  // KPIs (based on filtered)
+  const total = filtered.reduce((s, r) => s + r.amountNum, 0);
   const now = new Date();
-  const thisMonth = rows.filter(r => r.dateObj && r.dateObj.getMonth() === now.getMonth() && r.dateObj.getFullYear() === now.getFullYear());
+  const thisMonth = filtered.filter(r => r.dateObj && r.dateObj.getMonth() === now.getMonth() && r.dateObj.getFullYear() === now.getFullYear());
   const monthTotal = thisMonth.reduce((s, r) => s + r.amountNum, 0);
-  const categories = [...new Set(rows.map(r => r.category))];
+  const categories = [...new Set(filtered.map(r => r.category))];
 
   // Cost per episode — use prodData if available
   let airedCount = 0;
@@ -2639,7 +2706,7 @@ function renderFinances() {
 
   // Category chart (doughnut)
   const catTotals = {};
-  rows.forEach(r => { catTotals[r.category] = (catTotals[r.category] || 0) + r.amountNum; });
+  filtered.forEach(r => { catTotals[r.category] = (catTotals[r.category] || 0) + r.amountNum; });
   const catLabels = Object.keys(catTotals).sort((a, b) => catTotals[b] - catTotals[a]);
   const catColors = ['#007AFF', '#34C759', '#FF9500', '#AF52DE', '#FF375F', '#5AC8FA'];
 
@@ -2666,7 +2733,7 @@ function renderFinances() {
 
   // Payer chart
   const payerTotals = {};
-  rows.forEach(r => {
+  filtered.forEach(r => {
     const payer = r.paid_by && r.paid_by.trim() ? r.paid_by.trim() : 'Unassigned';
     payerTotals[payer] = (payerTotals[payer] || 0) + r.amountNum;
   });
@@ -2696,7 +2763,7 @@ function renderFinances() {
 
   // Monthly spending over time
   const monthlyTotals = {};
-  rows.forEach(r => {
+  filtered.forEach(r => {
     if (!r.dateObj) return;
     const key = `${r.dateObj.getFullYear()}-${String(r.dateObj.getMonth() + 1).padStart(2, '0')}`;
     monthlyTotals[key] = (monthlyTotals[key] || 0) + r.amountNum;
@@ -2750,7 +2817,7 @@ function renderFinances() {
       `<th style="cursor:pointer;text-align:left;" data-fin-col="${c.key}">${c.label}${arrow(c.key)}</th>`
     ).join('');
 
-    const sorted = [...rows].sort((a, b) => {
+    const sorted = [...filtered].sort((a, b) => {
       if (finSortCol === 'dateObj' || finSortCol === 'date') {
         const da = a.dateObj || new Date(0), db = b.dateObj || new Date(0);
         return finSortAsc ? da - db : db - da;
