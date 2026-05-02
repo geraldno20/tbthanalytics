@@ -473,6 +473,24 @@
     </div>
 
     <details class="chart-section" open>
+      <summary>Content Calendar</summary>
+      <div class="chart-body">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
+          <button class="toggle-btn" onclick="changeCalMonth(-1)" style="padding:6px 10px;">&#9664;</button>
+          <span id="cal-month-label" style="font-size:14px;font-weight:600;min-width:140px;text-align:center;"></span>
+          <button class="toggle-btn" onclick="changeCalMonth(1)" style="padding:6px 10px;">&#9654;</button>
+          <button class="toggle-btn" onclick="calToday()" style="font-size:11px;">Today</button>
+        </div>
+        <div id="cal-grid" style="display:grid;grid-template-columns:repeat(7,1fr);gap:2px;"></div>
+        <div style="margin-top:10px;display:flex;gap:16px;font-size:11px;color:var(--text3);">
+          <span><span style="display:inline-block;width:10px;height:10px;border-radius:3px;background:#34C759;vertical-align:middle;margin-right:4px;"></span>Aired</span>
+          <span><span style="display:inline-block;width:10px;height:10px;border-radius:3px;background:var(--blue);vertical-align:middle;margin-right:4px;"></span>Upcoming</span>
+          <span><span style="display:inline-block;width:10px;height:10px;border-radius:3px;background:#FF9500;vertical-align:middle;margin-right:4px;"></span>Recording</span>
+        </div>
+      </div>
+    </details>
+
+    <details class="chart-section" open>
       <summary>Episodes per Host</summary>
       <div class="chart-body"><div class="chart-wrap"><canvas id="prod-host-chart"></canvas></div></div>
     </details>
@@ -520,24 +538,6 @@
       <p style="font-size:18px;font-weight:600;margin-bottom:8px;">Episode data not yet configured</p>
       <p style="font-size:13px;">Run <code>python3 fetch_episodes.py</code> after setting up Sheets API access.</p>
     </div>
-
-    <details class="chart-section" open>
-      <summary>Content Calendar</summary>
-      <div class="chart-body">
-        <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
-          <button class="toggle-btn" onclick="changeCalMonth(-1)" style="padding:6px 10px;">&#9664;</button>
-          <span id="cal-month-label" style="font-size:14px;font-weight:600;min-width:140px;text-align:center;"></span>
-          <button class="toggle-btn" onclick="changeCalMonth(1)" style="padding:6px 10px;">&#9654;</button>
-          <button class="toggle-btn" onclick="calToday()" style="font-size:11px;">Today</button>
-        </div>
-        <div id="cal-grid" style="display:grid;grid-template-columns:repeat(7,1fr);gap:2px;"></div>
-        <div style="margin-top:10px;display:flex;gap:16px;font-size:11px;color:var(--text3);">
-          <span><span style="display:inline-block;width:10px;height:10px;border-radius:3px;background:#34C759;vertical-align:middle;margin-right:4px;"></span>Aired</span>
-          <span><span style="display:inline-block;width:10px;height:10px;border-radius:3px;background:var(--blue);vertical-align:middle;margin-right:4px;"></span>Upcoming</span>
-          <span><span style="display:inline-block;width:10px;height:10px;border-radius:3px;background:#FF9500;vertical-align:middle;margin-right:4px;"></span>Recording</span>
-        </div>
-      </div>
-    </details>
 
     <details class="chart-section" id="prod-agreed-section" style="display:none;">
       <summary>Agreed Guests (Unscheduled)</summary>
