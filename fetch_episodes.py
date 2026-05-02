@@ -1,7 +1,7 @@
 """
-Fetches episode metadata from Google Sheets.
+Fetches episode metadata and expenses from Google Sheets.
 Reads season, episode, guest, interviewer, recording date, release date.
-Saves results to data/episodes.json.
+Saves results to data/episodes.json and data/expenses.json.
 
 Uses separate OAuth credentials from YouTube since the Sheet may be
 owned by a different Google account. Stores token in sheets_token.json.
@@ -86,6 +86,41 @@ def run():
     }
     output.write_text(json.dumps(output_data, indent=2, ensure_ascii=False))
     print(f"\nSaved {len(episodes)} episodes to {output}")
+
+    # Fetch Expenses tab
+    print("\nFetching expenses from Google Sheets...")
+    try:
+        exp_result = sheets.spreadsheets().values().get(
+            spreadsheetId=SPREADSHEET_ID,
+            range="Expenses!A:Z",
+        ).execute()
+
+        exp_rows = exp_result.get("values", [])
+        if exp_rows:
+            exp_headers = exp_rows[0]
+            print(f"  Columns: {exp_headers}")
+            print(f"  {len(exp_rows) - 1} expense rows found")
+
+            exp_keys = [to_key(h) for h in exp_headers]
+            print(f"  Keys: {exp_keys}")
+
+            expenses = []
+            for row in exp_rows[1:]:
+                while len(row) < len(exp_headers):
+                    row.append("")
+                expenses.append({exp_keys[i]: row[i] for i in range(len(exp_keys))})
+
+            exp_output = DATA_DIR / "expenses.json"
+            exp_data = {
+                "fetched_at": datetime.now().strftime("%Y-%m-%d %H:%M"),
+                "expenses": expenses,
+            }
+            exp_output.write_text(json.dumps(exp_data, indent=2, ensure_ascii=False))
+            print(f"Saved {len(expenses)} expenses to {exp_output}")
+        else:
+            print("  No expense data found.")
+    except Exception as e:
+        print(f"  Error fetching expenses: {e}")
 
 
 if __name__ == "__main__":

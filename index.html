@@ -184,7 +184,7 @@
 <body class="dark">
   <div class="header">
     <div class="header-left">
-      <img src="logo.png" alt="TBTH">
+      <img src="logo.png" alt="TBTH" ondblclick="toggleFinancesTab()" style="cursor:default;" title="">
       <div>
         <h1>TBTH Analytics</h1>
         <div class="subtitle" id="subtitle">Loading...</div>
@@ -555,6 +555,50 @@
     </details>
   </div><!-- end #prod-tab -->
 
+  <div id="fin-tab" class="tab-content">
+    <div class="kpi-cards" id="fin-kpi-cards" style="margin-bottom:20px;">
+      <div class="kpi-card">
+        <div class="kpi-label">Total Spent</div>
+        <div class="kpi-value" id="fin-kpi-total">—</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">This Month</div>
+        <div class="kpi-value" id="fin-kpi-month">—</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Categories</div>
+        <div class="kpi-value" id="fin-kpi-categories">—</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Cost per Episode</div>
+        <div class="kpi-value" id="fin-kpi-per-ep">—</div>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:20px;">
+      <details class="chart-section" open>
+        <summary>Spending by Category</summary>
+        <div class="chart-body"><div class="chart-wrap"><canvas id="fin-category-chart"></canvas></div></div>
+      </details>
+      <details class="chart-section" open>
+        <summary>Spending by Payer</summary>
+        <div class="chart-body"><div class="chart-wrap"><canvas id="fin-payer-chart"></canvas></div></div>
+      </details>
+    </div>
+
+    <details class="chart-section" open>
+      <summary>Monthly Spending Over Time</summary>
+      <div class="chart-body"><div class="chart-wrap"><canvas id="fin-monthly-chart"></canvas></div></div>
+    </details>
+
+    <div class="table-wrap" style="margin-top:20px;">
+      <table>
+        <thead><tr id="fin-header-row"></tr></thead>
+        <tbody id="fin-table-body"></tbody>
+      </table>
+    </div>
+  </div><!-- end #fin-tab -->
+
   <!-- Thumbnail tooltip -->
   <div class="thumb-tip" id="thumb-tip"><img id="thumb-img" src=""></div>
 
@@ -569,6 +613,7 @@ function switchTab(tab) {
   if (tab === 'ig') loadInstagram();
   if (tab === 'th') loadThreads();
   if (tab === 'prod') loadProduction();
+  if (tab === 'fin') loadFinances();
 }
 
 // --- Instagram ---
@@ -2462,6 +2507,234 @@ function renderCalendar() {
 
   renderMonth('cal-grid-left', calYear, calMonth);
   renderMonth('cal-grid-right', cal2Year, cal2Month);
+}
+
+// --- Finances ---
+let finLoaded = false;
+let finData = null;
+
+function toggleFinancesTab() {
+  const existing = document.querySelector('.platform-tab[onclick="switchTab(\'fin\')"]');
+  if (existing) {
+    // Already visible — switch to it
+    switchTab('fin');
+    return;
+  }
+  const btn = document.createElement('button');
+  btn.className = 'platform-tab';
+  btn.onclick = () => switchTab('fin');
+  btn.setAttribute('onclick', "switchTab('fin')");
+  btn.textContent = 'Finances';
+  document.querySelector('.platform-tabs').appendChild(btn);
+  switchTab('fin');
+}
+
+function parseExpenseDate(str) {
+  if (!str) return null;
+  const parts = str.split('/');
+  if (parts.length < 3) return null;
+  let m = parseInt(parts[0]), d = parseInt(parts[1]), y = parseInt(parts[2]);
+  if (isNaN(m) || isNaN(d) || isNaN(y)) return null;
+  if (y < 100) y += 2000;
+  return new Date(y, m - 1, d);
+}
+
+async function loadFinances() {
+  if (finLoaded) return;
+  finLoaded = true;
+  try {
+    const resp = await fetch('data/expenses.json');
+    if (!resp.ok) return;
+    finData = await resp.json();
+    renderFinances();
+  } catch (e) {
+    finLoaded = false;
+  }
+}
+
+function renderFinances() {
+  if (!finData || !finData.expenses) return;
+  const isDark = document.body.classList.contains('dark');
+  const gridColor = isDark ? '#3A3A3C' : '#E5E5EA';
+  const textColor = isDark ? '#AEAEB2' : '#6E6E73';
+
+  // Filter out empty rows
+  const expenses = finData.expenses.filter(e => e.category && e.amount);
+
+  // Parse amounts
+  const rows = expenses.map(e => ({
+    ...e,
+    amountNum: parseFloat(e.amount) || 0,
+    dateObj: parseExpenseDate(e.date),
+  })).filter(r => r.amountNum > 0);
+
+  // KPIs
+  const total = rows.reduce((s, r) => s + r.amountNum, 0);
+  const now = new Date();
+  const thisMonth = rows.filter(r => r.dateObj && r.dateObj.getMonth() === now.getMonth() && r.dateObj.getFullYear() === now.getFullYear());
+  const monthTotal = thisMonth.reduce((s, r) => s + r.amountNum, 0);
+  const categories = [...new Set(rows.map(r => r.category))];
+
+  // Cost per episode — use prodData if available
+  let airedCount = 0;
+  if (prodData && prodData.episodes) {
+    const today = new Date(); today.setHours(0,0,0,0);
+    prodData.episodes.forEach(ep => {
+      if (!ep.guest || !ep.guest.trim() || !isNumericSeason(ep.season)) return;
+      const rd = parseReleaseDate(ep.episode_release);
+      if (rd && rd <= today) airedCount++;
+    });
+  }
+
+  document.getElementById('fin-kpi-total').textContent = '$' + total.toFixed(2);
+  document.getElementById('fin-kpi-month').textContent = '$' + monthTotal.toFixed(2);
+  document.getElementById('fin-kpi-categories').textContent = categories.length;
+  document.getElementById('fin-kpi-per-ep').textContent = airedCount > 0 ? '$' + (total / airedCount).toFixed(2) : '—';
+
+  // Category chart (doughnut)
+  const catTotals = {};
+  rows.forEach(r => { catTotals[r.category] = (catTotals[r.category] || 0) + r.amountNum; });
+  const catLabels = Object.keys(catTotals).sort((a, b) => catTotals[b] - catTotals[a]);
+  const catColors = ['#007AFF', '#34C759', '#FF9500', '#AF52DE', '#FF375F', '#5AC8FA'];
+
+  const catCtx = document.getElementById('fin-category-chart');
+  if (catCtx._chart) catCtx._chart.destroy();
+  catCtx._chart = new Chart(catCtx, {
+    type: 'doughnut',
+    data: {
+      labels: catLabels,
+      datasets: [{
+        data: catLabels.map(c => Math.round(catTotals[c] * 100) / 100),
+        backgroundColor: catLabels.map((_, i) => catColors[i % catColors.length]),
+        borderWidth: 0,
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: {
+        legend: { position: 'bottom', labels: { font: { size: 11 }, color: textColor } },
+        tooltip: { callbacks: { label: ctx => `${ctx.label}: $${ctx.raw.toFixed(2)}` } },
+      },
+    }
+  });
+
+  // Payer chart
+  const payerTotals = {};
+  rows.forEach(r => {
+    const payer = r.paid_by && r.paid_by.trim() ? r.paid_by.trim() : 'Unassigned';
+    payerTotals[payer] = (payerTotals[payer] || 0) + r.amountNum;
+  });
+  const payerLabels = Object.keys(payerTotals).sort((a, b) => payerTotals[b] - payerTotals[a]);
+  const payerColors = ['#FF9500', '#007AFF', '#AF52DE', '#34C759', '#FF375F'];
+
+  const payCtx = document.getElementById('fin-payer-chart');
+  if (payCtx._chart) payCtx._chart.destroy();
+  payCtx._chart = new Chart(payCtx, {
+    type: 'doughnut',
+    data: {
+      labels: payerLabels,
+      datasets: [{
+        data: payerLabels.map(p => Math.round(payerTotals[p] * 100) / 100),
+        backgroundColor: payerLabels.map((_, i) => payerColors[i % payerColors.length]),
+        borderWidth: 0,
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: {
+        legend: { position: 'bottom', labels: { font: { size: 11 }, color: textColor } },
+        tooltip: { callbacks: { label: ctx => `${ctx.label}: $${ctx.raw.toFixed(2)}` } },
+      },
+    }
+  });
+
+  // Monthly spending over time
+  const monthlyTotals = {};
+  rows.forEach(r => {
+    if (!r.dateObj) return;
+    const key = `${r.dateObj.getFullYear()}-${String(r.dateObj.getMonth() + 1).padStart(2, '0')}`;
+    monthlyTotals[key] = (monthlyTotals[key] || 0) + r.amountNum;
+  });
+  const monthKeys = Object.keys(monthlyTotals).sort();
+
+  // Cumulative line
+  let cumulative = 0;
+  const cumulativeData = monthKeys.map(k => { cumulative += monthlyTotals[k]; return Math.round(cumulative * 100) / 100; });
+
+  const monthCtx = document.getElementById('fin-monthly-chart');
+  if (monthCtx._chart) monthCtx._chart.destroy();
+  monthCtx._chart = new Chart(monthCtx, {
+    type: 'bar',
+    data: {
+      labels: monthKeys,
+      datasets: [
+        { type: 'bar', label: 'Monthly Spend', data: monthKeys.map(k => Math.round(monthlyTotals[k] * 100) / 100), backgroundColor: '#007AFF40', borderColor: '#007AFF', borderWidth: 1, borderRadius: 3, order: 2, yAxisID: 'y' },
+        { type: 'line', label: 'Cumulative', data: cumulativeData, borderColor: '#FF9500', borderWidth: 2, pointRadius: 3, pointBackgroundColor: '#FF9500', tension: 0.3, order: 1, yAxisID: 'y1' },
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: {
+        legend: { position: 'bottom', labels: { font: { size: 11 }, color: textColor } },
+        tooltip: { callbacks: { label: ctx => `${ctx.dataset.label}: $${ctx.raw.toFixed(2)}` } },
+      },
+      scales: {
+        x: { grid: { display: false }, ticks: { font: { size: 10 }, color: textColor }, border: { display: false } },
+        y: { grid: { color: gridColor }, ticks: { font: { size: 11 }, color: textColor, callback: v => '$' + v }, border: { display: false }, title: { display: true, text: 'Monthly ($)', color: textColor, font: { size: 11 } } },
+        y1: { position: 'right', grid: { display: false }, ticks: { font: { size: 11 }, color: textColor, callback: v => '$' + v }, border: { display: false }, title: { display: true, text: 'Cumulative ($)', color: textColor, font: { size: 11 } } },
+      }
+    }
+  });
+
+  // Table
+  const FIN_COLS = [
+    { key: 'date', label: 'Date' },
+    { key: 'category', label: 'Category' },
+    { key: 'expense', label: 'Expense' },
+    { key: 'amountNum', label: 'Amount' },
+    { key: 'paid_by', label: 'Paid By' },
+  ];
+
+  let finSortCol = 'dateObj';
+  let finSortAsc = false;
+
+  function renderFinTable() {
+    const arrow = col => col === finSortCol ? (finSortAsc ? ' ▲' : ' ▼') : '';
+    document.getElementById('fin-header-row').innerHTML = FIN_COLS.map(c =>
+      `<th style="cursor:pointer;text-align:left;" data-fin-col="${c.key}">${c.label}${arrow(c.key)}</th>`
+    ).join('');
+
+    const sorted = [...rows].sort((a, b) => {
+      if (finSortCol === 'dateObj' || finSortCol === 'date') {
+        const da = a.dateObj || new Date(0), db = b.dateObj || new Date(0);
+        return finSortAsc ? da - db : db - da;
+      }
+      let va = a[finSortCol], vb = b[finSortCol];
+      if (typeof va === 'string') { va = va.toLowerCase(); vb = (vb || '').toLowerCase(); }
+      if (va < vb) return finSortAsc ? -1 : 1;
+      if (va > vb) return finSortAsc ? 1 : -1;
+      return 0;
+    });
+
+    document.getElementById('fin-table-body').innerHTML = sorted.map(r => `<tr>
+      <td style="text-align:left;color:var(--text3);">${r.date || '—'}</td>
+      <td style="text-align:left;">${r.category}</td>
+      <td style="text-align:left;font-weight:500;">${r.expense}</td>
+      <td style="text-align:right;font-weight:600;">$${r.amountNum.toFixed(2)}</td>
+      <td style="text-align:left;">${r.paid_by || '—'}</td>
+    </tr>`).join('');
+  }
+
+  renderFinTable();
+
+  document.getElementById('fin-header-row').addEventListener('click', e => {
+    const th = e.target.closest('th');
+    if (!th) return;
+    const col = th.dataset.finCol;
+    if (col === finSortCol) { finSortAsc = !finSortAsc; }
+    else { finSortCol = col; finSortAsc = col === 'date' ? false : true; }
+    renderFinTable();
+  });
 }
 
 function renderCrossPlatform() {
