@@ -990,6 +990,7 @@ function renderInstagram() {
     const langColors = { 'Chinese': '#FF375F', 'English': '#007AFF', 'Unknown': '#8E8E93' };
     const igLangCtx = document.getElementById('ig-lang-chart');
     if (igLangCtx) {
+      const isDarkLang = document.body.classList.contains('dark');
       new Chart(igLangCtx, {
         type: 'doughnut',
         data: {
@@ -1003,7 +1004,7 @@ function renderInstagram() {
         options: {
           responsive: true, maintainAspectRatio: false,
           plugins: {
-            legend: { position: 'bottom', labels: { font: { size: 11 }, color: isDark ? '#AEAEB2' : '#6E6E73' } },
+            legend: { position: 'bottom', labels: { font: { size: 11 }, color: isDarkLang ? '#AEAEB2' : '#6E6E73' } },
             tooltip: { callbacks: { label: ctx => `${ctx.label}: ${ctx.raw} posts (${Math.round(ctx.raw / posts.length * 100)}%)` } },
           },
         }
