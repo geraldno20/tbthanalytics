@@ -1,0 +1,264 @@
+{
+  "fetched_at": "2026-05-02 11:07",
+  "expenses": [
+    {
+      "category": "Post-Production",
+      "expense": "Riverside Monthly GG",
+      "amount": "29",
+      "date": "3/30/25",
+      "paid_by": "GG"
+    },
+    {
+      "category": "Post-Production",
+      "expense": "Riverside Monthly GG",
+      "amount": "29",
+      "date": "4/29/25",
+      "paid_by": "GG"
+    },
+    {
+      "category": "Post-Production",
+      "expense": "Riverside Monthly GG",
+      "amount": "29",
+      "date": "5/30/25",
+      "paid_by": "GG"
+    },
+    {
+      "category": "Post-Production",
+      "expense": "Riverside Monthly GG",
+      "amount": "29",
+      "date": "6/29/25",
+      "paid_by": "GG"
+    },
+    {
+      "category": "Post-Production",
+      "expense": "Riverside Monthly GG",
+      "amount": "29",
+      "date": "7/30/25",
+      "paid_by": "GG"
+    },
+    {
+      "category": "Post-Production",
+      "expense": "Riverside Monthly GG",
+      "amount": "29",
+      "date": "8/30/25",
+      "paid_by": "GG"
+    },
+    {
+      "category": "Post-Production",
+      "expense": "Riverside Monthly GG",
+      "amount": "29",
+      "date": "9/29/25",
+      "paid_by": "GG"
+    },
+    {
+      "category": "Post-Production",
+      "expense": "Riverside Annual GG",
+      "amount": "285.74",
+      "date": "10/28/25",
+      "paid_by": "GG"
+    },
+    {
+      "category": "Post-Production",
+      "expense": "Riverside Upgrade GG",
+      "amount": "112.74",
+      "date": "11/19/25",
+      "paid_by": "GG"
+    },
+    {
+      "category": "Post-Production",
+      "expense": "Epidemic Sound",
+      "amount": "119.88",
+      "date": "1/1/26",
+      "paid_by": "GG"
+    },
+    {
+      "category": "Post-Production",
+      "expense": "Logo Animation",
+      "amount": "72.08",
+      "date": "4/22/2026",
+      "paid_by": "GG"
+    },
+    {
+      "category": "Post-Production",
+      "expense": "Logo Animation",
+      "amount": "82.63",
+      "date": "2/17/2026",
+      "paid_by": "GG"
+    },
+    {
+      "category": "Post-Production",
+      "expense": "Logo Animation",
+      "amount": "82.63",
+      "date": "2/7/2026",
+      "paid_by": "GG"
+    },
+    {
+      "category": "Post-Production",
+      "expense": "Illustration",
+      "amount": "98.45",
+      "date": "2/2/2026",
+      "paid_by": "GG"
+    },
+    {
+      "category": "Post-Production",
+      "expense": "Intro & Outro Videos",
+      "amount": "24.6",
+      "date": "11/12/2025",
+      "paid_by": "GG"
+    },
+    {
+      "category": "Post-Production",
+      "expense": "Logo Animation",
+      "amount": "24.6",
+      "date": "10/29/2025",
+      "paid_by": "GG"
+    },
+    {
+      "category": "Post-Production",
+      "expense": "Logo Animation",
+      "amount": "56.25",
+      "date": "9/22/2025",
+      "paid_by": "GG"
+    },
+    {
+      "category": "Post-Production",
+      "expense": "Logo Animation",
+      "amount": "56.25",
+      "date": "9/3/2025",
+      "paid_by": "GG"
+    },
+    {
+      "category": "Post-Production",
+      "expense": "Logo Animation",
+      "amount": "56.25",
+      "date": "7/3/2025",
+      "paid_by": "GG"
+    },
+    {
+      "category": "Post-Production",
+      "expense": "Logo Animation",
+      "amount": "17.77",
+      "date": "5/13/2025",
+      "paid_by": "GG"
+    },
+    {
+      "category": "Post-Production",
+      "expense": "Logo Animation",
+      "amount": "76.85",
+      "date": "5/6/2025",
+      "paid_by": "GG"
+    },
+    {
+      "category": "Post-Production",
+      "expense": "Intro & Outro Videos",
+      "amount": "29.38",
+      "date": "3/19/2025",
+      "paid_by": "GG"
+    },
+    {
+      "category": "Post-Production",
+      "expense": "Intro & Outro Videos",
+      "amount": "45.2",
+      "date": "3/14/2025",
+      "paid_by": "GG"
+    },
+    {
+      "category": "",
+      "expense": "",
+      "amount": "",
+      "date": "",
+      "paid_by": ""
+    },
+    {
+      "category": "Production",
+      "expense": "Filming in person",
+      "amount": "641.025641",
+      "date": "1/12/2026",
+      "paid_by": "GG"
+    },
+    {
+      "category": "Production",
+      "expense": "Editing ",
+      "amount": "448.7179487",
+      "date": "3/10/2026",
+      "paid_by": "GG"
+    },
+    {
+      "category": "",
+      "expense": "",
+      "amount": "",
+      "date": "",
+      "paid_by": ""
+    },
+    {
+      "category": "Marketing",
+      "expense": "Google/YT Ads",
+      "amount": "18.39",
+      "date": "4/30/26",
+      "paid_by": ""
+    },
+    {
+      "category": "Marketing",
+      "expense": "Google/YT Ads",
+      "amount": "55.48",
+      "date": "3/31/26",
+      "paid_by": ""
+    },
+    {
+      "category": "Marketing",
+      "expense": "Google/YT Ads",
+      "amount": "-0.14",
+      "date": "2/28/26",
+      "paid_by": ""
+    },
+    {
+      "category": "Marketing",
+      "expense": "Google/YT Ads",
+      "amount": "0",
+      "date": "1/31/26",
+      "paid_by": ""
+    },
+    {
+      "category": "Marketing",
+      "expense": "Google/YT Ads",
+      "amount": "19.49",
+      "date": "12/31/25",
+      "paid_by": ""
+    },
+    {
+      "category": "Marketing",
+      "expense": "Google/YT Ads",
+      "amount": "81.55",
+      "date": "11/30/25",
+      "paid_by": ""
+    },
+    {
+      "category": "Marketing",
+      "expense": "Google/YT Ads",
+      "amount": "13.42",
+      "date": "10/31/25",
+      "paid_by": ""
+    },
+    {
+      "category": "Marketing",
+      "expense": "IG Ads",
+      "amount": "11.19",
+      "date": "3/18/26",
+      "paid_by": ""
+    },
+    {
+      "category": "Marketing",
+      "expense": "IG Ads",
+      "amount": "11.08",
+      "date": "3/18/26",
+      "paid_by": ""
+    },
+    {
+      "category": "Marketing",
+      "expense": "IG Ads",
+      "amount": "11.45",
+      "date": "3/14/26",
+      "paid_by": ""
+    }
+  ]
+}
