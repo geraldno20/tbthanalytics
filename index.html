@@ -182,17 +182,32 @@
 
     /* Print / PDF export */
     @media print {
-      body { background: #fff; color: #000; padding: 16px; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-      .toggle-btn, .seg-control, .search-input, .platform-tabs, .cmp-check, .compare-panel, #fin-filters { display: none !important; }
+      @page { size: landscape; margin: 12mm; }
+      body { background: #fff !important; color: #000 !important; padding: 0; -webkit-print-color-adjust: exact; print-color-adjust: exact; font-size: 11px; }
+      * { color-scheme: light; }
+      .dark { --bg: #fff; --card: #fff; --card-hover: #f9f9f9; --text: #000; --text2: #555; --text3: #888; --border: #ddd; --border2: #eee; --th-bg: #f5f5f5; }
+      .toggle-btn, .seg-control, .search-input, .platform-tabs, .cmp-check, .compare-panel, #fin-filters, #fin-currency-toggle, #fin-fx-rate { display: none !important; }
       .tab-content { display: none !important; }
       .tab-content.print-active { display: block !important; }
-      .chart-section { break-inside: avoid; box-shadow: none; border: 1px solid #ddd; }
+      .chart-section { break-inside: avoid; box-shadow: none; border: 1px solid #ddd; margin-bottom: 10px; padding: 12px; }
       .chart-section[open] summary::before { content: ''; }
-      details.chart-section { open: true; }
-      .table-wrap { box-shadow: none; border: 1px solid #ddd; }
-      .kpi-card { box-shadow: none; border: 1px solid #ddd; }
-      .header img { height: 60px; }
-      canvas { max-height: 200px; }
+      .chart-wrap { height: 160px !important; }
+      .table-wrap { box-shadow: none; border: 1px solid #ddd; overflow: visible !important; }
+      table { font-size: 10px; white-space: normal; }
+      thead th { font-size: 9px; padding: 6px 8px; }
+      tbody td { padding: 5px 8px; font-size: 10px; }
+      tbody td:first-child { position: static; max-width: none; }
+      tbody td:nth-child(2) { position: static; }
+      thead th:first-child, thead th:nth-child(2) { position: static; }
+      .kpi-cards { gap: 8px; }
+      .kpi-card { box-shadow: none; border: 1px solid #ddd; padding: 8px 12px; min-width: auto; }
+      .kpi-value { font-size: 18px; }
+      .header { margin-bottom: 8px; }
+      .header img { height: 50px; }
+      .subtitle, .last-updated { margin-bottom: 4px; }
+      .content-compare { grid-template-columns: 1fr 1fr; }
+      canvas { max-height: 160px; }
+      .cross-summary { display: none; }
     }
   </style>
 </head>
