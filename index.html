@@ -418,6 +418,11 @@
       <div class="chart-body"><div class="chart-wrap" style="height:200px;"><canvas id="ig-lang-chart"></canvas></div></div>
     </details>
 
+    <details class="chart-section">
+      <summary>Contributor Breakdown</summary>
+      <div class="chart-body"><div class="chart-wrap" style="height:200px;"><canvas id="ig-contrib-chart"></canvas></div></div>
+    </details>
+
     <div class="controls" id="ig-controls" style="display:none;">
       <div class="seg-control" id="ig-type-filter">
         <button class="active" data-igtype="all" onclick="setIGTypeFilter('all')">All</button>
@@ -482,6 +487,11 @@
     <details class="chart-section">
       <summary>Post Language Breakdown</summary>
       <div class="chart-body"><div class="chart-wrap" style="height:200px;"><canvas id="th-lang-chart"></canvas></div></div>
+    </details>
+
+    <details class="chart-section">
+      <summary>Contributor Breakdown</summary>
+      <div class="chart-body"><div class="chart-wrap" style="height:200px;"><canvas id="th-contrib-chart"></canvas></div></div>
     </details>
 
     <div class="table-wrap">
@@ -672,6 +682,43 @@ function detectLang(text) {
   if (cjk === 0 && latin === 0) return 'Unknown';
   if (cjk > latin * 0.3) return 'Chinese';
   return 'English';
+}
+
+// --- Contributor detection ---
+const CONTRIBUTOR_PATTERNS = [
+  ['GG & Phoenix@TBTH', [['Gerald', 0.5], ['Chicken', 0.5]]],
+  ['GG@TBTH', [['Gerald', 1]]],
+  ['Gerald@TBTH', [['Gerald', 1]]],
+  ['Phoenix @tbth.friends', [['Chicken', 1]]],
+  ['Phoenix@TBTH', [['Chicken', 1]]],
+  ['Phoenix@TBHT', [['Chicken', 1]]],
+  ['-Phoenix', [['Chicken', 1]]],
+  ['-Phoeni', [['Chicken', 1]]],
+  ['楊至樂', [['Gerald', 1]]],
+  ['宋尚暉', [['Chicken', 1]]],
+  ['藍兒', [['Bluey', 1]]],
+  ['吳思浩', [['NGH', 1]]],
+  ['駱彥霖', [['Lok Lam', 1]]],
+  ['/CL', [['Charles Lieou', 1]]],
+];
+function detectContributor(text) {
+  if (!text) return 'Unknown';
+  for (const [pattern, mapping] of CONTRIBUTOR_PATTERNS) {
+    if (text.includes(pattern)) {
+      return mapping.map(([n]) => n).join(' & ');
+    }
+  }
+  // Check for lone "-P" sign-off (must be end of line)
+  if (/\n-P\s*$/.test(text) || /^-P\s*$/.test(text.trim().split('\n').pop().trim())) return 'Chicken';
+  return 'Unknown';
+}
+function getContributorShares(text) {
+  if (!text) return [['Unknown', 1]];
+  for (const [pattern, mapping] of CONTRIBUTOR_PATTERNS) {
+    if (text.includes(pattern)) return mapping;
+  }
+  if (/\n-P\s*$/.test(text) || /^-P\s*$/.test(text.trim().split('\n').pop().trim())) return [['Chicken', 1]];
+  return [['Unknown', 1]];
 }
 
 function switchTab(tab) {
@@ -920,6 +967,7 @@ function renderInstagram() {
   if (posts.length) {
     const IG_COLS = [
       { key: 'caption', label: 'Caption', type: 'text' },
+      { key: 'contributor', label: 'Contributor', type: 'text' },
       { key: 'language', label: 'Language', type: 'text' },
       { key: 'media_type', label: 'Type', type: 'text' },
       { key: 'timestamp', label: 'Date', type: 'text' },
@@ -931,8 +979,11 @@ function renderInstagram() {
       { key: 'total_interactions', label: 'Interactions', type: 'num' },
     ];
 
-    // Enrich posts with detected language
-    posts.forEach(p => { p.language = detectLang(p.caption); });
+    // Enrich posts with detected language and contributor
+    posts.forEach(p => {
+      p.language = detectLang(p.caption);
+      p.contributor = detectContributor(p.caption);
+    });
 
     let igSortCol = 'timestamp';
     let igSortAsc = false;
@@ -960,6 +1011,7 @@ function renderInstagram() {
 
       document.getElementById('ig-table-body').innerHTML = sorted.map(p => `<tr class="ig-row" data-thumb="${p.thumbnail || ''}">
         <td style="max-width:300px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${(p.caption || '').slice(0, 80)}</td>
+        <td>${p.contributor || 'Unknown'}</td>
         <td>${p.language || ''}</td>
         <td>${p.media_type || ''}</td>
         <td>${(p.timestamp || '').slice(0, 10)}</td>
@@ -1005,6 +1057,37 @@ function renderInstagram() {
           responsive: true, maintainAspectRatio: false,
           plugins: {
             legend: { position: 'bottom', labels: { font: { size: 11 }, color: isDarkLang ? '#AEAEB2' : '#6E6E73' } },
+            tooltip: { callbacks: { label: ctx => `${ctx.label}: ${ctx.raw} posts (${Math.round(ctx.raw / posts.length * 100)}%)` } },
+          },
+        }
+      });
+    }
+
+    // Contributor breakdown pie chart
+    const igContribCounts = {};
+    posts.forEach(p => {
+      const shares = getContributorShares(p.caption);
+      shares.forEach(([name, weight]) => { igContribCounts[name] = (igContribCounts[name] || 0) + weight; });
+    });
+    const igContribLabels = Object.keys(igContribCounts).sort((a, b) => igContribCounts[b] - igContribCounts[a]);
+    const contribColors = ['#FF375F','#007AFF','#34C759','#FF9500','#AF52DE','#FF2D55','#5AC8FA','#FFCC00','#8E8E93'];
+    const igContribCtx = document.getElementById('ig-contrib-chart');
+    if (igContribCtx) {
+      const isDarkC = document.body.classList.contains('dark');
+      new Chart(igContribCtx, {
+        type: 'doughnut',
+        data: {
+          labels: igContribLabels,
+          datasets: [{
+            data: igContribLabels.map(l => igContribCounts[l]),
+            backgroundColor: igContribLabels.map((_, i) => contribColors[i % contribColors.length]),
+            borderWidth: 0,
+          }]
+        },
+        options: {
+          responsive: true, maintainAspectRatio: false,
+          plugins: {
+            legend: { position: 'bottom', labels: { font: { size: 11 }, color: isDarkC ? '#AEAEB2' : '#6E6E73' } },
             tooltip: { callbacks: { label: ctx => `${ctx.label}: ${ctx.raw} posts (${Math.round(ctx.raw / posts.length * 100)}%)` } },
           },
         }
@@ -1225,9 +1308,13 @@ function renderThreads() {
   // Posts table
   const posts = thData.posts || [];
   if (posts.length) {
-    posts.forEach(p => { p.language = detectLang(p.text); });
+    posts.forEach(p => {
+      p.language = detectLang(p.text);
+      p.contributor = detectContributor(p.text);
+    });
     const TH_COLS = [
       { key: 'text', label: 'Thread', type: 'text' },
+      { key: 'contributor', label: 'Contributor', type: 'text' },
       { key: 'language', label: 'Language', type: 'text' },
       { key: 'media_type', label: 'Type', type: 'text' },
       { key: 'timestamp', label: 'Date', type: 'text' },
@@ -1260,6 +1347,7 @@ function renderThreads() {
         const link = p.permalink ? `<a href="${p.permalink}" target="_blank" class="video-link">${(p.text || '').slice(0, 80) || '(no text)'}</a>` : (p.text || '').slice(0, 80);
         return `<tr>
           <td style="max-width:300px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-align:left;">${link}</td>
+          <td>${p.contributor || 'Unknown'}</td>
           <td>${p.language || 'Unknown'}</td>
           <td>${p.media_type || 'TEXT_POST'}</td>
           <td>${(p.timestamp || '').slice(0, 10)}</td>
@@ -1297,6 +1385,36 @@ function renderThreads() {
           datasets: [{
             data: thLangLabels.map(l => thLangCounts[l]),
             backgroundColor: thLangLabels.map(l => thLangColors[l] || '#8E8E93'),
+            borderWidth: 0,
+          }]
+        },
+        options: {
+          responsive: true, maintainAspectRatio: false,
+          plugins: {
+            legend: { position: 'bottom', labels: { font: { size: 11 }, color: isDark ? '#AEAEB2' : '#6E6E73' } },
+            tooltip: { callbacks: { label: ctx => `${ctx.label}: ${ctx.raw} posts (${Math.round(ctx.raw / posts.length * 100)}%)` } },
+          },
+        }
+      });
+    }
+
+    // Contributor breakdown pie chart
+    const thContribCounts = {};
+    posts.forEach(p => {
+      const shares = getContributorShares(p.text);
+      shares.forEach(([name, weight]) => { thContribCounts[name] = (thContribCounts[name] || 0) + weight; });
+    });
+    const thContribLabels = Object.keys(thContribCounts).sort((a, b) => thContribCounts[b] - thContribCounts[a]);
+    const thContribColors = ['#FF375F','#007AFF','#34C759','#FF9500','#AF52DE','#FF2D55','#5AC8FA','#FFCC00','#8E8E93'];
+    const thContribCtx = document.getElementById('th-contrib-chart');
+    if (thContribCtx) {
+      new Chart(thContribCtx, {
+        type: 'doughnut',
+        data: {
+          labels: thContribLabels,
+          datasets: [{
+            data: thContribLabels.map(l => thContribCounts[l]),
+            backgroundColor: thContribLabels.map((_, i) => thContribColors[i % thContribColors.length]),
             borderWidth: 0,
           }]
         },
