@@ -1934,6 +1934,19 @@ function parseReleaseDate(str) {
   return new Date(y, m - 1, d);
 }
 
+function parseMonthDayDate(str) {
+  if (!str) return null;
+  const MONTH_MAP = {Jan:0,Feb:1,Mar:2,Apr:3,May:4,Jun:5,Jul:6,Aug:7,Sep:8,Oct:9,Nov:10,Dec:11};
+  const m = str.match(/^(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s+(\d{1,2})$/i);
+  if (!m) return null;
+  const month = MONTH_MAP[m[1].charAt(0).toUpperCase() + m[1].slice(1).toLowerCase()];
+  if (month == null) return null;
+  const day = parseInt(m[2]);
+  // Assume current year; if date is far in the past, could be next year
+  const now = new Date();
+  return new Date(now.getFullYear(), month, day);
+}
+
 function isNumericSeason(s) {
   return /^\d+$/.test(s);
 }
@@ -2379,7 +2392,7 @@ function renderCalendar() {
     }
 
     // Recording date events (only show if it looks like a date)
-    const recDate = parseReleaseDate(ep.recording);
+    const recDate = parseReleaseDate(ep.recording) || parseMonthDayDate(ep.recording);
     if (recDate) {
       const key = `${recDate.getFullYear()}-${recDate.getMonth()}-${recDate.getDate()}`;
       if (!dateMap[key]) dateMap[key] = [];
