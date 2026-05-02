@@ -413,6 +413,11 @@
       <div class="chart-body"><div class="chart-wrap"><canvas id="ig-demo-city"></canvas></div></div>
     </details>
 
+    <details class="chart-section">
+      <summary>Post Language Breakdown</summary>
+      <div class="chart-body"><div class="chart-wrap" style="height:200px;"><canvas id="ig-lang-chart"></canvas></div></div>
+    </details>
+
     <div class="controls" id="ig-controls" style="display:none;">
       <div class="seg-control" id="ig-type-filter">
         <button class="active" data-igtype="all" onclick="setIGTypeFilter('all')">All</button>
@@ -472,6 +477,11 @@
     <details class="chart-section">
       <summary>Audience Demographics — Top Cities</summary>
       <div class="chart-body"><div class="chart-wrap"><canvas id="th-demo-city"></canvas></div></div>
+    </details>
+
+    <details class="chart-section">
+      <summary>Post Language Breakdown</summary>
+      <div class="chart-body"><div class="chart-wrap" style="height:200px;"><canvas id="th-lang-chart"></canvas></div></div>
     </details>
 
     <div class="table-wrap">
@@ -652,6 +662,18 @@
 
 <script>
 // --- Platform tab switching ---
+// --- Language detection ---
+function detectLang(text) {
+  if (!text) return 'Unknown';
+  // Count CJK characters (Chinese/Japanese/Korean unified ideographs)
+  const cjk = (text.match(/[\u4e00-\u9fff\u3400-\u4dbf]/g) || []).length;
+  // Count basic Latin letters
+  const latin = (text.match(/[a-zA-Z]/g) || []).length;
+  if (cjk === 0 && latin === 0) return 'Unknown';
+  if (cjk > latin * 0.3) return 'Chinese';
+  return 'English';
+}
+
 function switchTab(tab) {
   document.querySelectorAll('.platform-tab').forEach(t => t.classList.remove('active'));
   document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
@@ -898,6 +920,7 @@ function renderInstagram() {
   if (posts.length) {
     const IG_COLS = [
       { key: 'caption', label: 'Caption', type: 'text' },
+      { key: 'language', label: 'Language', type: 'text' },
       { key: 'media_type', label: 'Type', type: 'text' },
       { key: 'timestamp', label: 'Date', type: 'text' },
       { key: 'likes', label: 'Likes', type: 'num' },
@@ -907,6 +930,9 @@ function renderInstagram() {
       { key: 'reach', label: 'Reach', type: 'num' },
       { key: 'total_interactions', label: 'Interactions', type: 'num' },
     ];
+
+    // Enrich posts with detected language
+    posts.forEach(p => { p.language = detectLang(p.caption); });
 
     let igSortCol = 'timestamp';
     let igSortAsc = false;
@@ -934,6 +960,7 @@ function renderInstagram() {
 
       document.getElementById('ig-table-body').innerHTML = sorted.map(p => `<tr class="ig-row" data-thumb="${p.thumbnail || ''}">
         <td style="max-width:300px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${(p.caption || '').slice(0, 80)}</td>
+        <td>${p.language || ''}</td>
         <td>${p.media_type || ''}</td>
         <td>${(p.timestamp || '').slice(0, 10)}</td>
         <td>${fmt(p.likes)}</td>
@@ -955,6 +982,33 @@ function renderInstagram() {
       else { igSortCol = col; igSortAsc = false; }
       window._renderIGTable();
     });
+
+    // Language breakdown pie chart
+    const langCounts = {};
+    posts.forEach(p => { langCounts[p.language] = (langCounts[p.language] || 0) + 1; });
+    const langLabels = Object.keys(langCounts).sort((a, b) => langCounts[b] - langCounts[a]);
+    const langColors = { 'Chinese': '#FF375F', 'English': '#007AFF', 'Unknown': '#8E8E93' };
+    const igLangCtx = document.getElementById('ig-lang-chart');
+    if (igLangCtx) {
+      new Chart(igLangCtx, {
+        type: 'doughnut',
+        data: {
+          labels: langLabels,
+          datasets: [{
+            data: langLabels.map(l => langCounts[l]),
+            backgroundColor: langLabels.map(l => langColors[l] || '#8E8E93'),
+            borderWidth: 0,
+          }]
+        },
+        options: {
+          responsive: true, maintainAspectRatio: false,
+          plugins: {
+            legend: { position: 'bottom', labels: { font: { size: 11 }, color: isDark ? '#AEAEB2' : '#6E6E73' } },
+            tooltip: { callbacks: { label: ctx => `${ctx.label}: ${ctx.raw} posts (${Math.round(ctx.raw / posts.length * 100)}%)` } },
+          },
+        }
+      });
+    }
 
     initIGThumbTip();
   }
@@ -1170,8 +1224,10 @@ function renderThreads() {
   // Posts table
   const posts = thData.posts || [];
   if (posts.length) {
+    posts.forEach(p => { p.language = detectLang(p.text); });
     const TH_COLS = [
       { key: 'text', label: 'Thread', type: 'text' },
+      { key: 'language', label: 'Language', type: 'text' },
       { key: 'media_type', label: 'Type', type: 'text' },
       { key: 'timestamp', label: 'Date', type: 'text' },
       { key: 'views', label: 'Views', type: 'num' },
@@ -1203,6 +1259,7 @@ function renderThreads() {
         const link = p.permalink ? `<a href="${p.permalink}" target="_blank" class="video-link">${(p.text || '').slice(0, 80) || '(no text)'}</a>` : (p.text || '').slice(0, 80);
         return `<tr>
           <td style="max-width:300px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-align:left;">${link}</td>
+          <td>${p.language || 'Unknown'}</td>
           <td>${p.media_type || 'TEXT_POST'}</td>
           <td>${(p.timestamp || '').slice(0, 10)}</td>
           <td>${fmt(p.views)}</td>
@@ -1224,6 +1281,33 @@ function renderThreads() {
       else { thSortCol = col; thSortAsc = false; }
       renderTHTable();
     });
+
+    // Language breakdown pie chart
+    const thLangCounts = {};
+    posts.forEach(p => { thLangCounts[p.language] = (thLangCounts[p.language] || 0) + 1; });
+    const thLangLabels = Object.keys(thLangCounts).sort((a, b) => thLangCounts[b] - thLangCounts[a]);
+    const thLangColors = { 'Chinese': '#FF375F', 'English': '#007AFF', 'Unknown': '#8E8E93' };
+    const thLangCtx = document.getElementById('th-lang-chart');
+    if (thLangCtx) {
+      new Chart(thLangCtx, {
+        type: 'doughnut',
+        data: {
+          labels: thLangLabels,
+          datasets: [{
+            data: thLangLabels.map(l => thLangCounts[l]),
+            backgroundColor: thLangLabels.map(l => thLangColors[l] || '#8E8E93'),
+            borderWidth: 0,
+          }]
+        },
+        options: {
+          responsive: true, maintainAspectRatio: false,
+          plugins: {
+            legend: { position: 'bottom', labels: { font: { size: 11 }, color: isDark ? '#AEAEB2' : '#6E6E73' } },
+            tooltip: { callbacks: { label: ctx => `${ctx.label}: ${ctx.raw} posts (${Math.round(ctx.raw / posts.length * 100)}%)` } },
+          },
+        }
+      });
+    }
   }
 }
 
