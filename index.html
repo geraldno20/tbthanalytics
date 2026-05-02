@@ -80,16 +80,20 @@
     #group-row th.group-session { background: #AF52DE; }
     #header-row th { top: 32px; z-index: 3; }
     thead th:first-child { position: sticky; left: 0; z-index: 4; background: var(--th-bg); }
+    thead th:nth-child(2) { position: sticky; left: 44px; z-index: 4; background: var(--th-bg); }
     thead th:first-child, thead th:nth-child(2), thead th:nth-child(3), thead th:nth-child(4), thead th:nth-child(5) { text-align: left; }
     thead th.sortable { cursor: pointer; user-select: none; }
     thead th.sortable:hover { color: var(--blue); }
     thead th .arrow { font-size: 10px; margin-left: 2px; }
     tbody td { padding: 10px 14px; border-bottom: 1px solid var(--border2); text-align: right; color: var(--text); }
     tbody td:first-child { text-align: left; font-weight: 500; max-width: 360px; overflow: hidden; text-overflow: ellipsis; position: sticky; left: 0; background: var(--card); z-index: 1; }
+    tbody td:nth-child(2) { position: sticky; left: 44px; background: var(--card); z-index: 1; max-width: 360px; overflow: hidden; text-overflow: ellipsis; }
     tbody td:nth-child(2), tbody td:nth-child(3), tbody td:nth-child(4) { text-align: left; color: var(--text3); }
     tbody td:nth-child(5) { text-align: left; }
     tbody tr:hover td { background: var(--card-hover); }
+    tbody tr:hover td:first-child, tbody tr:hover td:nth-child(2) { background: var(--card-hover); }
     tbody tr.selected td { background: #007AFF18; }
+    tbody tr.selected td:first-child, tbody tr.selected td:nth-child(2) { background: #007AFF18; }
     .no-data { color: var(--text3); }
     .video-link { color: var(--blue); text-decoration: none; }
     .video-link:hover { text-decoration: underline; }
