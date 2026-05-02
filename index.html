@@ -293,6 +293,22 @@
     </div>
   </details>
 
+  <!-- Retention Analysis -->
+  <details class="chart-section">
+    <summary>Retention Analysis — Lifetime AVD% by Video</summary>
+    <div class="chart-body">
+      <div style="margin-bottom:10px;">
+        <select id="retention-sort" class="search-input" style="width:200px;" onchange="renderRetentionChart()">
+          <option value="avd_desc" selected>AVD% (High → Low)</option>
+          <option value="avd_asc">AVD% (Low → High)</option>
+          <option value="date_desc">Newest First</option>
+          <option value="date_asc">Oldest First</option>
+        </select>
+      </div>
+      <div style="height:auto;min-height:300px;"><canvas id="retention-chart"></canvas></div>
+    </div>
+  </details>
+
   <!-- Content Performance: Videos vs Shorts -->
   <details class="chart-section">
     <summary>Content Performance: Videos vs Shorts</summary>
@@ -504,6 +520,24 @@
       <p style="font-size:18px;font-weight:600;margin-bottom:8px;">Episode data not yet configured</p>
       <p style="font-size:13px;">Run <code>python3 fetch_episodes.py</code> after setting up Sheets API access.</p>
     </div>
+
+    <details class="chart-section" open>
+      <summary>Content Calendar</summary>
+      <div class="chart-body">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
+          <button class="toggle-btn" onclick="changeCalMonth(-1)" style="padding:6px 10px;">&#9664;</button>
+          <span id="cal-month-label" style="font-size:14px;font-weight:600;min-width:140px;text-align:center;"></span>
+          <button class="toggle-btn" onclick="changeCalMonth(1)" style="padding:6px 10px;">&#9654;</button>
+          <button class="toggle-btn" onclick="calToday()" style="font-size:11px;">Today</button>
+        </div>
+        <div id="cal-grid" style="display:grid;grid-template-columns:repeat(7,1fr);gap:2px;"></div>
+        <div style="margin-top:10px;display:flex;gap:16px;font-size:11px;color:var(--text3);">
+          <span><span style="display:inline-block;width:10px;height:10px;border-radius:3px;background:#34C759;vertical-align:middle;margin-right:4px;"></span>Aired</span>
+          <span><span style="display:inline-block;width:10px;height:10px;border-radius:3px;background:var(--blue);vertical-align:middle;margin-right:4px;"></span>Upcoming</span>
+          <span><span style="display:inline-block;width:10px;height:10px;border-radius:3px;background:#FF9500;vertical-align:middle;margin-right:4px;"></span>Recording</span>
+        </div>
+      </div>
+    </details>
 
     <details class="chart-section" id="prod-agreed-section" style="display:none;">
       <summary>Agreed Guests (Unscheduled)</summary>
@@ -1207,6 +1241,7 @@ function toggleDark() {
   renderWatchChart();
   renderViewsChart();
   renderAVDChart();
+  renderRetentionChart();
   renderScatterChart();
 }
 
@@ -1557,6 +1592,89 @@ function renderAVDChart() {
   });
 }
 
+let retentionChart = null;
+
+function renderRetentionChart() {
+  if (retentionChart) retentionChart.destroy();
+  const isDark = document.body.classList.contains('dark');
+  const gridColor = isDark ? '#3A3A3C' : '#E5E5EA';
+  const textColor = isDark ? '#AEAEB2' : '#6E6E73';
+
+  const filtered = getFiltered().filter(d =>
+    !d.is_short && d.avd_over_time && d.avd_over_time.lifetime > 0 && d.duration_sec > 0
+  );
+
+  const sortMode = document.getElementById('retention-sort').value;
+  if (sortMode === 'avd_desc') filtered.sort((a, b) => b.avd_over_time.lifetime - a.avd_over_time.lifetime);
+  else if (sortMode === 'avd_asc') filtered.sort((a, b) => a.avd_over_time.lifetime - b.avd_over_time.lifetime);
+  else if (sortMode === 'date_desc') filtered.sort((a, b) => b.published_at.localeCompare(a.published_at));
+  else if (sortMode === 'date_asc') filtered.sort((a, b) => a.published_at.localeCompare(b.published_at));
+
+  const labels = filtered.map(d => {
+    const ep = d.title.replace(/^#TBTH\s*\|?\s*/i, '').slice(0, 30);
+    return ep;
+  });
+  const avdData = filtered.map(d => d.avd_over_time.lifetime);
+  const avgAVD = avdData.length ? avdData.reduce((a, b) => a + b, 0) / avdData.length : 0;
+
+  // Color bars: green if above avg, orange if below
+  const bgColors = avdData.map(v => v >= avgAVD ? '#34C75980' : '#FF950080');
+  const borderColors = avdData.map(v => v >= avgAVD ? '#34C759' : '#FF9500');
+
+  // Dynamic height based on number of videos
+  const canvas = document.getElementById('retention-chart');
+  canvas.closest('div').style.height = Math.max(300, filtered.length * 28) + 'px';
+
+  retentionChart = new Chart(canvas.getContext('2d'), {
+    type: 'bar',
+    data: {
+      labels,
+      datasets: [{
+        label: 'Lifetime AVD%',
+        data: avdData,
+        backgroundColor: bgColors,
+        borderColor: borderColors,
+        borderWidth: 1,
+        borderRadius: 3,
+      }]
+    },
+    options: {
+      indexAxis: 'y',
+      responsive: true, maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            title: (items) => {
+              const idx = items[0].dataIndex;
+              return filtered[idx].title.slice(0, 60);
+            },
+            label: (item) => {
+              const d = filtered[item.dataIndex];
+              const dur = Math.round(d.duration_sec / 60);
+              return `AVD: ${item.raw.toFixed(1)}% · Duration: ${dur}min · Views: ${(d.total_views||0).toLocaleString()}`;
+            }
+          }
+        },
+        annotation: undefined,
+      },
+      scales: {
+        x: {
+          grid: { color: gridColor },
+          ticks: { font: { size: 11 }, color: textColor, callback: v => v + '%' },
+          border: { display: false },
+          title: { display: true, text: 'Avg View Duration %', color: textColor, font: { size: 11 } },
+        },
+        y: {
+          grid: { display: false },
+          ticks: { font: { size: 10 }, color: textColor },
+          border: { display: false },
+        }
+      }
+    }
+  });
+}
+
 // --- Scatter Chart: Duration vs Performance ---
 function renderScatterChart() {
   if (scatterChart) scatterChart.destroy();
@@ -1786,6 +1904,7 @@ function render() {
   renderViewsChart();
   buildAVDSelect();
   renderAVDChart();
+  renderRetentionChart();
   renderScatterChart();
   renderCompare();
   renderContentCompare();
@@ -2091,6 +2210,8 @@ function renderProduction() {
       return `<span class="badge" style="background:var(--bg);color:var(--text);padding:6px 12px;font-size:13px;border:1px solid var(--border);border-radius:8px;">${e.guest}${note}</span>`;
     }).join('');
   }
+
+  renderCalendar();
 }
 
 function renderProdTable() {
@@ -2167,6 +2288,104 @@ function renderProdTable() {
       <td style="text-align:left;">${relDate}</td>
     </tr>`;
   }).join('');
+}
+
+// --- Content Calendar ---
+let calYear, calMonth;
+(function() {
+  const d = new Date();
+  calYear = d.getFullYear();
+  calMonth = d.getMonth();
+})();
+
+function changeCalMonth(delta) {
+  calMonth += delta;
+  if (calMonth > 11) { calMonth = 0; calYear++; }
+  if (calMonth < 0) { calMonth = 11; calYear--; }
+  renderCalendar();
+}
+
+function calToday() {
+  const d = new Date();
+  calYear = d.getFullYear();
+  calMonth = d.getMonth();
+  renderCalendar();
+}
+
+function renderCalendar() {
+  if (!prodData || !prodData.episodes) return;
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  document.getElementById('cal-month-label').textContent = `${MONTHS[calMonth]} ${calYear}`;
+
+  // Build map of date -> episodes
+  const eps = prodData.episodes.filter(e => e.guest && e.guest.trim() && e.season !== '-' && e.season !== '' && e.season !== 'Agreed' && e.season !== 'Declined' && e.season !== 'No');
+  const dateMap = {};
+
+  eps.forEach(ep => {
+    // Release date events
+    const rd = parseReleaseDate(ep.episode_release);
+    if (rd) {
+      const key = `${rd.getFullYear()}-${rd.getMonth()}-${rd.getDate()}`;
+      if (!dateMap[key]) dateMap[key] = [];
+      const isPast = rd <= today;
+      dateMap[key].push({
+        label: ep.guest,
+        season: isNumericSeason(ep.season) ? 'S' + ep.season : ep.season,
+        type: isPast ? 'aired' : 'upcoming',
+        color: isPast ? '#34C759' : '#007AFF',
+      });
+    }
+
+    // Recording date events (only show if it looks like a date)
+    const recDate = parseReleaseDate(ep.recording);
+    if (recDate) {
+      const key = `${recDate.getFullYear()}-${recDate.getMonth()}-${recDate.getDate()}`;
+      if (!dateMap[key]) dateMap[key] = [];
+      dateMap[key].push({
+        label: ep.guest,
+        season: isNumericSeason(ep.season) ? 'S' + ep.season : ep.season,
+        type: 'recording',
+        color: '#FF9500',
+      });
+    }
+  });
+
+  const grid = document.getElementById('cal-grid');
+  const DAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+
+  // Header row
+  let html = DAYS.map(d => `<div style="text-align:center;font-size:11px;font-weight:600;color:var(--text3);padding:6px 0;">${d}</div>`).join('');
+
+  // Calendar days
+  const firstDay = new Date(calYear, calMonth, 1).getDay();
+  const daysInMonth = new Date(calYear, calMonth + 1, 0).getDate();
+
+  // Blanks before first day
+  for (let i = 0; i < firstDay; i++) {
+    html += '<div style="min-height:70px;"></div>';
+  }
+
+  for (let d = 1; d <= daysInMonth; d++) {
+    const key = `${calYear}-${calMonth}-${d}`;
+    const events = dateMap[key] || [];
+    const isToday = calYear === today.getFullYear() && calMonth === today.getMonth() && d === today.getDate();
+    const border = isToday ? 'border:2px solid var(--blue);' : 'border:1px solid var(--border);';
+
+    let eventsHtml = events.slice(0, 3).map(e =>
+      `<div style="font-size:9px;padding:1px 4px;border-radius:3px;background:${e.color}20;color:${e.color};font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="${e.season} — ${e.label} (${e.type})">${e.season} ${e.label}</div>`
+    ).join('');
+    if (events.length > 3) eventsHtml += `<div style="font-size:9px;color:var(--text3);">+${events.length - 3} more</div>`;
+
+    html += `<div style="min-height:70px;${border}border-radius:6px;padding:4px;background:var(--card);">
+      <div style="font-size:11px;font-weight:${isToday ? '700' : '500'};color:${isToday ? 'var(--blue)' : 'var(--text)'};margin-bottom:2px;">${d}</div>
+      ${eventsHtml}
+    </div>`;
+  }
+
+  grid.innerHTML = html;
 }
 
 function renderCrossPlatform() {
