@@ -2599,6 +2599,11 @@ function finFmt(amount) {
   return sym + amount.toFixed(2);
 }
 
+function finFmtRound(amount) {
+  const sym = finCurrency === 'HKD' ? 'HK$' : 'US$';
+  return sym + Math.round(amount).toLocaleString();
+}
+
 function toggleFinancesTab() {
   const existing = document.querySelector('.platform-tab[onclick="switchTab(\'fin\')"]');
   if (existing) {
@@ -2714,8 +2719,8 @@ function renderFinances() {
     });
   }
 
-  document.getElementById('fin-kpi-total').textContent = finFmt(total);
-  document.getElementById('fin-kpi-month').textContent = finFmt(monthTotal);
+  document.getElementById('fin-kpi-total').textContent = finFmtRound(total);
+  document.getElementById('fin-kpi-month').textContent = finFmtRound(monthTotal);
   document.getElementById('fin-kpi-categories').textContent = categories.length;
   document.getElementById('fin-kpi-per-ep').textContent = airedCount > 0 ? finFmt(total / airedCount) : '—';
 
