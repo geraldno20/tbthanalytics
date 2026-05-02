@@ -486,6 +486,7 @@
           <span><span style="display:inline-block;width:10px;height:10px;border-radius:3px;background:#34C759;vertical-align:middle;margin-right:4px;"></span>Aired</span>
           <span><span style="display:inline-block;width:10px;height:10px;border-radius:3px;background:var(--blue);vertical-align:middle;margin-right:4px;"></span>Upcoming</span>
           <span><span style="display:inline-block;width:10px;height:10px;border-radius:3px;background:#FF9500;vertical-align:middle;margin-right:4px;"></span>Recording</span>
+          <span><span style="display:inline-block;width:10px;height:10px;border-radius:3px;background:#FF375F;vertical-align:middle;margin-right:4px;"></span>HK Holiday</span>
         </div>
       </div>
     </details>
@@ -2312,6 +2313,44 @@ function calToday() {
   renderCalendar();
 }
 
+// Hong Kong public holidays (M/D format, keyed by year)
+const HK_HOLIDAYS = {
+  2024: {
+    '1/1': 'New Year', '2/10': 'Lunar NY Eve', '2/11': 'Lunar NY Day 1', '2/12': 'Lunar NY Day 2', '2/13': 'Lunar NY Day 3',
+    '3/29': 'Good Friday', '3/30': 'Holy Saturday', '4/1': 'Easter Monday', '4/4': 'Ching Ming',
+    '5/1': 'Labour Day', '5/15': 'Buddha\'s Birthday', '6/10': 'Tuen Ng',
+    '7/1': 'HKSAR Day', '9/18': 'Mid-Autumn+1', '10/1': 'National Day', '10/11': 'Chung Yeung',
+    '12/25': 'Christmas', '12/26': 'Boxing Day',
+  },
+  2025: {
+    '1/1': 'New Year', '1/28': 'Lunar NY Eve', '1/29': 'Lunar NY Day 1', '1/30': 'Lunar NY Day 2', '1/31': 'Lunar NY Day 3',
+    '4/4': 'Ching Ming', '4/18': 'Good Friday', '4/19': 'Holy Saturday', '4/21': 'Easter Monday',
+    '5/1': 'Labour Day', '5/5': 'Buddha\'s Birthday', '5/31': 'Tuen Ng',
+    '7/1': 'HKSAR Day', '10/1': 'National Day', '10/7': 'Mid-Autumn+1', '10/29': 'Chung Yeung',
+    '12/25': 'Christmas', '12/26': 'Boxing Day',
+  },
+  2026: {
+    '1/1': 'New Year', '2/17': 'Lunar NY Day 1', '2/18': 'Lunar NY Day 2', '2/19': 'Lunar NY Day 3',
+    '4/3': 'Good Friday', '4/4': 'Holy Saturday', '4/5': 'Ching Ming', '4/6': 'Easter Monday',
+    '5/1': 'Labour Day', '5/24': 'Buddha\'s Birthday', '6/19': 'Tuen Ng',
+    '7/1': 'HKSAR Day', '9/26': 'Mid-Autumn+1', '10/1': 'National Day', '10/18': 'Chung Yeung',
+    '12/25': 'Christmas', '12/26': 'Boxing Day',
+  },
+  2027: {
+    '1/1': 'New Year', '2/6': 'Lunar NY Eve', '2/7': 'Lunar NY Day 1', '2/8': 'Lunar NY Day 2', '2/9': 'Lunar NY Day 3',
+    '3/26': 'Good Friday', '3/27': 'Holy Saturday', '3/29': 'Easter Monday', '4/4': 'Ching Ming',
+    '5/1': 'Labour Day', '5/13': 'Buddha\'s Birthday', '6/9': 'Tuen Ng',
+    '7/1': 'HKSAR Day', '9/16': 'Mid-Autumn+1', '10/1': 'National Day', '10/8': 'Chung Yeung',
+    '12/25': 'Christmas', '12/26': 'Boxing Day',
+  },
+};
+
+function getHoliday(year, month, day) {
+  const yh = HK_HOLIDAYS[year];
+  if (!yh) return null;
+  return yh[`${month + 1}/${day}`] || null;
+}
+
 function renderCalendar() {
   if (!prodData || !prodData.episodes) return;
   const today = new Date();
@@ -2372,15 +2411,28 @@ function renderCalendar() {
     const key = `${calYear}-${calMonth}-${d}`;
     const events = dateMap[key] || [];
     const isToday = calYear === today.getFullYear() && calMonth === today.getMonth() && d === today.getDate();
+    const holiday = getHoliday(calYear, calMonth, d);
     const border = isToday ? 'border:2px solid var(--blue);' : 'border:1px solid var(--border);';
+    const bgColor = holiday ? 'background:var(--card);' : 'background:var(--card);';
 
-    let eventsHtml = events.slice(0, 3).map(e =>
+    let dayLabel = `<span style="font-size:11px;font-weight:${isToday ? '700' : '500'};color:${isToday ? 'var(--blue)' : 'var(--text)'};">${d}</span>`;
+    if (holiday) {
+      dayLabel += `<span style="font-size:8px;color:#FF375F;margin-left:3px;" title="${holiday}">&#9679;</span>`;
+    }
+
+    let eventsHtml = '';
+    if (holiday) {
+      eventsHtml += `<div style="font-size:8px;padding:1px 3px;border-radius:3px;background:#FF375F15;color:#FF375F;font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="${holiday}">${holiday}</div>`;
+    }
+    eventsHtml += events.slice(0, holiday ? 2 : 3).map(e =>
       `<div style="font-size:9px;padding:1px 4px;border-radius:3px;background:${e.color}20;color:${e.color};font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="${e.season} — ${e.label} (${e.type})">${e.season} ${e.label}</div>`
     ).join('');
-    if (events.length > 3) eventsHtml += `<div style="font-size:9px;color:var(--text3);">+${events.length - 3} more</div>`;
+    const totalItems = events.length + (holiday ? 1 : 0);
+    const maxShown = holiday ? 3 : 3;
+    if (totalItems > maxShown) eventsHtml += `<div style="font-size:9px;color:var(--text3);">+${totalItems - maxShown} more</div>`;
 
-    html += `<div style="min-height:70px;${border}border-radius:6px;padding:4px;background:var(--card);">
-      <div style="font-size:11px;font-weight:${isToday ? '700' : '500'};color:${isToday ? 'var(--blue)' : 'var(--text)'};margin-bottom:2px;">${d}</div>
+    html += `<div style="min-height:70px;${border}border-radius:6px;padding:4px;${bgColor}">
+      <div style="margin-bottom:2px;">${dayLabel}</div>
       ${eventsHtml}
     </div>`;
   }
