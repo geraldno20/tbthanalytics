@@ -423,6 +423,11 @@
       <div class="chart-body"><div class="chart-wrap" style="height:200px;"><canvas id="ig-contrib-chart"></canvas></div></div>
     </details>
 
+    <details class="chart-section">
+      <summary>Contributor Posts by Language</summary>
+      <div class="chart-body"><div class="chart-wrap" style="height:250px;"><canvas id="ig-contrib-lang-chart"></canvas></div></div>
+    </details>
+
     <div class="controls" id="ig-controls" style="display:none;">
       <div class="seg-control" id="ig-type-filter">
         <button class="active" data-igtype="all" onclick="setIGTypeFilter('all')">All</button>
@@ -492,6 +497,11 @@
     <details class="chart-section">
       <summary>Contributor Breakdown</summary>
       <div class="chart-body"><div class="chart-wrap" style="height:200px;"><canvas id="th-contrib-chart"></canvas></div></div>
+    </details>
+
+    <details class="chart-section">
+      <summary>Contributor Posts by Language</summary>
+      <div class="chart-body"><div class="chart-wrap" style="height:250px;"><canvas id="th-contrib-lang-chart"></canvas></div></div>
     </details>
 
     <div class="table-wrap">
@@ -1094,6 +1104,50 @@ function renderInstagram() {
       });
     }
 
+    // Contributor x Language stacked bar chart
+    const igCLData = {};
+    const igLangs = new Set();
+    posts.forEach(p => {
+      const contrib = p.contributor || 'Unknown';
+      const lang = p.language || 'Unknown';
+      igLangs.add(lang);
+      if (!igCLData[contrib]) igCLData[contrib] = {};
+      igCLData[contrib][lang] = (igCLData[contrib][lang] || 0) + 1;
+    });
+    const igCLContribs = Object.keys(igCLData).sort((a, b) => {
+      const ta = Object.values(igCLData[a]).reduce((s, v) => s + v, 0);
+      const tb = Object.values(igCLData[b]).reduce((s, v) => s + v, 0);
+      return tb - ta;
+    });
+    const igCLLangs = [...igLangs].sort();
+    const clLangColors = { 'Chinese': '#FF375F', 'English': '#007AFF', 'Unknown': '#8E8E93' };
+    const igCLCtx = document.getElementById('ig-contrib-lang-chart');
+    if (igCLCtx) {
+      const isDarkCL = document.body.classList.contains('dark');
+      new Chart(igCLCtx, {
+        type: 'bar',
+        data: {
+          labels: igCLContribs,
+          datasets: igCLLangs.map(lang => ({
+            label: lang,
+            data: igCLContribs.map(c => igCLData[c][lang] || 0),
+            backgroundColor: clLangColors[lang] || '#8E8E93',
+          }))
+        },
+        options: {
+          responsive: true, maintainAspectRatio: false,
+          scales: {
+            x: { stacked: true, ticks: { color: isDarkCL ? '#AEAEB2' : '#6E6E73', font: { size: 11 } }, grid: { display: false } },
+            y: { stacked: true, beginAtZero: true, ticks: { color: isDarkCL ? '#AEAEB2' : '#6E6E73', stepSize: 1 }, grid: { color: isDarkCL ? '#3A3A3C' : '#E5E5EA' } },
+          },
+          plugins: {
+            legend: { position: 'bottom', labels: { font: { size: 11 }, color: isDarkCL ? '#AEAEB2' : '#6E6E73' } },
+            tooltip: { callbacks: { label: ctx => `${ctx.dataset.label}: ${ctx.raw} posts` } },
+          },
+        }
+      });
+    }
+
     initIGThumbTip();
   }
 }
@@ -1423,6 +1477,49 @@ function renderThreads() {
           plugins: {
             legend: { position: 'bottom', labels: { font: { size: 11 }, color: isDark ? '#AEAEB2' : '#6E6E73' } },
             tooltip: { callbacks: { label: ctx => `${ctx.label}: ${ctx.raw} posts (${Math.round(ctx.raw / posts.length * 100)}%)` } },
+          },
+        }
+      });
+    }
+
+    // Contributor x Language stacked bar chart
+    const thCLData = {};
+    const thLangs = new Set();
+    posts.forEach(p => {
+      const contrib = p.contributor || 'Unknown';
+      const lang = p.language || 'Unknown';
+      thLangs.add(lang);
+      if (!thCLData[contrib]) thCLData[contrib] = {};
+      thCLData[contrib][lang] = (thCLData[contrib][lang] || 0) + 1;
+    });
+    const thCLContribs = Object.keys(thCLData).sort((a, b) => {
+      const ta = Object.values(thCLData[a]).reduce((s, v) => s + v, 0);
+      const tb = Object.values(thCLData[b]).reduce((s, v) => s + v, 0);
+      return tb - ta;
+    });
+    const thCLLangs = [...thLangs].sort();
+    const thCLLangColors = { 'Chinese': '#FF375F', 'English': '#007AFF', 'Unknown': '#8E8E93' };
+    const thCLCtx = document.getElementById('th-contrib-lang-chart');
+    if (thCLCtx) {
+      new Chart(thCLCtx, {
+        type: 'bar',
+        data: {
+          labels: thCLContribs,
+          datasets: thCLLangs.map(lang => ({
+            label: lang,
+            data: thCLContribs.map(c => thCLData[c][lang] || 0),
+            backgroundColor: thCLLangColors[lang] || '#8E8E93',
+          }))
+        },
+        options: {
+          responsive: true, maintainAspectRatio: false,
+          scales: {
+            x: { stacked: true, ticks: { color: isDark ? '#AEAEB2' : '#6E6E73', font: { size: 11 } }, grid: { display: false } },
+            y: { stacked: true, beginAtZero: true, ticks: { color: isDark ? '#AEAEB2' : '#6E6E73', stepSize: 1 }, grid: { color: isDark ? '#3A3A3C' : '#E5E5EA' } },
+          },
+          plugins: {
+            legend: { position: 'bottom', labels: { font: { size: 11 }, color: isDark ? '#AEAEB2' : '#6E6E73' } },
+            tooltip: { callbacks: { label: ctx => `${ctx.dataset.label}: ${ctx.raw} posts` } },
           },
         }
       });
