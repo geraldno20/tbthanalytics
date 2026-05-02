@@ -184,7 +184,7 @@
 <body class="dark">
   <div class="header">
     <div class="header-left">
-      <img src="logo.png" alt="TBTH" ondblclick="toggleFinancesTab()" style="cursor:default;" title="">
+      <img src="logo.png" alt="TBTH" ondblclick="toggleFinancesTab()" id="logo-img" style="cursor:default;" title="">
       <div>
         <h1>TBTH Analytics</h1>
         <div class="subtitle" id="subtitle">Loading...</div>
@@ -2528,6 +2528,17 @@ function toggleFinancesTab() {
   document.querySelector('.platform-tabs').appendChild(btn);
   switchTab('fin');
 }
+
+// Long-press on logo for mobile (1 second hold)
+(function() {
+  const logo = document.getElementById('logo-img');
+  let timer = null;
+  logo.addEventListener('touchstart', e => {
+    timer = setTimeout(() => { toggleFinancesTab(); timer = null; }, 800);
+  }, { passive: true });
+  logo.addEventListener('touchend', () => { if (timer) clearTimeout(timer); });
+  logo.addEventListener('touchmove', () => { if (timer) clearTimeout(timer); });
+})();
 
 function parseExpenseDate(str) {
   if (!str) return null;
