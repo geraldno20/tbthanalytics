@@ -481,11 +481,14 @@
       <div class="chart-body">
         <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
           <button class="toggle-btn" onclick="changeCalMonth(-1)" style="padding:6px 10px;">&#9664;</button>
-          <span id="cal-month-label" style="font-size:14px;font-weight:600;min-width:140px;text-align:center;"></span>
+          <span id="cal-month-label" style="font-size:14px;font-weight:600;min-width:280px;text-align:center;"></span>
           <button class="toggle-btn" onclick="changeCalMonth(1)" style="padding:6px 10px;">&#9654;</button>
           <button class="toggle-btn" onclick="calToday()" style="font-size:11px;">Today</button>
         </div>
-        <div id="cal-grid" style="display:grid;grid-template-columns:repeat(7,1fr);gap:2px;"></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+          <div id="cal-grid-left" style="display:grid;grid-template-columns:repeat(7,1fr);gap:2px;"></div>
+          <div id="cal-grid-right" style="display:grid;grid-template-columns:repeat(7,1fr);gap:2px;"></div>
+        </div>
         <div style="margin-top:10px;display:flex;gap:16px;font-size:11px;color:var(--text3);">
           <span><span style="display:inline-block;width:10px;height:10px;border-radius:3px;background:#34C759;vertical-align:middle;margin-right:4px;"></span>Aired</span>
           <span><span style="display:inline-block;width:10px;height:10px;border-radius:3px;background:var(--blue);vertical-align:middle;margin-right:4px;"></span>Upcoming</span>
@@ -2374,14 +2377,18 @@ function renderCalendar() {
   today.setHours(0, 0, 0, 0);
 
   const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-  document.getElementById('cal-month-label').textContent = `${MONTHS[calMonth]} ${calYear}`;
+
+  // Compute second month
+  let cal2Month = calMonth + 1, cal2Year = calYear;
+  if (cal2Month > 11) { cal2Month = 0; cal2Year++; }
+
+  document.getElementById('cal-month-label').textContent = `${MONTHS[calMonth]} ${calYear}  —  ${MONTHS[cal2Month]} ${cal2Year}`;
 
   // Build map of date -> episodes
   const eps = prodData.episodes.filter(e => e.guest && e.guest.trim() && e.season !== '-' && e.season !== '' && e.season !== 'Agreed' && e.season !== 'Declined' && e.season !== 'No');
   const dateMap = {};
 
   eps.forEach(ep => {
-    // Release date events
     const rd = parseReleaseDate(ep.episode_release);
     if (rd) {
       const key = `${rd.getFullYear()}-${rd.getMonth()}-${rd.getDate()}`;
@@ -2395,7 +2402,6 @@ function renderCalendar() {
       });
     }
 
-    // Recording date events (only show if it looks like a date)
     const recDate = parseReleaseDate(ep.recording) || parseMonthDayDate(ep.recording);
     if (recDate) {
       const key = `${recDate.getFullYear()}-${recDate.getMonth()}-${recDate.getDate()}`;
@@ -2409,52 +2415,53 @@ function renderCalendar() {
     }
   });
 
-  const grid = document.getElementById('cal-grid');
-  const DAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+  function renderMonth(gridId, year, month) {
+    const grid = document.getElementById(gridId);
+    const DAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
-  // Header row
-  let html = DAYS.map(d => `<div style="text-align:center;font-size:11px;font-weight:600;color:var(--text3);padding:6px 0;">${d}</div>`).join('');
+    let html = `<div style="grid-column:1/-1;text-align:center;font-size:13px;font-weight:600;color:var(--text);padding:4px 0;">${MONTHS[month]} ${year}</div>`;
+    html += DAYS.map(d => `<div style="text-align:center;font-size:10px;font-weight:600;color:var(--text3);padding:4px 0;">${d}</div>`).join('');
 
-  // Calendar days
-  const firstDay = new Date(calYear, calMonth, 1).getDay();
-  const daysInMonth = new Date(calYear, calMonth + 1, 0).getDate();
+    const firstDay = new Date(year, month, 1).getDay();
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
 
-  // Blanks before first day
-  for (let i = 0; i < firstDay; i++) {
-    html += '<div style="min-height:70px;"></div>';
-  }
-
-  for (let d = 1; d <= daysInMonth; d++) {
-    const key = `${calYear}-${calMonth}-${d}`;
-    const events = dateMap[key] || [];
-    const isToday = calYear === today.getFullYear() && calMonth === today.getMonth() && d === today.getDate();
-    const holiday = getHoliday(calYear, calMonth, d);
-    const border = isToday ? 'border:2px solid var(--blue);' : 'border:1px solid var(--border);';
-    const bgColor = holiday ? 'background:var(--card);' : 'background:var(--card);';
-
-    let dayLabel = `<span style="font-size:11px;font-weight:${isToday ? '700' : '500'};color:${isToday ? 'var(--blue)' : 'var(--text)'};">${d}</span>`;
-    if (holiday) {
-      dayLabel += `<span style="font-size:8px;color:#FF375F;margin-left:3px;" title="${holiday}">&#9679;</span>`;
+    for (let i = 0; i < firstDay; i++) {
+      html += '<div style="min-height:64px;"></div>';
     }
 
-    let eventsHtml = '';
-    if (holiday) {
-      eventsHtml += `<div style="font-size:8px;padding:1px 3px;border-radius:3px;background:#FF375F15;color:#FF375F;font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="${holiday}">${holiday}</div>`;
-    }
-    eventsHtml += events.slice(0, holiday ? 2 : 3).map(e =>
-      `<div style="font-size:9px;padding:1px 4px;border-radius:3px;background:${e.color}20;color:${e.color};font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="${e.season} — ${e.label} (${e.type})">${e.season} ${e.label}</div>`
-    ).join('');
-    const totalItems = events.length + (holiday ? 1 : 0);
-    const maxShown = holiday ? 3 : 3;
-    if (totalItems > maxShown) eventsHtml += `<div style="font-size:9px;color:var(--text3);">+${totalItems - maxShown} more</div>`;
+    for (let d = 1; d <= daysInMonth; d++) {
+      const key = `${year}-${month}-${d}`;
+      const events = dateMap[key] || [];
+      const isToday = year === today.getFullYear() && month === today.getMonth() && d === today.getDate();
+      const holiday = getHoliday(year, month, d);
+      const border = isToday ? 'border:2px solid var(--blue);' : 'border:1px solid var(--border);';
 
-    html += `<div style="min-height:70px;${border}border-radius:6px;padding:4px;${bgColor}">
-      <div style="margin-bottom:2px;">${dayLabel}</div>
-      ${eventsHtml}
-    </div>`;
+      let dayLabel = `<span style="font-size:11px;font-weight:${isToday ? '700' : '500'};color:${isToday ? 'var(--blue)' : 'var(--text)'};">${d}</span>`;
+      if (holiday) {
+        dayLabel += `<span style="font-size:8px;color:#FF375F;margin-left:3px;" title="${holiday}">&#9679;</span>`;
+      }
+
+      let eventsHtml = '';
+      if (holiday) {
+        eventsHtml += `<div style="font-size:8px;padding:1px 3px;border-radius:3px;background:#FF375F15;color:#FF375F;font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="${holiday}">${holiday}</div>`;
+      }
+      eventsHtml += events.slice(0, holiday ? 2 : 3).map(e =>
+        `<div style="font-size:9px;padding:1px 4px;border-radius:3px;background:${e.color}20;color:${e.color};font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="${e.season} — ${e.label} (${e.type})">${e.season} ${e.label}</div>`
+      ).join('');
+      const totalItems = events.length + (holiday ? 1 : 0);
+      if (totalItems > 3) eventsHtml += `<div style="font-size:9px;color:var(--text3);">+${totalItems - 3} more</div>`;
+
+      html += `<div style="min-height:64px;${border}border-radius:6px;padding:3px;background:var(--card);">
+        <div style="margin-bottom:1px;">${dayLabel}</div>
+        ${eventsHtml}
+      </div>`;
+    }
+
+    grid.innerHTML = html;
   }
 
-  grid.innerHTML = html;
+  renderMonth('cal-grid-left', calYear, calMonth);
+  renderMonth('cal-grid-right', cal2Year, cal2Month);
 }
 
 function renderCrossPlatform() {
