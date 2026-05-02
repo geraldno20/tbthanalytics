@@ -556,6 +556,12 @@
   </div><!-- end #prod-tab -->
 
   <div id="fin-tab" class="tab-content">
+    <div style="margin-bottom:12px;">
+      <div class="seg-control" id="fin-currency-toggle">
+        <button class="active" data-cur="HKD" onclick="setFinCurrency('HKD')">HKD</button>
+        <button data-cur="USD" onclick="setFinCurrency('USD')">USD</button>
+      </div>
+    </div>
     <div class="kpi-cards" id="fin-kpi-cards" style="margin-bottom:20px;">
       <div class="kpi-card">
         <div class="kpi-label">Total Spent</div>
@@ -2512,6 +2518,28 @@ function renderCalendar() {
 // --- Finances ---
 let finLoaded = false;
 let finData = null;
+let finCurrency = 'HKD';
+const FX_RATES = { 'USD_TO_HKD': 7.8, 'HKD_TO_USD': 1 / 7.8 };
+
+function setFinCurrency(cur) {
+  finCurrency = cur;
+  document.querySelectorAll('#fin-currency-toggle button').forEach(b =>
+    b.classList.toggle('active', b.dataset.cur === cur)
+  );
+  if (finData) renderFinances();
+}
+
+function convertAmount(amount, fromCurrency, toCurrency) {
+  if (fromCurrency === toCurrency) return amount;
+  if (fromCurrency === 'USD' && toCurrency === 'HKD') return amount * FX_RATES.USD_TO_HKD;
+  if (fromCurrency === 'HKD' && toCurrency === 'USD') return amount * FX_RATES.HKD_TO_USD;
+  return amount;
+}
+
+function finFmt(amount) {
+  const sym = finCurrency === 'HKD' ? 'HK$' : 'US$';
+  return sym + amount.toFixed(2);
+}
 
 function toggleFinancesTab() {
   const existing = document.querySelector('.platform-tab[onclick="switchTab(\'fin\')"]');
@@ -2568,16 +2596,22 @@ function renderFinances() {
   const isDark = document.body.classList.contains('dark');
   const gridColor = isDark ? '#3A3A3C' : '#E5E5EA';
   const textColor = isDark ? '#AEAEB2' : '#6E6E73';
+  const cur = finCurrency;
+  const sym = cur === 'HKD' ? 'HK$' : 'US$';
 
-  // Filter out empty rows
+  // Filter out empty rows, parse amounts, convert to display currency
   const expenses = finData.expenses.filter(e => e.category && e.amount);
-
-  // Parse amounts
-  const rows = expenses.map(e => ({
-    ...e,
-    amountNum: parseFloat(e.amount) || 0,
-    dateObj: parseExpenseDate(e.date),
-  })).filter(r => r.amountNum > 0);
+  const rows = expenses.map(e => {
+    const rawAmount = parseFloat(e.amount) || 0;
+    const srcCurrency = (e.currency || 'USD').toUpperCase();
+    return {
+      ...e,
+      rawAmount,
+      srcCurrency,
+      amountNum: convertAmount(rawAmount, srcCurrency, cur),
+      dateObj: parseExpenseDate(e.date),
+    };
+  }).filter(r => r.rawAmount > 0);
 
   // KPIs
   const total = rows.reduce((s, r) => s + r.amountNum, 0);
@@ -2597,10 +2631,10 @@ function renderFinances() {
     });
   }
 
-  document.getElementById('fin-kpi-total').textContent = '$' + total.toFixed(2);
-  document.getElementById('fin-kpi-month').textContent = '$' + monthTotal.toFixed(2);
+  document.getElementById('fin-kpi-total').textContent = finFmt(total);
+  document.getElementById('fin-kpi-month').textContent = finFmt(monthTotal);
   document.getElementById('fin-kpi-categories').textContent = categories.length;
-  document.getElementById('fin-kpi-per-ep').textContent = airedCount > 0 ? '$' + (total / airedCount).toFixed(2) : '—';
+  document.getElementById('fin-kpi-per-ep').textContent = airedCount > 0 ? finFmt(total / airedCount) : '—';
 
   // Category chart (doughnut)
   const catTotals = {};
@@ -2624,7 +2658,7 @@ function renderFinances() {
       responsive: true, maintainAspectRatio: false,
       plugins: {
         legend: { position: 'bottom', labels: { font: { size: 11 }, color: textColor } },
-        tooltip: { callbacks: { label: ctx => `${ctx.label}: $${ctx.raw.toFixed(2)}` } },
+        tooltip: { callbacks: { label: ctx => `${ctx.label}: ${sym}${ctx.raw.toFixed(2)}` } },
       },
     }
   });
@@ -2654,7 +2688,7 @@ function renderFinances() {
       responsive: true, maintainAspectRatio: false,
       plugins: {
         legend: { position: 'bottom', labels: { font: { size: 11 }, color: textColor } },
-        tooltip: { callbacks: { label: ctx => `${ctx.label}: $${ctx.raw.toFixed(2)}` } },
+        tooltip: { callbacks: { label: ctx => `${ctx.label}: ${sym}${ctx.raw.toFixed(2)}` } },
       },
     }
   });
@@ -2687,12 +2721,12 @@ function renderFinances() {
       responsive: true, maintainAspectRatio: false,
       plugins: {
         legend: { position: 'bottom', labels: { font: { size: 11 }, color: textColor } },
-        tooltip: { callbacks: { label: ctx => `${ctx.dataset.label}: $${ctx.raw.toFixed(2)}` } },
+        tooltip: { callbacks: { label: ctx => `${ctx.dataset.label}: ${sym}${ctx.raw.toFixed(2)}` } },
       },
       scales: {
         x: { grid: { display: false }, ticks: { font: { size: 10 }, color: textColor }, border: { display: false } },
-        y: { grid: { color: gridColor }, ticks: { font: { size: 11 }, color: textColor, callback: v => '$' + v }, border: { display: false }, title: { display: true, text: 'Monthly ($)', color: textColor, font: { size: 11 } } },
-        y1: { position: 'right', grid: { display: false }, ticks: { font: { size: 11 }, color: textColor, callback: v => '$' + v }, border: { display: false }, title: { display: true, text: 'Cumulative ($)', color: textColor, font: { size: 11 } } },
+        y: { grid: { color: gridColor }, ticks: { font: { size: 11 }, color: textColor, callback: v => sym + v }, border: { display: false }, title: { display: true, text: `Monthly (${cur})`, color: textColor, font: { size: 11 } } },
+        y1: { position: 'right', grid: { display: false }, ticks: { font: { size: 11 }, color: textColor, callback: v => sym + v }, border: { display: false }, title: { display: true, text: `Cumulative (${cur})`, color: textColor, font: { size: 11 } } },
       }
     }
   });
@@ -2702,7 +2736,7 @@ function renderFinances() {
     { key: 'date', label: 'Date' },
     { key: 'category', label: 'Category' },
     { key: 'expense', label: 'Expense' },
-    { key: 'amountNum', label: 'Amount' },
+    { key: 'amountNum', label: `Amount (${cur})` },
     { key: 'paid_by', label: 'Paid By' },
   ];
 
@@ -2727,13 +2761,16 @@ function renderFinances() {
       return 0;
     });
 
-    document.getElementById('fin-table-body').innerHTML = sorted.map(r => `<tr>
+    document.getElementById('fin-table-body').innerHTML = sorted.map(r => {
+      const origNote = r.srcCurrency !== cur ? ` <span style="font-size:10px;color:var(--text3);">(${r.srcCurrency} ${r.rawAmount.toFixed(2)})</span>` : '';
+      return `<tr>
       <td style="text-align:left;color:var(--text3);">${r.date || '—'}</td>
       <td style="text-align:left;">${r.category}</td>
       <td style="text-align:left;font-weight:500;">${r.expense}</td>
-      <td style="text-align:right;font-weight:600;">$${r.amountNum.toFixed(2)}</td>
+      <td style="text-align:right;font-weight:600;">${sym}${r.amountNum.toFixed(2)}${origNote}</td>
       <td style="text-align:left;">${r.paid_by || '—'}</td>
-    </tr>`).join('');
+    </tr>`;
+    }).join('');
   }
 
   renderFinTable();
