@@ -173,7 +173,7 @@ def fetch_media(token, ig_user_id, limit=100):
 
         post = {
             "id": media_id,
-            "caption": (item.get("caption") or "")[:200],
+            "caption": item.get("caption") or "",
             "media_type": media_type,
             "timestamp": item.get("timestamp"),
             "permalink": item.get("permalink"),
