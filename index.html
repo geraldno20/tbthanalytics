@@ -1059,11 +1059,13 @@ function renderInstagram() {
     const igCLData = {};
     const igLangs = new Set();
     posts.forEach(p => {
-      const contrib = p.contributor || 'Unknown';
+      const shares = getContributorShares(p.caption);
       const lang = p.language || 'Unknown';
       igLangs.add(lang);
-      if (!igCLData[contrib]) igCLData[contrib] = {};
-      igCLData[contrib][lang] = (igCLData[contrib][lang] || 0) + 1;
+      shares.forEach(([name, weight]) => {
+        if (!igCLData[name]) igCLData[name] = {};
+        igCLData[name][lang] = (igCLData[name][lang] || 0) + weight;
+      });
     });
     const igCLContribs = Object.keys(igCLData).filter(k => k !== 'Unknown').sort((a, b) => {
       const ta = Object.values(igCLData[a]).reduce((s, v) => s + v, 0);
@@ -1380,11 +1382,13 @@ function renderThreads() {
     const thCLData = {};
     const thLangs = new Set();
     posts.forEach(p => {
-      const contrib = p.contributor || 'Unknown';
+      const shares = getContributorShares(p.text);
       const lang = p.language || 'Unknown';
       thLangs.add(lang);
-      if (!thCLData[contrib]) thCLData[contrib] = {};
-      thCLData[contrib][lang] = (thCLData[contrib][lang] || 0) + 1;
+      shares.forEach(([name, weight]) => {
+        if (!thCLData[name]) thCLData[name] = {};
+        thCLData[name][lang] = (thCLData[name][lang] || 0) + weight;
+      });
     });
     const thCLContribs = Object.keys(thCLData).filter(k => k !== 'Unknown').sort((a, b) => {
       const ta = Object.values(thCLData[a]).reduce((s, v) => s + v, 0);
