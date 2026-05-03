@@ -151,7 +151,7 @@ def fetch_threads_posts(token, user_id, limit=100):
         thread_id = item["id"]
         post = {
             "id": thread_id,
-            "text": (item.get("text") or "")[:200],
+            "text": item.get("text") or "",
             "media_type": item.get("media_type", ""),
             "timestamp": item.get("timestamp"),
             "permalink": item.get("permalink"),
