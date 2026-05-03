@@ -1109,7 +1109,7 @@ function renderInstagram() {
       const shares = getContributorShares(p.caption);
       shares.forEach(([name, weight]) => { igContribCounts[name] = (igContribCounts[name] || 0) + weight; });
     });
-    const igContribLabels = Object.keys(igContribCounts).sort((a, b) => igContribCounts[b] - igContribCounts[a]);
+    const igContribLabels = Object.keys(igContribCounts).filter(k => k !== 'Unknown').sort((a, b) => igContribCounts[b] - igContribCounts[a]);
     const contribColors = ['#FF375F','#007AFF','#34C759','#FF9500','#AF52DE','#FF2D55','#5AC8FA','#FFCC00','#8E8E93'];
     const igContribCtx = document.getElementById('ig-contrib-chart');
     if (igContribCtx) {
@@ -1144,7 +1144,7 @@ function renderInstagram() {
       if (!igCLData[contrib]) igCLData[contrib] = {};
       igCLData[contrib][lang] = (igCLData[contrib][lang] || 0) + 1;
     });
-    const igCLContribs = Object.keys(igCLData).sort((a, b) => {
+    const igCLContribs = Object.keys(igCLData).filter(k => k !== 'Unknown').sort((a, b) => {
       const ta = Object.values(igCLData[a]).reduce((s, v) => s + v, 0);
       const tb = Object.values(igCLData[b]).reduce((s, v) => s + v, 0);
       return tb - ta;
@@ -1488,7 +1488,7 @@ function renderThreads() {
       const shares = getContributorShares(p.text);
       shares.forEach(([name, weight]) => { thContribCounts[name] = (thContribCounts[name] || 0) + weight; });
     });
-    const thContribLabels = Object.keys(thContribCounts).sort((a, b) => thContribCounts[b] - thContribCounts[a]);
+    const thContribLabels = Object.keys(thContribCounts).filter(k => k !== 'Unknown').sort((a, b) => thContribCounts[b] - thContribCounts[a]);
     const thContribColors = ['#FF375F','#007AFF','#34C759','#FF9500','#AF52DE','#FF2D55','#5AC8FA','#FFCC00','#8E8E93'];
     const thContribCtx = document.getElementById('th-contrib-chart');
     if (thContribCtx) {
@@ -1522,7 +1522,7 @@ function renderThreads() {
       if (!thCLData[contrib]) thCLData[contrib] = {};
       thCLData[contrib][lang] = (thCLData[contrib][lang] || 0) + 1;
     });
-    const thCLContribs = Object.keys(thCLData).sort((a, b) => {
+    const thCLContribs = Object.keys(thCLData).filter(k => k !== 'Unknown').sort((a, b) => {
       const ta = Object.values(thCLData[a]).reduce((s, v) => s + v, 0);
       const tb = Object.values(thCLData[b]).reduce((s, v) => s + v, 0);
       return tb - ta;
