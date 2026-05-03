@@ -414,16 +414,6 @@
     </details>
 
     <details class="chart-section">
-      <summary>Post Language Breakdown</summary>
-      <div class="chart-body"><div class="chart-wrap" style="height:200px;"><canvas id="ig-lang-chart"></canvas></div></div>
-    </details>
-
-    <details class="chart-section">
-      <summary>Contributor Breakdown</summary>
-      <div class="chart-body"><div class="chart-wrap" style="height:200px;"><canvas id="ig-contrib-chart"></canvas></div></div>
-    </details>
-
-    <details class="chart-section">
       <summary>Contributor Posts by Language</summary>
       <div class="chart-body"><div class="chart-wrap" style="height:250px;"><canvas id="ig-contrib-lang-chart"></canvas></div></div>
     </details>
@@ -487,16 +477,6 @@
     <details class="chart-section">
       <summary>Audience Demographics — Top Cities</summary>
       <div class="chart-body"><div class="chart-wrap"><canvas id="th-demo-city"></canvas></div></div>
-    </details>
-
-    <details class="chart-section">
-      <summary>Post Language Breakdown</summary>
-      <div class="chart-body"><div class="chart-wrap" style="height:200px;"><canvas id="th-lang-chart"></canvas></div></div>
-    </details>
-
-    <details class="chart-section">
-      <summary>Contributor Breakdown</summary>
-      <div class="chart-body"><div class="chart-wrap" style="height:200px;"><canvas id="th-contrib-chart"></canvas></div></div>
     </details>
 
     <details class="chart-section">
@@ -1075,65 +1055,6 @@ function renderInstagram() {
       window._renderIGTable();
     });
 
-    // Language breakdown pie chart
-    const langCounts = {};
-    posts.forEach(p => { langCounts[p.language] = (langCounts[p.language] || 0) + 1; });
-    const langLabels = Object.keys(langCounts).sort((a, b) => langCounts[b] - langCounts[a]);
-    const langColors = { 'Chinese': '#FF375F', 'English': '#007AFF', 'Unknown': '#8E8E93' };
-    const igLangCtx = document.getElementById('ig-lang-chart');
-    if (igLangCtx) {
-      const isDarkLang = document.body.classList.contains('dark');
-      new Chart(igLangCtx, {
-        type: 'doughnut',
-        data: {
-          labels: langLabels,
-          datasets: [{
-            data: langLabels.map(l => langCounts[l]),
-            backgroundColor: langLabels.map(l => langColors[l] || '#8E8E93'),
-            borderWidth: 0,
-          }]
-        },
-        options: {
-          responsive: true, maintainAspectRatio: false,
-          plugins: {
-            legend: { position: 'bottom', labels: { font: { size: 11 }, color: isDarkLang ? '#AEAEB2' : '#6E6E73' } },
-            tooltip: { callbacks: { label: ctx => `${ctx.label}: ${ctx.raw} posts (${Math.round(ctx.raw / posts.length * 100)}%)` } },
-          },
-        }
-      });
-    }
-
-    // Contributor breakdown pie chart
-    const igContribCounts = {};
-    posts.forEach(p => {
-      const shares = getContributorShares(p.caption);
-      shares.forEach(([name, weight]) => { igContribCounts[name] = (igContribCounts[name] || 0) + weight; });
-    });
-    const igContribLabels = Object.keys(igContribCounts).filter(k => k !== 'Unknown').sort((a, b) => igContribCounts[b] - igContribCounts[a]);
-    const contribColors = ['#FF375F','#007AFF','#34C759','#FF9500','#AF52DE','#FF2D55','#5AC8FA','#FFCC00','#8E8E93'];
-    const igContribCtx = document.getElementById('ig-contrib-chart');
-    if (igContribCtx) {
-      const isDarkC = document.body.classList.contains('dark');
-      new Chart(igContribCtx, {
-        type: 'doughnut',
-        data: {
-          labels: igContribLabels,
-          datasets: [{
-            data: igContribLabels.map(l => igContribCounts[l]),
-            backgroundColor: igContribLabels.map((_, i) => contribColors[i % contribColors.length]),
-            borderWidth: 0,
-          }]
-        },
-        options: {
-          responsive: true, maintainAspectRatio: false,
-          plugins: {
-            legend: { position: 'bottom', labels: { font: { size: 11 }, color: isDarkC ? '#AEAEB2' : '#6E6E73' } },
-            tooltip: { callbacks: { label: ctx => `${ctx.label}: ${ctx.raw} posts (${Math.round(ctx.raw / posts.length * 100)}%)` } },
-          },
-        }
-      });
-    }
-
     // Contributor x Language stacked bar chart
     const igCLData = {};
     const igLangs = new Set();
@@ -1454,63 +1375,6 @@ function renderThreads() {
       else { thSortCol = col; thSortAsc = false; }
       renderTHTable();
     });
-
-    // Language breakdown pie chart
-    const thLangCounts = {};
-    posts.forEach(p => { thLangCounts[p.language] = (thLangCounts[p.language] || 0) + 1; });
-    const thLangLabels = Object.keys(thLangCounts).sort((a, b) => thLangCounts[b] - thLangCounts[a]);
-    const thLangColors = { 'Chinese': '#FF375F', 'English': '#007AFF', 'Unknown': '#8E8E93' };
-    const thLangCtx = document.getElementById('th-lang-chart');
-    if (thLangCtx) {
-      new Chart(thLangCtx, {
-        type: 'doughnut',
-        data: {
-          labels: thLangLabels,
-          datasets: [{
-            data: thLangLabels.map(l => thLangCounts[l]),
-            backgroundColor: thLangLabels.map(l => thLangColors[l] || '#8E8E93'),
-            borderWidth: 0,
-          }]
-        },
-        options: {
-          responsive: true, maintainAspectRatio: false,
-          plugins: {
-            legend: { position: 'bottom', labels: { font: { size: 11 }, color: isDark ? '#AEAEB2' : '#6E6E73' } },
-            tooltip: { callbacks: { label: ctx => `${ctx.label}: ${ctx.raw} posts (${Math.round(ctx.raw / posts.length * 100)}%)` } },
-          },
-        }
-      });
-    }
-
-    // Contributor breakdown pie chart
-    const thContribCounts = {};
-    posts.forEach(p => {
-      const shares = getContributorShares(p.text);
-      shares.forEach(([name, weight]) => { thContribCounts[name] = (thContribCounts[name] || 0) + weight; });
-    });
-    const thContribLabels = Object.keys(thContribCounts).filter(k => k !== 'Unknown').sort((a, b) => thContribCounts[b] - thContribCounts[a]);
-    const thContribColors = ['#FF375F','#007AFF','#34C759','#FF9500','#AF52DE','#FF2D55','#5AC8FA','#FFCC00','#8E8E93'];
-    const thContribCtx = document.getElementById('th-contrib-chart');
-    if (thContribCtx) {
-      new Chart(thContribCtx, {
-        type: 'doughnut',
-        data: {
-          labels: thContribLabels,
-          datasets: [{
-            data: thContribLabels.map(l => thContribCounts[l]),
-            backgroundColor: thContribLabels.map((_, i) => thContribColors[i % thContribColors.length]),
-            borderWidth: 0,
-          }]
-        },
-        options: {
-          responsive: true, maintainAspectRatio: false,
-          plugins: {
-            legend: { position: 'bottom', labels: { font: { size: 11 }, color: isDark ? '#AEAEB2' : '#6E6E73' } },
-            tooltip: { callbacks: { label: ctx => `${ctx.label}: ${ctx.raw} posts (${Math.round(ctx.raw / posts.length * 100)}%)` } },
-          },
-        }
-      });
-    }
 
     // Contributor x Language stacked bar chart
     const thCLData = {};
