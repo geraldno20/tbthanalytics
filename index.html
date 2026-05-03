@@ -695,6 +695,14 @@ function detectLang(text) {
 }
 
 // --- Contributor detection ---
+const CONTRIBUTOR_TAGS = {
+  'gg': 'Gerald', 'ss': 'Chicken', 'cl': 'Charles Lieou',
+  'jh': 'Jerry', 'sp': 'Sunny', 'll': 'Lok Lam',
+  'nsh': 'Ng Sze Ho', 'sl': 'Steph Law', 'jm': 'Jody Mok',
+  'bluey': 'Bluey',
+};
+const TAG_REGEX = new RegExp('#(' + Object.keys(CONTRIBUTOR_TAGS).join('|') + ')(?:\\b|\\s|$)', 'gi');
+
 const CONTRIBUTOR_PATTERNS = [
   ['GG & Phoenix@TBTH', [['Gerald', 0.5], ['Chicken', 0.5]]],
   ['GG@TBTH', [['Gerald', 1]]],
@@ -707,23 +715,45 @@ const CONTRIBUTOR_PATTERNS = [
   ['楊至樂', [['Gerald', 1]]],
   ['宋尚暉', [['Chicken', 1]]],
   ['藍兒', [['Bluey', 1]]],
-  ['吳思浩', [['NGH', 1]]],
+  ['吳思浩', [['Ng Sze Ho', 1]]],
   ['駱彥霖', [['Lok Lam', 1]]],
   ['/CL', [['Charles Lieou', 1]]],
 ];
+
+function detectTagShares(text) {
+  if (!text) return null;
+  TAG_REGEX.lastIndex = 0;
+  const found = [];
+  let m;
+  while ((m = TAG_REGEX.exec(text)) !== null) {
+    const name = CONTRIBUTOR_TAGS[m[1].toLowerCase()];
+    if (name && !found.includes(name)) found.push(name);
+  }
+  if (found.length === 0) return null;
+  const weight = 1 / found.length;
+  return found.map(n => [n, weight]);
+}
+
 function detectContributor(text) {
   if (!text) return 'Unknown';
+  // Priority 1: hashtag tags
+  const tags = detectTagShares(text);
+  if (tags) return tags.map(([n]) => n).join(' & ');
+  // Priority 2: sign-off patterns
   for (const [pattern, mapping] of CONTRIBUTOR_PATTERNS) {
     if (text.includes(pattern)) {
       return mapping.map(([n]) => n).join(' & ');
     }
   }
-  // Check for lone "-P" sign-off (must be end of line)
   if (/\n-P\s*$/.test(text) || /^-P\s*$/.test(text.trim().split('\n').pop().trim())) return 'Chicken';
   return 'Unknown';
 }
 function getContributorShares(text) {
   if (!text) return [['Unknown', 1]];
+  // Priority 1: hashtag tags
+  const tags = detectTagShares(text);
+  if (tags) return tags;
+  // Priority 2: sign-off patterns
   for (const [pattern, mapping] of CONTRIBUTOR_PATTERNS) {
     if (text.includes(pattern)) return mapping;
   }
