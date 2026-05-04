@@ -245,6 +245,7 @@
     <button class="platform-tab active" onclick="switchTab('yt')">YouTube</button>
     <button class="platform-tab" onclick="switchTab('ig')">Instagram</button>
     <button class="platform-tab" onclick="switchTab('th')">Threads</button>
+    <button class="platform-tab" onclick="switchTab('mkt')">Marketing</button>
     <button class="platform-tab" onclick="switchTab('prod')">YouTube Production</button>
   </div>
 
@@ -496,6 +497,39 @@
       <p style="font-size:13px;">Run <code>python3 fetch_threads.py</code> after setting up Threads API access.</p>
     </div>
   </div><!-- end #th-tab -->
+
+  <div id="mkt-tab" class="tab-content">
+    <div class="kpi-cards" id="mkt-kpi-cards" style="margin-bottom:20px;">
+      <div class="kpi-card">
+        <div class="kpi-label">Total Ad Spend</div>
+        <div class="kpi-value" id="mkt-kpi-spend">—</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Total Ad Views</div>
+        <div class="kpi-value" id="mkt-kpi-views">—</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Avg Cost/View</div>
+        <div class="kpi-value" id="mkt-kpi-cpv">—</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Total Subs Gained</div>
+        <div class="kpi-value" id="mkt-kpi-subs">—</div>
+      </div>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr id="mkt-header-row"></tr></thead>
+        <tbody id="mkt-table-body"></tbody>
+      </table>
+    </div>
+
+    <div id="mkt-no-data" style="display:none;text-align:center;padding:60px 20px;color:var(--text3);">
+      <p style="font-size:18px;font-weight:600;margin-bottom:8px;">Marketing data not yet available</p>
+      <p style="font-size:13px;">Waiting for Google Ads API Basic access approval. Run <code>python3 fetch_ads.py</code> once approved.</p>
+    </div>
+  </div><!-- end #mkt-tab -->
 
   <div id="prod-tab" class="tab-content">
     <div class="kpi-cards" id="prod-kpi-cards" style="margin-bottom:20px;">
@@ -749,6 +783,7 @@ function switchTab(tab) {
 
   if (tab === 'ig') loadInstagram();
   if (tab === 'th') loadThreads();
+  if (tab === 'mkt') loadMarketing();
   if (tab === 'prod') loadProduction();
   if (tab === 'fin') loadFinances();
 }
@@ -1423,6 +1458,133 @@ function renderThreads() {
       });
     }
   }
+}
+
+// --- Marketing Tab ---
+let mktData = null;
+let mktLoaded = false;
+
+async function loadMarketing() {
+  if (mktLoaded) { renderMarketing(); return; }
+  try {
+    const [adsResp, analyticsResp] = await Promise.all([
+      fetch('data/ads.json'),
+      fetch('data/analytics.json'),
+    ]);
+    if (adsResp.ok) {
+      const adsJson = await adsResp.json();
+      const analyticsJson = await analyticsResp.json();
+      // Cross-reference ads with video analytics
+      const videoMap = {};
+      (analyticsJson.videos || []).forEach(v => {
+        videoMap[v.video_id] = v;
+      });
+      mktData = {
+        videos: (adsJson.videos || []).map(ad => {
+          const vid = videoMap[ad.video_id] || {};
+          return {
+            ...ad,
+            episode_name: vid.title || ad.video_title || 'Unknown',
+            content_type: vid.is_short ? 'Short' : 'Video',
+            ad_type: 'YouTube',
+            subs_gained: vid.new_subscribers || 0,
+          };
+        }),
+        total_spend: adsJson.total_spend || 0,
+        total_views: adsJson.total_views || 0,
+      };
+      mktLoaded = true;
+      document.getElementById('mkt-no-data').style.display = 'none';
+      renderMarketing();
+    } else {
+      document.getElementById('mkt-no-data').style.display = 'block';
+    }
+  } catch (e) {
+    document.getElementById('mkt-no-data').style.display = 'block';
+  }
+}
+
+function renderMarketing() {
+  if (!mktData) return;
+  const fmt = n => n != null ? n.toLocaleString() : '—';
+  const fmtD = (n, d) => n != null ? n.toFixed(d) : '—';
+
+  const videos = mktData.videos;
+  const totalSpend = videos.reduce((s, v) => s + v.total_cost, 0);
+  const totalViews = videos.reduce((s, v) => s + v.total_views, 0);
+  const totalImps = videos.reduce((s, v) => s + v.total_impressions, 0);
+  const totalSubs = videos.reduce((s, v) => s + v.subs_gained, 0);
+
+  document.getElementById('mkt-kpi-spend').textContent = '$' + totalSpend.toFixed(2);
+  document.getElementById('mkt-kpi-views').textContent = fmt(totalViews);
+  document.getElementById('mkt-kpi-cpv').textContent = totalViews ? '$' + (totalSpend / totalViews).toFixed(4) : '—';
+  document.getElementById('mkt-kpi-subs').textContent = fmt(totalSubs);
+
+  const MKT_COLS = [
+    { key: 'ad_type', label: 'Ad Type' },
+    { key: 'episode_name', label: 'Episode Name' },
+    { key: 'content_type', label: 'Content Type' },
+    { key: 'total_cost', label: 'Spend' },
+    { key: 'total_impressions', label: 'Impressions' },
+    { key: 'total_views', label: 'Views' },
+    { key: 'subs_gained', label: 'Subs Gained' },
+    { key: 'conversion_rate', label: 'Views/Imp %' },
+    { key: 'cpv', label: 'Cost/View' },
+    { key: 'cps', label: 'Cost/Sub' },
+    { key: 'subs_imp', label: 'Subs/Imp %' },
+  ];
+
+  let mktSortCol = 'total_cost';
+  let mktSortAsc = false;
+
+  function renderMktTable() {
+    const arrow = col => col === mktSortCol ? (mktSortAsc ? ' ▲' : ' ▼') : '';
+    document.getElementById('mkt-header-row').innerHTML = MKT_COLS.map(c =>
+      `<th style="cursor:pointer;" data-mkt-col="${c.key}">${c.label}${arrow(c.key)}</th>`
+    ).join('');
+
+    const enriched = videos.map(v => ({
+      ...v,
+      conversion_rate: v.total_impressions ? (v.total_views / v.total_impressions * 100) : 0,
+      cpv: v.total_views ? (v.total_cost / v.total_views) : 0,
+      cps: v.subs_gained ? (v.total_cost / v.subs_gained) : null,
+      subs_imp: v.total_impressions ? (v.subs_gained / v.total_impressions * 100) : 0,
+    }));
+
+    const sorted = [...enriched].sort((a, b) => {
+      let va = a[mktSortCol], vb = b[mktSortCol];
+      if (typeof va === 'string') { va = va.toLowerCase(); vb = (vb || '').toLowerCase(); }
+      if (va == null) return 1; if (vb == null) return -1;
+      if (va < vb) return mktSortAsc ? -1 : 1;
+      if (va > vb) return mktSortAsc ? 1 : -1;
+      return 0;
+    });
+
+    document.getElementById('mkt-table-body').innerHTML = sorted.map(v => `<tr>
+      <td>${v.ad_type}</td>
+      <td style="max-width:250px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-align:left;">${v.episode_name}</td>
+      <td>${v.content_type}</td>
+      <td>$${v.total_cost.toFixed(2)}</td>
+      <td>${fmt(v.total_impressions)}</td>
+      <td>${fmt(v.total_views)}</td>
+      <td>${fmt(v.subs_gained)}</td>
+      <td>${v.conversion_rate.toFixed(1)}%</td>
+      <td>$${v.cpv.toFixed(4)}</td>
+      <td>${v.cps != null ? '$' + v.cps.toFixed(2) : '—'}</td>
+      <td>${v.subs_imp.toFixed(3)}%</td>
+    </tr>`).join('');
+  }
+
+  renderMktTable();
+
+  document.getElementById('mkt-header-row').addEventListener('click', e => {
+    const th = e.target.closest('th');
+    if (!th) return;
+    const col = th.dataset.mktCol;
+    if (col === mktSortCol) { mktSortAsc = !mktSortAsc; }
+    else { mktSortCol = col; mktSortAsc = false; }
+    renderMktTable();
+  });
 }
 
 const COLUMNS = [
