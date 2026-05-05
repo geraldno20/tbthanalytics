@@ -1697,6 +1697,7 @@ let wfComments = [];
 let wfLoaded = false;
 let wfEditingTask = null;
 let wfCommentsProjectId = null;
+let wfHideAired = true;
 
 async function sbFetch(endpoint, options = {}) {
   const headers = {
@@ -1753,6 +1754,9 @@ function getMemberName(id) {
 }
 
 function getProjectStage(projectId) {
+  const proj = wfProjects.find(p => p.id === projectId);
+  const today = new Date().toISOString().slice(0, 10);
+  if (proj && proj.air_date && proj.air_date <= today) return 'Aired';
   const tasks = getProjectTasks(projectId);
   const isComplete = (key) => {
     const t = tasks.find(tk => tk.task_key === key);
@@ -1798,7 +1802,12 @@ function renderWfProjectTable() {
     return;
   }
   const today = new Date().toISOString().slice(0, 10);
-  container.innerHTML = `<table>
+  const filtered = wfHideAired ? wfProjects.filter(p => getProjectStage(p.id) !== 'Aired') : wfProjects;
+  container.innerHTML = `
+    <div style="margin-bottom:8px;display:flex;align-items:center;gap:8px;">
+      <button class="toggle-btn ${wfHideAired ? 'active' : ''}" onclick="toggleHideAired()" style="font-size:11px;">Hide Aired</button>
+    </div>
+    <table>
     <thead><tr>
       <th>Project</th>
       <th>Season</th>
@@ -1808,7 +1817,7 @@ function renderWfProjectTable() {
       <th></th>
       <th></th>
     </tr></thead>
-    <tbody>${wfProjects.map(p => {
+    <tbody>${filtered.map(p => {
       const commentCount = wfComments.filter(c => c.project_id === p.id).length;
       return `<tr>
         <td>${p.name}</td>
@@ -1836,6 +1845,11 @@ function renderWfProjectTable() {
   </table>`;
 }
 
+function toggleHideAired() {
+  wfHideAired = !wfHideAired;
+  renderWfProjectTable();
+}
+
 async function quickStatusChange(projectId, taskKey, newStatus) {
   const existing = getTaskForProject(projectId, taskKey);
   if (existing) {
@@ -1846,6 +1860,14 @@ async function quickStatusChange(projectId, taskKey, newStatus) {
     if (result && result.length) wfProjectTasks.push(result[0]);
   }
   renderWorkflow();
+}
+
+async function updateProjectField(projectId, field, value) {
+  const body = {};
+  body[field] = value || null;
+  await sbFetch(`projects?id=eq.${projectId}`, { method: 'PATCH', body });
+  const proj = wfProjects.find(p => p.id === projectId);
+  if (proj) proj[field] = value || null;
 }
 
 function openTaskEdit(projectId, taskKey) {
