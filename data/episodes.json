@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-05-04 12:07",
+  "fetched_at": "2026-05-05 11:30",
   "episodes": [
     {
       "season": "1",
@@ -769,6 +769,19 @@
       "2m_release": ""
     },
     {
+      "season": "6",
+      "episode": "9",
+      "guest": "1 Year Anniversary",
+      "class_year": "-",
+      "host": "GG",
+      "recording": "Complete",
+      "teaser_upload": "",
+      "teaser_release": "",
+      "episode_upload": "",
+      "episode_release": "5/28/2026",
+      "2m_release": ""
+    },
+    {
       "season": "Nonsense",
       "episode": "N/A",
       "guest": "Tang East",
@@ -782,12 +795,12 @@
       "2m_release": ""
     },
     {
-      "season": "6",
-      "episode": "9",
-      "guest": "1 year Anniversary",
-      "class_year": "-",
-      "host": "",
-      "recording": "",
+      "season": "7",
+      "episode": "1",
+      "guest": "Jeff Shum",
+      "class_year": "2003",
+      "host": "GG",
+      "recording": "Complete",
       "teaser_upload": "",
       "teaser_release": "5/28/2026",
       "episode_upload": "",
@@ -822,9 +835,9 @@
     },
     {
       "season": "7",
-      "episode": "1",
-      "guest": "Jeff Shum",
-      "class_year": "2003",
+      "episode": "2",
+      "guest": "Ms Wong MK",
+      "class_year": "Staff",
       "host": "GG",
       "recording": "Complete",
       "teaser_upload": "",
@@ -835,28 +848,15 @@
     },
     {
       "season": "7",
-      "episode": "2",
-      "guest": "Ms Wong MK",
-      "class_year": "Staff",
-      "host": "GG",
-      "recording": "Complete",
-      "teaser_upload": "",
-      "teaser_release": "6/11/2026",
-      "episode_upload": "",
-      "episode_release": "6/25/2026",
-      "2m_release": ""
-    },
-    {
-      "season": "7",
       "episode": "3",
       "guest": "Kevin Law",
       "class_year": "2004",
       "host": "GG",
       "recording": "",
       "teaser_upload": "",
-      "teaser_release": "6/18/2026",
+      "teaser_release": "6/11/2026",
       "episode_upload": "",
-      "episode_release": "7/2/2026",
+      "episode_release": "6/25/2026",
       "2m_release": ""
     },
     {
@@ -867,9 +867,9 @@
       "host": "FTK",
       "recording": "Complete",
       "teaser_upload": "",
-      "teaser_release": "6/25/2026",
+      "teaser_release": "6/18/2026",
       "episode_upload": "",
-      "episode_release": "7/9/2026",
+      "episode_release": "7/2/2026",
       "2m_release": ""
     },
     {
@@ -880,9 +880,9 @@
       "host": "Sunny",
       "recording": "Complete",
       "teaser_upload": "",
-      "teaser_release": "7/2/2026",
+      "teaser_release": "6/25/2026",
       "episode_upload": "",
-      "episode_release": "7/16/2026",
+      "episode_release": "7/9/2026",
       "2m_release": ""
     },
     {
@@ -893,9 +893,9 @@
       "host": "David",
       "recording": "",
       "teaser_upload": "",
-      "teaser_release": "7/9/2026",
+      "teaser_release": "7/2/2026",
       "episode_upload": "",
-      "episode_release": "7/23/2026",
+      "episode_release": "7/16/2026",
       "2m_release": ""
     },
     {
@@ -906,9 +906,9 @@
       "host": "TBD",
       "recording": "",
       "teaser_upload": "",
-      "teaser_release": "7/16/2026",
+      "teaser_release": "7/9/2026",
       "episode_upload": "",
-      "episode_release": "7/30/2026",
+      "episode_release": "7/23/2026",
       "2m_release": ""
     },
     {
@@ -919,7 +919,7 @@
       "host": "Sunny",
       "recording": "May 22",
       "teaser_upload": "",
-      "teaser_release": "7/23/2026",
+      "teaser_release": "7/16/2026",
       "episode_upload": "",
       "episode_release": "7/30/2026",
       "2m_release": ""
@@ -929,6 +929,19 @@
       "episode": "9",
       "guest": "David Chen",
       "class_year": "2003",
+      "host": "",
+      "recording": "",
+      "teaser_upload": "",
+      "teaser_release": "7/23/2026",
+      "episode_upload": "",
+      "episode_release": "7/30/2026",
+      "2m_release": ""
+    },
+    {
+      "season": "",
+      "episode": "",
+      "guest": "",
+      "class_year": "",
       "host": "",
       "recording": "",
       "teaser_upload": "",

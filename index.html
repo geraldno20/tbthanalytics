@@ -1812,9 +1812,9 @@ function renderWfProjectTable() {
       const commentCount = wfComments.filter(c => c.project_id === p.id).length;
       return `<tr>
         <td>${p.name}</td>
-        <td style="text-align:center;font-size:12px;">${p.season || ''}</td>
-        <td style="text-align:center;font-size:12px;">${p.episode || ''}</td>
-        <td style="text-align:center;font-size:12px;white-space:nowrap;">${p.air_date ? p.air_date.slice(5) : ''}</td>
+        <td style="text-align:center;"><input type="text" value="${p.season || ''}" onchange="updateProjectField('${p.id}','season',this.value)" style="width:40px;text-align:center;font-size:12px;padding:2px 4px;border:1px solid var(--border);border-radius:4px;background:var(--bg);color:var(--text);"></td>
+        <td style="text-align:center;"><input type="text" value="${p.episode || ''}" onchange="updateProjectField('${p.id}','episode',this.value)" style="width:40px;text-align:center;font-size:12px;padding:2px 4px;border:1px solid var(--border);border-radius:4px;background:var(--bg);color:var(--text);"></td>
+        <td style="text-align:center;"><input type="date" value="${p.air_date || ''}" onchange="updateProjectField('${p.id}','air_date',this.value)" style="font-size:11px;padding:2px 4px;border:1px solid var(--border);border-radius:4px;background:var(--bg);color:var(--text);"></td>
         ${WORKFLOW_TASKS.map(wt => {
           const task = getTaskForProject(p.id, wt.key);
           const status = task ? task.status : 'not_started';
