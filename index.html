@@ -1716,6 +1716,11 @@ async function sbFetch(endpoint, options = {}) {
   return text ? JSON.parse(text) : [];
 }
 
+async function reloadWorkflow() {
+  wfLoaded = false;
+  await loadWorkflow();
+}
+
 async function loadWorkflow() {
   if (!wfLoaded) {
     const [members, projects, tasks, comments] = await Promise.all([
@@ -1845,6 +1850,7 @@ function renderWfProjectTable() {
         ${allSeasons.map(s => `<button class="${wfSeasonFilter === s ? 'active' : ''}" onclick="setWfSeasonFilter('${s}')">S${s}</button>`).join('')}
       </div>
       <button class="toggle-btn ${wfHideAired ? 'active' : ''}" onclick="toggleHideAired()" style="font-size:11px;">Hide Aired</button>
+      <button class="wf-btn" onclick="reloadWorkflow()" style="font-size:11px;padding:4px 10px;">Reload</button>
       ${wfSelectedProjects.size ? `<span style="font-size:12px;color:var(--text2);margin-left:8px;">${wfSelectedProjects.size} selected</span>
       <button class="wf-btn" onclick="bulkSetStatus('complete')" style="font-size:11px;padding:4px 10px;">Set Complete</button>
       <button class="wf-btn" onclick="bulkSetStatus('not_started')" style="font-size:11px;padding:4px 10px;">Set Not Started</button>
@@ -2022,7 +2028,10 @@ async function updateProjectField(projectId, field, value) {
 }
 
 async function clearAirDate(projectId) {
-  await updateProjectField(projectId, 'air_date', '');
+  // Explicitly send null to Supabase
+  await sbFetch(`projects?id=eq.${projectId}`, { method: 'PATCH', body: { air_date: null } });
+  const proj = wfProjects.find(p => p.id === projectId);
+  if (proj) proj.air_date = null;
   renderWfProjectTable();
 }
 
