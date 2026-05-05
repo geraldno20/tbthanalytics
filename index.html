@@ -1698,6 +1698,8 @@ let wfLoaded = false;
 let wfEditingTask = null;
 let wfCommentsProjectId = null;
 let wfHideAired = true;
+let wfSortCol = 'season';
+let wfSortAsc = true;
 
 async function sbFetch(endpoint, options = {}) {
   const headers = {
@@ -1802,17 +1804,47 @@ function renderWfProjectTable() {
     return;
   }
   const today = new Date().toISOString().slice(0, 10);
-  const filtered = wfHideAired ? wfProjects.filter(p => getProjectStage(p.id) !== 'Aired') : wfProjects;
+  let filtered = wfHideAired ? wfProjects.filter(p => getProjectStage(p.id) !== 'Aired') : [...wfProjects];
+
+  // Sort
+  if (wfSortCol) {
+    filtered = [...filtered].sort((a, b) => {
+      let va, vb;
+      if (wfSortCol === 'season') {
+        va = parseInt(a.season) || 9999;
+        vb = parseInt(b.season) || 9999;
+      } else if (wfSortCol === 'episode') {
+        va = parseInt(a.episode) || 9999;
+        vb = parseInt(b.episode) || 9999;
+      } else if (wfSortCol === 'air_date') {
+        va = a.air_date || '9999';
+        vb = b.air_date || '9999';
+      } else if (wfSortCol === 'name') {
+        va = (a.name || '').toLowerCase();
+        vb = (b.name || '').toLowerCase();
+      } else if (wfSortCol === 'stage') {
+        const order = ['Ideation', 'Pre-Production', 'Production', 'Production Complete', 'Aired'];
+        va = order.indexOf(getProjectStage(a.id));
+        vb = order.indexOf(getProjectStage(b.id));
+      }
+      if (va < vb) return wfSortAsc ? -1 : 1;
+      if (va > vb) return wfSortAsc ? 1 : -1;
+      return 0;
+    });
+  }
+
+  const arrow = (col) => wfSortCol === col ? (wfSortAsc ? ' \u25B2' : ' \u25BC') : '';
+
   container.innerHTML = `
     <div style="margin-bottom:8px;display:flex;align-items:center;gap:8px;">
       <button class="toggle-btn ${wfHideAired ? 'active' : ''}" onclick="toggleHideAired()" style="font-size:11px;">Hide Aired</button>
     </div>
     <table>
     <thead><tr>
-      <th>Project</th>
-      <th>Season</th>
-      <th>Ep</th>
-      <th>Air Date</th>
+      <th class="sortable" onclick="sortWfTable('name')" style="cursor:pointer;">Project${arrow('name')}</th>
+      <th class="sortable" onclick="sortWfTable('season')" style="cursor:pointer;">Season${arrow('season')}</th>
+      <th class="sortable" onclick="sortWfTable('episode')" style="cursor:pointer;">Ep${arrow('episode')}</th>
+      <th class="sortable" onclick="sortWfTable('air_date')" style="cursor:pointer;">Air Date${arrow('air_date')}</th>
       ${WORKFLOW_TASKS.map(t => `<th>${t.label}</th>`).join('')}
       <th></th>
       <th></th>
@@ -1847,6 +1879,16 @@ function renderWfProjectTable() {
 
 function toggleHideAired() {
   wfHideAired = !wfHideAired;
+  renderWfProjectTable();
+}
+
+function sortWfTable(col) {
+  if (wfSortCol === col) {
+    wfSortAsc = !wfSortAsc;
+  } else {
+    wfSortCol = col;
+    wfSortAsc = true;
+  }
   renderWfProjectTable();
 }
 
