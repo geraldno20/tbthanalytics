@@ -662,6 +662,8 @@
         <label>Season<input type="text" id="wf-proj-season" placeholder="e.g. 4"></label>
         <label>Episode<input type="text" id="wf-proj-episode" placeholder="e.g. 01"></label>
         <label>Air Date<input type="date" id="wf-proj-airdate"></label>
+        <label>Class Year<input type="text" id="wf-proj-classyear" placeholder="e.g. 2003"></label>
+        <label>Host<input type="text" id="wf-proj-host" placeholder="e.g. Gerald"></label>
         <div class="wf-modal-actions">
           <button class="wf-btn" onclick="closeWfModal()">Cancel</button>
           <button class="wf-btn wf-btn-primary" onclick="saveProject()">Create</button>
@@ -1870,12 +1872,29 @@ function renderWfProjectTable() {
       <button class="wf-btn" onclick="clearSelection()" style="font-size:11px;padding:4px 10px;">Clear</button>` : ''}
     </div>
     <table>
-    <thead><tr>
+    <thead>
+    <tr id="wf-group-row">
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th colspan="2" style="text-align:center;font-size:10px;color:#fff;background:#FF9500;border-radius:6px 6px 0 0;">Ideation</th>
+      <th colspan="4" style="text-align:center;font-size:10px;color:#fff;background:#5AC8FA;border-radius:6px 6px 0 0;">Pre-Production</th>
+      <th colspan="9" style="text-align:center;font-size:10px;color:#fff;background:#AF52DE;border-radius:6px 6px 0 0;">Production</th>
+      <th></th>
+      <th></th>
+    </tr>
+    <tr>
       <th style="width:30px;text-align:center;"><input type="checkbox" onchange="toggleSelectAll(this.checked)" ${wfSelectedProjects.size === filtered.length && filtered.length ? 'checked' : ''}></th>
       <th class="sortable" onclick="sortWfTable('name')" style="cursor:pointer;">Project${arrow('name')}</th>
       <th class="sortable" onclick="sortWfTable('season')" style="cursor:pointer;">Season${arrow('season')}</th>
       <th class="sortable" onclick="sortWfTable('episode')" style="cursor:pointer;">Ep${arrow('episode')}</th>
       <th class="sortable" onclick="sortWfTable('air_date')" style="cursor:pointer;">Air Date${arrow('air_date')}</th>
+      <th>Class Year</th>
+      <th>Host</th>
       ${WORKFLOW_TASKS.map(t => `<th>${t.label}</th>`).join('')}
       <th></th>
       <th></th>
@@ -1889,6 +1908,8 @@ function renderWfProjectTable() {
         <td style="text-align:center;"><input type="text" value="${p.season || ''}" onchange="updateProjectField('${p.id}','season',this.value)" style="width:40px;text-align:center;font-size:12px;padding:2px 4px;border:1px solid var(--border);border-radius:4px;background:var(--bg);color:var(--text);"></td>
         <td style="text-align:center;"><input type="text" value="${p.episode || ''}" onchange="updateProjectField('${p.id}','episode',this.value)" style="width:40px;text-align:center;font-size:12px;padding:2px 4px;border:1px solid var(--border);border-radius:4px;background:var(--bg);color:var(--text);"></td>
         <td style="text-align:center;"><input type="date" value="${p.air_date || ''}" onchange="updateProjectField('${p.id}','air_date',this.value)" style="font-size:11px;padding:2px 4px;border:1px solid var(--border);border-radius:4px;background:var(--bg);color:var(--text);"></td>
+        <td style="text-align:center;"><input type="text" value="${p.class_year || ''}" onchange="updateProjectField('${p.id}','class_year',this.value)" style="width:50px;text-align:center;font-size:12px;padding:2px 4px;border:1px solid var(--border);border-radius:4px;background:var(--bg);color:var(--text);"></td>
+        <td style="text-align:center;"><input type="text" value="${p.host || ''}" onchange="updateProjectField('${p.id}','host',this.value)" style="width:60px;text-align:center;font-size:12px;padding:2px 4px;border:1px solid var(--border);border-radius:4px;background:var(--bg);color:var(--text);"></td>
         ${WORKFLOW_TASKS.map(wt => {
           const task = getTaskForProject(p.id, wt.key);
           const status = task ? task.status : 'not_started';
@@ -2053,6 +2074,8 @@ function showAddProject() {
   document.getElementById('wf-proj-season').value = '';
   document.getElementById('wf-proj-episode').value = '';
   document.getElementById('wf-proj-airdate').value = '';
+  document.getElementById('wf-proj-classyear').value = '';
+  document.getElementById('wf-proj-host').value = '';
   document.getElementById('wf-project-modal').style.display = 'flex';
 }
 
@@ -2064,6 +2087,8 @@ async function saveProject() {
     season: document.getElementById('wf-proj-season').value.trim() || null,
     episode: document.getElementById('wf-proj-episode').value.trim() || null,
     air_date: document.getElementById('wf-proj-airdate').value || null,
+    class_year: document.getElementById('wf-proj-classyear').value.trim() || null,
+    host: document.getElementById('wf-proj-host').value.trim() || null,
   };
   const result = await sbFetch('projects', { method: 'POST', body });
   if (result && result.length) {

@@ -83,6 +83,8 @@ def main():
 
         episode_num = e.get('episode', '')
         air_date = parse_date(e.get('episode_release', ''))
+        class_year = e.get('class_year', '').strip() or None
+        host = e.get('host', '').strip() or None
         name = guest
 
         # Determine if aired: air_date is in the past
@@ -97,6 +99,8 @@ def main():
             'season': season_val,
             'episode': episode_num if episode_num else None,
             'air_date': air_date,
+            'class_year': class_year,
+            'host': host,
         }
         result = sb_post('projects', project_body)
         if not result or not len(result):

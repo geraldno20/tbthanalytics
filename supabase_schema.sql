@@ -26,6 +26,8 @@ CREATE TABLE projects (
   season TEXT,
   episode TEXT,
   air_date DATE,
+  class_year TEXT,
+  host TEXT,
   created_at TIMESTAMPTZ DEFAULT now(),
   updated_at TIMESTAMPTZ DEFAULT now()
 );
