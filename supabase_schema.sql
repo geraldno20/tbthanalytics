@@ -23,8 +23,20 @@ INSERT INTO team_members (name, color) VALUES
 CREATE TABLE projects (
   id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
   name TEXT NOT NULL,
+  season TEXT,
+  episode TEXT,
+  air_date DATE,
   created_at TIMESTAMPTZ DEFAULT now(),
   updated_at TIMESTAMPTZ DEFAULT now()
+);
+
+-- Project comments
+CREATE TABLE project_comments (
+  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  project_id UUID REFERENCES projects(id) ON DELETE CASCADE,
+  author TEXT NOT NULL,
+  body TEXT NOT NULL,
+  created_at TIMESTAMPTZ DEFAULT now()
 );
 
 -- Project tasks (one row per task per project)
@@ -46,10 +58,12 @@ CREATE TABLE project_tasks (
 ALTER TABLE team_members ENABLE ROW LEVEL SECURITY;
 ALTER TABLE projects ENABLE ROW LEVEL SECURITY;
 ALTER TABLE project_tasks ENABLE ROW LEVEL SECURITY;
+ALTER TABLE project_comments ENABLE ROW LEVEL SECURITY;
 
 CREATE POLICY "Allow all" ON team_members FOR ALL USING (true) WITH CHECK (true);
 CREATE POLICY "Allow all" ON projects FOR ALL USING (true) WITH CHECK (true);
 CREATE POLICY "Allow all" ON project_tasks FOR ALL USING (true) WITH CHECK (true);
+CREATE POLICY "Allow all" ON project_comments FOR ALL USING (true) WITH CHECK (true);
 
 -- Auto-update updated_at timestamp
 CREATE OR REPLACE FUNCTION update_updated_at()

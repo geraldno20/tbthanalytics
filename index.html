@@ -283,7 +283,6 @@
     <button class="platform-tab" onclick="switchTab('th')">Threads</button>
     <button class="platform-tab" onclick="switchTab('mkt')">Marketing</button>
     <button class="platform-tab" onclick="switchTab('wf')">Workflow</button>
-    <button class="platform-tab" onclick="switchTab('prod')">YouTube Production</button>
   </div>
 
   <div id="yt-tab" class="tab-content active">
@@ -570,10 +569,7 @@
 
   <div id="wf-tab" class="tab-content">
     <div class="wf-section">
-      <!-- Summary cards -->
       <div class="wf-summary" id="wf-summary"></div>
-
-      <!-- Projects table -->
       <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
         <h3 style="margin:0;font-size:16px;">Projects</h3>
         <button class="wf-btn wf-btn-primary" onclick="showAddProject()">+ New Project</button>
@@ -581,61 +577,7 @@
       <div class="wf-project-table" id="wf-project-table"></div>
     </div>
 
-    <!-- Add Project Modal -->
-    <div class="wf-modal" id="wf-project-modal" style="display:none;">
-      <div class="wf-modal-content">
-        <h3>New Project</h3>
-        <label>Project Name<input type="text" id="wf-proj-name" placeholder="e.g. S4E01 - Guest Name"></label>
-        <div class="wf-modal-actions">
-          <button class="wf-btn" onclick="closeWfModal()">Cancel</button>
-          <button class="wf-btn wf-btn-primary" onclick="saveProject()">Create</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- Edit Task Modal -->
-    <div class="wf-modal" id="wf-task-modal" style="display:none;">
-      <div class="wf-modal-content">
-        <h3 id="wf-task-modal-title">Edit Task</h3>
-        <label>Status
-          <select id="wf-task-status">
-            <option value="not_started">Not Started</option>
-            <option value="assigned">Assigned</option>
-            <option value="in_progress">In Progress</option>
-            <option value="complete">Complete</option>
-          </select>
-        </label>
-        <label>Assigned To<select id="wf-task-assign"></select></label>
-        <label>Deadline<input type="date" id="wf-task-deadline"></label>
-        <div class="wf-modal-actions">
-          <button class="wf-btn" onclick="closeWfModal()">Cancel</button>
-          <button class="wf-btn wf-btn-primary" onclick="saveTaskEdit()">Save</button>
-        </div>
-      </div>
-    </div>
-  </div><!-- end #wf-tab -->
-
-  <div id="prod-tab" class="tab-content">
-    <div class="kpi-cards" id="prod-kpi-cards" style="margin-bottom:20px;">
-      <div class="kpi-card">
-        <div class="kpi-label">Episodes Aired</div>
-        <div class="kpi-value" id="prod-kpi-aired">—</div>
-      </div>
-      <div class="kpi-card">
-        <div class="kpi-label">Planned / Scheduled</div>
-        <div class="kpi-value" id="prod-kpi-planned">—</div>
-      </div>
-      <div class="kpi-card">
-        <div class="kpi-label">Agreed (Unscheduled)</div>
-        <div class="kpi-value" id="prod-kpi-agreed">—</div>
-      </div>
-      <div class="kpi-card">
-        <div class="kpi-label">Declined</div>
-        <div class="kpi-value" id="prod-kpi-declined">—</div>
-      </div>
-    </div>
-
-    <details class="chart-section" open>
+    <details class="chart-section">
       <summary>Content Calendar</summary>
       <div class="chart-body">
         <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
@@ -657,22 +599,22 @@
       </div>
     </details>
 
-    <details class="chart-section" open>
+    <details class="chart-section">
       <summary>Episodes per Host</summary>
       <div class="chart-body"><div class="chart-wrap"><canvas id="prod-host-chart"></canvas></div></div>
     </details>
 
-    <details class="chart-section" open>
+    <details class="chart-section">
       <summary>Episodes per Season</summary>
       <div class="chart-body"><div class="chart-wrap"><canvas id="prod-season-chart"></canvas></div></div>
     </details>
 
-    <details class="chart-section" open>
+    <details class="chart-section">
       <summary>Episode Growth Over Time</summary>
       <div class="chart-body"><div class="chart-wrap"><canvas id="prod-growth-chart"></canvas></div></div>
     </details>
 
-    <details class="chart-section" open>
+    <details class="chart-section">
       <summary>Guests by Class Year</summary>
       <div class="chart-body"><div class="chart-wrap"><canvas id="prod-classyear-chart"></canvas></div></div>
     </details>
@@ -712,7 +654,55 @@
         <div id="prod-agreed-list" style="display:flex;flex-wrap:wrap;gap:8px;"></div>
       </div>
     </details>
-  </div><!-- end #prod-tab -->
+
+    <div class="wf-modal" id="wf-project-modal" style="display:none;">
+      <div class="wf-modal-content">
+        <h3>New Project</h3>
+        <label>Project Name<input type="text" id="wf-proj-name" placeholder="e.g. Guest Name"></label>
+        <label>Season<input type="text" id="wf-proj-season" placeholder="e.g. 4"></label>
+        <label>Episode<input type="text" id="wf-proj-episode" placeholder="e.g. 01"></label>
+        <label>Air Date<input type="date" id="wf-proj-airdate"></label>
+        <div class="wf-modal-actions">
+          <button class="wf-btn" onclick="closeWfModal()">Cancel</button>
+          <button class="wf-btn wf-btn-primary" onclick="saveProject()">Create</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="wf-modal" id="wf-task-modal" style="display:none;">
+      <div class="wf-modal-content">
+        <h3 id="wf-task-modal-title">Edit Task</h3>
+        <label>Status
+          <select id="wf-task-status">
+            <option value="not_started">Not Started</option>
+            <option value="assigned">Assigned</option>
+            <option value="in_progress">In Progress</option>
+            <option value="complete">Complete</option>
+          </select>
+        </label>
+        <label>Assigned To<select id="wf-task-assign"></select></label>
+        <label>Deadline<input type="date" id="wf-task-deadline"></label>
+        <div class="wf-modal-actions">
+          <button class="wf-btn" onclick="closeWfModal()">Cancel</button>
+          <button class="wf-btn wf-btn-primary" onclick="saveTaskEdit()">Save</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="wf-modal" id="wf-comments-modal" style="display:none;">
+      <div class="wf-modal-content" style="max-width:500px;">
+        <h3 id="wf-comments-title">Comments</h3>
+        <div id="wf-comments-list" style="max-height:300px;overflow-y:auto;margin-bottom:12px;"></div>
+        <div style="display:flex;gap:8px;">
+          <input type="text" id="wf-comment-input" placeholder="Add a comment..." style="flex:1;padding:8px;border:1px solid var(--border);border-radius:6px;font-size:13px;background:var(--bg);color:var(--text);">
+          <button class="wf-btn wf-btn-primary" onclick="postComment()">Post</button>
+        </div>
+        <div class="wf-modal-actions" style="margin-top:12px;">
+          <button class="wf-btn" onclick="closeWfModal()">Close</button>
+        </div>
+      </div>
+    </div>
+  </div><!-- end #wf-tab -->
 
   <div id="fin-tab" class="tab-content">
     <div style="margin-bottom:12px;">
@@ -868,8 +858,7 @@ function switchTab(tab) {
   if (tab === 'ig') loadInstagram();
   if (tab === 'th') loadThreads();
   if (tab === 'mkt') loadMarketing();
-  if (tab === 'wf') loadWorkflow();
-  if (tab === 'prod') loadProduction();
+  if (tab === 'wf') { loadWorkflow(); loadProduction(); }
   if (tab === 'fin') loadFinances();
 }
 
@@ -1704,8 +1693,10 @@ const TASK_STATUSES = [
 let wfTeamMembers = [];
 let wfProjects = [];
 let wfProjectTasks = [];
+let wfComments = [];
 let wfLoaded = false;
 let wfEditingTask = null;
+let wfCommentsProjectId = null;
 
 async function sbFetch(endpoint, options = {}) {
   const headers = {
@@ -1732,14 +1723,16 @@ async function sbFetch(endpoint, options = {}) {
 
 async function loadWorkflow() {
   if (!wfLoaded) {
-    const [members, projects, tasks] = await Promise.all([
+    const [members, projects, tasks, comments] = await Promise.all([
       sbFetch('team_members?order=name'),
       sbFetch('projects?order=created_at.desc'),
       sbFetch('project_tasks?order=project_id,task_key'),
+      sbFetch('project_comments?order=created_at.desc'),
     ]);
     wfTeamMembers = members || [];
     wfProjects = projects || [];
     wfProjectTasks = tasks || [];
+    wfComments = comments || [];
     wfLoaded = true;
   }
   renderWorkflow();
@@ -1808,12 +1801,20 @@ function renderWfProjectTable() {
   container.innerHTML = `<table>
     <thead><tr>
       <th>Project</th>
+      <th>Season</th>
+      <th>Ep</th>
+      <th>Air Date</th>
       ${WORKFLOW_TASKS.map(t => `<th>${t.label}</th>`).join('')}
+      <th></th>
       <th></th>
     </tr></thead>
     <tbody>${wfProjects.map(p => {
+      const commentCount = wfComments.filter(c => c.project_id === p.id).length;
       return `<tr>
         <td>${p.name}</td>
+        <td style="text-align:center;font-size:12px;">${p.season || ''}</td>
+        <td style="text-align:center;font-size:12px;">${p.episode || ''}</td>
+        <td style="text-align:center;font-size:12px;white-space:nowrap;">${p.air_date ? p.air_date.slice(5) : ''}</td>
         ${WORKFLOW_TASKS.map(wt => {
           const task = getTaskForProject(p.id, wt.key);
           const status = task ? task.status : 'not_started';
@@ -1828,6 +1829,7 @@ function renderWfProjectTable() {
             ${deadline ? `<div class="wf-deadline${overdue}">${deadline.slice(5)}</div>` : ''}
           </td>`;
         }).join('')}
+        <td><button class="wf-delete-btn" onclick="openComments('${p.id}')" title="Comments" style="color:var(--text3);">${commentCount ? commentCount + ' msg' : 'chat'}</button></td>
         <td><button class="wf-delete-btn" onclick="deleteProject('${p.id}')" title="Delete project">x</button></td>
       </tr>`;
     }).join('')}</tbody>
@@ -1882,13 +1884,22 @@ async function saveTaskEdit() {
 
 function showAddProject() {
   document.getElementById('wf-proj-name').value = '';
+  document.getElementById('wf-proj-season').value = '';
+  document.getElementById('wf-proj-episode').value = '';
+  document.getElementById('wf-proj-airdate').value = '';
   document.getElementById('wf-project-modal').style.display = 'flex';
 }
 
 async function saveProject() {
   const name = document.getElementById('wf-proj-name').value.trim();
   if (!name) return;
-  const result = await sbFetch('projects', { method: 'POST', body: { name } });
+  const body = {
+    name,
+    season: document.getElementById('wf-proj-season').value.trim() || null,
+    episode: document.getElementById('wf-proj-episode').value.trim() || null,
+    air_date: document.getElementById('wf-proj-airdate').value || null,
+  };
+  const result = await sbFetch('projects', { method: 'POST', body });
   if (result && result.length) {
     wfProjects.unshift(result[0]);
     const taskResult = await sbFetch('project_tasks', { method: 'POST', body: { project_id: result[0].id, task_key: 'outreach', status: 'not_started' } });
@@ -1909,7 +1920,50 @@ async function deleteProject(id) {
 function closeWfModal() {
   document.getElementById('wf-project-modal').style.display = 'none';
   document.getElementById('wf-task-modal').style.display = 'none';
+  document.getElementById('wf-comments-modal').style.display = 'none';
   wfEditingTask = null;
+  wfCommentsProjectId = null;
+}
+
+function openComments(projectId) {
+  wfCommentsProjectId = projectId;
+  const proj = wfProjects.find(p => p.id === projectId);
+  document.getElementById('wf-comments-title').textContent = `Comments — ${proj ? proj.name : ''}`;
+  document.getElementById('wf-comment-input').value = '';
+  renderComments();
+  document.getElementById('wf-comments-modal').style.display = 'flex';
+}
+
+function renderComments() {
+  const list = document.getElementById('wf-comments-list');
+  const comments = wfComments.filter(c => c.project_id === wfCommentsProjectId).sort((a, b) => a.created_at.localeCompare(b.created_at));
+  if (!comments.length) {
+    list.innerHTML = '<p style="color:var(--text3);font-size:12px;padding:12px 0;">No comments yet.</p>';
+    return;
+  }
+  list.innerHTML = comments.map(c => {
+    const time = c.created_at ? new Date(c.created_at).toLocaleString('en-HK', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' }) : '';
+    return `<div style="margin-bottom:8px;padding:8px;background:var(--bg);border-radius:6px;">
+      <div style="font-size:11px;color:var(--text3);margin-bottom:2px;"><strong style="color:var(--text);">${c.author}</strong> &middot; ${time}</div>
+      <div style="font-size:13px;">${c.body}</div>
+    </div>`;
+  }).join('');
+  list.scrollTop = list.scrollHeight;
+}
+
+async function postComment() {
+  const input = document.getElementById('wf-comment-input');
+  const body = input.value.trim();
+  if (!body || !wfCommentsProjectId) return;
+  const author = prompt('Your name:');
+  if (!author) return;
+  const result = await sbFetch('project_comments', { method: 'POST', body: { project_id: wfCommentsProjectId, author, body } });
+  if (result && result.length) {
+    wfComments.push(result[0]);
+    renderComments();
+    renderWfProjectTable();
+  }
+  input.value = '';
 }
 
 const COLUMNS = [
@@ -2845,11 +2899,7 @@ function renderProduction() {
     }
   });
 
-  // KPIs
-  document.getElementById('prod-kpi-aired').textContent = aired;
-  document.getElementById('prod-kpi-planned').textContent = planned;
-  document.getElementById('prod-kpi-agreed').textContent = agreed;
-  document.getElementById('prod-kpi-declined').textContent = declined;
+  // KPIs — no longer rendered to DOM (handled by workflow summary)
 
   // Build season filter buttons
   const filterEl = document.getElementById('prod-season-filter');
@@ -2864,7 +2914,7 @@ function renderProduction() {
   });
 
   // Open chart sections for proper rendering
-  document.querySelectorAll('#prod-tab details.chart-section').forEach(d => d.open = true);
+  document.querySelectorAll('#wf-tab details.chart-section').forEach(d => d.open = true);
 
   // Host Pareto Chart
   requestAnimationFrame(() => {
