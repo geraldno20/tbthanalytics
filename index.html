@@ -1722,7 +1722,7 @@ async function sbFetch(endpoint, options = {}) {
     headers,
     body: options.body ? JSON.stringify(options.body) : undefined,
   });
-  if (\!resp.ok) {
+  if (!resp.ok) {
     console.error('Supabase error:', resp.status, await resp.text());
     return null;
   }
@@ -1731,7 +1731,7 @@ async function sbFetch(endpoint, options = {}) {
 }
 
 async function loadWorkflow() {
-  if (\!wfLoaded) {
+  if (!wfLoaded) {
     const [members, projects, tasks] = await Promise.all([
       sbFetch('team_members?order=name'),
       sbFetch('projects?order=created_at.desc'),
@@ -1754,7 +1754,7 @@ function getTaskForProject(projectId, taskKey) {
 }
 
 function getMemberName(id) {
-  if (\!id) return '';
+  if (!id) return '';
   const m = wfTeamMembers.find(t => t.id === id);
   return m ? m.name : '';
 }
@@ -1800,7 +1800,7 @@ function renderWfSummary() {
 
 function renderWfProjectTable() {
   const container = document.getElementById('wf-project-table');
-  if (\!wfProjects.length) {
+  if (!wfProjects.length) {
     container.innerHTML = '<p style="color:var(--text3);font-size:13px;padding:20px;">No projects yet. Click "+ New Project" to create one.</p>';
     return;
   }
@@ -1819,7 +1819,7 @@ function renderWfProjectTable() {
           const status = task ? task.status : 'not_started';
           const assignee = task ? getMemberName(task.assigned_to) : '';
           const deadline = task ? task.deadline : '';
-          const overdue = deadline && deadline < today && status \!== 'complete' ? ' overdue' : '';
+          const overdue = deadline && deadline < today && status !== 'complete' ? ' overdue' : '';
           return `<td class="wf-task-cell wf-status-${status}" onclick="openTaskEdit('${p.id}','${wt.key}')">
             <select onclick="event.stopPropagation()" onchange="quickStatusChange('${p.id}','${wt.key}',this.value)">
               ${TASK_STATUSES.map(s => `<option value="${s.key}" ${s.key === status ? 'selected' : ''}>${s.label}</option>`).join('')}
@@ -1860,7 +1860,7 @@ function openTaskEdit(projectId, taskKey) {
 }
 
 async function saveTaskEdit() {
-  if (\!wfEditingTask) return;
+  if (!wfEditingTask) return;
   const { project_id, task_key, existing } = wfEditingTask;
   const body = {
     status: document.getElementById('wf-task-status').value,
@@ -1887,7 +1887,7 @@ function showAddProject() {
 
 async function saveProject() {
   const name = document.getElementById('wf-proj-name').value.trim();
-  if (\!name) return;
+  if (!name) return;
   const result = await sbFetch('projects', { method: 'POST', body: { name } });
   if (result && result.length) {
     wfProjects.unshift(result[0]);
@@ -1899,10 +1899,10 @@ async function saveProject() {
 }
 
 async function deleteProject(id) {
-  if (\!confirm('Delete this project and all its tasks?')) return;
+  if (!confirm('Delete this project and all its tasks?')) return;
   await sbFetch(`projects?id=eq.${id}`, { method: 'DELETE', prefer: 'return=minimal' });
-  wfProjects = wfProjects.filter(p => p.id \!== id);
-  wfProjectTasks = wfProjectTasks.filter(t => t.project_id \!== id);
+  wfProjects = wfProjects.filter(p => p.id !== id);
+  wfProjectTasks = wfProjectTasks.filter(t => t.project_id !== id);
   renderWorkflow();
 }
 
