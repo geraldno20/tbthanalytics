@@ -211,36 +211,40 @@
     }
     /* Workflow tab styles */
     .wf-section { padding: 0 4px; }
-    .wf-btn { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 6px 14px; font-size: 13px; color: var(--text1); cursor: pointer; }
-    .wf-btn:hover { background: var(--hover); }
+    .wf-btn { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 6px 14px; font-size: 13px; color: var(--text); cursor: pointer; }
+    .wf-btn:hover { border-color: var(--blue); color: var(--blue); }
     .wf-btn-primary { background: #007AFF; color: #fff; border-color: #007AFF; }
     .wf-btn-primary:hover { background: #0056CC; }
-    .wf-pipeline { overflow-x: auto; }
-    .wf-pipeline table { width: 100%; border-collapse: collapse; font-size: 13px; }
-    .wf-pipeline th, .wf-pipeline td { padding: 8px 10px; border-bottom: 1px solid var(--border); text-align: left; white-space: nowrap; }
-    .wf-pipeline th { font-weight: 600; color: var(--text2); font-size: 11px; text-transform: uppercase; }
-    .wf-stage-badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; }
-    .wf-stage-select { background: var(--card); border: 1px solid var(--border); border-radius: 4px; padding: 3px 6px; font-size: 12px; color: var(--text1); cursor: pointer; }
-    .wf-assign-badge { display: inline-flex; align-items: center; gap: 4px; font-size: 12px; }
-    .wf-assign-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
-    .wf-kanban { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
-    @media (max-width: 768px) { .wf-kanban { grid-template-columns: 1fr; } }
-    .wf-kanban-col { background: var(--card); border-radius: 12px; padding: 12px; min-height: 200px; }
-    .wf-kanban-header { font-weight: 700; font-size: 13px; margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
-    .wf-kanban-card { background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 10px; margin-bottom: 8px; cursor: pointer; }
-    .wf-kanban-card:hover { border-color: #007AFF; }
-    .wf-kanban-card h4 { margin: 0 0 4px; font-size: 13px; font-weight: 600; }
-    .wf-kanban-card p { margin: 0; font-size: 11px; color: var(--text3); }
-    .wf-kanban-card .wf-card-meta { display: flex; justify-content: space-between; align-items: center; margin-top: 6px; font-size: 11px; color: var(--text3); }
+    .wf-summary { display: flex; gap: 12px; margin-bottom: 24px; flex-wrap: wrap; }
+    .wf-summary-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 12px 20px; text-align: center; min-width: 120px; flex: 1; }
+    .wf-summary-card .wf-sum-count { font-size: 28px; font-weight: 700; color: var(--text); }
+    .wf-summary-card .wf-sum-label { font-size: 11px; color: var(--text3); text-transform: uppercase; letter-spacing: 0.5px; margin-top: 2px; }
+    .wf-summary-card.active { border-color: var(--blue); }
+    .wf-project-table { overflow-x: auto; background: var(--card); border-radius: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.07); }
+    .wf-project-table table { width: 100%; border-collapse: collapse; font-size: 12px; }
+    .wf-project-table th { padding: 8px 6px; font-weight: 600; color: var(--text2); font-size: 10px; text-transform: uppercase; letter-spacing: 0.3px; border-bottom: 1px solid var(--border); background: var(--th-bg); white-space: nowrap; text-align: center; }
+    .wf-project-table th:first-child { text-align: left; padding-left: 12px; position: sticky; left: 0; background: var(--th-bg); z-index: 2; min-width: 140px; }
+    .wf-project-table td { padding: 6px; border-bottom: 1px solid var(--border2); text-align: center; vertical-align: top; }
+    .wf-project-table td:first-child { text-align: left; padding-left: 12px; font-weight: 600; font-size: 13px; position: sticky; left: 0; background: var(--card); z-index: 1; white-space: nowrap; }
+    .wf-project-table tr:hover td { background: var(--card-hover); }
+    .wf-project-table tr:hover td:first-child { background: var(--card-hover); }
+    .wf-task-cell { min-width: 90px; }
+    .wf-task-cell select { width: 100%; font-size: 11px; padding: 2px 4px; border: 1px solid var(--border); border-radius: 4px; background: var(--bg); color: var(--text); cursor: pointer; }
+    .wf-task-cell .wf-assignee { font-size: 10px; color: var(--text3); margin-top: 2px; }
+    .wf-task-cell .wf-deadline { font-size: 10px; color: var(--text3); margin-top: 1px; }
+    .wf-task-cell .wf-deadline.overdue { color: var(--red); }
+    .wf-status-not_started select { border-color: var(--border); }
+    .wf-status-assigned select { border-color: #FF9500; background: #FF950010; }
+    .wf-status-in_progress select { border-color: var(--blue); background: #007AFF10; }
+    .wf-status-complete select { border-color: var(--green); background: #34C75910; }
     .wf-modal { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; z-index: 1000; }
     .wf-modal-content { background: var(--card); border-radius: 12px; padding: 24px; width: 90%; max-width: 400px; }
     .wf-modal-content h3 { margin: 0 0 16px; font-size: 16px; }
     .wf-modal-content label { display: block; margin-bottom: 12px; font-size: 12px; font-weight: 600; color: var(--text2); }
-    .wf-modal-content input, .wf-modal-content select, .wf-modal-content textarea { display: block; width: 100%; margin-top: 4px; padding: 8px; border: 1px solid var(--border); border-radius: 6px; font-size: 13px; background: var(--bg); color: var(--text1); box-sizing: border-box; }
+    .wf-modal-content input, .wf-modal-content select, .wf-modal-content textarea { display: block; width: 100%; margin-top: 4px; padding: 8px; border: 1px solid var(--border); border-radius: 6px; font-size: 13px; background: var(--bg); color: var(--text); box-sizing: border-box; }
     .wf-modal-actions { display: flex; gap: 8px; justify-content: flex-end; margin-top: 16px; }
-    .wf-actions-cell { display: flex; gap: 4px; }
-    .wf-actions-cell button { background: none; border: none; cursor: pointer; font-size: 14px; padding: 2px 4px; border-radius: 4px; }
-    .wf-actions-cell button:hover { background: var(--hover); }
+    .wf-delete-btn { background: none; border: none; cursor: pointer; font-size: 13px; padding: 2px 6px; border-radius: 4px; color: var(--text3); }
+    .wf-delete-btn:hover { color: var(--red); background: #FF375F15; }
   </style>
 </head>
 <body class="dark">
@@ -566,60 +570,46 @@
 
   <div id="wf-tab" class="tab-content">
     <div class="wf-section">
-      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">
-        <h3 style="margin:0;font-size:16px;">Episode Pipeline</h3>
-        <button class="wf-btn" onclick="showAddEpisode()">+ New Episode</button>
+      <!-- Summary cards -->
+      <div class="wf-summary" id="wf-summary"></div>
+
+      <!-- Projects table -->
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
+        <h3 style="margin:0;font-size:16px;">Projects</h3>
+        <button class="wf-btn wf-btn-primary" onclick="showAddProject()">+ New Project</button>
       </div>
-      <div class="wf-pipeline" id="wf-pipeline"></div>
+      <div class="wf-project-table" id="wf-project-table"></div>
     </div>
 
-    <div class="wf-section" style="margin-top:32px;">
-      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">
-        <h3 style="margin:0;font-size:16px;">Task Board</h3>
-        <button class="wf-btn" onclick="showAddTask()">+ New Task</button>
-      </div>
-      <div class="wf-kanban" id="wf-kanban">
-        <div class="wf-kanban-col" data-status="todo">
-          <div class="wf-kanban-header">To Do</div>
-          <div class="wf-kanban-cards" id="wf-todo"></div>
-        </div>
-        <div class="wf-kanban-col" data-status="in_progress">
-          <div class="wf-kanban-header">In Progress</div>
-          <div class="wf-kanban-cards" id="wf-in-progress"></div>
-        </div>
-        <div class="wf-kanban-col" data-status="done">
-          <div class="wf-kanban-header">Done</div>
-          <div class="wf-kanban-cards" id="wf-done"></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Add Episode Modal -->
-    <div class="wf-modal" id="wf-episode-modal" style="display:none;">
+    <!-- Add Project Modal -->
+    <div class="wf-modal" id="wf-project-modal" style="display:none;">
       <div class="wf-modal-content">
-        <h3>New Episode</h3>
-        <label>Episode Name<input type="text" id="wf-ep-name"></label>
-        <label>Assigned To<select id="wf-ep-assign"></select></label>
-        <label>Due Date<input type="date" id="wf-ep-due"></label>
-        <label>Notes<textarea id="wf-ep-notes" rows="3"></textarea></label>
+        <h3>New Project</h3>
+        <label>Project Name<input type="text" id="wf-proj-name" placeholder="e.g. S4E01 - Guest Name"></label>
         <div class="wf-modal-actions">
-          <button class="wf-btn" onclick="closeModals()">Cancel</button>
-          <button class="wf-btn wf-btn-primary" onclick="saveEpisode()">Save</button>
+          <button class="wf-btn" onclick="closeWfModal()">Cancel</button>
+          <button class="wf-btn wf-btn-primary" onclick="saveProject()">Create</button>
         </div>
       </div>
     </div>
 
-    <!-- Add Task Modal -->
+    <!-- Edit Task Modal -->
     <div class="wf-modal" id="wf-task-modal" style="display:none;">
       <div class="wf-modal-content">
-        <h3>New Task</h3>
-        <label>Title<input type="text" id="wf-task-title"></label>
-        <label>Description<textarea id="wf-task-desc" rows="3"></textarea></label>
+        <h3 id="wf-task-modal-title">Edit Task</h3>
+        <label>Status
+          <select id="wf-task-status">
+            <option value="not_started">Not Started</option>
+            <option value="assigned">Assigned</option>
+            <option value="in_progress">In Progress</option>
+            <option value="complete">Complete</option>
+          </select>
+        </label>
         <label>Assigned To<select id="wf-task-assign"></select></label>
-        <label>Due Date<input type="date" id="wf-task-due"></label>
+        <label>Deadline<input type="date" id="wf-task-deadline"></label>
         <div class="wf-modal-actions">
-          <button class="wf-btn" onclick="closeModals()">Cancel</button>
-          <button class="wf-btn wf-btn-primary" onclick="saveTask()">Save</button>
+          <button class="wf-btn" onclick="closeWfModal()">Cancel</button>
+          <button class="wf-btn wf-btn-primary" onclick="saveTaskEdit()">Save</button>
         </div>
       </div>
     </div>
@@ -1686,7 +1676,7 @@ function renderMarketing() {
 const SUPABASE_URL = 'https://avpizwlpceuuawxaiwbv.supabase.co';
 const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF2cGl6d2xwY2V1dWF3eGFpd2J2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc5NzM1NzAsImV4cCI6MjA5MzU0OTU3MH0.TnfoJEpSHpqOxtk70SVPj3nXGD_7aFIXRPKygF4yD6M';
 
-const EPISODE_STAGES = [
+const WORKFLOW_TASKS = [
   { key: 'outreach', label: 'Outreach' },
   { key: 'acceptance', label: 'Acceptance' },
   { key: 'schedule', label: 'Schedule' },
@@ -1694,41 +1684,46 @@ const EPISODE_STAGES = [
   { key: 'filming', label: 'Filming' },
   { key: 'edit', label: 'Edit' },
   { key: 'thumbnail', label: 'Thumbnail' },
-  { key: 'intro', label: 'Intro', optional: true },
+  { key: 'intro', label: 'Intro' },
   { key: 'title', label: 'Title' },
-  { key: 'pre_ig_post', label: 'Pre-IG Post', optional: true },
-  { key: 'post_ig_post', label: 'Post-IG Post', optional: true },
+  { key: 'teaser_1', label: 'Teaser 1' },
+  { key: 'teaser_2', label: 'Teaser 2' },
+  { key: 'pre_ig_post', label: 'Pre-IG Post' },
+  { key: 'post_ig_post', label: 'Post-IG Post' },
   { key: 'publish', label: 'Publish' },
-  { key: 'marketing_plan', label: 'Marketing Plan', optional: true },
+  { key: 'marketing_plan', label: 'Marketing Plan' },
 ];
 
-const STAGE_COLORS = {
-  outreach: '#FF9500', acceptance: '#FFCC00', schedule: '#34C759',
-  research_topics: '#5AC8FA', filming: '#007AFF', edit: '#AF52DE',
-  thumbnail: '#FF2D55', intro: '#8E8E93', title: '#FF375F',
-  pre_ig_post: '#30B0C7', post_ig_post: '#30B0C7', publish: '#34C759',
-  marketing_plan: '#FF9500',
-};
+const TASK_STATUSES = [
+  { key: 'not_started', label: 'Not Started' },
+  { key: 'assigned', label: 'Assigned' },
+  { key: 'in_progress', label: 'In Progress' },
+  { key: 'complete', label: 'Complete' },
+];
 
 let wfTeamMembers = [];
-let wfEpisodes = [];
-let wfTasks = [];
+let wfProjects = [];
+let wfProjectTasks = [];
 let wfLoaded = false;
+let wfEditingTask = null;
 
 async function sbFetch(endpoint, options = {}) {
+  const headers = {
+    'apikey': SUPABASE_KEY,
+    'Authorization': 'Bearer ' + SUPABASE_KEY,
+    'Content-Type': 'application/json',
+  };
+  if (options.method === 'POST') headers['Prefer'] = 'return=representation';
+  if (options.method === 'PATCH') headers['Prefer'] = 'return=representation';
+  if (options.prefer) headers['Prefer'] = options.prefer;
+
   const resp = await fetch(SUPABASE_URL + '/rest/v1/' + endpoint, {
-    headers: {
-      'apikey': SUPABASE_KEY,
-      'Authorization': 'Bearer ' + SUPABASE_KEY,
-      'Content-Type': 'application/json',
-      'Prefer': options.prefer || 'return=representation',
-    },
     method: options.method || 'GET',
+    headers,
     body: options.body ? JSON.stringify(options.body) : undefined,
   });
-  if (!resp.ok) {
-    const err = await resp.text();
-    console.error('Supabase error:', err);
+  if (\!resp.ok) {
+    console.error('Supabase error:', resp.status, await resp.text());
     return null;
   }
   const text = await resp.text();
@@ -1736,169 +1731,185 @@ async function sbFetch(endpoint, options = {}) {
 }
 
 async function loadWorkflow() {
-  if (!wfLoaded) {
-    const [members, episodes, tasks] = await Promise.all([
+  if (\!wfLoaded) {
+    const [members, projects, tasks] = await Promise.all([
       sbFetch('team_members?order=name'),
-      sbFetch('episode_workflow?order=created_at.desc'),
-      sbFetch('tasks?order=sort_order,created_at.desc'),
+      sbFetch('projects?order=created_at.desc'),
+      sbFetch('project_tasks?order=project_id,task_key'),
     ]);
     wfTeamMembers = members || [];
-    wfEpisodes = episodes || [];
-    wfTasks = tasks || [];
+    wfProjects = projects || [];
+    wfProjectTasks = tasks || [];
     wfLoaded = true;
   }
   renderWorkflow();
 }
 
-function renderWorkflow() {
-  renderEpisodePipeline();
-  renderTaskBoard();
+function getProjectTasks(projectId) {
+  return wfProjectTasks.filter(t => t.project_id === projectId);
+}
+
+function getTaskForProject(projectId, taskKey) {
+  return wfProjectTasks.find(t => t.project_id === projectId && t.task_key === taskKey);
 }
 
 function getMemberName(id) {
+  if (\!id) return '';
   const m = wfTeamMembers.find(t => t.id === id);
-  return m ? m.name : '—';
-}
-function getMemberColor(id) {
-  const m = wfTeamMembers.find(t => t.id === id);
-  return m ? m.color : '#8E8E93';
-}
-function getStageLabel(key) {
-  const s = EPISODE_STAGES.find(st => st.key === key);
-  return s ? s.label : key;
+  return m ? m.name : '';
 }
 
-function renderEpisodePipeline() {
-  const container = document.getElementById('wf-pipeline');
-  if (!wfEpisodes.length) {
-    container.innerHTML = '<p style="color:var(--text3);font-size:13px;">No episodes yet. Click "+ New Episode" to add one.</p>';
+function getProjectStage(projectId) {
+  const tasks = getProjectTasks(projectId);
+  const isComplete = (key) => {
+    const t = tasks.find(tk => tk.task_key === key);
+    return t && t.status === 'complete';
+  };
+  if (isComplete('publish')) return 'Production Complete';
+  if (isComplete('filming') || taskInProgress(tasks, 'filming')) return 'Production';
+  if (isComplete('acceptance')) return 'Pre-Production';
+  return 'Ideation';
+}
+
+function taskInProgress(tasks, key) {
+  const t = tasks.find(tk => tk.task_key === key);
+  return t && (t.status === 'in_progress' || t.status === 'assigned');
+}
+
+function renderWorkflow() {
+  renderWfSummary();
+  renderWfProjectTable();
+}
+
+function renderWfSummary() {
+  const stages = ['Ideation', 'Pre-Production', 'Production', 'Production Complete', 'Aired'];
+  const counts = {};
+  stages.forEach(s => counts[s] = 0);
+  wfProjects.forEach(p => {
+    const stage = getProjectStage(p.id);
+    counts[stage] = (counts[stage] || 0) + 1;
+  });
+  const container = document.getElementById('wf-summary');
+  container.innerHTML = stages.map(s => `
+    <div class="wf-summary-card">
+      <div class="wf-sum-count">${counts[s] || 0}</div>
+      <div class="wf-sum-label">${s}</div>
+    </div>
+  `).join('');
+}
+
+function renderWfProjectTable() {
+  const container = document.getElementById('wf-project-table');
+  if (\!wfProjects.length) {
+    container.innerHTML = '<p style="color:var(--text3);font-size:13px;padding:20px;">No projects yet. Click "+ New Project" to create one.</p>';
     return;
   }
-  const stageIdx = key => EPISODE_STAGES.findIndex(s => s.key === key);
+  const today = new Date().toISOString().slice(0, 10);
   container.innerHTML = `<table>
     <thead><tr>
-      <th>Episode</th><th>Stage</th><th>Progress</th><th>Assigned</th><th>Due</th><th>Notes</th><th></th>
+      <th>Project</th>
+      ${WORKFLOW_TASKS.map(t => `<th>${t.label}</th>`).join('')}
+      <th></th>
     </tr></thead>
-    <tbody>${wfEpisodes.map(ep => {
-      const idx = stageIdx(ep.stage);
-      const pct = Math.round((idx + 1) / EPISODE_STAGES.length * 100);
-      const color = STAGE_COLORS[ep.stage] || '#8E8E93';
+    <tbody>${wfProjects.map(p => {
       return `<tr>
-        <td style="font-weight:600;">${ep.episode_name}</td>
-        <td><select class="wf-stage-select" onchange="updateEpisodeStage('${ep.id}', this.value)">
-          ${EPISODE_STAGES.map(s => `<option value="${s.key}" ${s.key === ep.stage ? 'selected' : ''}>${s.label}${s.optional ? ' *' : ''}</option>`).join('')}
-        </select></td>
-        <td><div style="width:80px;height:6px;background:var(--border);border-radius:3px;overflow:hidden;"><div style="width:${pct}%;height:100%;background:${color};border-radius:3px;"></div></div></td>
-        <td>${ep.assigned_to ? `<span class="wf-assign-badge"><span class="wf-assign-dot" style="background:${getMemberColor(ep.assigned_to)}"></span>${getMemberName(ep.assigned_to)}</span>` : '—'}</td>
-        <td>${ep.due_date || '—'}</td>
-        <td style="max-width:150px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${ep.notes || '—'}</td>
-        <td class="wf-actions-cell"><button onclick="deleteEpisode('${ep.id}')" title="Delete">🗑</button></td>
+        <td>${p.name}</td>
+        ${WORKFLOW_TASKS.map(wt => {
+          const task = getTaskForProject(p.id, wt.key);
+          const status = task ? task.status : 'not_started';
+          const assignee = task ? getMemberName(task.assigned_to) : '';
+          const deadline = task ? task.deadline : '';
+          const overdue = deadline && deadline < today && status \!== 'complete' ? ' overdue' : '';
+          return `<td class="wf-task-cell wf-status-${status}" onclick="openTaskEdit('${p.id}','${wt.key}')">
+            <select onclick="event.stopPropagation()" onchange="quickStatusChange('${p.id}','${wt.key}',this.value)">
+              ${TASK_STATUSES.map(s => `<option value="${s.key}" ${s.key === status ? 'selected' : ''}>${s.label}</option>`).join('')}
+            </select>
+            ${assignee ? `<div class="wf-assignee">${assignee}</div>` : ''}
+            ${deadline ? `<div class="wf-deadline${overdue}">${deadline.slice(5)}</div>` : ''}
+          </td>`;
+        }).join('')}
+        <td><button class="wf-delete-btn" onclick="deleteProject('${p.id}')" title="Delete project">x</button></td>
       </tr>`;
     }).join('')}</tbody>
   </table>`;
 }
 
-function renderTaskBoard() {
-  const statuses = ['todo', 'in_progress', 'done'];
-  const ids = ['wf-todo', 'wf-in-progress', 'wf-done'];
-  statuses.forEach((status, i) => {
-    const cards = wfTasks.filter(t => t.status === status);
-    document.getElementById(ids[i]).innerHTML = cards.map(t => `
-      <div class="wf-kanban-card" onclick="cycleTaskStatus('${t.id}')">
-        <h4>${t.title}</h4>
-        ${t.description ? `<p>${t.description}</p>` : ''}
-        <div class="wf-card-meta">
-          <span>${t.assigned_to ? `<span class="wf-assign-badge"><span class="wf-assign-dot" style="background:${getMemberColor(t.assigned_to)}"></span>${getMemberName(t.assigned_to)}</span>` : ''}</span>
-          <span>${t.due_date || ''}</span>
-        </div>
-      </div>
-    `).join('') || '<p style="color:var(--text3);font-size:12px;text-align:center;padding:20px 0;">No tasks</p>';
-  });
+async function quickStatusChange(projectId, taskKey, newStatus) {
+  const existing = getTaskForProject(projectId, taskKey);
+  if (existing) {
+    await sbFetch(`project_tasks?id=eq.${existing.id}`, { method: 'PATCH', body: { status: newStatus } });
+    existing.status = newStatus;
+  } else {
+    const result = await sbFetch('project_tasks', { method: 'POST', body: { project_id: projectId, task_key: taskKey, status: newStatus } });
+    if (result && result.length) wfProjectTasks.push(result[0]);
+  }
+  renderWorkflow();
 }
 
-async function updateEpisodeStage(id, stage) {
-  await sbFetch(`episode_workflow?id=eq.${id}`, { method: 'PATCH', body: { stage } });
-  const ep = wfEpisodes.find(e => e.id === id);
-  if (ep) ep.stage = stage;
-  renderEpisodePipeline();
-}
-
-async function cycleTaskStatus(id) {
-  const task = wfTasks.find(t => t.id === id);
-  if (!task) return;
-  const cycle = { todo: 'in_progress', in_progress: 'done', done: 'todo' };
-  const newStatus = cycle[task.status];
-  await sbFetch(`tasks?id=eq.${id}`, { method: 'PATCH', body: { status: newStatus } });
-  task.status = newStatus;
-  renderTaskBoard();
-}
-
-async function deleteEpisode(id) {
-  if (!confirm('Delete this episode?')) return;
-  await sbFetch(`episode_workflow?id=eq.${id}`, { method: 'DELETE', prefer: 'return=minimal' });
-  wfEpisodes = wfEpisodes.filter(e => e.id !== id);
-  renderEpisodePipeline();
-}
-
-function populateAssignSelect(selectId) {
-  const sel = document.getElementById(selectId);
-  sel.innerHTML = '<option value="">Unassigned</option>' +
-    wfTeamMembers.map(m => `<option value="${m.id}">${m.name}</option>`).join('');
-}
-
-function showAddEpisode() {
-  populateAssignSelect('wf-ep-assign');
-  document.getElementById('wf-ep-name').value = '';
-  document.getElementById('wf-ep-due').value = '';
-  document.getElementById('wf-ep-notes').value = '';
-  document.getElementById('wf-episode-modal').style.display = 'flex';
-}
-
-function showAddTask() {
-  populateAssignSelect('wf-task-assign');
-  document.getElementById('wf-task-title').value = '';
-  document.getElementById('wf-task-desc').value = '';
-  document.getElementById('wf-task-due').value = '';
+function openTaskEdit(projectId, taskKey) {
+  const existing = getTaskForProject(projectId, taskKey);
+  wfEditingTask = { project_id: projectId, task_key: taskKey, existing };
+  const taskLabel = WORKFLOW_TASKS.find(t => t.key === taskKey)?.label || taskKey;
+  document.getElementById('wf-task-modal-title').textContent = taskLabel;
+  document.getElementById('wf-task-status').value = existing ? existing.status : 'not_started';
+  const assignSel = document.getElementById('wf-task-assign');
+  assignSel.innerHTML = '<option value="">Unassigned</option>' +
+    wfTeamMembers.map(m => `<option value="${m.id}" ${existing && existing.assigned_to === m.id ? 'selected' : ''}>${m.name}</option>`).join('');
+  document.getElementById('wf-task-deadline').value = existing ? (existing.deadline || '') : '';
   document.getElementById('wf-task-modal').style.display = 'flex';
 }
 
-function closeModals() {
-  document.getElementById('wf-episode-modal').style.display = 'none';
-  document.getElementById('wf-task-modal').style.display = 'none';
-}
-
-async function saveEpisode() {
-  const name = document.getElementById('wf-ep-name').value.trim();
-  if (!name) return;
+async function saveTaskEdit() {
+  if (\!wfEditingTask) return;
+  const { project_id, task_key, existing } = wfEditingTask;
   const body = {
-    episode_name: name,
-    assigned_to: document.getElementById('wf-ep-assign').value || null,
-    due_date: document.getElementById('wf-ep-due').value || null,
-    notes: document.getElementById('wf-ep-notes').value.trim() || null,
-  };
-  const result = await sbFetch('episode_workflow', { method: 'POST', body });
-  if (result && result.length) {
-    wfEpisodes.unshift(result[0]);
-    renderEpisodePipeline();
-  }
-  closeModals();
-}
-
-async function saveTask() {
-  const title = document.getElementById('wf-task-title').value.trim();
-  if (!title) return;
-  const body = {
-    title,
-    description: document.getElementById('wf-task-desc').value.trim() || null,
+    status: document.getElementById('wf-task-status').value,
     assigned_to: document.getElementById('wf-task-assign').value || null,
-    due_date: document.getElementById('wf-task-due').value || null,
+    deadline: document.getElementById('wf-task-deadline').value || null,
   };
-  const result = await sbFetch('tasks', { method: 'POST', body });
-  if (result && result.length) {
-    wfTasks.unshift(result[0]);
-    renderTaskBoard();
+  if (existing) {
+    const result = await sbFetch(`project_tasks?id=eq.${existing.id}`, { method: 'PATCH', body });
+    if (result && result.length) Object.assign(existing, result[0]);
+  } else {
+    body.project_id = project_id;
+    body.task_key = task_key;
+    const result = await sbFetch('project_tasks', { method: 'POST', body });
+    if (result && result.length) wfProjectTasks.push(result[0]);
   }
-  closeModals();
+  closeWfModal();
+  renderWorkflow();
+}
+
+function showAddProject() {
+  document.getElementById('wf-proj-name').value = '';
+  document.getElementById('wf-project-modal').style.display = 'flex';
+}
+
+async function saveProject() {
+  const name = document.getElementById('wf-proj-name').value.trim();
+  if (\!name) return;
+  const result = await sbFetch('projects', { method: 'POST', body: { name } });
+  if (result && result.length) {
+    wfProjects.unshift(result[0]);
+    const taskResult = await sbFetch('project_tasks', { method: 'POST', body: { project_id: result[0].id, task_key: 'outreach', status: 'not_started' } });
+    if (taskResult && taskResult.length) wfProjectTasks.push(taskResult[0]);
+    renderWorkflow();
+  }
+  closeWfModal();
+}
+
+async function deleteProject(id) {
+  if (\!confirm('Delete this project and all its tasks?')) return;
+  await sbFetch(`projects?id=eq.${id}`, { method: 'DELETE', prefer: 'return=minimal' });
+  wfProjects = wfProjects.filter(p => p.id \!== id);
+  wfProjectTasks = wfProjectTasks.filter(t => t.project_id \!== id);
+  renderWorkflow();
+}
+
+function closeWfModal() {
+  document.getElementById('wf-project-modal').style.display = 'none';
+  document.getElementById('wf-task-modal').style.display = 'none';
+  wfEditingTask = null;
 }
 
 const COLUMNS = [

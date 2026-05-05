@@ -1,23 +1,11 @@
--- Team members
-CREATE TABLE team_members (
-  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
-  name TEXT NOT NULL,
-  color TEXT DEFAULT '#007AFF',
-  created_at TIMESTAMPTZ DEFAULT now()
-);
+-- Migration: Replace old workflow tables with new project-based schema
+-- Run this in Supabase SQL Editor
 
--- Seed team members
-INSERT INTO team_members (name, color) VALUES
-  ('Gerald', '#FF375F'),
-  ('Chicken', '#007AFF'),
-  ('Charles Lieou', '#34C759'),
-  ('Jerry', '#FF9500'),
-  ('Sunny', '#AF52DE'),
-  ('Lok Lam', '#5AC8FA'),
-  ('Ng Sze Ho', '#FFCC00'),
-  ('Steph Law', '#FF2D55'),
-  ('Jody Mok', '#8E8E93'),
-  ('Bluey', '#30B0C7');
+-- Drop old tables (if they exist)
+DROP TABLE IF EXISTS tasks CASCADE;
+DROP TABLE IF EXISTS episode_workflow CASCADE;
+DROP TYPE IF EXISTS episode_stage CASCADE;
+DROP TYPE IF EXISTS task_status CASCADE;
 
 -- Projects (episodes)
 CREATE TABLE projects (
@@ -33,7 +21,7 @@ CREATE TYPE task_status AS ENUM ('not_started', 'assigned', 'in_progress', 'comp
 CREATE TABLE project_tasks (
   id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
   project_id UUID REFERENCES projects(id) ON DELETE CASCADE,
-  task_key TEXT NOT NULL, -- outreach, acceptance, schedule, etc.
+  task_key TEXT NOT NULL,
   status task_status DEFAULT 'not_started',
   assigned_to UUID REFERENCES team_members(id),
   deadline DATE,
@@ -42,24 +30,14 @@ CREATE TABLE project_tasks (
   UNIQUE(project_id, task_key)
 );
 
--- Enable Row Level Security (allow all for anon for now)
-ALTER TABLE team_members ENABLE ROW LEVEL SECURITY;
+-- RLS
 ALTER TABLE projects ENABLE ROW LEVEL SECURITY;
 ALTER TABLE project_tasks ENABLE ROW LEVEL SECURITY;
 
-CREATE POLICY "Allow all" ON team_members FOR ALL USING (true) WITH CHECK (true);
 CREATE POLICY "Allow all" ON projects FOR ALL USING (true) WITH CHECK (true);
 CREATE POLICY "Allow all" ON project_tasks FOR ALL USING (true) WITH CHECK (true);
 
--- Auto-update updated_at timestamp
-CREATE OR REPLACE FUNCTION update_updated_at()
-RETURNS TRIGGER AS $$
-BEGIN
-  NEW.updated_at = now();
-  RETURN NEW;
-END;
-$$ LANGUAGE plpgsql;
-
+-- Auto-update triggers
 CREATE TRIGGER update_projects_updated_at
   BEFORE UPDATE ON projects
   FOR EACH ROW EXECUTE FUNCTION update_updated_at();
