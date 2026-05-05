@@ -233,7 +233,7 @@
     .wf-task-cell .wf-assignee { font-size: 10px; color: var(--text3); margin-top: 2px; }
     .wf-task-cell .wf-deadline { font-size: 10px; color: var(--text3); margin-top: 1px; }
     .wf-task-cell .wf-deadline.overdue { color: var(--red); }
-    .wf-status-not_started select { border-color: var(--border); }
+    .wf-status-not_started select { border-color: var(--border); color: var(--text3); opacity: 0.5; }
     .wf-status-assigned select { border-color: #FF9500; background: #FF950010; }
     .wf-status-in_progress select { border-color: var(--blue); background: #007AFF10; }
     .wf-status-complete select { border-color: var(--green); background: #34C75910; }
@@ -1863,7 +1863,8 @@ function renderWfProjectTable() {
       <th></th>
       <th colspan="2" style="text-align:center;font-size:10px;color:#fff;background:#FF9500;border-radius:6px 6px 0 0;">Ideation</th>
       <th colspan="3" style="text-align:center;font-size:10px;color:#fff;background:#5AC8FA;border-radius:6px 6px 0 0;">Pre-Production</th>
-      <th colspan="10" style="text-align:center;font-size:10px;color:#fff;background:#AF52DE;border-radius:6px 6px 0 0;">Production</th>
+      <th colspan="8" style="text-align:center;font-size:10px;color:#fff;background:#AF52DE;border-radius:6px 6px 0 0;">Production</th>
+      <th colspan="2" style="text-align:center;font-size:10px;color:#fff;background:#34C759;border-radius:6px 6px 0 0;">Post-Production</th>
       <th></th>
       <th></th>
     </tr>
@@ -1957,13 +1958,13 @@ async function bulkSetStatus(status) {
   if (!wfSelectedProjects.size) return;
   const ids = [...wfSelectedProjects];
   for (const projectId of ids) {
-    for (const tk of WORKFLOW_TASKS) {
-      const existing = getTaskForProject(projectId, tk);
+    for (const wt of WORKFLOW_TASKS) {
+      const existing = getTaskForProject(projectId, wt.key);
       if (existing) {
         await sbFetch(`project_tasks?id=eq.${existing.id}`, { method: 'PATCH', body: { status } });
         existing.status = status;
       } else {
-        const result = await sbFetch('project_tasks', { method: 'POST', body: { project_id: projectId, task_key: tk, status } });
+        const result = await sbFetch('project_tasks', { method: 'POST', body: { project_id: projectId, task_key: wt.key, status } });
         if (result && result.length) wfProjectTasks.push(result[0]);
       }
     }
