@@ -1842,8 +1842,8 @@ function renderWfProjectTable() {
         va = parseInt(a.episode) || 9999;
         vb = parseInt(b.episode) || 9999;
       } else if (wfSortCol === 'air_date') {
-        va = a.air_date || '9999';
-        vb = b.air_date || '9999';
+        va = a.air_date ? new Date(a.air_date).getTime() : Infinity;
+        vb = b.air_date ? new Date(b.air_date).getTime() : Infinity;
       } else if (wfSortCol === 'name') {
         va = (a.name || '').toLowerCase();
         vb = (b.name || '').toLowerCase();
