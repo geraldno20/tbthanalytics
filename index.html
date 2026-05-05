@@ -282,7 +282,7 @@
     <button class="platform-tab" onclick="switchTab('ig')">Instagram</button>
     <button class="platform-tab" onclick="switchTab('th')">Threads</button>
     <button class="platform-tab" onclick="switchTab('mkt')">Marketing</button>
-    <button class="platform-tab" onclick="switchTab('wf')">Workflow</button>
+    <button class="platform-tab" onclick="switchTab('wf')">YouTube Production</button>
   </div>
 
   <div id="yt-tab" class="tab-content active">
@@ -1885,7 +1885,7 @@ function renderWfProjectTable() {
       const checked = wfSelectedProjects.has(p.id) ? 'checked' : '';
       return `<tr class="${checked ? 'selected' : ''}">
         <td style="text-align:center;"><input type="checkbox" ${checked} onchange="toggleSelectProject('${p.id}', this.checked)"></td>
-        <td>${p.name}</td>
+        <td><input type="text" value="${p.name}" onchange="updateProjectField('${p.id}','name',this.value)" style="width:120px;font-size:12px;padding:2px 4px;border:1px solid var(--border);border-radius:4px;background:var(--bg);color:var(--text);"></td>
         <td style="text-align:center;"><input type="text" value="${p.season || ''}" onchange="updateProjectField('${p.id}','season',this.value)" style="width:40px;text-align:center;font-size:12px;padding:2px 4px;border:1px solid var(--border);border-radius:4px;background:var(--bg);color:var(--text);"></td>
         <td style="text-align:center;"><input type="text" value="${p.episode || ''}" onchange="updateProjectField('${p.id}','episode',this.value)" style="width:40px;text-align:center;font-size:12px;padding:2px 4px;border:1px solid var(--border);border-radius:4px;background:var(--bg);color:var(--text);"></td>
         <td style="text-align:center;white-space:nowrap;"><input type="date" value="${p.air_date || ''}" onchange="updateProjectField('${p.id}','air_date',this.value)" style="font-size:11px;padding:2px 4px;border:1px solid var(--border);border-radius:4px;background:var(--bg);color:var(--text);">${p.air_date ? `<button onclick="clearAirDate('${p.id}')" style="border:none;background:none;color:var(--text3);cursor:pointer;font-size:11px;padding:0 2px;" title="Clear date">&times;</button>` : ''}</td>
