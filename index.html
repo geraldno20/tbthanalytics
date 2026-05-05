@@ -702,6 +702,30 @@
         </div>
       </div>
     </div>
+
+    <!-- Bulk Task Modal -->
+    <div class="wf-modal" id="wf-bulk-modal" style="display:none;">
+      <div class="wf-modal-content">
+        <h3>Set Task for Selected Projects</h3>
+        <label>Task
+          <select id="wf-bulk-task">
+            <option value="">Choose task...</option>
+          </select>
+        </label>
+        <label>Status
+          <select id="wf-bulk-status">
+            <option value="not_started">Not Started</option>
+            <option value="assigned">Assigned</option>
+            <option value="in_progress">In Progress</option>
+            <option value="complete">Complete</option>
+          </select>
+        </label>
+        <div class="wf-modal-actions">
+          <button class="wf-btn" onclick="document.getElementById('wf-bulk-modal').style.display='none'">Cancel</button>
+          <button class="wf-btn wf-btn-primary" onclick="applyBulkTask()">Apply</button>
+        </div>
+      </div>
+    </div>
   </div><!-- end #wf-tab -->
 
   <div id="fin-tab" class="tab-content">
@@ -1700,6 +1724,7 @@ let wfCommentsProjectId = null;
 let wfHideAired = true;
 let wfSortCol = 'season';
 let wfSortAsc = true;
+let wfSelectedProjects = new Set();
 
 async function sbFetch(endpoint, options = {}) {
   const headers = {
@@ -1838,9 +1863,15 @@ function renderWfProjectTable() {
   container.innerHTML = `
     <div style="margin-bottom:8px;display:flex;align-items:center;gap:8px;">
       <button class="toggle-btn ${wfHideAired ? 'active' : ''}" onclick="toggleHideAired()" style="font-size:11px;">Hide Aired</button>
+      ${wfSelectedProjects.size ? `<span style="font-size:12px;color:var(--text2);margin-left:8px;">${wfSelectedProjects.size} selected</span>
+      <button class="wf-btn" onclick="bulkSetStatus('complete')" style="font-size:11px;padding:4px 10px;">Set Complete</button>
+      <button class="wf-btn" onclick="bulkSetStatus('not_started')" style="font-size:11px;padding:4px 10px;">Set Not Started</button>
+      <button class="wf-btn" onclick="showBulkTaskModal()" style="font-size:11px;padding:4px 10px;">Set Task...</button>
+      <button class="wf-btn" onclick="clearSelection()" style="font-size:11px;padding:4px 10px;">Clear</button>` : ''}
     </div>
     <table>
     <thead><tr>
+      <th style="width:30px;text-align:center;"><input type="checkbox" onchange="toggleSelectAll(this.checked)" ${wfSelectedProjects.size === filtered.length && filtered.length ? 'checked' : ''}></th>
       <th class="sortable" onclick="sortWfTable('name')" style="cursor:pointer;">Project${arrow('name')}</th>
       <th class="sortable" onclick="sortWfTable('season')" style="cursor:pointer;">Season${arrow('season')}</th>
       <th class="sortable" onclick="sortWfTable('episode')" style="cursor:pointer;">Ep${arrow('episode')}</th>
@@ -1851,7 +1882,9 @@ function renderWfProjectTable() {
     </tr></thead>
     <tbody>${filtered.map(p => {
       const commentCount = wfComments.filter(c => c.project_id === p.id).length;
-      return `<tr>
+      const checked = wfSelectedProjects.has(p.id) ? 'checked' : '';
+      return `<tr class="${checked ? 'selected' : ''}">
+        <td style="text-align:center;"><input type="checkbox" ${checked} onchange="toggleSelectProject('${p.id}', this.checked)"></td>
         <td>${p.name}</td>
         <td style="text-align:center;"><input type="text" value="${p.season || ''}" onchange="updateProjectField('${p.id}','season',this.value)" style="width:40px;text-align:center;font-size:12px;padding:2px 4px;border:1px solid var(--border);border-radius:4px;background:var(--bg);color:var(--text);"></td>
         <td style="text-align:center;"><input type="text" value="${p.episode || ''}" onchange="updateProjectField('${p.id}','episode',this.value)" style="width:40px;text-align:center;font-size:12px;padding:2px 4px;border:1px solid var(--border);border-radius:4px;background:var(--bg);color:var(--text);"></td>
@@ -1890,6 +1923,75 @@ function sortWfTable(col) {
     wfSortAsc = true;
   }
   renderWfProjectTable();
+}
+
+function toggleSelectProject(id, checked) {
+  if (checked) wfSelectedProjects.add(id);
+  else wfSelectedProjects.delete(id);
+  renderWfProjectTable();
+}
+
+function toggleSelectAll(checked) {
+  const today = new Date().toISOString().slice(0, 10);
+  const filtered = wfHideAired ? wfProjects.filter(p => getProjectStage(p.id) !== 'Aired') : wfProjects;
+  if (checked) {
+    filtered.forEach(p => wfSelectedProjects.add(p.id));
+  } else {
+    wfSelectedProjects.clear();
+  }
+  renderWfProjectTable();
+}
+
+function clearSelection() {
+  wfSelectedProjects.clear();
+  renderWfProjectTable();
+}
+
+async function bulkSetStatus(status) {
+  if (!wfSelectedProjects.size) return;
+  const ids = [...wfSelectedProjects];
+  for (const projectId of ids) {
+    for (const tk of WORKFLOW_TASKS) {
+      const existing = getTaskForProject(projectId, tk);
+      if (existing) {
+        await sbFetch(`project_tasks?id=eq.${existing.id}`, { method: 'PATCH', body: { status } });
+        existing.status = status;
+      } else {
+        const result = await sbFetch('project_tasks', { method: 'POST', body: { project_id: projectId, task_key: tk, status } });
+        if (result && result.length) wfProjectTasks.push(result[0]);
+      }
+    }
+  }
+  wfSelectedProjects.clear();
+  renderWorkflow();
+}
+
+function showBulkTaskModal() {
+  if (!wfSelectedProjects.size) return;
+  const sel = document.getElementById('wf-bulk-task');
+  sel.innerHTML = '<option value="">Choose task...</option>' +
+    WORKFLOW_TASKS.map(t => `<option value="${t.key}">${t.label}</option>`).join('');
+  document.getElementById('wf-bulk-modal').style.display = 'flex';
+}
+
+async function applyBulkTask() {
+  const taskKey = document.getElementById('wf-bulk-task').value;
+  const status = document.getElementById('wf-bulk-status').value;
+  if (!taskKey || !status) return;
+  const ids = [...wfSelectedProjects];
+  for (const projectId of ids) {
+    const existing = getTaskForProject(projectId, taskKey);
+    if (existing) {
+      await sbFetch(`project_tasks?id=eq.${existing.id}`, { method: 'PATCH', body: { status } });
+      existing.status = status;
+    } else {
+      const result = await sbFetch('project_tasks', { method: 'POST', body: { project_id: projectId, task_key: taskKey, status } });
+      if (result && result.length) wfProjectTasks.push(result[0]);
+    }
+  }
+  document.getElementById('wf-bulk-modal').style.display = 'none';
+  wfSelectedProjects.clear();
+  renderWorkflow();
 }
 
 async function quickStatusChange(projectId, taskKey, newStatus) {
