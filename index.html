@@ -1888,7 +1888,7 @@ function renderWfProjectTable() {
         <td>${p.name}</td>
         <td style="text-align:center;"><input type="text" value="${p.season || ''}" onchange="updateProjectField('${p.id}','season',this.value)" style="width:40px;text-align:center;font-size:12px;padding:2px 4px;border:1px solid var(--border);border-radius:4px;background:var(--bg);color:var(--text);"></td>
         <td style="text-align:center;"><input type="text" value="${p.episode || ''}" onchange="updateProjectField('${p.id}','episode',this.value)" style="width:40px;text-align:center;font-size:12px;padding:2px 4px;border:1px solid var(--border);border-radius:4px;background:var(--bg);color:var(--text);"></td>
-        <td style="text-align:center;"><input type="date" value="${p.air_date || ''}" onchange="updateProjectField('${p.id}','air_date',this.value)" style="font-size:11px;padding:2px 4px;border:1px solid var(--border);border-radius:4px;background:var(--bg);color:var(--text);"></td>
+        <td style="text-align:center;white-space:nowrap;"><input type="date" value="${p.air_date || ''}" onchange="updateProjectField('${p.id}','air_date',this.value)" style="font-size:11px;padding:2px 4px;border:1px solid var(--border);border-radius:4px;background:var(--bg);color:var(--text);">${p.air_date ? `<button onclick="clearAirDate('${p.id}')" style="border:none;background:none;color:var(--text3);cursor:pointer;font-size:11px;padding:0 2px;" title="Clear date">&times;</button>` : ''}</td>
         <td style="text-align:center;"><input type="text" value="${p.class_year || ''}" onchange="updateProjectField('${p.id}','class_year',this.value)" style="width:50px;text-align:center;font-size:12px;padding:2px 4px;border:1px solid var(--border);border-radius:4px;background:var(--bg);color:var(--text);"></td>
         <td style="text-align:center;"><input type="text" value="${p.host || ''}" onchange="updateProjectField('${p.id}','host',this.value)" style="width:60px;text-align:center;font-size:12px;padding:2px 4px;border:1px solid var(--border);border-radius:4px;background:var(--bg);color:var(--text);"></td>
         ${WORKFLOW_TASKS.map(wt => {
@@ -2019,6 +2019,11 @@ async function updateProjectField(projectId, field, value) {
   await sbFetch(`projects?id=eq.${projectId}`, { method: 'PATCH', body });
   const proj = wfProjects.find(p => p.id === projectId);
   if (proj) proj[field] = value || null;
+}
+
+async function clearAirDate(projectId) {
+  await updateProjectField(projectId, 'air_date', '');
+  renderWfProjectTable();
 }
 
 function openTaskEdit(projectId, taskKey) {
