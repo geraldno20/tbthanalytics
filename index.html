@@ -3312,7 +3312,15 @@ function renderCalendar() {
 async function addCalEvent(dateStr) {
   const title = prompt('Event title:');
   if (!title || !title.trim()) return;
-  const color = prompt('Color (hex, e.g. #FF9500):', '#FF9500') || '#FF9500';
+  const colors = [
+    { name: 'Orange', hex: '#FF9500' },
+    { name: 'Purple', hex: '#AF52DE' },
+    { name: 'Blue', hex: '#007AFF' },
+    { name: 'Red', hex: '#FF375F' },
+    { name: 'Teal', hex: '#5AC8FA' },
+  ];
+  const choice = prompt('Color:\n1. Orange\n2. Purple\n3. Blue\n4. Red\n5. Teal', '1');
+  const color = colors[parseInt(choice) - 1]?.hex || '#FF9500';
   const result = await sbFetch('calendar_events', { method: 'POST', body: { event_date: dateStr, title: title.trim(), color } });
   if (result && result.length) {
     wfCalEvents.push(result[0]);
