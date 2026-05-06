@@ -593,8 +593,9 @@
         <div style="margin-top:10px;display:flex;gap:16px;font-size:11px;color:var(--text3);">
           <span><span style="display:inline-block;width:10px;height:10px;border-radius:3px;background:#34C759;vertical-align:middle;margin-right:4px;"></span>Aired</span>
           <span><span style="display:inline-block;width:10px;height:10px;border-radius:3px;background:var(--blue);vertical-align:middle;margin-right:4px;"></span>Upcoming</span>
-          <span><span style="display:inline-block;width:10px;height:10px;border-radius:3px;background:#FF9500;vertical-align:middle;margin-right:4px;"></span>Recording</span>
+          <span><span style="display:inline-block;width:10px;height:10px;border-radius:3px;background:#FF9500;vertical-align:middle;margin-right:4px;"></span>Manual Event</span>
           <span><span style="display:inline-block;width:10px;height:10px;border-radius:3px;background:#FF375F;vertical-align:middle;margin-right:4px;"></span>HK Holiday</span>
+          <span style="margin-left:auto;font-style:italic;">Click a day to add event</span>
         </div>
       </div>
     </details>
@@ -1688,6 +1689,7 @@ let wfLoaded = false;
 let wfEditingTask = null;
 let wfCommentsProjectId = null;
 let wfHideAired = true;
+let wfCalEvents = [];
 let wfSortCol = 'air_date';
 let wfSortAsc = true;
 let wfSelectedProjects = new Set();
@@ -1724,10 +1726,11 @@ async function reloadWorkflow() {
 
 async function loadWorkflow() {
   if (!wfLoaded) {
-    const [members, projects, comments] = await Promise.all([
+    const [members, projects, comments, calEvents] = await Promise.all([
       sbFetch('team_members?order=name'),
       sbFetch('projects?order=created_at.desc'),
       sbFetch('project_comments?order=created_at.desc'),
+      sbFetch('calendar_events?order=event_date'),
     ]);
     // Paginate tasks (Supabase caps at 1000 rows per request)
     let allTasks = [];
@@ -1755,6 +1758,7 @@ async function loadWorkflow() {
     wfProjects = projects || [];
     wfProjectTasks = allTasks;
     wfComments = comments || [];
+    wfCalEvents = calEvents || [];
     wfLoaded = true;
     console.log(`Loaded: ${wfProjects.length} projects, ${wfProjectTasks.length} tasks`);
     const noTasks = wfProjects.filter(p => !wfProjectTasks.some(t => t.project_id === p.id));
@@ -1804,20 +1808,32 @@ function renderWorkflow() {
 }
 
 function renderWfSummary() {
-  const stages = ['Ideation', 'Pre-Production', 'Production', 'Production Complete', 'Aired'];
-  const counts = {};
-  stages.forEach(s => counts[s] = 0);
+  const counts = { 'Ideation': 0, 'Pre-Production': 0, 'Production': 0, 'Production Complete': 0, 'Aired': 0 };
   wfProjects.forEach(p => {
     const stage = getProjectStage(p.id);
     counts[stage] = (counts[stage] || 0) + 1;
   });
+  const prodTotal = counts['Production'] + counts['Production Complete'];
   const container = document.getElementById('wf-summary');
-  container.innerHTML = stages.map(s => `
+  container.innerHTML = `
     <div class="wf-summary-card">
-      <div class="wf-sum-count">${counts[s] || 0}</div>
-      <div class="wf-sum-label">${s}</div>
+      <div class="wf-sum-count">${counts['Ideation']}</div>
+      <div class="wf-sum-label">Ideation</div>
     </div>
-  `).join('');
+    <div class="wf-summary-card">
+      <div class="wf-sum-count">${counts['Pre-Production']}</div>
+      <div class="wf-sum-label">Pre-Production</div>
+    </div>
+    <div class="wf-summary-card">
+      <div class="wf-sum-count">${prodTotal}</div>
+      <div class="wf-sum-label">Production</div>
+      <div style="font-size:10px;color:var(--text3);margin-top:4px;">${counts['Production']} in progress &middot; ${counts['Production Complete']} complete</div>
+    </div>
+    <div class="wf-summary-card">
+      <div class="wf-sum-count">${counts['Aired']}</div>
+      <div class="wf-sum-label">Aired</div>
+    </div>
+  `;
 }
 
 function renderWfProjectTable() {
@@ -3197,7 +3213,7 @@ function getHoliday(year, month, day) {
 }
 
 function renderCalendar() {
-  if (!wfProjects.length) return;
+  if (!wfProjects.length && !wfCalEvents.length) return;
   const today = new Date();
   today.setHours(0, 0, 0, 0);
 
@@ -3224,6 +3240,20 @@ function renderCalendar() {
       season: seasonLabel,
       type: isPast ? 'aired' : 'upcoming',
       color: isPast ? '#34C759' : '#007AFF',
+    });
+  });
+
+  // Add manual calendar events
+  wfCalEvents.forEach(ev => {
+    const rd = new Date(ev.event_date + 'T00:00:00');
+    const key = `${rd.getFullYear()}-${rd.getMonth()}-${rd.getDate()}`;
+    if (!dateMap[key]) dateMap[key] = [];
+    dateMap[key].push({
+      label: ev.title,
+      season: '',
+      type: 'manual',
+      color: ev.color || '#FF9500',
+      id: ev.id,
     });
   });
 
@@ -3257,13 +3287,16 @@ function renderCalendar() {
       if (holiday) {
         eventsHtml += `<div style="font-size:8px;padding:1px 3px;border-radius:3px;background:#FF375F15;color:#FF375F;font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="${holiday}">${holiday}</div>`;
       }
-      eventsHtml += events.slice(0, holiday ? 2 : 3).map(e =>
-        `<div style="font-size:9px;padding:1px 4px;border-radius:3px;background:${e.color}20;color:${e.color};font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="${e.season} — ${e.label} (${e.type})">${e.season} ${e.label}</div>`
-      ).join('');
+      eventsHtml += events.slice(0, holiday ? 2 : 3).map(e => {
+        const deleteBtn = e.id ? `<span onclick="event.stopPropagation();deleteCalEvent('${e.id}')" style="cursor:pointer;margin-left:2px;opacity:0.6;" title="Delete">&times;</span>` : '';
+        const prefix = e.season ? e.season + ' ' : '';
+        return `<div style="font-size:9px;padding:1px 4px;border-radius:3px;background:${e.color}20;color:${e.color};font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="${prefix}${e.label} (${e.type})">${prefix}${e.label}${deleteBtn}</div>`;
+      }).join('');
       const totalItems = events.length + (holiday ? 1 : 0);
       if (totalItems > 3) eventsHtml += `<div style="font-size:9px;color:var(--text3);">+${totalItems - 3} more</div>`;
 
-      html += `<div style="min-height:64px;${border}border-radius:6px;padding:3px;background:var(--card);">
+      const dateStr = `${year}-${String(month+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+      html += `<div onclick="addCalEvent('${dateStr}')" style="min-height:64px;${border}border-radius:6px;padding:3px;background:var(--card);cursor:pointer;" title="Click to add event">
         <div style="margin-bottom:1px;">${dayLabel}</div>
         ${eventsHtml}
       </div>`;
@@ -3274,6 +3307,24 @@ function renderCalendar() {
 
   renderMonth('cal-grid-left', calYear, calMonth);
   renderMonth('cal-grid-right', cal2Year, cal2Month);
+}
+
+async function addCalEvent(dateStr) {
+  const title = prompt('Event title:');
+  if (!title || !title.trim()) return;
+  const color = prompt('Color (hex, e.g. #FF9500):', '#FF9500') || '#FF9500';
+  const result = await sbFetch('calendar_events', { method: 'POST', body: { event_date: dateStr, title: title.trim(), color } });
+  if (result && result.length) {
+    wfCalEvents.push(result[0]);
+    renderCalendar();
+  }
+}
+
+async function deleteCalEvent(id) {
+  if (!confirm('Delete this event?')) return;
+  await sbFetch(`calendar_events?id=eq.${id}`, { method: 'DELETE' });
+  wfCalEvents = wfCalEvents.filter(e => e.id !== id);
+  renderCalendar();
 }
 
 // --- Finances ---
