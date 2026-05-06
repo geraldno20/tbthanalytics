@@ -3046,10 +3046,10 @@ function renderProductionCharts() {
     .map(p => ({ date: new Date(p.air_date), season: p.season, name: p.name }))
     .sort((a, b) => a.date - b.date);
 
-  // Class year pareto
+  // Class year pareto (only count projects with season AND episode assigned)
   const yearCounts = {};
   eps.forEach(p => {
-    if (p.class_year && p.class_year !== '-') {
+    if (p.class_year && p.class_year !== '-' && p.episode) {
       yearCounts[p.class_year] = (yearCounts[p.class_year] || 0) + 1;
     }
   });
