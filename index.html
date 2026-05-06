@@ -1734,6 +1734,10 @@ async function loadWorkflow() {
     wfProjectTasks = tasks || [];
     wfComments = comments || [];
     wfLoaded = true;
+    console.log(`Loaded: ${wfProjects.length} projects, ${wfProjectTasks.length} tasks`);
+    // Debug: check projects with no tasks
+    const noTasks = wfProjects.filter(p => !wfProjectTasks.some(t => t.project_id === p.id));
+    if (noTasks.length) console.warn('Projects with NO task rows:', noTasks.map(p => p.name));
   }
   renderWorkflow();
   renderProductionCharts();
