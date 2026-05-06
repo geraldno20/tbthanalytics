@@ -1898,7 +1898,7 @@ function renderWfProjectTable() {
 
   container.innerHTML = `
     <div style="margin-bottom:8px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
-      <input type="text" placeholder="Search projects..." value="${wfSearchQuery}" oninput="wfSearchQuery=this.value;renderWfProjectTable();" style="font-size:12px;padding:4px 8px;border:1px solid var(--border);border-radius:6px;background:var(--bg);color:var(--text);width:150px;">
+      <input type="text" id="wf-search-input" placeholder="Search projects..." value="${wfSearchQuery}" oninput="wfSearchQuery=this.value;renderWfProjectTable();refocusSearch();" style="font-size:12px;padding:4px 8px;border:1px solid var(--border);border-radius:6px;background:var(--bg);color:var(--text);width:150px;">
       <div class="seg-control" style="display:inline-flex;">
         <button class="${wfSeasonFilter === 'all' ? 'active' : ''}" onclick="setWfSeasonFilter('all')">All</button>
         ${allSeasons.map(s => `<button class="${wfSeasonFilter === s ? 'active' : ''}" onclick="setWfSeasonFilter('${s}')">S${s}</button>`).join('')}
@@ -1983,6 +1983,11 @@ function renderWfProjectTable() {
       </tr>`;
     }).join('')}</tbody>
   </table>`;
+}
+
+function refocusSearch() {
+  const el = document.getElementById('wf-search-input');
+  if (el) { el.focus(); el.selectionStart = el.selectionEnd = el.value.length; }
 }
 
 function toggleHideAired() {
