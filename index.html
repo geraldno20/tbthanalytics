@@ -1724,19 +1724,28 @@ async function reloadWorkflow() {
 
 async function loadWorkflow() {
   if (!wfLoaded) {
-    const [members, projects, tasks, comments] = await Promise.all([
+    const [members, projects, comments] = await Promise.all([
       sbFetch('team_members?order=name'),
       sbFetch('projects?order=created_at.desc'),
-      sbFetch('project_tasks?order=project_id,task_key', { range: '0-4999' }),
       sbFetch('project_comments?order=created_at.desc'),
     ]);
+    // Paginate tasks (Supabase caps at 1000 rows)
+    let allTasks = [];
+    let offset = 0;
+    const pageSize = 1000;
+    while (true) {
+      const batch = await sbFetch(`project_tasks?order=project_id,task_key&offset=${offset}&limit=${pageSize}`);
+      if (!batch || !batch.length) break;
+      allTasks = allTasks.concat(batch);
+      if (batch.length < pageSize) break;
+      offset += pageSize;
+    }
     wfTeamMembers = members || [];
     wfProjects = projects || [];
-    wfProjectTasks = tasks || [];
+    wfProjectTasks = allTasks;
     wfComments = comments || [];
     wfLoaded = true;
     console.log(`Loaded: ${wfProjects.length} projects, ${wfProjectTasks.length} tasks`);
-    // Debug: check projects with no tasks
     const noTasks = wfProjects.filter(p => !wfProjectTasks.some(t => t.project_id === p.id));
     if (noTasks.length) console.warn('Projects with NO task rows:', noTasks.map(p => p.name));
   }
@@ -2021,11 +2030,14 @@ async function quickStatusChange(projectId, taskKey, newStatus) {
     await sbFetch(`project_tasks?id=eq.${existing.id}`, { method: 'PATCH', body: { status: newStatus } });
     existing.status = newStatus;
   } else {
-    const result = await sbFetch('project_tasks', { method: 'POST', body: { project_id: projectId, task_key: taskKey, status: newStatus } });
-    if (result && result.length) {
-      wfProjectTasks.push(result[0]);
+    // Try PATCH by project_id+task_key first (row may exist but not loaded)
+    const patched = await sbFetch(`project_tasks?project_id=eq.${projectId}&task_key=eq.${taskKey}`, { method: 'PATCH', body: { status: newStatus } });
+    if (patched && patched.length) {
+      wfProjectTasks.push(patched[0]);
     } else {
-      console.error('Failed to create task:', projectId, taskKey, newStatus);
+      // Row doesn't exist, create it
+      const result = await sbFetch('project_tasks', { method: 'POST', body: { project_id: projectId, task_key: taskKey, status: newStatus } });
+      if (result && result.length) wfProjectTasks.push(result[0]);
     }
   }
   renderWorkflow();
