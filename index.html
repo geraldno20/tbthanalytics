@@ -1702,13 +1702,14 @@ async function sbFetch(endpoint, options = {}) {
   if (options.method === 'POST') headers['Prefer'] = 'return=representation';
   if (options.method === 'PATCH') headers['Prefer'] = 'return=representation';
   if (options.prefer) headers['Prefer'] = options.prefer;
+  if (options.range) headers['Range'] = options.range;
 
   const resp = await fetch(SUPABASE_URL + '/rest/v1/' + endpoint, {
     method: options.method || 'GET',
     headers,
     body: options.body ? JSON.stringify(options.body) : undefined,
   });
-  if (!resp.ok) {
+  if (!resp.ok && resp.status !== 206) {
     console.error('Supabase error:', resp.status, await resp.text());
     return null;
   }
@@ -1726,7 +1727,7 @@ async function loadWorkflow() {
     const [members, projects, tasks, comments] = await Promise.all([
       sbFetch('team_members?order=name'),
       sbFetch('projects?order=created_at.desc'),
-      sbFetch('project_tasks?order=project_id,task_key&limit=5000'),
+      sbFetch('project_tasks?order=project_id,task_key', { range: '0-4999' }),
       sbFetch('project_comments?order=created_at.desc'),
     ]);
     wfTeamMembers = members || [];
