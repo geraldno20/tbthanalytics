@@ -1793,7 +1793,7 @@ function getProjectStage(projectId) {
   };
   if (isComplete('publish')) return 'Production Complete';
   if (isComplete('filming') || taskInProgress(tasks, 'filming')) return 'Production';
-  if (isComplete('acceptance')) return 'Pre-Production';
+  if (isComplete('acceptance')) return 'Planning+Recording';
   return 'Ideation';
 }
 
@@ -1808,7 +1808,7 @@ function renderWorkflow() {
 }
 
 function renderWfSummary() {
-  const counts = { 'Ideation': 0, 'Pre-Production': 0, 'Production': 0, 'Production Complete': 0, 'Aired': 0 };
+  const counts = { 'Ideation': 0, 'Planning+Recording': 0, 'Production': 0, 'Production Complete': 0, 'Aired': 0 };
   wfProjects.forEach(p => {
     const stage = getProjectStage(p.id);
     counts[stage] = (counts[stage] || 0) + 1;
@@ -1821,8 +1821,8 @@ function renderWfSummary() {
       <div class="wf-sum-label">Ideation</div>
     </div>
     <div class="wf-summary-card">
-      <div class="wf-sum-count">${counts['Pre-Production']}</div>
-      <div class="wf-sum-label">Pre-Production</div>
+      <div class="wf-sum-count">${counts['Planning+Recording']}</div>
+      <div class="wf-sum-label">Planning+Recording</div>
     </div>
     <div class="wf-summary-card">
       <div class="wf-sum-count">${prodTotal}</div>
@@ -1872,7 +1872,7 @@ function renderWfProjectTable() {
         va = (a.name || '').toLowerCase();
         vb = (b.name || '').toLowerCase();
       } else if (wfSortCol === 'stage') {
-        const order = ['Ideation', 'Pre-Production', 'Production', 'Production Complete', 'Aired'];
+        const order = ['Ideation', 'Planning+Recording', 'Production', 'Production Complete', 'Aired'];
         va = order.indexOf(getProjectStage(a.id));
         vb = order.indexOf(getProjectStage(b.id));
       }
@@ -1909,7 +1909,7 @@ function renderWfProjectTable() {
       <th></th>
       <th></th>
       <th colspan="2" style="text-align:center;font-size:10px;color:#fff;background:#FF9500;border-radius:6px 6px 0 0;">Ideation</th>
-      <th colspan="3" style="text-align:center;font-size:10px;color:#fff;background:#5AC8FA;border-radius:6px 6px 0 0;">Pre-Production</th>
+      <th colspan="3" style="text-align:center;font-size:10px;color:#fff;background:#5AC8FA;border-radius:6px 6px 0 0;">Planning+Recording</th>
       <th colspan="8" style="text-align:center;font-size:10px;color:#fff;background:#AF52DE;border-radius:6px 6px 0 0;">Production</th>
       <th colspan="2" style="text-align:center;font-size:10px;color:#fff;background:#34C759;border-radius:6px 6px 0 0;">Post-Production</th>
       <th></th>
