@@ -143,6 +143,10 @@
       tbody td { padding: 8px 10px; }
       tbody td:first-child { max-width: 200px; }
       #group-row th { padding: 4px 10px; font-size: 9px; }
+      #wf-project-table { overflow-x: auto; }
+      #wf-project-table table { min-width: 1200px; }
+      .wf-summary { flex-wrap: wrap; }
+      .wf-summary-card { min-width: 80px; }
     }
 
     @media (max-width: 480px) {
@@ -1690,6 +1694,7 @@ let wfEditingTask = null;
 let wfCommentsProjectId = null;
 let wfHideAired = true;
 let wfCalEvents = [];
+let wfSearchQuery = '';
 let wfSortCol = 'air_date';
 let wfSortAsc = true;
 let wfSelectedProjects = new Set();
@@ -1847,6 +1852,10 @@ function renderWfProjectTable() {
   if (wfSeasonFilter !== 'all') {
     filtered = filtered.filter(p => (p.season || '') === wfSeasonFilter);
   }
+  if (wfSearchQuery) {
+    const q = wfSearchQuery.toLowerCase();
+    filtered = filtered.filter(p => (p.name || '').toLowerCase().includes(q) || (p.host || '').toLowerCase().includes(q));
+  }
 
   // Build season list for filter
   const allSeasons = [...new Set(wfProjects.map(p => p.season).filter(Boolean))].sort((a, b) => {
@@ -1875,6 +1884,9 @@ function renderWfProjectTable() {
         const order = ['Ideation', 'Planned', 'Production', 'Production Complete', 'Aired'];
         va = order.indexOf(getProjectStage(a.id));
         vb = order.indexOf(getProjectStage(b.id));
+      } else if (wfSortCol === 'updated_at') {
+        va = a.updated_at ? new Date(a.updated_at).getTime() : 0;
+        vb = b.updated_at ? new Date(b.updated_at).getTime() : 0;
       }
       if (va < vb) return wfSortAsc ? -1 : 1;
       if (va > vb) return wfSortAsc ? 1 : -1;
@@ -1886,6 +1898,7 @@ function renderWfProjectTable() {
 
   container.innerHTML = `
     <div style="margin-bottom:8px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+      <input type="text" placeholder="Search projects..." value="${wfSearchQuery}" oninput="wfSearchQuery=this.value;renderWfProjectTable();" style="font-size:12px;padding:4px 8px;border:1px solid var(--border);border-radius:6px;background:var(--bg);color:var(--text);width:150px;">
       <div class="seg-control" style="display:inline-flex;">
         <button class="${wfSeasonFilter === 'all' ? 'active' : ''}" onclick="setWfSeasonFilter('all')">All</button>
         ${allSeasons.map(s => `<button class="${wfSeasonFilter === s ? 'active' : ''}" onclick="setWfSeasonFilter('${s}')">S${s}</button>`).join('')}
@@ -1908,6 +1921,8 @@ function renderWfProjectTable() {
       <th></th>
       <th></th>
       <th></th>
+      <th></th>
+      <th></th>
       <th colspan="2" style="text-align:center;font-size:10px;color:#fff;background:#FF9500;border-radius:6px 6px 0 0;">Ideation</th>
       <th colspan="3" style="text-align:center;font-size:10px;color:#fff;background:#5AC8FA;border-radius:6px 6px 0 0;">Planned</th>
       <th colspan="8" style="text-align:center;font-size:10px;color:#fff;background:#AF52DE;border-radius:6px 6px 0 0;">Production</th>
@@ -1918,11 +1933,13 @@ function renderWfProjectTable() {
     <tr>
       <th style="width:30px;text-align:center;"><input type="checkbox" onchange="toggleSelectAll(this.checked)" ${wfSelectedProjects.size === filtered.length && filtered.length ? 'checked' : ''}></th>
       <th class="sortable" onclick="sortWfTable('name')" style="cursor:pointer;">Project${arrow('name')}</th>
+      <th class="sortable" onclick="sortWfTable('stage')" style="cursor:pointer;">Stage${arrow('stage')}</th>
       <th class="sortable" onclick="sortWfTable('season')" style="cursor:pointer;">Season${arrow('season')}</th>
       <th class="sortable" onclick="sortWfTable('episode')" style="cursor:pointer;">Ep${arrow('episode')}</th>
       <th class="sortable" onclick="sortWfTable('air_date')" style="cursor:pointer;">Air Date${arrow('air_date')}</th>
       <th>Class Year</th>
       <th>Host</th>
+      <th class="sortable" onclick="sortWfTable('updated_at')" style="cursor:pointer;">Updated${arrow('updated_at')}</th>
       ${WORKFLOW_TASKS.map(t => `<th>${t.label}</th>`).join('')}
       <th></th>
       <th></th>
@@ -1930,9 +1947,14 @@ function renderWfProjectTable() {
     <tbody>${filtered.map(p => {
       const commentCount = wfComments.filter(c => c.project_id === p.id).length;
       const checked = wfSelectedProjects.has(p.id) ? 'checked' : '';
+      const stage = getProjectStage(p.id);
+      const stageColors = { 'Ideation': '#FF9500', 'Planned': '#5AC8FA', 'Production': '#AF52DE', 'Production Complete': '#AF52DE', 'Aired': '#34C759' };
+      const stageColor = stageColors[stage] || '#8E8E93';
+      const updatedAt = p.updated_at ? new Date(p.updated_at).toLocaleDateString('en-HK', {month:'short',day:'numeric'}) : '';
       return `<tr class="${checked ? 'selected' : ''}">
         <td style="text-align:center;"><input type="checkbox" ${checked} onchange="toggleSelectProject('${p.id}', this.checked)"></td>
         <td><input type="text" value="${p.name}" onchange="updateProjectField('${p.id}','name',this.value)" style="width:120px;font-size:12px;padding:2px 4px;border:1px solid var(--border);border-radius:4px;background:var(--bg);color:var(--text);"></td>
+        <td style="text-align:center;"><span style="font-size:10px;padding:2px 6px;border-radius:4px;background:${stageColor}20;color:${stageColor};font-weight:600;white-space:nowrap;">${stage}</span></td>
         <td style="text-align:center;"><input type="text" value="${p.season || ''}" onchange="updateProjectField('${p.id}','season',this.value)" style="width:40px;text-align:center;font-size:12px;padding:2px 4px;border:1px solid var(--border);border-radius:4px;background:var(--bg);color:var(--text);"></td>
         <td style="text-align:center;"><input type="text" value="${p.episode || ''}" onchange="updateProjectField('${p.id}','episode',this.value)" style="width:40px;text-align:center;font-size:12px;padding:2px 4px;border:1px solid var(--border);border-radius:4px;background:var(--bg);color:var(--text);"></td>
         <td style="text-align:center;white-space:nowrap;">${p.air_date
@@ -1941,6 +1963,7 @@ function renderWfProjectTable() {
         }</td>
         <td style="text-align:center;"><input type="text" value="${p.class_year || ''}" onchange="updateProjectField('${p.id}','class_year',this.value)" style="width:50px;text-align:center;font-size:12px;padding:2px 4px;border:1px solid var(--border);border-radius:4px;background:var(--bg);color:var(--text);"></td>
         <td style="text-align:center;"><input type="text" value="${p.host || ''}" onchange="updateProjectField('${p.id}','host',this.value)" style="width:60px;text-align:center;font-size:12px;padding:2px 4px;border:1px solid var(--border);border-radius:4px;background:var(--bg);color:var(--text);"></td>
+        <td style="text-align:center;font-size:10px;color:var(--text3);white-space:nowrap;">${updatedAt}</td>
         ${WORKFLOW_TASKS.map(wt => {
           const task = getTaskForProject(p.id, wt.key);
           const status = task ? task.status : 'not_started';
