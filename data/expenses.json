@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-05-06 11:30",
+  "fetched_at": "2026-05-07 11:30",
   "expenses": [
     {
       "category": "Post-Production",
@@ -184,6 +184,22 @@
       "currency": "USD",
       "date": "3/14/2025",
       "paid_by": "GG"
+    },
+    {
+      "category": "Post-Production",
+      "expense": "Capcut subscription ",
+      "amount": "130",
+      "currency": "HKD",
+      "date": "4/26/26",
+      "paid_by": "SP"
+    },
+    {
+      "category": "Post-Production",
+      "expense": "Riverside Annual SP",
+      "amount": "2880",
+      "currency": "HKD",
+      "date": "4/30/26",
+      "paid_by": "SP"
     },
     {
       "category": "",
