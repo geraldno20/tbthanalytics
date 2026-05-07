@@ -227,11 +227,13 @@
     .wf-project-table { overflow-x: auto; background: var(--card); border-radius: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.07); }
     .wf-project-table table { width: 100%; border-collapse: collapse; font-size: 12px; }
     .wf-project-table th { padding: 8px 6px; font-weight: 600; color: var(--text2); font-size: 10px; text-transform: uppercase; letter-spacing: 0.3px; border-bottom: 1px solid var(--border); background: var(--th-bg); white-space: nowrap; text-align: center; }
-    .wf-project-table th:first-child { text-align: left; padding-left: 12px; position: sticky; left: 0; background: var(--th-bg); z-index: 2; min-width: 140px; }
+    .wf-project-table th:nth-child(1) { position: sticky; left: 0; background: var(--th-bg); z-index: 2; }
+    .wf-project-table th:nth-child(2) { position: sticky; left: 30px; background: var(--th-bg); z-index: 2; }
     .wf-project-table td { padding: 6px; border-bottom: 1px solid var(--border2); text-align: center; vertical-align: top; }
-    .wf-project-table td:first-child { text-align: left; padding-left: 12px; font-weight: 600; font-size: 13px; position: sticky; left: 0; background: var(--card); z-index: 1; white-space: nowrap; }
+    .wf-project-table td:nth-child(1) { position: sticky; left: 0; background: var(--card); z-index: 1; }
+    .wf-project-table td:nth-child(2) { position: sticky; left: 30px; background: var(--card); z-index: 1; font-weight: 600; font-size: 13px; white-space: nowrap; }
     .wf-project-table tr:hover td { background: var(--card-hover); }
-    .wf-project-table tr:hover td:first-child { background: var(--card-hover); }
+    .wf-project-table tr:hover td:nth-child(1), .wf-project-table tr:hover td:nth-child(2) { background: var(--card-hover); }
     .wf-task-cell { min-width: 90px; }
     .wf-task-cell select { width: 100%; font-size: 11px; padding: 2px 4px; border: 1px solid var(--border); border-radius: 4px; background: var(--bg); color: var(--text); cursor: pointer; }
     .wf-task-cell .wf-assignee { font-size: 10px; color: var(--text3); margin-top: 2px; }
@@ -286,7 +288,7 @@
     <button class="platform-tab" onclick="switchTab('ig')">Instagram</button>
     <button class="platform-tab" onclick="switchTab('th')">Threads</button>
     <button class="platform-tab" onclick="switchTab('mkt')">Marketing</button>
-    <button class="platform-tab" onclick="switchTab('wf')">YouTube Production</button>
+    <button class="platform-tab" onclick="switchTab('wf')">YouTube Production <span id="wf-overdue-badge" style="display:none;background:#FF375F;color:#fff;font-size:10px;font-weight:700;padding:1px 5px;border-radius:8px;margin-left:4px;"></span></button>
   </div>
 
   <div id="yt-tab" class="tab-content active">
@@ -1810,6 +1812,21 @@ function taskInProgress(tasks, key) {
 function renderWorkflow() {
   renderWfSummary();
   renderWfProjectTable();
+  updateOverdueBadge();
+}
+
+function updateOverdueBadge() {
+  const today = new Date().toISOString().slice(0, 10);
+  const overdueCount = wfProjectTasks.filter(t => t.deadline && t.deadline < today && t.status !== 'complete').length;
+  const badge = document.getElementById('wf-overdue-badge');
+  if (badge) {
+    if (overdueCount > 0) {
+      badge.textContent = overdueCount;
+      badge.style.display = 'inline';
+    } else {
+      badge.style.display = 'none';
+    }
+  }
 }
 
 function renderWfSummary() {
