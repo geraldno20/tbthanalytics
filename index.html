@@ -284,14 +284,14 @@
   <div class="cross-summary" id="cross-summary"></div>
 
   <div class="platform-tabs">
-    <button class="platform-tab active" onclick="switchTab('yt')">YouTube</button>
+    <button class="platform-tab active" onclick="switchTab('wf')">YouTube Production <span id="wf-overdue-badge" style="display:none;background:#FF375F;color:#fff;font-size:10px;font-weight:700;padding:1px 5px;border-radius:8px;margin-left:4px;"></span></button>
+    <button class="platform-tab" onclick="switchTab('yt')">YouTube</button>
     <button class="platform-tab" onclick="switchTab('ig')">Instagram</button>
     <button class="platform-tab" onclick="switchTab('th')">Threads</button>
     <button class="platform-tab" onclick="switchTab('mkt')">Marketing</button>
-    <button class="platform-tab" onclick="switchTab('wf')">YouTube Production <span id="wf-overdue-badge" style="display:none;background:#FF375F;color:#fff;font-size:10px;font-weight:700;padding:1px 5px;border-radius:8px;margin-left:4px;"></span></button>
   </div>
 
-  <div id="yt-tab" class="tab-content active">
+  <div id="yt-tab" class="tab-content">
   <div class="kpi-cards" id="kpi-cards" style="margin-bottom:20px;">
     <div class="kpi-card">
       <div class="kpi-label">Subscribers</div>
@@ -573,7 +573,7 @@
     </div>
   </div><!-- end #mkt-tab -->
 
-  <div id="wf-tab" class="tab-content">
+  <div id="wf-tab" class="tab-content active">
     <div class="wf-section">
       <div class="wf-summary" id="wf-summary"></div>
       <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
@@ -3840,6 +3840,7 @@ async function init() {
 }
 
 init();
+loadWorkflow();
 </script>
 </body>
 </html>
