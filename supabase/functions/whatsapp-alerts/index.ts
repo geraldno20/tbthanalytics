@@ -22,7 +22,7 @@ async function sendWhatsApp(to: string, templateName: string, bodyParams: string
       type: "template",
       template: {
         name: templateName,
-        language: { code: "en_US" },
+        language: { code: "en" },
         components: bodyParams.length ? [{
           type: "body",
           parameters: bodyParams.map(text => ({ type: "text", text })),
@@ -52,9 +52,9 @@ async function buildAlerts(): Promise<string[]> {
 
   if (overdue && overdue.length > 0) {
     const lines = overdue.slice(0, 10).map((t: any) =>
-      `• ${t.projects?.name} — ${t.task_key} (due ${t.deadline})`
+      `${t.projects?.name} - ${t.task_key} (due ${t.deadline})`
     );
-    alerts.push(`⚠️ OVERDUE TASKS (${overdue.length}):\n${lines.join("\n")}`);
+    alerts.push(`OVERDUE (${overdue.length}): ${lines.join(", ")}`);
   }
 
   // 2. Air dates coming up in the next 7 days
@@ -67,9 +67,9 @@ async function buildAlerts(): Promise<string[]> {
 
   if (upcoming && upcoming.length > 0) {
     const lines = upcoming.map((p: any) =>
-      `• S${p.season}E${p.episode || "?"} ${p.name} — ${p.air_date}`
+      `S${p.season}E${p.episode || "?"} ${p.name} (${p.air_date})`
     );
-    alerts.push(`📅 AIRING THIS WEEK (${upcoming.length}):\n${lines.join("\n")}`);
+    alerts.push(`AIRING THIS WEEK (${upcoming.length}): ${lines.join(", ")}`);
   }
 
   // 3. Pipeline summary
@@ -88,11 +88,7 @@ async function buildAlerts(): Promise<string[]> {
       else counts.ideation++;
     }
     alerts.push(
-      `📊 PIPELINE SUMMARY:\n` +
-      `• Ideation: ${counts.ideation}\n` +
-      `• Pre-Production: ${counts.preProd}\n` +
-      `• Production: ${counts.production + counts.prodComplete} (${counts.production} in progress, ${counts.prodComplete} complete)\n` +
-      `• Aired: ${counts.aired}`
+      `PIPELINE: Ideation ${counts.ideation}, Planned ${counts.preProd}, Production ${counts.production + counts.prodComplete} (${counts.production} active, ${counts.prodComplete} done), Aired ${counts.aired}`
     );
   }
 
@@ -107,13 +103,14 @@ Deno.serve(async (req) => {
       return new Response(JSON.stringify({ message: "No alerts to send" }), { status: 200 });
     }
 
-    const fullMessage = `🎬 TBTH Daily Update\n${new Date().toLocaleDateString("en-HK")}\n\n${alerts.join("\n\n")}`;
+    const fullMessage = `TBTH Daily Update ${new Date().toLocaleDateString("en-HK")} | ${alerts.join(" | ")}`;
+    // Replace newlines with " | " for template compliance
+    const cleanMessage = fullMessage.replace(/\n/g, " | ").replace(/\s{4,}/g, " ");
 
     // Send to all recipients
     const results = [];
     for (const recipient of RECIPIENTS) {
-      // Use hello_world template for testing until tbth_daily_update is approved
-      const result = await sendWhatsApp(recipient, "hello_world", []);
+      const result = await sendWhatsApp(recipient, "tbth_daily_update", [cleanMessage]);
       results.push({ to: recipient, result });
     }
 

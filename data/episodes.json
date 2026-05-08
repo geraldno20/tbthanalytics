@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-05-07 11:30",
+  "fetched_at": "2026-05-08 11:43",
   "episodes": [
     {
       "season": "1",
@@ -1510,7 +1510,7 @@
       "2m_release": ""
     },
     {
-      "season": "0",
+      "season": "#REF!",
       "episode": "",
       "guest": "",
       "class_year": "",
