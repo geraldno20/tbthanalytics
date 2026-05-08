@@ -1704,6 +1704,8 @@ let wfSortCol = 'air_date';
 let wfSortAsc = true;
 let wfSelectedProjects = new Set();
 let wfSeasonFilter = 'all';
+let wfClassYearFilter = 'all';
+let wfHostFilter = 'all';
 
 async function sbFetch(endpoint, options = {}) {
   const headers = {
@@ -1875,6 +1877,12 @@ function renderWfProjectTable() {
   if (wfSeasonFilter !== 'all') {
     filtered = filtered.filter(p => (p.season || '') === wfSeasonFilter);
   }
+  if (wfClassYearFilter !== 'all') {
+    filtered = filtered.filter(p => (p.class_year || '') === wfClassYearFilter);
+  }
+  if (wfHostFilter !== 'all') {
+    filtered = filtered.filter(p => (p.host || '').toLowerCase().includes(wfHostFilter.toLowerCase()));
+  }
   if (wfSearchQuery) {
     const q = wfSearchQuery.toLowerCase();
     filtered = filtered.filter(p => (p.name || '').toLowerCase().includes(q) || (p.host || '').toLowerCase().includes(q));
@@ -1886,6 +1894,8 @@ function renderWfProjectTable() {
     if (b === 'NoS') return -1;
     return (parseInt(a) || 99) - (parseInt(b) || 99);
   });
+  const allClassYears = [...new Set(wfProjects.map(p => p.class_year).filter(Boolean))].sort();
+  const allHosts = [...new Set(wfProjects.flatMap(p => (p.host || '').split(/[&,+]/).map(h => h.trim())).filter(Boolean))].sort();
 
   // Sort
   if (wfSortCol) {
@@ -1926,6 +1936,14 @@ function renderWfProjectTable() {
         <button class="${wfSeasonFilter === 'all' ? 'active' : ''}" onclick="setWfSeasonFilter('all')">All</button>
         ${allSeasons.map(s => `<button class="${wfSeasonFilter === s ? 'active' : ''}" onclick="setWfSeasonFilter('${s}')">S${s}</button>`).join('')}
       </div>
+      <select onchange="setWfClassYearFilter(this.value)" style="font-size:11px;padding:3px 6px;border:1px solid var(--border);border-radius:6px;background:var(--bg);color:var(--text);">
+        <option value="all" ${wfClassYearFilter === 'all' ? 'selected' : ''}>All Years</option>
+        ${allClassYears.map(y => `<option value="${y}" ${wfClassYearFilter === y ? 'selected' : ''}>${y}</option>`).join('')}
+      </select>
+      <select onchange="setWfHostFilter(this.value)" style="font-size:11px;padding:3px 6px;border:1px solid var(--border);border-radius:6px;background:var(--bg);color:var(--text);">
+        <option value="all" ${wfHostFilter === 'all' ? 'selected' : ''}>All Hosts</option>
+        ${allHosts.map(h => `<option value="${h}" ${wfHostFilter === h ? 'selected' : ''}>${h}</option>`).join('')}
+      </select>
       <button class="toggle-btn ${wfHideAired ? 'active' : ''}" onclick="toggleHideAired()" style="font-size:11px;">Hide Aired</button>
       <button class="toggle-btn ${wfHideDeclined ? 'active' : ''}" onclick="toggleHideDeclined()" style="font-size:11px;">Hide Declined</button>
       <button class="wf-btn" onclick="reloadWorkflow()" style="font-size:11px;padding:4px 10px;">Reload</button>
@@ -2026,6 +2044,16 @@ function toggleHideDeclined() {
 
 function setWfSeasonFilter(s) {
   wfSeasonFilter = s;
+  renderWfProjectTable();
+}
+
+function setWfClassYearFilter(v) {
+  wfClassYearFilter = v;
+  renderWfProjectTable();
+}
+
+function setWfHostFilter(v) {
+  wfHostFilter = v;
   renderWfProjectTable();
 }
 
