@@ -243,6 +243,7 @@
     .wf-status-assigned select { border-color: #FF9500; background: #FF950010; }
     .wf-status-in_progress select { border-color: var(--blue); background: #007AFF10; }
     .wf-status-complete select { border-color: var(--green); background: #34C75910; }
+    .wf-status-declined select { border-color: #FF3B30; background: #FF3B3010; color: #FF3B30; }
     .wf-modal { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; z-index: 1000; }
     .wf-modal-content { background: var(--card); border-radius: 12px; padding: 24px; width: 90%; max-width: 400px; }
     .wf-modal-content h3 { margin: 0 0 16px; font-size: 16px; }
@@ -1685,6 +1686,7 @@ const TASK_STATUSES = [
   { key: 'assigned', label: 'Assigned' },
   { key: 'in_progress', label: 'In Progress' },
   { key: 'complete', label: 'Complete' },
+  { key: 'declined', label: 'Declined' },
 ];
 
 let wfTeamMembers = [];
@@ -1695,6 +1697,7 @@ let wfLoaded = false;
 let wfEditingTask = null;
 let wfCommentsProjectId = null;
 let wfHideAired = true;
+let wfHideDeclined = true;
 let wfCalEvents = [];
 let wfSearchQuery = '';
 let wfSortCol = 'air_date';
@@ -1801,6 +1804,8 @@ function getProjectStage(projectId) {
   if (isComplete('publish')) return 'Production Complete';
   if (isComplete('filming') || taskInProgress(tasks, 'filming')) return 'Production';
   if (isComplete('acceptance')) return 'Planned';
+  const accTask = tasks.find(tk => tk.task_key === 'acceptance');
+  if (accTask && accTask.status === 'declined') return 'Declined';
   return 'Ideation';
 }
 
@@ -1830,7 +1835,7 @@ function updateOverdueBadge() {
 }
 
 function renderWfSummary() {
-  const counts = { 'Ideation': 0, 'Planned': 0, 'Production': 0, 'Production Complete': 0, 'Aired': 0 };
+  const counts = { 'Ideation': 0, 'Planned': 0, 'Production': 0, 'Production Complete': 0, 'Aired': 0, 'Declined': 0 };
   wfProjects.forEach(p => {
     const stage = getProjectStage(p.id);
     counts[stage] = (counts[stage] || 0) + 1;
@@ -1866,6 +1871,7 @@ function renderWfProjectTable() {
   }
   const today = new Date().toISOString().slice(0, 10);
   let filtered = wfHideAired ? wfProjects.filter(p => getProjectStage(p.id) !== 'Aired') : [...wfProjects];
+  if (wfHideDeclined) filtered = filtered.filter(p => getProjectStage(p.id) !== 'Declined');
   if (wfSeasonFilter !== 'all') {
     filtered = filtered.filter(p => (p.season || '') === wfSeasonFilter);
   }
@@ -1898,7 +1904,7 @@ function renderWfProjectTable() {
         va = (a.name || '').toLowerCase();
         vb = (b.name || '').toLowerCase();
       } else if (wfSortCol === 'stage') {
-        const order = ['Ideation', 'Planned', 'Production', 'Production Complete', 'Aired'];
+        const order = ['Declined', 'Ideation', 'Planned', 'Production', 'Production Complete', 'Aired'];
         va = order.indexOf(getProjectStage(a.id));
         vb = order.indexOf(getProjectStage(b.id));
       } else if (wfSortCol === 'updated_at') {
@@ -1921,6 +1927,7 @@ function renderWfProjectTable() {
         ${allSeasons.map(s => `<button class="${wfSeasonFilter === s ? 'active' : ''}" onclick="setWfSeasonFilter('${s}')">S${s}</button>`).join('')}
       </div>
       <button class="toggle-btn ${wfHideAired ? 'active' : ''}" onclick="toggleHideAired()" style="font-size:11px;">Hide Aired</button>
+      <button class="toggle-btn ${wfHideDeclined ? 'active' : ''}" onclick="toggleHideDeclined()" style="font-size:11px;">Hide Declined</button>
       <button class="wf-btn" onclick="reloadWorkflow()" style="font-size:11px;padding:4px 10px;">Reload</button>
       ${wfSelectedProjects.size ? `<span style="font-size:12px;color:var(--text2);margin-left:8px;">${wfSelectedProjects.size} selected</span>
       <button class="wf-btn" onclick="bulkSetStatus('complete')" style="font-size:11px;padding:4px 10px;">Set Complete</button>
@@ -1965,7 +1972,7 @@ function renderWfProjectTable() {
       const commentCount = wfComments.filter(c => c.project_id === p.id).length;
       const checked = wfSelectedProjects.has(p.id) ? 'checked' : '';
       const stage = getProjectStage(p.id);
-      const stageColors = { 'Ideation': '#FF9500', 'Planned': '#5AC8FA', 'Production': '#AF52DE', 'Production Complete': '#AF52DE', 'Aired': '#34C759' };
+      const stageColors = { 'Ideation': '#FF9500', 'Planned': '#5AC8FA', 'Production': '#AF52DE', 'Production Complete': '#AF52DE', 'Aired': '#34C759', 'Declined': '#FF3B30' };
       const stageColor = stageColors[stage] || '#8E8E93';
       const updatedAt = p.updated_at ? new Date(p.updated_at).toLocaleDateString('en-HK', {month:'short',day:'numeric'}) : '';
       return `<tr class="${checked ? 'selected' : ''}">
@@ -2009,6 +2016,11 @@ function refocusSearch() {
 
 function toggleHideAired() {
   wfHideAired = !wfHideAired;
+  renderWfProjectTable();
+}
+
+function toggleHideDeclined() {
+  wfHideDeclined = !wfHideDeclined;
   renderWfProjectTable();
 }
 
