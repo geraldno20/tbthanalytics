@@ -37,7 +37,7 @@ function main() {
 
   // Query: Video campaign performance
   var query = 'SELECT campaign.name, video.id, video.title, ' +
-    'metrics.cost_micros, metrics.impressions, metrics.video_views, metrics.clicks, ' +
+    'metrics.cost_micros, metrics.impressions, metrics.views, metrics.clicks, ' +
     'segments.date ' +
     'FROM video ' +
     'WHERE segments.date BETWEEN "' + startStr + '" AND "' + endStr + '" ' +
@@ -53,7 +53,7 @@ function main() {
       row.video.title,
       row.metrics.costMicros / 1000000,
       row.metrics.impressions,
-      row.metrics.videoViews,
+      row.metrics.views,
       row.metrics.clicks,
       row.segments.date
     ]);
@@ -70,7 +70,7 @@ function main() {
   // Aggregate by video
   var videoMap = {};
   var query2 = 'SELECT video.id, video.title, ' +
-    'metrics.cost_micros, metrics.impressions, metrics.video_views, metrics.clicks ' +
+    'metrics.cost_micros, metrics.impressions, metrics.views, metrics.clicks ' +
     'FROM video ' +
     'WHERE segments.date BETWEEN "' + startStr + '" AND "' + endStr + '"';
 
@@ -83,7 +83,7 @@ function main() {
     }
     videoMap[vid].cost += row.metrics.costMicros / 1000000;
     videoMap[vid].impressions += row.metrics.impressions;
-    videoMap[vid].views += row.metrics.videoViews;
+    videoMap[vid].views += row.metrics.views;
     videoMap[vid].clicks += row.metrics.clicks;
   }
 
