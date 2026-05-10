@@ -4,11 +4,10 @@
  * Setup:
  * 1. Go to Google Ads → Tools → Scripts
  * 2. Create new script, paste this code
- * 3. Replace SPREADSHEET_URL with your Google Sheet URL
- * 4. Run once to test, then schedule daily
+ * 3. Run once to test, then schedule daily
  *
  * The script exports per-video ad performance (YouTube video campaigns).
- * Your dashboard fetches from this sheet via the fetch_ads.py script.
+ * Your dashboard fetches from this sheet via the fetch_ads_from_sheet.py script.
  */
 
 var SPREADSHEET_URL = 'https://docs.google.com/spreadsheets/d/1PoUfMdia4D78XlpmOfQUogsGAfLVslvxokcKXD5Ylts/edit?usp=sharing';
@@ -32,60 +31,55 @@ function main() {
   // Date range: last 90 days
   var today = new Date();
   var start = new Date(today.getTime() - 90 * 24 * 60 * 60 * 1000);
-  var startStr = Utilities.formatDate(start, AdsApp.currentAccount().getTimeZone(), 'yyyy-MM-dd');
-  var endStr = Utilities.formatDate(today, AdsApp.currentAccount().getTimeZone(), 'yyyy-MM-dd');
+  var startStr = Utilities.formatDate(start, AdsApp.currentAccount().getTimeZone(), 'yyyyMMdd');
+  var endStr = Utilities.formatDate(today, AdsApp.currentAccount().getTimeZone(), 'yyyyMMdd');
 
-  // Query: Video campaign performance
-  var query = 'SELECT campaign.name, video.id, video.title, ' +
-    'metrics.cost_micros, metrics.impressions, metrics.views, metrics.clicks, ' +
-    'segments.date ' +
-    'FROM video ' +
-    'WHERE segments.date BETWEEN "' + startStr + '" AND "' + endStr + '" ' +
-    'ORDER BY segments.date DESC';
+  // Use AWQL report (well-supported in Google Ads Scripts)
+  var report = AdsApp.report(
+    'SELECT CampaignName, VideoId, VideoTitle, Cost, Impressions, VideoViews, Clicks, Date ' +
+    'FROM VIDEO_PERFORMANCE_REPORT ' +
+    'WHERE Date >= ' + startStr + ' AND Date <= ' + endStr
+  );
 
-  var report = AdsApp.search(query);
+  var rows = report.rows();
+  var videoMap = {};
 
-  while (report.hasNext()) {
-    var row = report.next();
+  while (rows.hasNext()) {
+    var row = rows.next();
+    var cost = parseFloat(row['Cost'].replace(/,/g, '')) || 0;
+    var impressions = parseInt(row['Impressions'].replace(/,/g, '')) || 0;
+    var views = parseInt(row['VideoViews'].replace(/,/g, '')) || 0;
+    var clicks = parseInt(row['Clicks'].replace(/,/g, '')) || 0;
+
     sheet.appendRow([
-      row.campaign.name,
-      row.video.id,
-      row.video.title,
-      row.metrics.costMicros / 1000000,
-      row.metrics.impressions,
-      row.metrics.views,
-      row.metrics.clicks,
-      row.segments.date
+      row['CampaignName'],
+      row['VideoId'],
+      row['VideoTitle'],
+      cost,
+      impressions,
+      views,
+      clicks,
+      row['Date']
     ]);
+
+    // Aggregate by video
+    var vid = row['VideoId'];
+    if (!videoMap[vid]) {
+      videoMap[vid] = { id: vid, title: row['VideoTitle'], cost: 0, impressions: 0, views: 0, clicks: 0 };
+    }
+    videoMap[vid].cost += cost;
+    videoMap[vid].impressions += impressions;
+    videoMap[vid].views += views;
+    videoMap[vid].clicks += clicks;
   }
 
-  // Also add a summary sheet
+  // Summary sheet
   var summarySheet = spreadsheet.getSheetByName('AdsSummary');
   if (!summarySheet) {
     summarySheet = spreadsheet.insertSheet('AdsSummary');
   }
   summarySheet.clear();
   summarySheet.appendRow(['Video ID', 'Video Title', 'Total Cost', 'Total Impressions', 'Total Views', 'Total Clicks']);
-
-  // Aggregate by video
-  var videoMap = {};
-  var query2 = 'SELECT video.id, video.title, ' +
-    'metrics.cost_micros, metrics.impressions, metrics.views, metrics.clicks ' +
-    'FROM video ' +
-    'WHERE segments.date BETWEEN "' + startStr + '" AND "' + endStr + '"';
-
-  var report2 = AdsApp.search(query2);
-  while (report2.hasNext()) {
-    var row = report2.next();
-    var vid = row.video.id;
-    if (!videoMap[vid]) {
-      videoMap[vid] = { id: vid, title: row.video.title, cost: 0, impressions: 0, views: 0, clicks: 0 };
-    }
-    videoMap[vid].cost += row.metrics.costMicros / 1000000;
-    videoMap[vid].impressions += row.metrics.impressions;
-    videoMap[vid].views += row.metrics.views;
-    videoMap[vid].clicks += row.metrics.clicks;
-  }
 
   var videos = Object.values(videoMap);
   videos.sort(function(a, b) { return b.cost - a.cost; });
