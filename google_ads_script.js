@@ -11,7 +11,7 @@
  * Your dashboard fetches from this sheet via the fetch_ads.py script.
  */
 
-var SPREADSHEET_URL = 'YOUR_GOOGLE_SHEET_URL_HERE';
+var SPREADSHEET_URL = 'https://docs.google.com/spreadsheets/d/1PoUfMdia4D78XlpmOfQUogsGAfLVslvxokcKXD5Ylts/edit?usp=sharing';
 var SHEET_NAME = 'AdsData';
 
 function main() {
