@@ -29,12 +29,18 @@ function main() {
     'Campaign', 'Video ID', 'Video Title', 'Cost', 'Impressions', 'Views', 'Clicks', 'Date'
   ]);
 
-  // Query: Video campaign performance, last 90 days
+  // Date range: last 90 days
+  var today = new Date();
+  var start = new Date(today.getTime() - 90 * 24 * 60 * 60 * 1000);
+  var startStr = Utilities.formatDate(start, AdsApp.currentAccount().getTimeZone(), 'yyyy-MM-dd');
+  var endStr = Utilities.formatDate(today, AdsApp.currentAccount().getTimeZone(), 'yyyy-MM-dd');
+
+  // Query: Video campaign performance
   var query = 'SELECT campaign.name, video.id, video.title, ' +
     'metrics.cost_micros, metrics.impressions, metrics.video_views, metrics.clicks, ' +
     'segments.date ' +
     'FROM video ' +
-    'WHERE segments.date DURING LAST_90_DAYS ' +
+    'WHERE segments.date BETWEEN "' + startStr + '" AND "' + endStr + '" ' +
     'ORDER BY segments.date DESC';
 
   var report = AdsApp.search(query);
@@ -45,7 +51,7 @@ function main() {
       row.campaign.name,
       row.video.id,
       row.video.title,
-      row.metrics.costMicros / 1000000,  // Convert micros to dollars
+      row.metrics.costMicros / 1000000,
       row.metrics.impressions,
       row.metrics.videoViews,
       row.metrics.clicks,
@@ -66,7 +72,7 @@ function main() {
   var query2 = 'SELECT video.id, video.title, ' +
     'metrics.cost_micros, metrics.impressions, metrics.video_views, metrics.clicks ' +
     'FROM video ' +
-    'WHERE segments.date DURING LAST_90_DAYS';
+    'WHERE segments.date BETWEEN "' + startStr + '" AND "' + endStr + '"';
 
   var report2 = AdsApp.search(query2);
   while (report2.hasNext()) {
