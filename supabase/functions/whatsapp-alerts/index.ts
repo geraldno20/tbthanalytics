@@ -110,7 +110,7 @@ Deno.serve(async (req) => {
     // Send to all recipients
     const results = [];
     for (const recipient of RECIPIENTS) {
-      const result = await sendWhatsApp(recipient, "tbth_daily_update", [cleanMessage]);
+      const result = await sendWhatsApp(recipient, "tbth_updates", [cleanMessage]);
       results.push({ to: recipient, result });
     }
 
