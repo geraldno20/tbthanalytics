@@ -25,7 +25,7 @@ function main() {
   campSheet.appendRow(['Campaign', 'Campaign Type', 'Cost', 'Impressions', 'Clicks', 'Conversions', 'Date']);
 
   var campReport = AdsApp.report(
-    'SELECT CampaignName, CampaignType, Cost, Impressions, Clicks, Conversions, Date ' +
+    'SELECT CampaignName, AdvertisingChannelType, Cost, Impressions, Clicks, Conversions, Date ' +
     'FROM CAMPAIGN_PERFORMANCE_REPORT ' +
     'WHERE Cost > 0 AND Date >= ' + startStr + ' AND Date <= ' + endStr
   );
@@ -35,7 +35,7 @@ function main() {
     var row = campRows.next();
     campSheet.appendRow([
       row['CampaignName'],
-      row['CampaignType'],
+      row['AdvertisingChannelType'],
       row['Cost'],
       row['Impressions'],
       row['Clicks'],
@@ -110,7 +110,7 @@ function main() {
   summarySheet.appendRow(['Campaign', 'Campaign Type', 'Total Cost', 'Total Impressions', 'Total Clicks', 'Total Conversions']);
 
   var summaryReport = AdsApp.report(
-    'SELECT CampaignName, CampaignType, Cost, Impressions, Clicks, Conversions ' +
+    'SELECT CampaignName, AdvertisingChannelType, Cost, Impressions, Clicks, Conversions ' +
     'FROM CAMPAIGN_PERFORMANCE_REPORT ' +
     'WHERE Cost > 0 AND Date >= ' + startStr + ' AND Date <= ' + endStr
   );
@@ -121,7 +121,7 @@ function main() {
     var row = summaryRows.next();
     var name = row['CampaignName'];
     if (!campaignMap[name]) {
-      campaignMap[name] = { name: name, type: row['CampaignType'], cost: 0, impressions: 0, clicks: 0, conversions: 0 };
+      campaignMap[name] = { name: name, type: row['AdvertisingChannelType'], cost: 0, impressions: 0, clicks: 0, conversions: 0 };
     }
     campaignMap[name].cost += parseFloat(row['Cost'].replace(/,/g, '')) || 0;
     campaignMap[name].impressions += parseInt(row['Impressions'].replace(/,/g, '')) || 0;
