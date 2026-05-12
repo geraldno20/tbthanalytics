@@ -5,89 +5,137 @@
  * 1. Go to Google Ads → Tools → Scripts
  * 2. Create new script, paste this code
  * 3. Run once to test, then schedule daily
- *
- * The script exports per-video ad performance (YouTube video campaigns).
- * Your dashboard fetches from this sheet via the fetch_ads_from_sheet.py script.
  */
 
 var SPREADSHEET_URL = 'https://docs.google.com/spreadsheets/d/1PoUfMdia4D78XlpmOfQUogsGAfLVslvxokcKXD5Ylts/edit?usp=sharing';
-var SHEET_NAME = 'AdsData';
 
 function main() {
   var spreadsheet = SpreadsheetApp.openByUrl(SPREADSHEET_URL);
-  var sheet = spreadsheet.getSheetByName(SHEET_NAME);
-  if (!sheet) {
-    sheet = spreadsheet.insertSheet(SHEET_NAME);
-  }
 
-  // Clear existing data
-  sheet.clear();
-
-  // Headers
-  sheet.appendRow([
-    'Campaign', 'Video ID', 'Video Title', 'Cost', 'Impressions', 'Views', 'Clicks', 'Date'
-  ]);
-
-  // Date range: last 90 days
+  // Date range: last 180 days (to cover Jan-Apr activity)
   var today = new Date();
-  var start = new Date(today.getTime() - 90 * 24 * 60 * 60 * 1000);
+  var start = new Date(today.getTime() - 180 * 24 * 60 * 60 * 1000);
   var startStr = Utilities.formatDate(start, AdsApp.currentAccount().getTimeZone(), 'yyyyMMdd');
   var endStr = Utilities.formatDate(today, AdsApp.currentAccount().getTimeZone(), 'yyyyMMdd');
 
-  // Use AWQL report (well-supported in Google Ads Scripts)
-  var report = AdsApp.report(
-    'SELECT CampaignName, VideoId, VideoTitle, Cost, Impressions, VideoViews, Clicks, Date ' +
-    'FROM VIDEO_PERFORMANCE_REPORT ' +
-    'WHERE Date >= ' + startStr + ' AND Date <= ' + endStr
+  // --- Sheet 1: Campaign Performance (all campaign types) ---
+  var campSheet = spreadsheet.getSheetByName('Campaigns');
+  if (!campSheet) campSheet = spreadsheet.insertSheet('Campaigns');
+  campSheet.clear();
+  campSheet.appendRow(['Campaign', 'Campaign Type', 'Cost', 'Impressions', 'Clicks', 'Conversions', 'Date']);
+
+  var campReport = AdsApp.report(
+    'SELECT CampaignName, CampaignType, Cost, Impressions, Clicks, Conversions, Date ' +
+    'FROM CAMPAIGN_PERFORMANCE_REPORT ' +
+    'WHERE Cost > 0 AND Date >= ' + startStr + ' AND Date <= ' + endStr
   );
 
-  var rows = report.rows();
-  var videoMap = {};
-
-  while (rows.hasNext()) {
-    var row = rows.next();
-    var cost = parseFloat(row['Cost'].replace(/,/g, '')) || 0;
-    var impressions = parseInt(row['Impressions'].replace(/,/g, '')) || 0;
-    var views = parseInt(row['VideoViews'].replace(/,/g, '')) || 0;
-    var clicks = parseInt(row['Clicks'].replace(/,/g, '')) || 0;
-
-    sheet.appendRow([
+  var campRows = campReport.rows();
+  while (campRows.hasNext()) {
+    var row = campRows.next();
+    campSheet.appendRow([
       row['CampaignName'],
-      row['VideoId'],
-      row['VideoTitle'],
-      cost,
-      impressions,
-      views,
-      clicks,
+      row['CampaignType'],
+      row['Cost'],
+      row['Impressions'],
+      row['Clicks'],
+      row['Conversions'],
       row['Date']
     ]);
+  }
 
-    // Aggregate by video
-    var vid = row['VideoId'];
-    if (!videoMap[vid]) {
-      videoMap[vid] = { id: vid, title: row['VideoTitle'], cost: 0, impressions: 0, views: 0, clicks: 0 };
+  // --- Sheet 2: Video Performance (if any) ---
+  var videoSheet = spreadsheet.getSheetByName('AdsData');
+  if (!videoSheet) videoSheet = spreadsheet.insertSheet('AdsData');
+  videoSheet.clear();
+  videoSheet.appendRow(['Campaign', 'Video ID', 'Video Title', 'Cost', 'Impressions', 'Views', 'Clicks', 'Date']);
+
+  try {
+    var videoReport = AdsApp.report(
+      'SELECT CampaignName, VideoId, VideoTitle, Cost, Impressions, VideoViews, Clicks, Date ' +
+      'FROM VIDEO_PERFORMANCE_REPORT ' +
+      'WHERE Date >= ' + startStr + ' AND Date <= ' + endStr
+    );
+
+    var videoRows = videoReport.rows();
+    while (videoRows.hasNext()) {
+      var row = videoRows.next();
+      videoSheet.appendRow([
+        row['CampaignName'],
+        row['VideoId'],
+        row['VideoTitle'],
+        row['Cost'],
+        row['Impressions'],
+        row['VideoViews'],
+        row['Clicks'],
+        row['Date']
+      ]);
     }
-    videoMap[vid].cost += cost;
-    videoMap[vid].impressions += impressions;
-    videoMap[vid].views += views;
-    videoMap[vid].clicks += clicks;
+  } catch (e) {
+    Logger.log('VIDEO_PERFORMANCE_REPORT not available: ' + e);
   }
 
-  // Summary sheet
+  // --- Sheet 3: Ad Performance (shows all ad types including video assets) ---
+  var adSheet = spreadsheet.getSheetByName('AdPerformance');
+  if (!adSheet) adSheet = spreadsheet.insertSheet('AdPerformance');
+  adSheet.clear();
+  adSheet.appendRow(['Campaign', 'Ad Group', 'Ad Type', 'Headline', 'Cost', 'Impressions', 'Clicks', 'Conversions', 'Date']);
+
+  var adReport = AdsApp.report(
+    'SELECT CampaignName, AdGroupName, AdType, HeadlinePart1, Cost, Impressions, Clicks, Conversions, Date ' +
+    'FROM AD_PERFORMANCE_REPORT ' +
+    'WHERE Cost > 0 AND Date >= ' + startStr + ' AND Date <= ' + endStr
+  );
+
+  var adRows = adReport.rows();
+  while (adRows.hasNext()) {
+    var row = adRows.next();
+    adSheet.appendRow([
+      row['CampaignName'],
+      row['AdGroupName'],
+      row['AdType'],
+      row['HeadlinePart1'],
+      row['Cost'],
+      row['Impressions'],
+      row['Clicks'],
+      row['Conversions'],
+      row['Date']
+    ]);
+  }
+
+  // --- Summary sheet (aggregate campaigns) ---
   var summarySheet = spreadsheet.getSheetByName('AdsSummary');
-  if (!summarySheet) {
-    summarySheet = spreadsheet.insertSheet('AdsSummary');
-  }
+  if (!summarySheet) summarySheet = spreadsheet.insertSheet('AdsSummary');
   summarySheet.clear();
-  summarySheet.appendRow(['Video ID', 'Video Title', 'Total Cost', 'Total Impressions', 'Total Views', 'Total Clicks']);
+  summarySheet.appendRow(['Campaign', 'Campaign Type', 'Total Cost', 'Total Impressions', 'Total Clicks', 'Total Conversions']);
 
-  var videos = Object.values(videoMap);
-  videos.sort(function(a, b) { return b.cost - a.cost; });
+  var summaryReport = AdsApp.report(
+    'SELECT CampaignName, CampaignType, Cost, Impressions, Clicks, Conversions ' +
+    'FROM CAMPAIGN_PERFORMANCE_REPORT ' +
+    'WHERE Cost > 0 AND Date >= ' + startStr + ' AND Date <= ' + endStr
+  );
 
-  for (var i = 0; i < videos.length; i++) {
-    var v = videos[i];
-    summarySheet.appendRow([v.id, v.title, v.cost.toFixed(2), v.impressions, v.views, v.clicks]);
+  var campaignMap = {};
+  var summaryRows = summaryReport.rows();
+  while (summaryRows.hasNext()) {
+    var row = summaryRows.next();
+    var name = row['CampaignName'];
+    if (!campaignMap[name]) {
+      campaignMap[name] = { name: name, type: row['CampaignType'], cost: 0, impressions: 0, clicks: 0, conversions: 0 };
+    }
+    campaignMap[name].cost += parseFloat(row['Cost'].replace(/,/g, '')) || 0;
+    campaignMap[name].impressions += parseInt(row['Impressions'].replace(/,/g, '')) || 0;
+    campaignMap[name].clicks += parseInt(row['Clicks'].replace(/,/g, '')) || 0;
+    campaignMap[name].conversions += parseFloat(row['Conversions'].replace(/,/g, '')) || 0;
   }
 
-  Logger.log('Exported ' + videos.length + ' videos to sheet.');
+  var campaigns = Object.values(campaignMap);
+  campaigns.sort(function(a, b) { return b.cost - a.cost; });
+
+  for (var i = 0; i < campaigns.length; i++) {
+    var c = campaigns[i];
+    summarySheet.appendRow([c.name, c.type, c.cost.toFixed(2), c.impressions, c.clicks, c.conversions.toFixed(1)]);
+  }
+
+  Logger.log('Exported ' + campaigns.length + ' campaigns to sheet.');
 }
