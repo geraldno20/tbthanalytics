@@ -12,9 +12,9 @@ var SPREADSHEET_URL = 'https://docs.google.com/spreadsheets/d/1PoUfMdia4D78XlpmO
 function main() {
   var spreadsheet = SpreadsheetApp.openByUrl(SPREADSHEET_URL);
 
-  // Date range: last 180 days (to cover Jan-Apr activity)
+  // Date range: last 365 days (all recent activity)
   var today = new Date();
-  var start = new Date(today.getTime() - 180 * 24 * 60 * 60 * 1000);
+  var start = new Date(today.getTime() - 365 * 24 * 60 * 60 * 1000);
   var startStr = Utilities.formatDate(start, AdsApp.currentAccount().getTimeZone(), 'yyyyMMdd');
   var endStr = Utilities.formatDate(today, AdsApp.currentAccount().getTimeZone(), 'yyyyMMdd');
 
@@ -27,7 +27,7 @@ function main() {
   var campReport = AdsApp.report(
     'SELECT CampaignName, AdvertisingChannelType, Cost, Impressions, Clicks, Conversions, Date ' +
     'FROM CAMPAIGN_PERFORMANCE_REPORT ' +
-    'WHERE Cost > 0 AND Date >= ' + startStr + ' AND Date <= ' + endStr
+    'WHERE Date >= ' + startStr + ' AND Date <= ' + endStr
   );
 
   var campRows = campReport.rows();
@@ -84,7 +84,7 @@ function main() {
   var adReport = AdsApp.report(
     'SELECT CampaignName, AdGroupName, AdType, HeadlinePart1, Cost, Impressions, Clicks, Conversions, Date ' +
     'FROM AD_PERFORMANCE_REPORT ' +
-    'WHERE Cost > 0 AND Date >= ' + startStr + ' AND Date <= ' + endStr
+    'WHERE Date >= ' + startStr + ' AND Date <= ' + endStr
   );
 
   var adRows = adReport.rows();
@@ -112,7 +112,7 @@ function main() {
   var summaryReport = AdsApp.report(
     'SELECT CampaignName, AdvertisingChannelType, Cost, Impressions, Clicks, Conversions ' +
     'FROM CAMPAIGN_PERFORMANCE_REPORT ' +
-    'WHERE Cost > 0 AND Date >= ' + startStr + ' AND Date <= ' + endStr
+    'WHERE Date >= ' + startStr + ' AND Date <= ' + endStr
   );
 
   var campaignMap = {};
