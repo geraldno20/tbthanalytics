@@ -3856,7 +3856,8 @@ async function init() {
 
     // Last updated
     if (fetchedAt) {
-      const hkt = new Date(fetchedAt).toLocaleString('en-HK', { timeZone: 'Asia/Hong_Kong', year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+      const utcDate = fetchedAt.includes('T') || fetchedAt.includes('Z') ? fetchedAt : fetchedAt.replace(' ', 'T') + 'Z';
+      const hkt = new Date(utcDate).toLocaleString('en-HK', { timeZone: 'Asia/Hong_Kong', year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
       document.getElementById('last-updated').textContent = `Data last refreshed: ${hkt} HKT`;
     }
 
