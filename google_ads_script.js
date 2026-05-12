@@ -12,6 +12,9 @@ var SPREADSHEET_URL = 'https://docs.google.com/spreadsheets/d/1PoUfMdia4D78XlpmO
 function main() {
   var spreadsheet = SpreadsheetApp.openByUrl(SPREADSHEET_URL);
 
+  var startStr = '20250301';
+  var endStr = Utilities.formatDate(new Date(), AdsApp.currentAccount().getTimeZone(), 'yyyyMMdd');
+
   // --- Sheet 1: Campaign Performance (all campaign types) ---
   var campSheet = spreadsheet.getSheetByName('Campaigns');
   if (!campSheet) campSheet = spreadsheet.insertSheet('Campaigns');
@@ -20,7 +23,8 @@ function main() {
 
   var campReport = AdsApp.report(
     'SELECT CampaignName, AdvertisingChannelType, Cost, Impressions, Clicks, Conversions, Date ' +
-    'FROM CAMPAIGN_PERFORMANCE_REPORT'
+    'FROM CAMPAIGN_PERFORMANCE_REPORT ' +
+    'WHERE Date >= ' + startStr + ' AND Date <= ' + endStr
   );
 
   var campRows = campReport.rows();
@@ -46,7 +50,8 @@ function main() {
   try {
     var videoReport = AdsApp.report(
       'SELECT CampaignName, VideoId, VideoTitle, Cost, Impressions, VideoViews, Clicks, Date ' +
-      'FROM VIDEO_PERFORMANCE_REPORT'
+      'FROM VIDEO_PERFORMANCE_REPORT ' +
+      'WHERE Date >= ' + startStr + ' AND Date <= ' + endStr
     );
 
     var videoRows = videoReport.rows();
@@ -75,7 +80,8 @@ function main() {
 
   var adReport = AdsApp.report(
     'SELECT CampaignName, AdGroupName, AdType, HeadlinePart1, Cost, Impressions, Clicks, Conversions, Date ' +
-    'FROM AD_PERFORMANCE_REPORT'
+    'FROM AD_PERFORMANCE_REPORT ' +
+    'WHERE Date >= ' + startStr + ' AND Date <= ' + endStr
   );
 
   var adRows = adReport.rows();
@@ -102,7 +108,8 @@ function main() {
 
   var summaryReport = AdsApp.report(
     'SELECT CampaignName, AdvertisingChannelType, Cost, Impressions, Clicks, Conversions ' +
-    'FROM CAMPAIGN_PERFORMANCE_REPORT'
+    'FROM CAMPAIGN_PERFORMANCE_REPORT ' +
+    'WHERE Date >= ' + startStr + ' AND Date <= ' + endStr
   );
 
   var campaignMap = {};
