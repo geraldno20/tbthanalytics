@@ -1,0 +1,52 @@
+name: Daily Data Refresh
+
+on:
+  schedule:
+    # 1:00 AM UTC = 9:00 AM HKT
+    - cron: '0 1 * * *'
+  workflow_dispatch: # Allow manual trigger
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: |
+          pip install google-api-python-client google-auth google-auth-oauthlib google-auth-httplib2
+
+      - name: Write credential files
+        run: |
+          echo '${{ secrets.YOUTUBE_TOKEN }}' > token.json
+          echo '${{ secrets.IG_TOKEN }}' > ig_token.json
+          echo '${{ secrets.THREADS_TOKEN }}' > threads_token.json
+          echo '${{ secrets.CLIENT_SECRET }}' > client_secret.json
+
+      - name: Fetch YouTube Analytics
+        run: python3 fetch_analytics.py
+
+      - name: Fetch Instagram
+        run: python3 fetch_instagram.py
+        continue-on-error: true
+
+      - name: Fetch Threads
+        run: python3 fetch_threads.py
+        continue-on-error: true
+
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/
+          if git diff --staged --quiet; then
+            echo "No data changes"
+          else
+            git commit -m "Refresh data $(date -u +%Y-%m-%d)"
+            git push
+          fi
