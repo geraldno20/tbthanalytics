@@ -342,12 +342,6 @@
     <div class="chart-body"><div class="chart-wrap"><canvas id="views-chart"></canvas></div></div>
   </details>
 
-  <!-- Audience Growth chart -->
-  <details class="chart-section">
-    <summary>Audience Growth (Subscribers &amp; Engagement)</summary>
-    <div class="chart-body"><div class="chart-wrap"><canvas id="returning-chart"></canvas></div></div>
-  </details>
-
   <!-- AVD over time chart -->
   <details class="chart-section">
     <summary>Avg View Duration % Over Time</summary>
@@ -2341,7 +2335,6 @@ let viewsChart = null;
 let avdChart = null;
 let scatterChart = null;
 let dailyWatchData = [];
-let returningViewersData = [];
 let channelSummary = {};
 
 // --- Helpers ---
@@ -2414,7 +2407,6 @@ function toggleDark() {
   renderTrendChart();
   renderWatchChart();
   renderViewsChart();
-  renderReturningChart();
   renderAVDChart();
   renderRetentionChart();
   renderScatterChart();
@@ -2692,50 +2684,7 @@ function renderViewsChart() {
   });
 }
 
-let returningChart = null;
-function renderReturningChart() {
-  if (!returningViewersData.length) return;
-  if (returningChart) returningChart.destroy();
-  const isDark = document.body.classList.contains('dark');
-  const gridColor = isDark ? '#3A3A3C' : '#E5E5EA';
-  const textColor = isDark ? '#AEAEB2' : '#6E6E73';
 
-  const labels = returningViewersData.map(d => d.date);
-  const views = returningViewersData.map(d => d.views);
-  const netSubs = returningViewersData.map(d => d.subs_gained - d.subs_lost);
-
-  // Cumulative net subscribers (running total from start of data)
-  const cumSubs = [];
-  netSubs.reduce((acc, v) => { acc += v; cumSubs.push(acc); return acc; }, 0);
-
-  // 7-day rolling views
-  const win = 7;
-  const rollingViews = views.map((_, i) => {
-    const s = Math.max(0, i - win + 1);
-    const sl = views.slice(s, i + 1);
-    return Math.round(sl.reduce((a, b) => a + b, 0) / sl.length);
-  });
-
-  returningChart = new Chart(document.getElementById('returning-chart').getContext('2d'), {
-    type: 'line',
-    data: {
-      labels,
-      datasets: [
-        { label: 'Net Subscribers (cumulative)', data: cumSubs, borderColor: '#34C759', backgroundColor: '#34C75920', borderWidth: 2, pointRadius: 0, tension: 0.4, fill: true, yAxisID: 'y1' },
-        { label: 'Daily Views (7d avg)', data: rollingViews, borderColor: '#007AFF', borderWidth: 2, pointRadius: 0, tension: 0.4, yAxisID: 'y' },
-      ]
-    },
-    options: {
-      responsive: true, maintainAspectRatio: false,
-      plugins: { legend: { position: 'bottom', labels: { font: { size: 11 }, color: textColor } } },
-      scales: {
-        x: { grid: { display: false }, ticks: { font: { size: 10 }, color: textColor, maxRotation: 45, autoSkip: true, maxTicksLimit: 30 }, border: { display: false } },
-        y: { position: 'left', grid: { color: gridColor }, ticks: { font: { size: 11 }, color: '#007AFF' }, border: { display: false }, title: { display: true, text: 'Views', color: '#007AFF', font: { size: 11 } } },
-        y1: { position: 'right', grid: { display: false }, ticks: { font: { size: 11 }, color: '#34C759' }, border: { display: false }, title: { display: true, text: 'Net Subs Gained', color: '#34C759', font: { size: 11 } } }
-      }
-    }
-  });
-}
 
 const AVD_PERIODS = ['24h', '72h', '1wk', '2wk', '1mo', '3mo', 'lifetime'];
 const AVD_LABELS = ['24h', '72h', '1 Week', '2 Weeks', '1 Month', '3 Months', 'Lifetime'];
@@ -3138,7 +3087,6 @@ function render() {
   renderTrendChart();
   renderWatchChart();
   renderViewsChart();
-  renderReturningChart();
   buildAVDSelect();
   renderAVDChart();
   renderRetentionChart();
@@ -3900,7 +3848,6 @@ async function init() {
       fetchedAt = raw.fetched_at || null;
       data = raw.videos || [];
       dailyWatchData = raw.daily_watch_hours || [];
-      returningViewersData = raw.returning_viewers || [];
       const cs = raw.channel_summary || {};
       channelSummary = cs;
       renderKPIs(cs);
