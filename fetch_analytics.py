@@ -254,34 +254,25 @@ def fetch_daily_channel_stats(yt_analytics):
 
 
 def fetch_returning_viewers(yt_analytics):
-    """Fetch daily new vs returning viewer data for the past year."""
+    """Fetch monthly unique viewers and daily subscribers to track audience growth."""
     today = datetime.now()
     start = (today - timedelta(days=365)).strftime("%Y-%m-%d")
     end = (today - timedelta(days=2)).strftime("%Y-%m-%d")
 
-    def query():
+    # Daily subscribers gained/lost
+    def query_subs():
         response = yt_analytics.reports().query(
             ids=f"channel=={CHANNEL_ID}",
             startDate=start,
             endDate=end,
-            metrics="views",
-            dimensions="day,viewerType",
+            metrics="subscribersGained,subscribersLost,views",
+            dimensions="day",
             sort="day",
         ).execute()
-        # rows: [date, viewerType, views]
-        # viewerType is "RETURNING" or "NEW"
-        daily = {}
-        for r in response.get("rows", []):
-            date, viewer_type, views = r[0], r[1], r[2]
-            if date not in daily:
-                daily[date] = {"date": date, "new": 0, "returning": 0}
-            if viewer_type == "RETURNING":
-                daily[date]["returning"] = views
-            else:
-                daily[date]["new"] = views
-        return sorted(daily.values(), key=lambda x: x["date"])
+        return [{"date": r[0], "subs_gained": r[1], "subs_lost": r[2], "views": r[3]}
+                for r in response.get("rows", [])]
 
-    result = api_call_with_retry(query, "returning viewers")
+    result = api_call_with_retry(query_subs, "audience growth")
     return result if result is not None else []
 
 

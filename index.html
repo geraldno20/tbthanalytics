@@ -342,9 +342,9 @@
     <div class="chart-body"><div class="chart-wrap"><canvas id="views-chart"></canvas></div></div>
   </details>
 
-  <!-- Returning vs New Viewers chart -->
+  <!-- Audience Growth chart -->
   <details class="chart-section">
-    <summary>Returning vs New Viewers</summary>
+    <summary>Audience Growth (Subscribers &amp; Engagement)</summary>
     <div class="chart-body"><div class="chart-wrap"><canvas id="returning-chart"></canvas></div></div>
   </details>
 
@@ -2701,25 +2701,19 @@ function renderReturningChart() {
   const textColor = isDark ? '#AEAEB2' : '#6E6E73';
 
   const labels = returningViewersData.map(d => d.date);
-  const returning = returningViewersData.map(d => d.returning);
-  const newV = returningViewersData.map(d => d.new);
+  const views = returningViewersData.map(d => d.views);
+  const netSubs = returningViewersData.map(d => d.subs_gained - d.subs_lost);
 
-  // 7-day rolling averages
+  // Cumulative net subscribers (running total from start of data)
+  const cumSubs = [];
+  netSubs.reduce((acc, v) => { acc += v; cumSubs.push(acc); return acc; }, 0);
+
+  // 7-day rolling views
   const win = 7;
-  const rollingRet = returning.map((_, i) => {
+  const rollingViews = views.map((_, i) => {
     const s = Math.max(0, i - win + 1);
-    const sl = returning.slice(s, i + 1);
+    const sl = views.slice(s, i + 1);
     return Math.round(sl.reduce((a, b) => a + b, 0) / sl.length);
-  });
-  const rollingNew = newV.map((_, i) => {
-    const s = Math.max(0, i - win + 1);
-    const sl = newV.slice(s, i + 1);
-    return Math.round(sl.reduce((a, b) => a + b, 0) / sl.length);
-  });
-  // Returning % rolling
-  const rollingPct = rollingRet.map((r, i) => {
-    const total = r + rollingNew[i];
-    return total > 0 ? Math.round(r / total * 100) : 0;
   });
 
   returningChart = new Chart(document.getElementById('returning-chart').getContext('2d'), {
@@ -2727,9 +2721,8 @@ function renderReturningChart() {
     data: {
       labels,
       datasets: [
-        { label: 'Returning (7d avg)', data: rollingRet, borderColor: '#34C759', backgroundColor: '#34C75920', borderWidth: 2, pointRadius: 0, tension: 0.4, fill: true, yAxisID: 'y' },
-        { label: 'New (7d avg)', data: rollingNew, borderColor: '#007AFF', backgroundColor: '#007AFF20', borderWidth: 2, pointRadius: 0, tension: 0.4, fill: true, yAxisID: 'y' },
-        { label: 'Returning %', data: rollingPct, borderColor: '#FF9500', borderWidth: 2, pointRadius: 0, tension: 0.4, borderDash: [5, 3], yAxisID: 'y1' },
+        { label: 'Net Subscribers (cumulative)', data: cumSubs, borderColor: '#34C759', backgroundColor: '#34C75920', borderWidth: 2, pointRadius: 0, tension: 0.4, fill: true, yAxisID: 'y1' },
+        { label: 'Daily Views (7d avg)', data: rollingViews, borderColor: '#007AFF', borderWidth: 2, pointRadius: 0, tension: 0.4, yAxisID: 'y' },
       ]
     },
     options: {
@@ -2737,8 +2730,8 @@ function renderReturningChart() {
       plugins: { legend: { position: 'bottom', labels: { font: { size: 11 }, color: textColor } } },
       scales: {
         x: { grid: { display: false }, ticks: { font: { size: 10 }, color: textColor, maxRotation: 45, autoSkip: true, maxTicksLimit: 30 }, border: { display: false } },
-        y: { position: 'left', grid: { color: gridColor }, ticks: { font: { size: 11 }, color: textColor }, border: { display: false }, title: { display: true, text: 'Views', color: textColor, font: { size: 11 } } },
-        y1: { position: 'right', grid: { display: false }, ticks: { font: { size: 11 }, color: '#FF9500', callback: v => v + '%' }, border: { display: false }, title: { display: true, text: 'Returning %', color: '#FF9500', font: { size: 11 } }, min: 0, max: 100 }
+        y: { position: 'left', grid: { color: gridColor }, ticks: { font: { size: 11 }, color: '#007AFF' }, border: { display: false }, title: { display: true, text: 'Views', color: '#007AFF', font: { size: 11 } } },
+        y1: { position: 'right', grid: { display: false }, ticks: { font: { size: 11 }, color: '#34C759' }, border: { display: false }, title: { display: true, text: 'Net Subs Gained', color: '#34C759', font: { size: 11 } } }
       }
     }
   });
