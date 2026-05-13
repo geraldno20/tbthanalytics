@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-05-12 20:37",
+  "fetched_at": "2026-05-13 04:42",
   "videos": [
     {
       "video_id": "QcFqbF_WYU0",
@@ -9,7 +9,7 @@
       "likes": 0,
       "comments": 0,
       "duration_sec": 957,
-      "thumbnail": "https://i9.ytimg.com/vi/QcFqbF_WYU0/mqdefault.jpg?sqp=COTij9AG&rs=AOn4CLBySIdhWo0iPkzg1-ORRQWnb2YQjA",
+      "thumbnail": "https://i9.ytimg.com/vi/QcFqbF_WYU0/mqdefault.jpg?sqp=CKCBkNAG&rs=AOn4CLC8asnJlfmESIO69h8NvuJ1aH9vCQ",
       "privacy_status": "private",
       "is_short": true,
       "views_24h": 0,
@@ -51,14 +51,14 @@
         "1wk": 32.2,
         "lifetime": 32.2
       },
-      "last_24h_views": 18,
+      "last_24h_views": 9,
       "ad_views": 0
     },
     {
       "video_id": "BoCAHNCAxSE",
       "title": "TBTH 1yr",
       "published_at": "2026-05-05T04:42:08Z",
-      "total_views": 18,
+      "total_views": 19,
       "likes": 0,
       "comments": 0,
       "duration_sec": 91,
@@ -225,7 +225,7 @@
         "2wk": 44.5,
         "lifetime": 44.5
       },
-      "last_24h_views": 9,
+      "last_24h_views": 2,
       "ad_views": 0
     },
     {
@@ -318,7 +318,7 @@
         "2wk": 31.1,
         "lifetime": 30.8
       },
-      "last_24h_views": 4,
+      "last_24h_views": 1,
       "ad_views": 0
     },
     {
@@ -380,7 +380,7 @@
         "2wk": 27.4,
         "lifetime": 27.5
       },
-      "last_24h_views": 9,
+      "last_24h_views": 6,
       "ad_views": 0
     },
     {
@@ -411,7 +411,7 @@
         "2wk": 24.3,
         "lifetime": 24.2
       },
-      "last_24h_views": 19,
+      "last_24h_views": 12,
       "ad_views": 0
     },
     {
@@ -507,7 +507,7 @@
         "1mo": 74.3,
         "lifetime": 74.3
       },
-      "last_24h_views": 1,
+      "last_24h_views": 0,
       "ad_views": 0
     },
     {
@@ -539,7 +539,7 @@
         "1mo": 2.9,
         "lifetime": 2.9
       },
-      "last_24h_views": 1,
+      "last_24h_views": 0,
       "ad_views": 0
     },
     {
@@ -603,7 +603,7 @@
         "1mo": 39.2,
         "lifetime": 39.2
       },
-      "last_24h_views": 1,
+      "last_24h_views": 0,
       "ad_views": 0
     },
     {
@@ -667,7 +667,7 @@
         "1mo": 16.6,
         "lifetime": 17.0
       },
-      "last_24h_views": 2,
+      "last_24h_views": 1,
       "ad_views": 0
     },
     {
@@ -955,7 +955,7 @@
         "1mo": 50.9,
         "lifetime": 45.6
       },
-      "last_24h_views": 1,
+      "last_24h_views": 0,
       "ad_views": 540
     },
     {
@@ -1083,7 +1083,7 @@
         "1mo": 21.9,
         "lifetime": 22.6
       },
-      "last_24h_views": 1,
+      "last_24h_views": 0,
       "ad_views": 0
     },
     {
@@ -1094,7 +1094,7 @@
       "likes": 0,
       "comments": 0,
       "duration_sec": 2849,
-      "thumbnail": "https://i9.ytimg.com/vi/YwH1dgAe_S4/mqdefault.jpg?sqp=COTij9AG&rs=AOn4CLBwteLIpnqaWj04uVpblW9ZhVfQXA",
+      "thumbnail": "https://i9.ytimg.com/vi/YwH1dgAe_S4/mqdefault.jpg?sqp=CKCBkNAG&rs=AOn4CLAQgs4jM1ZOjj3OutgkuR4AHgOCQA",
       "privacy_status": "private",
       "is_short": true,
       "views_24h": 1,
@@ -1158,7 +1158,7 @@
       "likes": 1,
       "comments": 0,
       "duration_sec": 3446,
-      "thumbnail": "https://i9.ytimg.com/vi/3ZR_3chj_Kc/mqdefault.jpg?sqp=COTij9AG&rs=AOn4CLAV0cBFoydpVibLzDaDduyZV0tpNA",
+      "thumbnail": "https://i9.ytimg.com/vi/3ZR_3chj_Kc/mqdefault.jpg?sqp=CKCBkNAG&rs=AOn4CLAgy_il_JcHk_jLuyNjqp7FGS4gHg",
       "privacy_status": "private",
       "is_short": true,
       "views_24h": 27,
@@ -1169,7 +1169,7 @@
       "avg_view_time_sec": 143.3,
       "new_subscribers": 0,
       "views_1mo": 52,
-      "views_3mo": null,
+      "views_3mo": 57,
       "views_lifetime": 57,
       "avd_over_time": {
         "24h": 6.1,
@@ -1177,6 +1177,7 @@
         "1wk": 5.1,
         "2wk": 4.2,
         "1mo": 4.2,
+        "3mo": 4.0,
         "lifetime": 4.0
       },
       "last_24h_views": 0,
@@ -1278,7 +1279,7 @@
         "3mo": 18.8,
         "lifetime": 18.8
       },
-      "last_24h_views": 2,
+      "last_24h_views": 1,
       "ad_views": 0
     },
     {
@@ -1377,7 +1378,7 @@
         "3mo": 20.5,
         "lifetime": 21.3
       },
-      "last_24h_views": 3,
+      "last_24h_views": 1,
       "ad_views": 0
     },
     {
@@ -1575,7 +1576,7 @@
         "3mo": 30.1,
         "lifetime": 30.6
       },
-      "last_24h_views": 1,
+      "last_24h_views": 0,
       "ad_views": 0
     },
     {
@@ -2873,7 +2874,7 @@
       "likes": 2,
       "comments": 0,
       "duration_sec": 4236,
-      "thumbnail": "https://i9.ytimg.com/vi/C_Ben7R7jSs/mqdefault.jpg?sqp=COTij9AG&rs=AOn4CLCDqlx9DNhJnbINr67O2WgmIDWdcg",
+      "thumbnail": "https://i9.ytimg.com/vi/C_Ben7R7jSs/mqdefault.jpg?sqp=CKCBkNAG&rs=AOn4CLBBgzxih_BuSXCV9Tijdp5lRkClIA",
       "privacy_status": "private",
       "is_short": true,
       "views_24h": 73,
@@ -2961,7 +2962,7 @@
         "3mo": 23.3,
         "lifetime": 28.4
       },
-      "last_24h_views": 3,
+      "last_24h_views": 2,
       "ad_views": 0
     },
     {
@@ -3027,7 +3028,7 @@
         "3mo": 25.7,
         "lifetime": 31.4
       },
-      "last_24h_views": 2,
+      "last_24h_views": 1,
       "ad_views": 0
     },
     {
@@ -3159,7 +3160,7 @@
         "3mo": 84.3,
         "lifetime": 84.5
       },
-      "last_24h_views": 1,
+      "last_24h_views": 0,
       "ad_views": 0
     },
     {
@@ -3192,7 +3193,7 @@
         "3mo": 150.9,
         "lifetime": 146.0
       },
-      "last_24h_views": 1,
+      "last_24h_views": 0,
       "ad_views": 0
     },
     {
@@ -3258,7 +3259,7 @@
         "3mo": 2.9,
         "lifetime": 3.4
       },
-      "last_24h_views": 2,
+      "last_24h_views": 0,
       "ad_views": 5204
     },
     {
@@ -3456,7 +3457,7 @@
         "3mo": 15.4,
         "lifetime": 17.1
       },
-      "last_24h_views": 3,
+      "last_24h_views": 0,
       "ad_views": 0
     },
     {
@@ -3720,7 +3721,7 @@
         "3mo": 3.8,
         "lifetime": 4.1
       },
-      "last_24h_views": 1,
+      "last_24h_views": 0,
       "ad_views": 2791
     },
     {
@@ -3786,7 +3787,7 @@
         "3mo": 13.8,
         "lifetime": 15.3
       },
-      "last_24h_views": 4,
+      "last_24h_views": 1,
       "ad_views": 0
     },
     {
@@ -4182,7 +4183,7 @@
         "3mo": 10.6,
         "lifetime": 13.7
       },
-      "last_24h_views": 1,
+      "last_24h_views": 0,
       "ad_views": 150
     },
     {
@@ -4248,7 +4249,7 @@
         "3mo": 22.3,
         "lifetime": 25.0
       },
-      "last_24h_views": 3,
+      "last_24h_views": 1,
       "ad_views": 0
     },
     {
@@ -4347,7 +4348,7 @@
         "3mo": 102.1,
         "lifetime": 84.1
       },
-      "last_24h_views": 2,
+      "last_24h_views": 1,
       "ad_views": 0
     },
     {
@@ -4380,7 +4381,7 @@
         "3mo": 22.3,
         "lifetime": 26.8
       },
-      "last_24h_views": 2,
+      "last_24h_views": 1,
       "ad_views": 0
     },
     {
@@ -4644,7 +4645,7 @@
         "3mo": 25.4,
         "lifetime": 6.9
       },
-      "last_24h_views": 7,
+      "last_24h_views": 4,
       "ad_views": 1464
     },
     {
@@ -4677,7 +4678,7 @@
         "3mo": 141.6,
         "lifetime": 123.3
       },
-      "last_24h_views": 3,
+      "last_24h_views": 0,
       "ad_views": 21907
     },
     {
@@ -4710,7 +4711,7 @@
         "3mo": 17.8,
         "lifetime": 23.0
       },
-      "last_24h_views": 2,
+      "last_24h_views": 0,
       "ad_views": 0
     },
     {
@@ -5040,7 +5041,7 @@
         "3mo": 29.0,
         "lifetime": 26.4
       },
-      "last_24h_views": 1,
+      "last_24h_views": 0,
       "ad_views": 0
     },
     {
@@ -5375,11 +5376,6 @@
     }
   ],
   "daily_watch_hours": [
-    {
-      "date": "2025-05-12",
-      "watch_hours": 0.0,
-      "views": 0
-    },
     {
       "date": "2025-05-13",
       "watch_hours": 0.0,
@@ -7196,2199 +7192,13 @@
       "views": 72
     }
   ],
-  "returning_viewers": [
-    {
-      "date": "2025-05-12",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 0
-    },
-    {
-      "date": "2025-05-13",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 0
-    },
-    {
-      "date": "2025-05-14",
-      "subs_gained": 2,
-      "subs_lost": 0,
-      "views": 44
-    },
-    {
-      "date": "2025-05-15",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 90
-    },
-    {
-      "date": "2025-05-16",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 400
-    },
-    {
-      "date": "2025-05-17",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 472
-    },
-    {
-      "date": "2025-05-18",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 42
-    },
-    {
-      "date": "2025-05-19",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 30
-    },
-    {
-      "date": "2025-05-20",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 2
-    },
-    {
-      "date": "2025-05-21",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 32
-    },
-    {
-      "date": "2025-05-22",
-      "subs_gained": 2,
-      "subs_lost": 0,
-      "views": 64
-    },
-    {
-      "date": "2025-05-23",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 28
-    },
-    {
-      "date": "2025-05-24",
-      "subs_gained": 1,
-      "subs_lost": 0,
-      "views": 97
-    },
-    {
-      "date": "2025-05-25",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 27
-    },
-    {
-      "date": "2025-05-26",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 6
-    },
-    {
-      "date": "2025-05-27",
-      "subs_gained": 1,
-      "subs_lost": 0,
-      "views": 11
-    },
-    {
-      "date": "2025-05-28",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 156
-    },
-    {
-      "date": "2025-05-29",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 332
-    },
-    {
-      "date": "2025-05-30",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 34
-    },
-    {
-      "date": "2025-05-31",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 5
-    },
-    {
-      "date": "2025-06-01",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 10
-    },
-    {
-      "date": "2025-06-02",
-      "subs_gained": 1,
-      "subs_lost": 0,
-      "views": 14
-    },
-    {
-      "date": "2025-06-03",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 29
-    },
-    {
-      "date": "2025-06-04",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 20
-    },
-    {
-      "date": "2025-06-05",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 80
-    },
-    {
-      "date": "2025-06-06",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 189
-    },
-    {
-      "date": "2025-06-07",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 2
-    },
-    {
-      "date": "2025-06-08",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 20
-    },
-    {
-      "date": "2025-06-09",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 62
-    },
-    {
-      "date": "2025-06-10",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 9
-    },
-    {
-      "date": "2025-06-11",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 26
-    },
-    {
-      "date": "2025-06-12",
-      "subs_gained": 1,
-      "subs_lost": 0,
-      "views": 282
-    },
-    {
-      "date": "2025-06-13",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 1187
-    },
-    {
-      "date": "2025-06-14",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 539
-    },
-    {
-      "date": "2025-06-15",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 14
-    },
-    {
-      "date": "2025-06-16",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 14
-    },
-    {
-      "date": "2025-06-17",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 70
-    },
-    {
-      "date": "2025-06-18",
-      "subs_gained": 1,
-      "subs_lost": 0,
-      "views": 36
-    },
-    {
-      "date": "2025-06-19",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 752
-    },
-    {
-      "date": "2025-06-20",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 1243
-    },
-    {
-      "date": "2025-06-21",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 22
-    },
-    {
-      "date": "2025-06-22",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 4
-    },
-    {
-      "date": "2025-06-23",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 15
-    },
-    {
-      "date": "2025-06-24",
-      "subs_gained": 1,
-      "subs_lost": 0,
-      "views": 23
-    },
-    {
-      "date": "2025-06-25",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 71
-    },
-    {
-      "date": "2025-06-26",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 51
-    },
-    {
-      "date": "2025-06-27",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 53
-    },
-    {
-      "date": "2025-06-28",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 41
-    },
-    {
-      "date": "2025-06-29",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 20
-    },
-    {
-      "date": "2025-06-30",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 8
-    },
-    {
-      "date": "2025-07-01",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 35
-    },
-    {
-      "date": "2025-07-02",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 17
-    },
-    {
-      "date": "2025-07-03",
-      "subs_gained": 1,
-      "subs_lost": 0,
-      "views": 60
-    },
-    {
-      "date": "2025-07-04",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 26
-    },
-    {
-      "date": "2025-07-05",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 14
-    },
-    {
-      "date": "2025-07-06",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 6
-    },
-    {
-      "date": "2025-07-07",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 4
-    },
-    {
-      "date": "2025-07-08",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 4
-    },
-    {
-      "date": "2025-07-09",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 34
-    },
-    {
-      "date": "2025-07-10",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 73
-    },
-    {
-      "date": "2025-07-11",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 31
-    },
-    {
-      "date": "2025-07-12",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 16
-    },
-    {
-      "date": "2025-07-13",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 13
-    },
-    {
-      "date": "2025-07-14",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 7
-    },
-    {
-      "date": "2025-07-15",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 4
-    },
-    {
-      "date": "2025-07-16",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 36
-    },
-    {
-      "date": "2025-07-17",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 54
-    },
-    {
-      "date": "2025-07-18",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 45
-    },
-    {
-      "date": "2025-07-19",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 20
-    },
-    {
-      "date": "2025-07-20",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 5
-    },
-    {
-      "date": "2025-07-21",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 3
-    },
-    {
-      "date": "2025-07-22",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 6
-    },
-    {
-      "date": "2025-07-23",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 2
-    },
-    {
-      "date": "2025-07-24",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 150
-    },
-    {
-      "date": "2025-07-25",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 36
-    },
-    {
-      "date": "2025-07-26",
-      "subs_gained": 1,
-      "subs_lost": 0,
-      "views": 47
-    },
-    {
-      "date": "2025-07-27",
-      "subs_gained": 1,
-      "subs_lost": 0,
-      "views": 10
-    },
-    {
-      "date": "2025-07-28",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 9
-    },
-    {
-      "date": "2025-07-29",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 9
-    },
-    {
-      "date": "2025-07-30",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 63
-    },
-    {
-      "date": "2025-07-31",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 43
-    },
-    {
-      "date": "2025-08-01",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 50
-    },
-    {
-      "date": "2025-08-02",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 49
-    },
-    {
-      "date": "2025-08-03",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 76
-    },
-    {
-      "date": "2025-08-04",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 3
-    },
-    {
-      "date": "2025-08-05",
-      "subs_gained": 1,
-      "subs_lost": 0,
-      "views": 6
-    },
-    {
-      "date": "2025-08-06",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 24
-    },
-    {
-      "date": "2025-08-07",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 54
-    },
-    {
-      "date": "2025-08-08",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 15
-    },
-    {
-      "date": "2025-08-09",
-      "subs_gained": 1,
-      "subs_lost": 1,
-      "views": 13
-    },
-    {
-      "date": "2025-08-10",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 8
-    },
-    {
-      "date": "2025-08-11",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 20
-    },
-    {
-      "date": "2025-08-12",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 15
-    },
-    {
-      "date": "2025-08-13",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 35
-    },
-    {
-      "date": "2025-08-14",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 31
-    },
-    {
-      "date": "2025-08-15",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 10
-    },
-    {
-      "date": "2025-08-16",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 2
-    },
-    {
-      "date": "2025-08-17",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 10
-    },
-    {
-      "date": "2025-08-18",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 19
-    },
-    {
-      "date": "2025-08-19",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 31
-    },
-    {
-      "date": "2025-08-20",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 6
-    },
-    {
-      "date": "2025-08-21",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 39
-    },
-    {
-      "date": "2025-08-22",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 2
-    },
-    {
-      "date": "2025-08-23",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 22
-    },
-    {
-      "date": "2025-08-24",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 57
-    },
-    {
-      "date": "2025-08-25",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 71
-    },
-    {
-      "date": "2025-08-26",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 4
-    },
-    {
-      "date": "2025-08-27",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 31
-    },
-    {
-      "date": "2025-08-28",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 42
-    },
-    {
-      "date": "2025-08-29",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 23
-    },
-    {
-      "date": "2025-08-30",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 19
-    },
-    {
-      "date": "2025-08-31",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 43
-    },
-    {
-      "date": "2025-09-01",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 5
-    },
-    {
-      "date": "2025-09-02",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 18
-    },
-    {
-      "date": "2025-09-03",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 39
-    },
-    {
-      "date": "2025-09-04",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 26
-    },
-    {
-      "date": "2025-09-05",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 33
-    },
-    {
-      "date": "2025-09-06",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 35
-    },
-    {
-      "date": "2025-09-07",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 27
-    },
-    {
-      "date": "2025-09-08",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 14
-    },
-    {
-      "date": "2025-09-09",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 45
-    },
-    {
-      "date": "2025-09-10",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 36
-    },
-    {
-      "date": "2025-09-11",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 170
-    },
-    {
-      "date": "2025-09-12",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 41
-    },
-    {
-      "date": "2025-09-13",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 17
-    },
-    {
-      "date": "2025-09-14",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 18
-    },
-    {
-      "date": "2025-09-15",
-      "subs_gained": 1,
-      "subs_lost": 0,
-      "views": 16
-    },
-    {
-      "date": "2025-09-16",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 3
-    },
-    {
-      "date": "2025-09-17",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 90
-    },
-    {
-      "date": "2025-09-18",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 216
-    },
-    {
-      "date": "2025-09-19",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 25
-    },
-    {
-      "date": "2025-09-20",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 30
-    },
-    {
-      "date": "2025-09-21",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 3
-    },
-    {
-      "date": "2025-09-22",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 15
-    },
-    {
-      "date": "2025-09-23",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 0
-    },
-    {
-      "date": "2025-09-24",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 20
-    },
-    {
-      "date": "2025-09-25",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 84
-    },
-    {
-      "date": "2025-09-26",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 113
-    },
-    {
-      "date": "2025-09-27",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 63
-    },
-    {
-      "date": "2025-09-28",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 49
-    },
-    {
-      "date": "2025-09-29",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 9
-    },
-    {
-      "date": "2025-09-30",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 4
-    },
-    {
-      "date": "2025-10-01",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 47
-    },
-    {
-      "date": "2025-10-02",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 131
-    },
-    {
-      "date": "2025-10-03",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 105
-    },
-    {
-      "date": "2025-10-04",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 14
-    },
-    {
-      "date": "2025-10-05",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 53
-    },
-    {
-      "date": "2025-10-06",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 27
-    },
-    {
-      "date": "2025-10-07",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 21
-    },
-    {
-      "date": "2025-10-08",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 43
-    },
-    {
-      "date": "2025-10-09",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 313
-    },
-    {
-      "date": "2025-10-10",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 131
-    },
-    {
-      "date": "2025-10-11",
-      "subs_gained": 2,
-      "subs_lost": 0,
-      "views": 32
-    },
-    {
-      "date": "2025-10-12",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 13
-    },
-    {
-      "date": "2025-10-13",
-      "subs_gained": 1,
-      "subs_lost": 0,
-      "views": 60
-    },
-    {
-      "date": "2025-10-14",
-      "subs_gained": 1,
-      "subs_lost": 0,
-      "views": 18
-    },
-    {
-      "date": "2025-10-15",
-      "subs_gained": 4,
-      "subs_lost": 0,
-      "views": 101
-    },
-    {
-      "date": "2025-10-16",
-      "subs_gained": 3,
-      "subs_lost": 0,
-      "views": 472
-    },
-    {
-      "date": "2025-10-17",
-      "subs_gained": 1,
-      "subs_lost": 0,
-      "views": 124
-    },
-    {
-      "date": "2025-10-18",
-      "subs_gained": 1,
-      "subs_lost": 0,
-      "views": 132
-    },
-    {
-      "date": "2025-10-19",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 92
-    },
-    {
-      "date": "2025-10-20",
-      "subs_gained": 2,
-      "subs_lost": 0,
-      "views": 68
-    },
-    {
-      "date": "2025-10-21",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 47
-    },
-    {
-      "date": "2025-10-22",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 42
-    },
-    {
-      "date": "2025-10-23",
-      "subs_gained": 1,
-      "subs_lost": 0,
-      "views": 185
-    },
-    {
-      "date": "2025-10-24",
-      "subs_gained": 1,
-      "subs_lost": 0,
-      "views": 126
-    },
-    {
-      "date": "2025-10-25",
-      "subs_gained": 14,
-      "subs_lost": 2,
-      "views": 169
-    },
-    {
-      "date": "2025-10-26",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 205
-    },
-    {
-      "date": "2025-10-27",
-      "subs_gained": 8,
-      "subs_lost": 0,
-      "views": 267
-    },
-    {
-      "date": "2025-10-28",
-      "subs_gained": 13,
-      "subs_lost": 1,
-      "views": 345
-    },
-    {
-      "date": "2025-10-29",
-      "subs_gained": 21,
-      "subs_lost": 2,
-      "views": 477
-    },
-    {
-      "date": "2025-10-30",
-      "subs_gained": 74,
-      "subs_lost": 12,
-      "views": 789
-    },
-    {
-      "date": "2025-10-31",
-      "subs_gained": 96,
-      "subs_lost": 14,
-      "views": 1273
-    },
-    {
-      "date": "2025-11-01",
-      "subs_gained": 111,
-      "subs_lost": 6,
-      "views": 2165
-    },
-    {
-      "date": "2025-11-02",
-      "subs_gained": 145,
-      "subs_lost": 12,
-      "views": 2092
-    },
-    {
-      "date": "2025-11-03",
-      "subs_gained": 131,
-      "subs_lost": 7,
-      "views": 2015
-    },
-    {
-      "date": "2025-11-04",
-      "subs_gained": 140,
-      "subs_lost": 3,
-      "views": 2093
-    },
-    {
-      "date": "2025-11-05",
-      "subs_gained": 134,
-      "subs_lost": 6,
-      "views": 1454
-    },
-    {
-      "date": "2025-11-06",
-      "subs_gained": 148,
-      "subs_lost": 13,
-      "views": 1676
-    },
-    {
-      "date": "2025-11-07",
-      "subs_gained": 117,
-      "subs_lost": 6,
-      "views": 2174
-    },
-    {
-      "date": "2025-11-08",
-      "subs_gained": 130,
-      "subs_lost": 11,
-      "views": 2745
-    },
-    {
-      "date": "2025-11-09",
-      "subs_gained": 149,
-      "subs_lost": 6,
-      "views": 2536
-    },
-    {
-      "date": "2025-11-10",
-      "subs_gained": 136,
-      "subs_lost": 2,
-      "views": 1641
-    },
-    {
-      "date": "2025-11-11",
-      "subs_gained": 111,
-      "subs_lost": 2,
-      "views": 1930
-    },
-    {
-      "date": "2025-11-12",
-      "subs_gained": 56,
-      "subs_lost": 5,
-      "views": 4631
-    },
-    {
-      "date": "2025-11-13",
-      "subs_gained": 22,
-      "subs_lost": 2,
-      "views": 9360
-    },
-    {
-      "date": "2025-11-14",
-      "subs_gained": 41,
-      "subs_lost": 7,
-      "views": 9311
-    },
-    {
-      "date": "2025-11-15",
-      "subs_gained": 63,
-      "subs_lost": 6,
-      "views": 7110
-    },
-    {
-      "date": "2025-11-16",
-      "subs_gained": 63,
-      "subs_lost": 10,
-      "views": 5477
-    },
-    {
-      "date": "2025-11-17",
-      "subs_gained": 107,
-      "subs_lost": 12,
-      "views": 5646
-    },
-    {
-      "date": "2025-11-18",
-      "subs_gained": 106,
-      "subs_lost": 10,
-      "views": 3796
-    },
-    {
-      "date": "2025-11-19",
-      "subs_gained": 126,
-      "subs_lost": 17,
-      "views": 3447
-    },
-    {
-      "date": "2025-11-20",
-      "subs_gained": 118,
-      "subs_lost": 11,
-      "views": 3016
-    },
-    {
-      "date": "2025-11-21",
-      "subs_gained": 115,
-      "subs_lost": 25,
-      "views": 2466
-    },
-    {
-      "date": "2025-11-22",
-      "subs_gained": 127,
-      "subs_lost": 18,
-      "views": 2008
-    },
-    {
-      "date": "2025-11-23",
-      "subs_gained": 129,
-      "subs_lost": 13,
-      "views": 1500
-    },
-    {
-      "date": "2025-11-24",
-      "subs_gained": 119,
-      "subs_lost": 8,
-      "views": 1824
-    },
-    {
-      "date": "2025-11-25",
-      "subs_gained": 93,
-      "subs_lost": 12,
-      "views": 839
-    },
-    {
-      "date": "2025-11-26",
-      "subs_gained": 85,
-      "subs_lost": 6,
-      "views": 462
-    },
-    {
-      "date": "2025-11-27",
-      "subs_gained": 67,
-      "subs_lost": 1,
-      "views": 336
-    },
-    {
-      "date": "2025-11-28",
-      "subs_gained": 93,
-      "subs_lost": 16,
-      "views": 384
-    },
-    {
-      "date": "2025-11-29",
-      "subs_gained": 74,
-      "subs_lost": 2,
-      "views": 369
-    },
-    {
-      "date": "2025-11-30",
-      "subs_gained": 73,
-      "subs_lost": 3,
-      "views": 427
-    },
-    {
-      "date": "2025-12-01",
-      "subs_gained": 84,
-      "subs_lost": 4,
-      "views": 384
-    },
-    {
-      "date": "2025-12-02",
-      "subs_gained": 80,
-      "subs_lost": 20,
-      "views": 421
-    },
-    {
-      "date": "2025-12-03",
-      "subs_gained": 96,
-      "subs_lost": 3,
-      "views": 403
-    },
-    {
-      "date": "2025-12-04",
-      "subs_gained": 80,
-      "subs_lost": 1,
-      "views": 423
-    },
-    {
-      "date": "2025-12-05",
-      "subs_gained": 81,
-      "subs_lost": 0,
-      "views": 419
-    },
-    {
-      "date": "2025-12-06",
-      "subs_gained": 85,
-      "subs_lost": 5,
-      "views": 488
-    },
-    {
-      "date": "2025-12-07",
-      "subs_gained": 0,
-      "subs_lost": 1,
-      "views": 73
-    },
-    {
-      "date": "2025-12-08",
-      "subs_gained": 1,
-      "subs_lost": 0,
-      "views": 124
-    },
-    {
-      "date": "2025-12-09",
-      "subs_gained": 0,
-      "subs_lost": 1,
-      "views": 65
-    },
-    {
-      "date": "2025-12-10",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 27
-    },
-    {
-      "date": "2025-12-11",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 117
-    },
-    {
-      "date": "2025-12-12",
-      "subs_gained": 2,
-      "subs_lost": 0,
-      "views": 160
-    },
-    {
-      "date": "2025-12-13",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 70
-    },
-    {
-      "date": "2025-12-14",
-      "subs_gained": 0,
-      "subs_lost": 4,
-      "views": 149
-    },
-    {
-      "date": "2025-12-15",
-      "subs_gained": 0,
-      "subs_lost": 2,
-      "views": 26
-    },
-    {
-      "date": "2025-12-16",
-      "subs_gained": 0,
-      "subs_lost": 3,
-      "views": 11
-    },
-    {
-      "date": "2025-12-17",
-      "subs_gained": 0,
-      "subs_lost": 1,
-      "views": 18
-    },
-    {
-      "date": "2025-12-18",
-      "subs_gained": 1,
-      "subs_lost": 3,
-      "views": 318
-    },
-    {
-      "date": "2025-12-19",
-      "subs_gained": 1,
-      "subs_lost": 0,
-      "views": 137
-    },
-    {
-      "date": "2025-12-20",
-      "subs_gained": 0,
-      "subs_lost": 3,
-      "views": 30
-    },
-    {
-      "date": "2025-12-21",
-      "subs_gained": 0,
-      "subs_lost": 1,
-      "views": 148
-    },
-    {
-      "date": "2025-12-22",
-      "subs_gained": 0,
-      "subs_lost": 1,
-      "views": 97
-    },
-    {
-      "date": "2025-12-23",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 45
-    },
-    {
-      "date": "2025-12-24",
-      "subs_gained": 0,
-      "subs_lost": 2,
-      "views": 27
-    },
-    {
-      "date": "2025-12-25",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 34
-    },
-    {
-      "date": "2025-12-26",
-      "subs_gained": 1,
-      "subs_lost": 3,
-      "views": 17
-    },
-    {
-      "date": "2025-12-27",
-      "subs_gained": 0,
-      "subs_lost": 2,
-      "views": 19
-    },
-    {
-      "date": "2025-12-28",
-      "subs_gained": 1,
-      "subs_lost": 1,
-      "views": 28
-    },
-    {
-      "date": "2025-12-29",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 18
-    },
-    {
-      "date": "2025-12-30",
-      "subs_gained": 0,
-      "subs_lost": 1,
-      "views": 82
-    },
-    {
-      "date": "2025-12-31",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 161
-    },
-    {
-      "date": "2026-01-01",
-      "subs_gained": 0,
-      "subs_lost": 1,
-      "views": 30
-    },
-    {
-      "date": "2026-01-02",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 12
-    },
-    {
-      "date": "2026-01-03",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 25
-    },
-    {
-      "date": "2026-01-04",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 25
-    },
-    {
-      "date": "2026-01-05",
-      "subs_gained": 1,
-      "subs_lost": 0,
-      "views": 78
-    },
-    {
-      "date": "2026-01-06",
-      "subs_gained": 0,
-      "subs_lost": 2,
-      "views": 24
-    },
-    {
-      "date": "2026-01-07",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 40
-    },
-    {
-      "date": "2026-01-08",
-      "subs_gained": 1,
-      "subs_lost": 1,
-      "views": 114
-    },
-    {
-      "date": "2026-01-09",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 126
-    },
-    {
-      "date": "2026-01-10",
-      "subs_gained": 1,
-      "subs_lost": 0,
-      "views": 101
-    },
-    {
-      "date": "2026-01-11",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 50
-    },
-    {
-      "date": "2026-01-12",
-      "subs_gained": 1,
-      "subs_lost": 1,
-      "views": 48
-    },
-    {
-      "date": "2026-01-13",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 18
-    },
-    {
-      "date": "2026-01-14",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 17
-    },
-    {
-      "date": "2026-01-15",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 30
-    },
-    {
-      "date": "2026-01-16",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 56
-    },
-    {
-      "date": "2026-01-17",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 84
-    },
-    {
-      "date": "2026-01-18",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 114
-    },
-    {
-      "date": "2026-01-19",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 58
-    },
-    {
-      "date": "2026-01-20",
-      "subs_gained": 1,
-      "subs_lost": 0,
-      "views": 14
-    },
-    {
-      "date": "2026-01-21",
-      "subs_gained": 0,
-      "subs_lost": 1,
-      "views": 31
-    },
-    {
-      "date": "2026-01-22",
-      "subs_gained": 1,
-      "subs_lost": 0,
-      "views": 132
-    },
-    {
-      "date": "2026-01-23",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 348
-    },
-    {
-      "date": "2026-01-24",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 157
-    },
-    {
-      "date": "2026-01-25",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 83
-    },
-    {
-      "date": "2026-01-26",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 107
-    },
-    {
-      "date": "2026-01-27",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 49
-    },
-    {
-      "date": "2026-01-28",
-      "subs_gained": 1,
-      "subs_lost": 2,
-      "views": 56
-    },
-    {
-      "date": "2026-01-29",
-      "subs_gained": 1,
-      "subs_lost": 3,
-      "views": 87
-    },
-    {
-      "date": "2026-01-30",
-      "subs_gained": 2,
-      "subs_lost": 2,
-      "views": 125
-    },
-    {
-      "date": "2026-01-31",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 90
-    },
-    {
-      "date": "2026-02-01",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 46
-    },
-    {
-      "date": "2026-02-02",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 58
-    },
-    {
-      "date": "2026-02-03",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 33
-    },
-    {
-      "date": "2026-02-04",
-      "subs_gained": 0,
-      "subs_lost": 1,
-      "views": 47
-    },
-    {
-      "date": "2026-02-05",
-      "subs_gained": 1,
-      "subs_lost": 0,
-      "views": 100
-    },
-    {
-      "date": "2026-02-06",
-      "subs_gained": 1,
-      "subs_lost": 0,
-      "views": 110
-    },
-    {
-      "date": "2026-02-07",
-      "subs_gained": 1,
-      "subs_lost": 1,
-      "views": 58
-    },
-    {
-      "date": "2026-02-08",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 74
-    },
-    {
-      "date": "2026-02-09",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 80
-    },
-    {
-      "date": "2026-02-10",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 98
-    },
-    {
-      "date": "2026-02-11",
-      "subs_gained": 0,
-      "subs_lost": 1,
-      "views": 125
-    },
-    {
-      "date": "2026-02-12",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 172
-    },
-    {
-      "date": "2026-02-13",
-      "subs_gained": 1,
-      "subs_lost": 0,
-      "views": 135
-    },
-    {
-      "date": "2026-02-14",
-      "subs_gained": 1,
-      "subs_lost": 2,
-      "views": 103
-    },
-    {
-      "date": "2026-02-15",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 66
-    },
-    {
-      "date": "2026-02-16",
-      "subs_gained": 0,
-      "subs_lost": 2,
-      "views": 27
-    },
-    {
-      "date": "2026-02-17",
-      "subs_gained": 0,
-      "subs_lost": 1,
-      "views": 20
-    },
-    {
-      "date": "2026-02-18",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 22
-    },
-    {
-      "date": "2026-02-19",
-      "subs_gained": 0,
-      "subs_lost": 1,
-      "views": 35
-    },
-    {
-      "date": "2026-02-20",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 18
-    },
-    {
-      "date": "2026-02-21",
-      "subs_gained": 0,
-      "subs_lost": 1,
-      "views": 10
-    },
-    {
-      "date": "2026-02-22",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 20
-    },
-    {
-      "date": "2026-02-23",
-      "subs_gained": 0,
-      "subs_lost": 2,
-      "views": 31
-    },
-    {
-      "date": "2026-02-24",
-      "subs_gained": 1,
-      "subs_lost": 2,
-      "views": 112
-    },
-    {
-      "date": "2026-02-25",
-      "subs_gained": 1,
-      "subs_lost": 0,
-      "views": 165
-    },
-    {
-      "date": "2026-02-26",
-      "subs_gained": 1,
-      "subs_lost": 1,
-      "views": 163
-    },
-    {
-      "date": "2026-02-27",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 97
-    },
-    {
-      "date": "2026-02-28",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 58
-    },
-    {
-      "date": "2026-03-01",
-      "subs_gained": 1,
-      "subs_lost": 0,
-      "views": 96
-    },
-    {
-      "date": "2026-03-02",
-      "subs_gained": 5,
-      "subs_lost": 3,
-      "views": 280
-    },
-    {
-      "date": "2026-03-03",
-      "subs_gained": 2,
-      "subs_lost": 2,
-      "views": 75
-    },
-    {
-      "date": "2026-03-04",
-      "subs_gained": 6,
-      "subs_lost": 1,
-      "views": 237
-    },
-    {
-      "date": "2026-03-05",
-      "subs_gained": 5,
-      "subs_lost": 1,
-      "views": 429
-    },
-    {
-      "date": "2026-03-06",
-      "subs_gained": 2,
-      "subs_lost": 2,
-      "views": 231
-    },
-    {
-      "date": "2026-03-07",
-      "subs_gained": 3,
-      "subs_lost": 3,
-      "views": 166
-    },
-    {
-      "date": "2026-03-08",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 82
-    },
-    {
-      "date": "2026-03-09",
-      "subs_gained": 2,
-      "subs_lost": 0,
-      "views": 122
-    },
-    {
-      "date": "2026-03-10",
-      "subs_gained": 0,
-      "subs_lost": 1,
-      "views": 72
-    },
-    {
-      "date": "2026-03-11",
-      "subs_gained": 1,
-      "subs_lost": 1,
-      "views": 47
-    },
-    {
-      "date": "2026-03-12",
-      "subs_gained": 1,
-      "subs_lost": 1,
-      "views": 146
-    },
-    {
-      "date": "2026-03-13",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 94
-    },
-    {
-      "date": "2026-03-14",
-      "subs_gained": 2,
-      "subs_lost": 1,
-      "views": 100
-    },
-    {
-      "date": "2026-03-15",
-      "subs_gained": 10,
-      "subs_lost": 1,
-      "views": 104
-    },
-    {
-      "date": "2026-03-16",
-      "subs_gained": 10,
-      "subs_lost": 1,
-      "views": 332
-    },
-    {
-      "date": "2026-03-17",
-      "subs_gained": 10,
-      "subs_lost": 3,
-      "views": 468
-    },
-    {
-      "date": "2026-03-18",
-      "subs_gained": 9,
-      "subs_lost": 4,
-      "views": 169
-    },
-    {
-      "date": "2026-03-19",
-      "subs_gained": 25,
-      "subs_lost": 2,
-      "views": 306
-    },
-    {
-      "date": "2026-03-20",
-      "subs_gained": 14,
-      "subs_lost": 4,
-      "views": 143
-    },
-    {
-      "date": "2026-03-21",
-      "subs_gained": 8,
-      "subs_lost": 2,
-      "views": 106
-    },
-    {
-      "date": "2026-03-22",
-      "subs_gained": 16,
-      "subs_lost": 4,
-      "views": 123
-    },
-    {
-      "date": "2026-03-23",
-      "subs_gained": 14,
-      "subs_lost": 2,
-      "views": 138
-    },
-    {
-      "date": "2026-03-24",
-      "subs_gained": 20,
-      "subs_lost": 3,
-      "views": 84
-    },
-    {
-      "date": "2026-03-25",
-      "subs_gained": 18,
-      "subs_lost": 4,
-      "views": 124
-    },
-    {
-      "date": "2026-03-26",
-      "subs_gained": 24,
-      "subs_lost": 5,
-      "views": 393
-    },
-    {
-      "date": "2026-03-27",
-      "subs_gained": 16,
-      "subs_lost": 7,
-      "views": 330
-    },
-    {
-      "date": "2026-03-28",
-      "subs_gained": 16,
-      "subs_lost": 1,
-      "views": 277
-    },
-    {
-      "date": "2026-03-29",
-      "subs_gained": 13,
-      "subs_lost": 7,
-      "views": 133
-    },
-    {
-      "date": "2026-03-30",
-      "subs_gained": 11,
-      "subs_lost": 3,
-      "views": 64
-    },
-    {
-      "date": "2026-03-31",
-      "subs_gained": 4,
-      "subs_lost": 2,
-      "views": 52
-    },
-    {
-      "date": "2026-04-01",
-      "subs_gained": 10,
-      "subs_lost": 1,
-      "views": 197
-    },
-    {
-      "date": "2026-04-02",
-      "subs_gained": 10,
-      "subs_lost": 5,
-      "views": 349
-    },
-    {
-      "date": "2026-04-03",
-      "subs_gained": 5,
-      "subs_lost": 3,
-      "views": 177
-    },
-    {
-      "date": "2026-04-04",
-      "subs_gained": 6,
-      "subs_lost": 5,
-      "views": 133
-    },
-    {
-      "date": "2026-04-05",
-      "subs_gained": 10,
-      "subs_lost": 2,
-      "views": 249
-    },
-    {
-      "date": "2026-04-06",
-      "subs_gained": 9,
-      "subs_lost": 1,
-      "views": 210
-    },
-    {
-      "date": "2026-04-07",
-      "subs_gained": 8,
-      "subs_lost": 1,
-      "views": 129
-    },
-    {
-      "date": "2026-04-08",
-      "subs_gained": 32,
-      "subs_lost": 10,
-      "views": 452
-    },
-    {
-      "date": "2026-04-09",
-      "subs_gained": 11,
-      "subs_lost": 7,
-      "views": 148
-    },
-    {
-      "date": "2026-04-10",
-      "subs_gained": 11,
-      "subs_lost": 4,
-      "views": 410
-    },
-    {
-      "date": "2026-04-11",
-      "subs_gained": 9,
-      "subs_lost": 3,
-      "views": 338
-    },
-    {
-      "date": "2026-04-12",
-      "subs_gained": 10,
-      "subs_lost": 1,
-      "views": 241
-    },
-    {
-      "date": "2026-04-13",
-      "subs_gained": 5,
-      "subs_lost": 1,
-      "views": 179
-    },
-    {
-      "date": "2026-04-14",
-      "subs_gained": 2,
-      "subs_lost": 1,
-      "views": 157
-    },
-    {
-      "date": "2026-04-15",
-      "subs_gained": 6,
-      "subs_lost": 2,
-      "views": 474
-    },
-    {
-      "date": "2026-04-16",
-      "subs_gained": 14,
-      "subs_lost": 3,
-      "views": 827
-    },
-    {
-      "date": "2026-04-17",
-      "subs_gained": 31,
-      "subs_lost": 3,
-      "views": 1359
-    },
-    {
-      "date": "2026-04-18",
-      "subs_gained": 19,
-      "subs_lost": 3,
-      "views": 1164
-    },
-    {
-      "date": "2026-04-19",
-      "subs_gained": 14,
-      "subs_lost": 1,
-      "views": 934
-    },
-    {
-      "date": "2026-04-20",
-      "subs_gained": 6,
-      "subs_lost": 3,
-      "views": 640
-    },
-    {
-      "date": "2026-04-21",
-      "subs_gained": 10,
-      "subs_lost": 1,
-      "views": 798
-    },
-    {
-      "date": "2026-04-22",
-      "subs_gained": 6,
-      "subs_lost": 0,
-      "views": 550
-    },
-    {
-      "date": "2026-04-23",
-      "subs_gained": 2,
-      "subs_lost": 1,
-      "views": 363
-    },
-    {
-      "date": "2026-04-24",
-      "subs_gained": 3,
-      "subs_lost": 2,
-      "views": 283
-    },
-    {
-      "date": "2026-04-25",
-      "subs_gained": 1,
-      "subs_lost": 0,
-      "views": 112
-    },
-    {
-      "date": "2026-04-26",
-      "subs_gained": 0,
-      "subs_lost": 1,
-      "views": 113
-    },
-    {
-      "date": "2026-04-27",
-      "subs_gained": 1,
-      "subs_lost": 1,
-      "views": 118
-    },
-    {
-      "date": "2026-04-28",
-      "subs_gained": 1,
-      "subs_lost": 0,
-      "views": 169
-    },
-    {
-      "date": "2026-04-29",
-      "subs_gained": 1,
-      "subs_lost": 0,
-      "views": 157
-    },
-    {
-      "date": "2026-04-30",
-      "subs_gained": 1,
-      "subs_lost": 1,
-      "views": 187
-    },
-    {
-      "date": "2026-05-01",
-      "subs_gained": 2,
-      "subs_lost": 1,
-      "views": 116
-    },
-    {
-      "date": "2026-05-02",
-      "subs_gained": 2,
-      "subs_lost": 0,
-      "views": 102
-    },
-    {
-      "date": "2026-05-03",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 111
-    },
-    {
-      "date": "2026-05-04",
-      "subs_gained": 1,
-      "subs_lost": 2,
-      "views": 92
-    },
-    {
-      "date": "2026-05-05",
-      "subs_gained": 0,
-      "subs_lost": 1,
-      "views": 73
-    },
-    {
-      "date": "2026-05-06",
-      "subs_gained": 2,
-      "subs_lost": 1,
-      "views": 139
-    },
-    {
-      "date": "2026-05-07",
-      "subs_gained": 0,
-      "subs_lost": 0,
-      "views": 100
-    },
-    {
-      "date": "2026-05-08",
-      "subs_gained": 1,
-      "subs_lost": 2,
-      "views": 99
-    },
-    {
-      "date": "2026-05-09",
-      "subs_gained": 4,
-      "subs_lost": 2,
-      "views": 66
-    },
-    {
-      "date": "2026-05-10",
-      "subs_gained": 0,
-      "subs_lost": 1,
-      "views": 72
-    }
-  ],
   "channel_summary": {
     "subscribers": 3952,
-    "subs_30d_change": 123,
-    "subs_prev_30d_change": 257,
+    "subs_30d_change": 116,
+    "subs_prev_30d_change": 263,
     "unique_viewers_total": 129294,
-    "unique_viewers_30d": 10543,
-    "unique_viewers_prev_30d": 6187,
+    "unique_viewers_30d": 10133,
+    "unique_viewers_prev_30d": 6478,
     "viewer_metric": "views"
   }
 }
