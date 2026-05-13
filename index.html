@@ -1923,6 +1923,9 @@ function renderWfProjectTable() {
       }
       if (va < vb) return wfSortAsc ? -1 : 1;
       if (va > vb) return wfSortAsc ? 1 : -1;
+      // Tiebreaker: continuations sort after non-continuations
+      if (a.is_continuation && !b.is_continuation) return 1;
+      if (!a.is_continuation && b.is_continuation) return -1;
       return 0;
     });
   }
