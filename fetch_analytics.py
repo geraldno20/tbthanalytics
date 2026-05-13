@@ -253,6 +253,38 @@ def fetch_daily_channel_stats(yt_analytics):
     return daily if daily is not None else []
 
 
+def fetch_returning_viewers(yt_analytics):
+    """Fetch daily new vs returning viewer data for the past year."""
+    today = datetime.now()
+    start = (today - timedelta(days=365)).strftime("%Y-%m-%d")
+    end = (today - timedelta(days=2)).strftime("%Y-%m-%d")
+
+    def query():
+        response = yt_analytics.reports().query(
+            ids=f"channel=={CHANNEL_ID}",
+            startDate=start,
+            endDate=end,
+            metrics="views",
+            dimensions="day,viewerType",
+            sort="day",
+        ).execute()
+        # rows: [date, viewerType, views]
+        # viewerType is "RETURNING" or "NEW"
+        daily = {}
+        for r in response.get("rows", []):
+            date, viewer_type, views = r[0], r[1], r[2]
+            if date not in daily:
+                daily[date] = {"date": date, "new": 0, "returning": 0}
+            if viewer_type == "RETURNING":
+                daily[date]["returning"] = views
+            else:
+                daily[date]["new"] = views
+        return sorted(daily.values(), key=lambda x: x["date"])
+
+    result = api_call_with_retry(query, "returning viewers")
+    return result if result is not None else []
+
+
 def fetch_channel_summary(youtube, yt_analytics):
     """Fetch channel subscriber count and unique viewers (lifetime + last 30 days)."""
     today = datetime.now()
@@ -409,6 +441,11 @@ def run():
     daily_watch = fetch_daily_channel_stats(yt_analytics)
     print(f"  Got {len(daily_watch)} days of data")
 
+    # Fetch returning vs new viewers (1 API call)
+    print("\nFetching returning vs new viewers...")
+    returning_viewers = fetch_returning_viewers(yt_analytics)
+    print(f"  Got {len(returning_viewers)} days of data")
+
     # Fetch channel summary (subscribers, unique viewers)
     print("\nFetching channel summary...")
     channel_summary = fetch_channel_summary(youtube, yt_analytics)
@@ -420,6 +457,7 @@ def run():
         "fetched_at": datetime.now().strftime("%Y-%m-%d %H:%M"),
         "videos": results,
         "daily_watch_hours": daily_watch,
+        "returning_viewers": returning_viewers,
         "channel_summary": channel_summary,
     }
     output.write_text(json.dumps(output_data, indent=2))

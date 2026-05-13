@@ -342,6 +342,12 @@
     <div class="chart-body"><div class="chart-wrap"><canvas id="views-chart"></canvas></div></div>
   </details>
 
+  <!-- Returning vs New Viewers chart -->
+  <details class="chart-section">
+    <summary>Returning vs New Viewers</summary>
+    <div class="chart-body"><div class="chart-wrap"><canvas id="returning-chart"></canvas></div></div>
+  </details>
+
   <!-- AVD over time chart -->
   <details class="chart-section">
     <summary>Avg View Duration % Over Time</summary>
@@ -2335,6 +2341,7 @@ let viewsChart = null;
 let avdChart = null;
 let scatterChart = null;
 let dailyWatchData = [];
+let returningViewersData = [];
 let channelSummary = {};
 
 // --- Helpers ---
@@ -2407,6 +2414,7 @@ function toggleDark() {
   renderTrendChart();
   renderWatchChart();
   renderViewsChart();
+  renderReturningChart();
   renderAVDChart();
   renderRetentionChart();
   renderScatterChart();
@@ -2679,6 +2687,58 @@ function renderViewsChart() {
       scales: {
         x: { grid: { display: false }, ticks: { font: { size: 10 }, color: textColor, maxRotation: 45, autoSkip: true, maxTicksLimit: 30 }, border: { display: false } },
         y: { grid: { color: gridColor }, ticks: { font: { size: 11 }, color: textColor }, border: { display: false }, title: { display: true, text: 'Views', color: textColor, font: { size: 11 } } }
+      }
+    }
+  });
+}
+
+let returningChart = null;
+function renderReturningChart() {
+  if (!returningViewersData.length) return;
+  if (returningChart) returningChart.destroy();
+  const isDark = document.body.classList.contains('dark');
+  const gridColor = isDark ? '#3A3A3C' : '#E5E5EA';
+  const textColor = isDark ? '#AEAEB2' : '#6E6E73';
+
+  const labels = returningViewersData.map(d => d.date);
+  const returning = returningViewersData.map(d => d.returning);
+  const newV = returningViewersData.map(d => d.new);
+
+  // 7-day rolling averages
+  const win = 7;
+  const rollingRet = returning.map((_, i) => {
+    const s = Math.max(0, i - win + 1);
+    const sl = returning.slice(s, i + 1);
+    return Math.round(sl.reduce((a, b) => a + b, 0) / sl.length);
+  });
+  const rollingNew = newV.map((_, i) => {
+    const s = Math.max(0, i - win + 1);
+    const sl = newV.slice(s, i + 1);
+    return Math.round(sl.reduce((a, b) => a + b, 0) / sl.length);
+  });
+  // Returning % rolling
+  const rollingPct = rollingRet.map((r, i) => {
+    const total = r + rollingNew[i];
+    return total > 0 ? Math.round(r / total * 100) : 0;
+  });
+
+  returningChart = new Chart(document.getElementById('returning-chart').getContext('2d'), {
+    type: 'line',
+    data: {
+      labels,
+      datasets: [
+        { label: 'Returning (7d avg)', data: rollingRet, borderColor: '#34C759', backgroundColor: '#34C75920', borderWidth: 2, pointRadius: 0, tension: 0.4, fill: true, yAxisID: 'y' },
+        { label: 'New (7d avg)', data: rollingNew, borderColor: '#007AFF', backgroundColor: '#007AFF20', borderWidth: 2, pointRadius: 0, tension: 0.4, fill: true, yAxisID: 'y' },
+        { label: 'Returning %', data: rollingPct, borderColor: '#FF9500', borderWidth: 2, pointRadius: 0, tension: 0.4, borderDash: [5, 3], yAxisID: 'y1' },
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { position: 'bottom', labels: { font: { size: 11 }, color: textColor } } },
+      scales: {
+        x: { grid: { display: false }, ticks: { font: { size: 10 }, color: textColor, maxRotation: 45, autoSkip: true, maxTicksLimit: 30 }, border: { display: false } },
+        y: { position: 'left', grid: { color: gridColor }, ticks: { font: { size: 11 }, color: textColor }, border: { display: false }, title: { display: true, text: 'Views', color: textColor, font: { size: 11 } } },
+        y1: { position: 'right', grid: { display: false }, ticks: { font: { size: 11 }, color: '#FF9500', callback: v => v + '%' }, border: { display: false }, title: { display: true, text: 'Returning %', color: '#FF9500', font: { size: 11 } }, min: 0, max: 100 }
       }
     }
   });
@@ -3085,6 +3145,7 @@ function render() {
   renderTrendChart();
   renderWatchChart();
   renderViewsChart();
+  renderReturningChart();
   buildAVDSelect();
   renderAVDChart();
   renderRetentionChart();
@@ -3846,6 +3907,7 @@ async function init() {
       fetchedAt = raw.fetched_at || null;
       data = raw.videos || [];
       dailyWatchData = raw.daily_watch_hours || [];
+      returningViewersData = raw.returning_viewers || [];
       const cs = raw.channel_summary || {};
       channelSummary = cs;
       renderKPIs(cs);
