@@ -1981,6 +1981,7 @@ function renderWfProjectTable() {
       <th class="sortable" onclick="sortWfTable('air_date')" style="cursor:pointer;">Air Date${arrow('air_date')}</th>
       <th>Class Year</th>
       <th>Host</th>
+      <th style="font-size:10px;">Cont.</th>
       <th class="sortable" onclick="sortWfTable('updated_at')" style="cursor:pointer;">Updated${arrow('updated_at')}</th>
       ${WORKFLOW_TASKS.map(t => `<th>${t.label}</th>`).join('')}
       <th></th>
@@ -2005,6 +2006,7 @@ function renderWfProjectTable() {
         }</td>
         <td style="text-align:center;"><input type="text" value="${p.class_year || ''}" onchange="updateProjectField('${p.id}','class_year',this.value)" style="width:50px;text-align:center;font-size:12px;padding:2px 4px;border:1px solid var(--border);border-radius:4px;background:var(--bg);color:var(--text);"></td>
         <td style="text-align:center;"><input type="text" value="${p.host || ''}" onchange="updateProjectField('${p.id}','host',this.value)" style="width:60px;text-align:center;font-size:12px;padding:2px 4px;border:1px solid var(--border);border-radius:4px;background:var(--bg);color:var(--text);"></td>
+        <td style="text-align:center;"><button onclick="toggleContinuation('${p.id}',${!p.is_continuation})" style="border:1px solid ${p.is_continuation ? '#FF9500' : 'var(--border)'};background:${p.is_continuation ? '#FF950020' : 'transparent'};color:${p.is_continuation ? '#FF9500' : 'var(--text3)'};border-radius:4px;font-size:10px;padding:2px 6px;cursor:pointer;" title="Mark as continuation (excluded from class year count)">${p.is_continuation ? 'Pt.2' : '—'}</button></td>
         <td style="text-align:center;font-size:10px;color:var(--text3);white-space:nowrap;">${updatedAt}</td>
         ${WORKFLOW_TASKS.map(wt => {
           const task = getTaskForProject(p.id, wt.key);
@@ -2152,6 +2154,13 @@ async function quickStatusChange(projectId, taskKey, newStatus) {
       if (result && result.length) wfProjectTasks.push(result[0]);
     }
   }
+  renderWorkflow();
+}
+
+async function toggleContinuation(projectId, value) {
+  await sbFetch(`projects?id=eq.${projectId}`, { method: 'PATCH', body: { is_continuation: value } });
+  const proj = wfProjects.find(p => p.id === projectId);
+  if (proj) proj.is_continuation = value;
   renderWorkflow();
 }
 
@@ -3133,10 +3142,10 @@ function renderProductionCharts() {
     .map(p => ({ date: new Date(p.air_date), season: p.season, name: p.name }))
     .sort((a, b) => a.date - b.date);
 
-  // Class year pareto (only count projects with season AND episode assigned)
+  // Class year pareto (only count projects with season AND episode assigned, exclude continuations)
   const yearCounts = {};
   eps.forEach(p => {
-    if (p.class_year && p.class_year !== '-' && p.episode) {
+    if (p.class_year && p.class_year !== '-' && p.episode && !p.is_continuation) {
       yearCounts[p.class_year] = (yearCounts[p.class_year] || 0) + 1;
     }
   });

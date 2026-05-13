@@ -28,6 +28,7 @@ CREATE TABLE projects (
   air_date DATE,
   class_year TEXT,
   host TEXT,
+  is_continuation BOOLEAN DEFAULT false,
   created_at TIMESTAMPTZ DEFAULT now(),
   updated_at TIMESTAMPTZ DEFAULT now()
 );
