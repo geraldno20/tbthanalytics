@@ -767,6 +767,7 @@
   <div class="thumb-tip" id="thumb-tip"><img id="thumb-img" src=""></div>
 
 <script>
+const _cb = `?_=${Date.now()}`;
 // --- Platform tab switching ---
 // --- Language detection ---
 function detectLang(text) {
@@ -878,7 +879,7 @@ async function loadInstagram() {
   igLoaded = true;
   try {
     if (!igData) {
-      const resp = await fetch('data/instagram.json');
+      const resp = await fetch('data/instagram.json' + _cb);
       if (!resp.ok) return;
       igData = await resp.json();
     }
@@ -1244,7 +1245,7 @@ async function loadThreads() {
   thLoaded = true;
   try {
     if (!thData) {
-      const resp = await fetch('data/threads.json');
+      const resp = await fetch('data/threads.json' + _cb);
       if (!resp.ok) return;
       thData = await resp.json();
     }
@@ -1540,8 +1541,8 @@ async function loadMarketing() {
   if (mktLoaded) { renderMarketing(); return; }
   try {
     const [adsResp, analyticsResp] = await Promise.all([
-      fetch('data/ads.json'),
-      fetch('data/analytics.json'),
+      fetch('data/ads.json' + _cb),
+      fetch('data/analytics.json' + _cb),
     ]);
     if (adsResp.ok) {
       const adsJson = await adsResp.json();
@@ -3506,7 +3507,7 @@ async function loadFinances() {
   if (finLoaded) return;
   finLoaded = true;
   try {
-    const resp = await fetch('data/expenses.json');
+    const resp = await fetch('data/expenses.json' + _cb);
     if (!resp.ok) return;
     finData = await resp.json();
     renderFinances();
@@ -3849,7 +3850,7 @@ function renderContentCompare() {
 // --- Init ---
 async function init() {
   try {
-    const resp = await fetch('data/analytics.json');
+    const resp = await fetch('data/analytics.json' + _cb);
     const raw = await resp.json();
 
     // Support both new {fetched_at, videos} and old flat array format
@@ -3882,11 +3883,11 @@ async function init() {
     // Preload IG and Threads data for cross-platform summary
     // (charts render later when user switches tabs)
     try {
-      const igResp = await fetch('data/instagram.json');
+      const igResp = await fetch('data/instagram.json' + _cb);
       if (igResp.ok) { igData = await igResp.json(); }
     } catch (e) {}
     try {
-      const thResp = await fetch('data/threads.json');
+      const thResp = await fetch('data/threads.json' + _cb);
       if (thResp.ok) { thData = await thResp.json(); }
     } catch (e) {}
     renderCrossPlatform();
