@@ -1841,6 +1841,7 @@ function renderWfSummary() {
   const counts = { 'Ideation': 0, 'Planned': 0, 'Production': 0, 'Production Complete': 0, 'Aired': 0, 'Declined': 0 };
   wfProjects.forEach(p => {
     const stage = getProjectStage(p.id);
+    if (p.is_continuation && stage !== 'Aired') return;
     counts[stage] = (counts[stage] || 0) + 1;
   });
   const prodTotal = counts['Production'] + counts['Production Complete'];
