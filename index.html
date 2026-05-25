@@ -2145,21 +2145,24 @@ async function applyBulkTask() {
 
 async function quickStatusChange(projectId, taskKey, newStatus) {
   const existing = getTaskForProject(projectId, taskKey);
-  if (existing) {
-    await sbFetch(`project_tasks?id=eq.${existing.id}`, { method: 'PATCH', body: { status: newStatus } });
-    existing.status = newStatus;
-  } else {
-    // Try PATCH by project_id+task_key first (row may exist but not loaded)
-    const patched = await sbFetch(`project_tasks?project_id=eq.${projectId}&task_key=eq.${taskKey}`, { method: 'PATCH', body: { status: newStatus } });
-    if (patched && patched.length) {
-      wfProjectTasks.push(patched[0]);
-    } else {
-      // Row doesn't exist, create it
-      const result = await sbFetch('project_tasks', { method: 'POST', body: { project_id: projectId, task_key: taskKey, status: newStatus } });
-      if (result && result.length) wfProjectTasks.push(result[0]);
-    }
-  }
+  const previousStatus = existing ? existing.status : null;
+  if (existing) existing.status = newStatus;
   renderWorkflow();
+
+  const result = await sbFetch('project_tasks?on_conflict=project_id,task_key', {
+    method: 'POST',
+    body: { project_id: projectId, task_key: taskKey, status: newStatus },
+    prefer: 'return=representation,resolution=merge-duplicates',
+  });
+  if (result && result.length) {
+    const idx = wfProjectTasks.findIndex(t => t.project_id === projectId && t.task_key === taskKey);
+    if (idx >= 0) wfProjectTasks[idx] = result[0];
+    else wfProjectTasks.push(result[0]);
+    renderWorkflow();
+  } else if (existing) {
+    existing.status = previousStatus;
+    renderWorkflow();
+  }
 }
 
 async function toggleContinuation(projectId, value) {
