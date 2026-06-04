@@ -4,11 +4,14 @@ Requires client_secret.json in the project root.
 Caches credentials in token.json for reuse.
 """
 
+import os
+import sys
 from pathlib import Path
 
 from google.oauth2.credentials import Credentials
 from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
+from google.auth.exceptions import RefreshError
 
 SCOPES = [
     "https://www.googleapis.com/auth/youtube.readonly",
@@ -20,6 +23,10 @@ CLIENT_SECRET = ROOT / "client_secret.json"
 TOKEN_FILE = ROOT / "token.json"
 
 
+def _is_headless() -> bool:
+    return bool(os.environ.get("CI")) or not sys.stdin.isatty()
+
+
 def get_credentials() -> Credentials:
     creds = None
 
@@ -28,8 +35,19 @@ def get_credentials() -> Credentials:
 
     if not creds or not creds.valid:
         if creds and creds.expired and creds.refresh_token:
-            creds.refresh(Request())
-        else:
+            try:
+                creds.refresh(Request())
+            except RefreshError as e:
+                print(f"YouTube refresh token rejected ({e}); starting interactive re-auth.", file=sys.stderr)
+                creds = None
+
+        if not creds or not creds.valid:
+            if _is_headless():
+                raise RuntimeError(
+                    f"YouTube OAuth needs interactive re-auth but environment is headless. "
+                    f"Run `python3 -c 'from auth import get_credentials; get_credentials()'` "
+                    f"locally to refresh {TOKEN_FILE.name}, then update the GitHub secret."
+                )
             if not CLIENT_SECRET.exists():
                 raise FileNotFoundError(
                     f"Missing {CLIENT_SECRET}. Download it from Google Cloud Console "

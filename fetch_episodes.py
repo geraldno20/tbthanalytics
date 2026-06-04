@@ -8,12 +8,15 @@ owned by a different Google account. Stores token in sheets_token.json.
 """
 
 import json
+import os
+import sys
 from datetime import datetime
 from pathlib import Path
 
 from google.oauth2.credentials import Credentials
 from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
+from google.auth.exceptions import RefreshError
 from googleapiclient.discovery import build
 
 DATA_DIR = Path(__file__).parent / "data"
@@ -32,8 +35,18 @@ def get_sheets_credentials():
         creds = Credentials.from_authorized_user_file(str(SHEETS_TOKEN), SCOPES)
     if not creds or not creds.valid:
         if creds and creds.expired and creds.refresh_token:
-            creds.refresh(Request())
-        else:
+            try:
+                creds.refresh(Request())
+            except RefreshError as e:
+                print(f"Sheets refresh token rejected ({e}); starting interactive re-auth.", file=sys.stderr)
+                creds = None
+        if not creds or not creds.valid:
+            if os.environ.get("CI") or not sys.stdin.isatty():
+                raise RuntimeError(
+                    f"Sheets OAuth needs interactive re-auth but environment is headless. "
+                    f"Run `python3 fetch_episodes.py` locally to refresh {SHEETS_TOKEN.name}, "
+                    f"then update the SHEETS_TOKEN GitHub secret with its contents."
+                )
             if not CLIENT_SECRET.exists():
                 raise FileNotFoundError(f"Missing {CLIENT_SECRET}.")
             flow = InstalledAppFlow.from_client_secrets_file(str(CLIENT_SECRET), SCOPES)

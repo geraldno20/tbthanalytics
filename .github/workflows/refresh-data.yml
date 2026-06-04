@@ -29,11 +29,19 @@ jobs:
           pip install google-api-python-client google-auth google-auth-oauthlib google-auth-httplib2
 
       - name: Write credential files
+        env:
+          SHEETS_TOKEN: ${{ secrets.SHEETS_TOKEN }}
         run: |
           echo '${{ secrets.YOUTUBE_TOKEN }}' > token.json
           echo '${{ secrets.IG_TOKEN }}' > ig_token.json
           echo '${{ secrets.THREADS_TOKEN }}' > threads_token.json
           echo '${{ secrets.CLIENT_SECRET }}' > client_secret.json
+          if [ -n "$SHEETS_TOKEN" ]; then
+            printf '%s' "$SHEETS_TOKEN" > sheets_token.json
+            echo "sheets_token.json written — episodes/videos refresh enabled"
+          else
+            echo "SHEETS_TOKEN secret not set — skipping episodes refresh"
+          fi
 
       - name: Fetch YouTube Analytics
         run: python3 fetch_analytics.py
@@ -45,6 +53,44 @@ jobs:
       - name: Fetch Threads
         run: python3 fetch_threads.py
         continue-on-error: true
+
+      - name: Fetch Episodes (Google Sheets)
+        run: |
+          if [ -f sheets_token.json ]; then
+            python3 fetch_episodes.py
+          else
+            echo "Skipped: sheets_token.json missing"
+          fi
+        continue-on-error: true
+
+      - name: Fetch Videos
+        run: python3 fetch_videos.py
+        continue-on-error: true
+
+      - name: Verify freshness
+        run: |
+          python3 - <<'PY'
+          import json, os, sys, time
+          from datetime import date, timezone, datetime
+          today = date.today().isoformat()
+          warnings = []
+          if os.path.exists("data/episodes.json"):
+              ep = json.load(open("data/episodes.json"))
+              fetched = ep.get("fetched_at", "")
+              if not fetched.startswith(today):
+                  warnings.append(f"data/episodes.json fetched_at={fetched!r}, expected {today}")
+          for path in ("data/videos.json", "data/analytics.json", "data/instagram.json", "data/threads.json"):
+              if os.path.exists(path):
+                  age = time.time() - os.path.getmtime(path)
+                  if age > 1800:
+                      warnings.append(f"{path} mtime {int(age)}s old (>30min) — fetcher likely failed")
+          if warnings:
+              print("::warning::Freshness check found stale files:")
+              for w in warnings:
+                  print(f"::warning::  - {w}")
+          else:
+              print("All data files are fresh.")
+          PY
 
       - name: Commit and push
         run: |
