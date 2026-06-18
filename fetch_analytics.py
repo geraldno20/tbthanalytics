@@ -218,6 +218,11 @@ def fetch_video_analytics(video_id, published_at, yt_analytics):
     result["views_lifetime"] = lifetime["views"]
     avd_over_time["lifetime"] = lifetime["avg_view_duration_pct"]
 
+    # For videos younger than 2wk, fall back to lifetime so the dashboard isn't blank
+    result.setdefault("avg_view_duration_pct", lifetime["avg_view_duration_pct"])
+    result.setdefault("avg_view_time_sec", lifetime["avg_view_duration_sec"])
+    result.setdefault("new_subscribers", lifetime["new_subscribers"])
+
     result["avd_over_time"] = avd_over_time
 
     # Last 24h views: 2-3 days ago (API processing delay)
