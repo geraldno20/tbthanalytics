@@ -1,32 +1,42 @@
 [
   {
+    "video_id": "h5hQvUmvriU",
+    "title": "\u76f4\u8cc7\u5f8c\u771f\u7684\u8b8a\u4e86\u55ce\uff1f\uff5c\u674e\u7aef\u5100\u6821\u9577\u89aa\u8ac7\u8056\u4fdd\u7f85\u6539\u9769\u771f\u76f8\uff5cTBTH \u540c\u73ed\u540c\u5b78 S8 EP1",
+    "published_at": "2026-08-04T21:08:34Z"
+  },
+  {
+    "video_id": "sqLoLrcsxn8",
+    "title": "\u6210\u7e3e\uff0c\u53ef\u4ee5\u6c7a\u5b9a\u4e00\u500b\u4eba\u7684\u4eba\u751f\u55ce\uff1f\uff5c\u5f6d\u7693\u6615 Clement Pang\uff08\u4e0b\u96c6\uff09\uff5cTBTH \u540c\u73ed\u540c\u5b78 S7 EP20",
+    "published_at": "2026-08-04T15:34:20Z"
+  },
+  {
+    "video_id": "n4_mVWsSBCI",
+    "title": "Draft Erica Lowe P2 rev2",
+    "published_at": "2026-08-04T15:29:11Z"
+  },
+  {
+    "video_id": "HY8p__d3Lro",
+    "title": "Draft Erica Lowe P1 rev2",
+    "published_at": "2026-08-04T15:28:50Z"
+  },
+  {
+    "video_id": "zX4eR5alkTU",
+    "title": "\u4eba\u4eba\u60f3\u6211\u505a\u91ab\u751f\uff0c\u6211\u504f\u504f\u63c0\u5497\u77fd\u8c37\uff5c\u5f6d\u7693\u6615 Clement Pang\uff08\u4e0a\u96c6\uff09\uff5cTBTH \u540c\u73ed\u540c\u5b78 S7 EP19",
+    "published_at": "2026-08-04T14:00:06Z"
+  },
+  {
     "video_id": "KPSTUF_0DW0",
     "title": "Season 8 \u9810\u544a\uff1a\u6211\u5011\uff0c\u9ede\u89e3\u6703\u6210\u70ba\u4eca\u65e5\u5605\u81ea\u5df1\uff1f\uff5c\u540c\u73ed\u540c\u5b78",
     "published_at": "2026-08-02T00:00:03Z"
   },
   {
-    "video_id": "lzlAu7C71vk",
-    "title": "Prinicpal Lee Part 1 rev3",
-    "published_at": "2026-07-30T21:13:19Z"
-  },
-  {
     "video_id": "rigA1cvm5pk",
-    "title": "\u8056\u4fdd\u7f85\uff0c\u7a76\u7adf\u4fc2\u5feb\u6a02\u5b9a\u50b7\u75d5\uff1f\uff5c\u674e\u6a02 Neville Lee \uff08\u4e0b\u96c6\uff09 | TBTH S7 EP18",
+    "title": "\u8056\u4fdd\u7f85\uff0c\u4fc2\u5feb\u6a02\u56de\u61b6\uff0c\u5b9a\u4fc2\u4eba\u751f\u50b7\u75d5\uff1f\uff5c\u674e\u6a02 Neville Lee\uff08\u4e0b\u96c6\uff09\uff5cTBTH S7 EP18",
     "published_at": "2026-07-29T23:00:11Z"
   },
   {
-    "video_id": "eputW7DTT94",
-    "title": "(Draft) Erica Lowe P2 rev1",
-    "published_at": "2026-07-28T20:55:11Z"
-  },
-  {
-    "video_id": "yZvzy1blqWA",
-    "title": "(Draft) Erica Lowe P1 rev1",
-    "published_at": "2026-07-28T20:25:24Z"
-  },
-  {
     "video_id": "YfbkR0oIC8U",
-    "title": "\u6bcf\u500b\u4eba\uff0c\u90fd\u6709\u81ea\u5df1\u7bc0\u594f\uff5c\u674e\u6a02 Neville Lee \uff08\u4e0a\u96c6\uff09 | TBTH S7 EP17",
+    "title": "\u8b80\u66f8\u53fb\uff0c\u4fc2\u54aa\u4eba\u751f\u552f\u4e00\u51fa\u8def\uff1f\uff5c\u674e\u6a02 Neville Lee\uff08\u4e0a\u96c6\uff09\uff5cTBTH \u540c\u73ed\u540c\u5b78 S7 EP17",
     "published_at": "2026-07-28T14:00:06Z"
   },
   {
@@ -41,7 +51,7 @@
   },
   {
     "video_id": "miYzqCvSreg",
-    "title": "Prinicpal Lee Part 2 rev4",
+    "title": "\u524d\u8056\u4fdd\u7f85\u7537\u5973\u4e2d\u5b78\u9644\u5c6c\u5c0f\u5b78\u6821\u9577\u8ac7\u6536\u751f\u3001DSS\u6539\u9769\u8207\u6559\u80b2\u7406\u5ff5\uff5c\u674e\u7aef\u5100\u6821\u9577 \uff08\u4e0b\u96c6\uff09 | TBTH S8 EP2",
     "published_at": "2026-07-23T18:14:01Z"
   },
   {
@@ -75,16 +85,6 @@
     "published_at": "2026-07-19T03:38:42Z"
   },
   {
-    "video_id": "ZEoKq3nXoQc",
-    "title": "\u6210\u7e3e\u91cd\u8981\uff0c\u5b9a\u4fc2Grit\u66f4\u91cd\u8981\uff1f\uff5c\u5f6d\u6d69\u6615 Clement Pang \uff08\u4e0b\u96c6\uff09 | TBTH S7 EP20",
-    "published_at": "2026-07-17T04:40:49Z"
-  },
-  {
-    "video_id": "zX4eR5alkTU",
-    "title": "\u8056\u4fdd\u7f85\u4e00\u6b21\u632b\u6298\uff0c\u6559\u66c9\u6211\u7684\u4e00\u8ab2\uff5c\u5f6d\u6d69\u6615 Clement Pang \uff08\u4e0a\u96c6\uff09 | TBTH S7 EP19",
-    "published_at": "2026-07-17T04:37:09Z"
-  },
-  {
     "video_id": "_CtpREkJ1dQ",
     "title": "(DRAFT) Joyce Yuen P2",
     "published_at": "2026-07-16T21:21:16Z"
@@ -103,16 +103,6 @@
     "video_id": "5E7V_AQGFpo",
     "title": "Nick Bong Lee Reel 1   SD 480p",
     "published_at": "2026-07-11T22:00:26Z"
-  },
-  {
-    "video_id": "zHc_j1nUNPI",
-    "title": "(DRAFT) Clement Pang Part 1 rev2",
-    "published_at": "2026-07-11T02:33:37Z"
-  },
-  {
-    "video_id": "354btHdh8qc",
-    "title": "(DRAFT) Clement Pang Part 2",
-    "published_at": "2026-07-11T01:47:54Z"
   },
   {
     "video_id": "o03DNwC5Ihs",
@@ -250,6 +240,16 @@
     "published_at": "2026-06-09T23:26:24Z"
   },
   {
+    "video_id": "gJIvO8QGHD4",
+    "title": "#TBTH | \u6c88\u667a\u8f1d Teaser 2",
+    "published_at": "2026-06-05T22:00:08Z"
+  },
+  {
+    "video_id": "amwJy9Ga1kM",
+    "title": "\u5927\u5f8b\u5e2b\u70ba\u4f55\u96f6\u916c\u52de\u4e0a\u771f\u4ebaShow\uff1f\uff5c\u6c88\u667a\u8f1d Jeffrey Sham \u9996\u64ad\u9810\u544a",
+    "published_at": "2026-06-04T22:30:08Z"
+  },
+  {
     "video_id": "P1zPMsJUlVw",
     "title": "\u7531\u5f8b\u5e2b\u5230\u4e16\u754c\u7b2c\u4e00\u5e06\u8239\u9078\u624b\u7d93\u7406\u4eba Dream Big!\uff5c\u9673\u6690\u6615 Kristen Chin\uff08\u4e0b\u96c6\uff09|  TBTH S7 EP2",
     "published_at": "2026-06-03T22:00:03Z"
@@ -258,11 +258,6 @@
     "video_id": "C9Ag6W8ag9Y",
     "title": "\u4e0d\u6253\u4e0d\u76f8\u8b58\uff0c\u7531\u7af6\u6575\u8b8a\u597d\u53cb\uff5c\u9673\u6690\u6615 Kristen Chin (\u4e0a\u96c6) | TBTH S7 EP1",
     "published_at": "2026-06-02T22:00:34Z"
-  },
-  {
-    "video_id": "nszgNOGQmEU",
-    "title": "SPCC \u8056\u4fdd\u7f85\u7537\u5973\uff5c\u7b2c\u516d\u5b63\u5e55\u5f8c\u82b1\u7d6e\uff1a\u6821\u9577\u8a2a\u554f\u3001\u8db3\u7403\u6bd4\u8cfd\u8207\u300a\u540c\u73ed\u540c\u5b78\u300b\u7684\u521d\u5fc3\uff5cTBTH S6 Live",
-    "published_at": "2026-05-31T19:25:20Z"
   },
   {
     "video_id": "vnulh9eBnuA",
@@ -483,6 +478,11 @@
     "video_id": "8ZoxyA7XANo",
     "title": "\u5f8b\u5e2b\u6b63\u8077\u5916\u4e0d\u907a\u9918\u529b\u63a8\u5ee3\u672c\u5730\u5287\u5718 \u5ef6\u7e8c\u5c0d\u6587\u85dd\u5275\u4f5c\u7684\u71b1\u60c5| \u674e\u4ee4\u55ac Jacqueline Lee | TBTH S5 EP4",
     "published_at": "2026-01-29T22:52:30Z"
+  },
+  {
+    "video_id": "tZJmm45mDvg",
+    "title": "#TBTHU2 | \u66f9\u60e0\u5091 Adrian Tso | \u819d\u50b7\u7c89\u788e\u5317\u4eac\u5967\u904b\u5922 \u4f46\u6191\u7740\u8cfd\u8247\u751f\u6daf\u935b\u7df4\u51fa\u7684\u6bc5\u529b\u8e8b\u8eab\u4e9e\u6d32\u5ee3\u544a\u754c40 under 40 | \u540c\u73ed\u540c\u5b78 S4 EP3",
+    "published_at": "2026-01-27T21:15:33Z"
   },
   {
     "video_id": "zXB8BoXbeeI",
@@ -975,6 +975,11 @@
     "published_at": "2025-07-03T03:46:43Z"
   },
   {
+    "video_id": "ga5bhAinWu4",
+    "title": "\u5f9e\u9280\u884c\u8f49\u884c\u6295\u8eab\u6559\u80b2\uff0c\u4e0d\u611b\u8b80\u66f8\u5230\u6210\u70ba\u8001\u5e2b\u7684\u4eba\u751f\u8f49\u8b8a\uff5c\u80e1\u5584\u76c8 Vivian Wu | TBTH S1 EP9",
+    "published_at": "2025-06-25T18:37:45Z"
+  },
+  {
     "video_id": "J1XwNAMNeFY",
     "title": "\u540c\u73ed\u540c\u5b78 - \u80e1\u5584\u76c8 teaser",
     "published_at": "2025-06-19T07:00:16Z"
@@ -983,11 +988,6 @@
     "video_id": "1XW6g04jkSU",
     "title": "\u5f9e\u97f3\u6a02\u71b1\u611b\u5230\u5275\u7acb Music Studio \u7684\u6210\u9577\u4e4b\u8def\uff5c\u8b1d\u7fe0\u5a77 Gladys Tse | TBTH S1 EP8",
     "published_at": "2025-06-19T01:23:28Z"
-  },
-  {
-    "video_id": "0DuLd63IJjg",
-    "title": "\u540c\u73ed\u540c\u5b78 - \u8b1d\u7fe0\u5a77 teaser",
-    "published_at": "2025-06-12T07:00:00Z"
   },
   {
     "video_id": "y7a_BaSJr7c",
@@ -1065,28 +1065,18 @@
     "published_at": "2025-04-18T18:51:45Z"
   },
   {
-    "video_id": "amwJy9Ga1kM",
-    "title": "\u5927\u5f8b\u5e2b\u70ba\u4f55\u96f6\u916c\u52de\u4e0a\u771f\u4ebaShow\uff1f\uff5c\u6c88\u667a\u8f1d Jeffrey Sham \u9996\u64ad\u9810\u544a",
-    "published_at": "2026-06-04T14:50:57Z"
-  },
-  {
-    "video_id": "gJIvO8QGHD4",
-    "title": "#TBTH | \u6c88\u667a\u8f1d Teaser 2",
-    "published_at": "2026-06-03T20:56:44Z"
-  },
-  {
     "video_id": "wvOD2E97OAM",
     "title": "#TBTH | \u6c88\u667a\u8f1d Teaser 1",
     "published_at": "2026-06-03T20:54:30Z"
   },
   {
-    "video_id": "tZJmm45mDvg",
-    "title": "#TBTHU2 | \u66f9\u60e0\u5091 Adrian Tso | \u819d\u50b7\u7c89\u788e\u5317\u4eac\u5967\u904b\u5922 \u4f46\u6191\u7740\u8cfd\u8247\u751f\u6daf\u935b\u7df4\u51fa\u7684\u6bc5\u529b\u8e8b\u8eab\u4e9e\u6d32\u5ee3\u544a\u754c40 under 40 | \u540c\u73ed\u540c\u5b78 S4 EP3",
-    "published_at": "2026-01-27T21:13:57Z"
+    "video_id": "nszgNOGQmEU",
+    "title": "SPCC \u8056\u4fdd\u7f85\u7537\u5973\uff5c\u7b2c\u516d\u5b63\u5e55\u5f8c\u82b1\u7d6e\uff1a\u6821\u9577\u8a2a\u554f\u3001\u8db3\u7403\u6bd4\u8cfd\u8207\u300a\u540c\u73ed\u540c\u5b78\u300b\u7684\u521d\u5fc3\uff5cTBTH S6 Live",
+    "published_at": "2026-05-31T06:25:55Z"
   },
   {
-    "video_id": "ga5bhAinWu4",
-    "title": "\u5f9e\u9280\u884c\u8f49\u884c\u6295\u8eab\u6559\u80b2\uff0c\u4e0d\u611b\u8b80\u66f8\u5230\u6210\u70ba\u8001\u5e2b\u7684\u4eba\u751f\u8f49\u8b8a\uff5c\u80e1\u5584\u76c8 Vivian Wu | TBTH S1 EP9",
-    "published_at": "2025-05-27T17:33:31Z"
+    "video_id": "0DuLd63IJjg",
+    "title": "\u540c\u73ed\u540c\u5b78 - \u8b1d\u7fe0\u5a77 teaser",
+    "published_at": "2025-05-20T19:20:34Z"
   }
 ]
