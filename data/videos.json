@@ -1,7 +1,22 @@
 [
   {
-    "video_id": "HW4t3hf3CYE",
+    "video_id": "tQ7Lg69mNRk",
+    "title": "\u5f9e\u6572\u64ca\u6a02\u624b\u5230\u8001\u5e2b\uff0c\u5979\u5982\u4f55\u627e\u5230\u81ea\u5df1\u7684\u65b9\u5411\uff1f\uff5c\u962e\u66fc\u9716 Lauren Yuen (\u4e0b\u96c6)\uff5cTBTH \u540c\u73ed\u540c\u5b78 S8 EP4",
+    "published_at": "2026-08-17T22:35:46Z"
+  },
+  {
+    "video_id": "NyfrSxRwi2A",
+    "title": "\u4e00\u6b21\u5927\u904e\uff0c\u80cc\u5f8c\u539f\u4f86\u6709\u4e00\u6bb5\u50b7\u5fc3\u6545\u4e8b\uff5c\u962e\u66fc\u9716 Lauren Yuen (\u4e0a\u96c6)\uff5cTBTH \u540c\u73ed\u540c\u5b78 S8 EP3",
+    "published_at": "2026-08-17T19:17:27Z"
+  },
+  {
+    "video_id": "UjeuElrf2do",
     "title": "\u5e6b TBTH \u53bb\u5230 4,000 \u5c0f\u6642\uff01\u6211\u54cb\u9700\u8981\u4f60\u5605\u5e6b\u5fd9\uff5cTBTH \u540c\u73ed\u540c\u5b78",
+    "published_at": "2026-08-17T07:00:08Z"
+  },
+  {
+    "video_id": "HW4t3hf3CYE",
+    "title": "KILL \u5e6b TBTH \u53bb\u5230 4,000 \u5c0f\u6642\uff01\u6211\u54cb\u9700\u8981\u4f60\u5605\u5e6b\u5fd9\uff5cTBTH \u540c\u73ed\u540c\u5b78",
     "published_at": "2026-08-16T05:08:26Z"
   },
   {
@@ -68,16 +83,6 @@
     "video_id": "YfbkR0oIC8U",
     "title": "\u8b80\u66f8\u53fb\uff0c\u4fc2\u54aa\u4eba\u751f\u552f\u4e00\u51fa\u8def\uff1f\uff5c\u674e\u6a02 Neville Lee\uff08\u4e0a\u96c6\uff09\uff5cTBTH \u540c\u73ed\u540c\u5b78 S7 EP17",
     "published_at": "2026-07-28T14:00:06Z"
-  },
-  {
-    "video_id": "UDXnGVSDXRA",
-    "title": "\u5f9e\u6572\u64ca\u6a02\u624b\u5230\u8001\u5e2b\uff0c\u5979\u5982\u4f55\u627e\u5230\u81ea\u5df1\u7684\u65b9\u5411\uff1f\uff5c\u962e\u66fc\u9716 Lauren Yuen (\u4e0b\u96c6)\uff5cTBTH \u540c\u73ed\u540c\u5b78 S8 EP4",
-    "published_at": "2026-07-23T20:08:20Z"
-  },
-  {
-    "video_id": "gDGK_8Av8tE",
-    "title": "\u4e00\u6b21\u5927\u904e\uff0c\u80cc\u5f8c\u539f\u4f86\u6709\u4e00\u6bb5\u50b7\u5fc3\u6545\u4e8b\uff5c\u962e\u66fc\u9716 Lauren Yuen (\u4e0a\u96c6)\uff5cTBTH \u540c\u73ed\u540c\u5b78 S8 EP3",
-    "published_at": "2026-07-23T20:02:21Z"
   },
   {
     "video_id": "LZPSaICiTSk",
@@ -245,11 +250,6 @@
     "published_at": "2026-06-16T14:00:05Z"
   },
   {
-    "video_id": "xzObMJP7M9s",
-    "title": "\u5341\u5e74\u524d\u64e6\u80a9\u800c\u904e \u5341\u5e74\u5f8c\u7d42\u65bc\u76f8\u8a8d\uff5cCrystal Kwan \u9996\u64ad\u9810\u544a",
-    "published_at": "2026-06-14T05:00:25Z"
-  },
-  {
     "video_id": "IbyKKgVXC0g",
     "title": "\u5929\u751f\u5c6c\u65bc\u821e\u53f0\u7684\u300c\u6c34\u7bad\u9f9c\u300d\uff5c\u97f3\u6a02\u5982\u4f55\u6210\u5c31\u5927\u5f8b\u5e2b\u4e4b\u8def\uff5c\u6c88\u667a\u8f1d Jeffrey Sham (\u4e0b\u96c6) | TBTH S7 EP4",
     "published_at": "2026-06-10T22:00:05Z"
@@ -263,6 +263,11 @@
     "video_id": "gJIvO8QGHD4",
     "title": "#TBTH | \u6c88\u667a\u8f1d Teaser 2",
     "published_at": "2026-06-05T22:00:08Z"
+  },
+  {
+    "video_id": "amwJy9Ga1kM",
+    "title": "\u5927\u5f8b\u5e2b\u70ba\u4f55\u96f6\u916c\u52de\u4e0a\u771f\u4ebaShow\uff1f\uff5c\u6c88\u667a\u8f1d Jeffrey Sham \u9996\u64ad\u9810\u544a",
+    "published_at": "2026-06-04T22:30:08Z"
   },
   {
     "video_id": "wvOD2E97OAM",
@@ -980,11 +985,6 @@
     "published_at": "2025-07-17T07:00:18Z"
   },
   {
-    "video_id": "SGqZIlp7u9I",
-    "title": "\u90a3\u4e9b\u5e74\u6211\u5011\u4e00\u8d77\uff08\u88ab\u5979\uff09\u6253\u904e\u7684\u5973\u5b69| \u9ec3\u51f1\u5be7 Helen Wong \ud83e\uddad |  TBTH S2 Ep2",
-    "published_at": "2025-07-17T00:19:42Z"
-  },
-  {
     "video_id": "rjNguLYWzCQ",
     "title": "\u540c\u73ed\u540c\u5b78 - \u9ec3\u51f1\u5be7 teaser",
     "published_at": "2025-07-10T07:00:51Z"
@@ -1095,18 +1095,23 @@
     "published_at": "2025-04-18T18:51:45Z"
   },
   {
+    "video_id": "xzObMJP7M9s",
+    "title": "\u5341\u5e74\u524d\u64e6\u80a9\u800c\u904e \u5341\u5e74\u5f8c\u7d42\u65bc\u76f8\u8a8d\uff5cCrystal Kwan \u9996\u64ad\u9810\u544a",
+    "published_at": "2026-06-12T04:28:14Z"
+  },
+  {
     "video_id": "D6GRzYSW0qE",
     "title": "\u4e00\u500b\u6e05\u6668\u4f86\u96fb \u6539\u8b8a\u4e00\u751f\uff5c\u9ec3\u6587\u541b\u8001\u5e2b \u9996\u64ad\u9810\u544a",
     "published_at": "2026-06-09T21:58:33Z"
   },
   {
-    "video_id": "amwJy9Ga1kM",
-    "title": "\u5927\u5f8b\u5e2b\u70ba\u4f55\u96f6\u916c\u52de\u4e0a\u771f\u4ebaShow\uff1f\uff5c\u6c88\u667a\u8f1d Jeffrey Sham \u9996\u64ad\u9810\u544a",
-    "published_at": "2026-06-04T14:50:57Z"
-  },
-  {
     "video_id": "LphEQwvOwE8",
     "title": "Mic Test",
     "published_at": "2025-12-01T00:44:14Z"
+  },
+  {
+    "video_id": "SGqZIlp7u9I",
+    "title": "\u90a3\u4e9b\u5e74\u6211\u5011\u4e00\u8d77\uff08\u88ab\u5979\uff09\u6253\u904e\u7684\u5973\u5b69| \u9ec3\u51f1\u5be7 Helen Wong \ud83e\uddad |  TBTH S2 Ep2",
+    "published_at": "2025-07-10T19:58:55Z"
   }
 ]
