@@ -1,5 +1,10 @@
 [
   {
+    "video_id": "za8drZV2SSg",
+    "title": "Jackie Lau 1 rev2",
+    "published_at": "2026-08-23T02:25:40Z"
+  },
+  {
     "video_id": "DUbT7KcKJsA",
     "title": "Jackie Lau 1 rev2",
     "published_at": "2026-08-22T15:39:13Z"
@@ -258,6 +263,11 @@
     "video_id": "RVhtCeMdJFI",
     "title": "\u96f6\u916c\u52de\u4e0a\u771f\u4ebaShow\uff1f\u5e55\u5f8c\u88fd\u4f5c\u5168\u516c\u958b\uff5c\u6c88\u667a\u8f1d Jeffrey Sham\uff08\u4e0a\u96c6\uff09| TBTH S7 EP3",
     "published_at": "2026-06-10T14:00:06Z"
+  },
+  {
+    "video_id": "D6GRzYSW0qE",
+    "title": "\u4e00\u500b\u6e05\u6668\u4f86\u96fb \u6539\u8b8a\u4e00\u751f\uff5c\u9ec3\u6587\u541b\u8001\u5e2b \u9996\u64ad\u9810\u544a",
+    "published_at": "2026-06-09T23:26:24Z"
   },
   {
     "video_id": "gJIvO8QGHD4",
@@ -735,11 +745,6 @@
     "published_at": "2025-12-12T02:00:37Z"
   },
   {
-    "video_id": "S9Hmn7nr4Yw",
-    "title": "#TBTH | \u9ec3\u5b89\u8389 teaser",
-    "published_at": "2025-12-08T02:00:33Z"
-  },
-  {
     "video_id": "BbnAkLBQ9SQ",
     "title": "\u4e00\u8def\u5411\u5317(\u7f8e)\uff0c\u52a0\u901f\u7529\u6389\u7a2e\u7a2e\u7169\u60f1\u7d1b\u64fe  \u98c4\u79fb\u51fa\u5f4e\uff0c\u524d\u65b9\u8f49\u89d2\u6709\u53e6\u4e00\u5e45\u5929\u7a7a\uff1f| \u970d\u5b50\u9298 Russell Fok | TBTH S4 EP1",
     "published_at": "2025-12-06T02:00:15Z"
@@ -1100,9 +1105,9 @@
     "published_at": "2026-06-12T04:28:14Z"
   },
   {
-    "video_id": "D6GRzYSW0qE",
-    "title": "\u4e00\u500b\u6e05\u6668\u4f86\u96fb \u6539\u8b8a\u4e00\u751f\uff5c\u9ec3\u6587\u541b\u8001\u5e2b \u9996\u64ad\u9810\u544a",
-    "published_at": "2026-06-09T21:58:33Z"
+    "video_id": "S9Hmn7nr4Yw",
+    "title": "#TBTH | \u9ec3\u5b89\u8389 teaser",
+    "published_at": "2025-12-05T21:14:39Z"
   },
   {
     "video_id": "LphEQwvOwE8",
