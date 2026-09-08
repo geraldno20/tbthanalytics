@@ -1,5 +1,15 @@
 [
   {
+    "video_id": "OvU6yD3lgJs",
+    "title": "Alex Cheng P2 rev1",
+    "published_at": "2026-09-07T07:11:28Z"
+  },
+  {
+    "video_id": "h53J66jBsmc",
+    "title": "Alex Cheng P1 rev1",
+    "published_at": "2026-09-07T06:45:53Z"
+  },
+  {
     "video_id": "aDZCFose2DQ",
     "title": "Geoffrey Ko Part 2 rev4",
     "published_at": "2026-09-04T17:50:05Z"
@@ -240,19 +250,14 @@
     "published_at": "2026-06-17T23:06:11Z"
   },
   {
-    "video_id": "mtTkqXMKIzo",
-    "title": "#TBTH\uff5c\u9ec3\u6587\u541b\u8001\u5e2b Teaser 2",
-    "published_at": "2026-06-17T04:35:43Z"
-  },
-  {
-    "video_id": "9Y6lW52AVNw",
-    "title": "#TBTH\uff5c\u9ec3\u6587\u541b\u8001\u5e2b Teaser 1",
-    "published_at": "2026-06-17T04:30:54Z"
-  },
-  {
     "video_id": "afwOZHfK1Jw",
     "title": "\u56de\u61b6\u57f7\u6559\u6b72\u6708\uff1a\u7de3\u7e6b\u8056\u4fdd\u7f85 \u59cb\u65bc\u4e00\u500b\u6e05\u6668\u7684\u4f86\u96fb\uff5c\u9ec3\u6587\u541b\u8001\u5e2b Dorcas Wong\uff08\u4e0a\u96c6\uff09|  TBTH S7 EP 5",
     "published_at": "2026-06-16T14:00:05Z"
+  },
+  {
+    "video_id": "xzObMJP7M9s",
+    "title": "\u5341\u5e74\u524d\u64e6\u80a9\u800c\u904e \u5341\u5e74\u5f8c\u7d42\u65bc\u76f8\u8a8d\uff5cCrystal Kwan \u9996\u64ad\u9810\u544a",
+    "published_at": "2026-06-14T05:00:25Z"
   },
   {
     "video_id": "IbyKKgVXC0g",
@@ -483,11 +488,6 @@
     "video_id": "sLRzjY_XJXs",
     "title": "#TBTH | \u7f85\u5ead\u6b23 + \u83ab\u744b\u6b23 teaser",
     "published_at": "2026-02-12T23:01:10Z"
-  },
-  {
-    "video_id": "c_r3eHzv3nc",
-    "title": "\u6295\u5165\u6210\u4eba\u8db3\u7403\u8a13\u7df4\u73ed \u71b1\u611b\u8e22\u6ce2\u66f4\u4eab\u53d7\u8207\u6470\u53cb\u5011\u65c5\u904a| \u99f1\u5f65\u9716 Eric Lok | TBTH S5 EP6",
-    "published_at": "2026-02-11T22:06:30Z"
   },
   {
     "video_id": "zzVZDkcV7rE",
@@ -735,16 +735,6 @@
     "published_at": "2025-12-14T10:06:53Z"
   },
   {
-    "video_id": "OCxYRTq2lZg",
-    "title": "#TBTH | \u66f9\u60e0\u5091 teaser",
-    "published_at": "2025-12-12T02:30:24Z"
-  },
-  {
-    "video_id": "TZSFUE-qSqo",
-    "title": "Big Tech \u7cbe\u82f1\u5982\u4f55\u5e73\u8861\u500b\u4eba\u4e3b\u7fa9\u8207\u5718\u968a\u7cbe\u795e \u7d30\u8ac7\u7531\u9999\u6e2f\u5230\u77fd\u8c37\u7684\u7d93\u6b74| \u9ec3\u5b89\u8389 Janice Wong | TBTH S4 EP2",
-    "published_at": "2025-12-12T02:00:37Z"
-  },
-  {
     "video_id": "BbnAkLBQ9SQ",
     "title": "\u4e00\u8def\u5411\u5317(\u7f8e)\uff0c\u52a0\u901f\u7529\u6389\u7a2e\u7a2e\u7169\u60f1\u7d1b\u64fe  \u98c4\u79fb\u51fa\u5f4e\uff0c\u524d\u65b9\u8f49\u89d2\u6709\u53e6\u4e00\u5e45\u5929\u7a7a\uff1f| \u970d\u5b50\u9298 Russell Fok | TBTH S4 EP1",
     "published_at": "2025-12-06T02:00:15Z"
@@ -975,11 +965,6 @@
     "published_at": "2025-07-30T16:47:18Z"
   },
   {
-    "video_id": "VNFPxrwiyTs",
-    "title": "\u540c\u73ed\u540c\u5b78 - \u9ad8\u6069 teaser",
-    "published_at": "2025-07-24T07:00:28Z"
-  },
-  {
     "video_id": "2DZrxHpEIsk",
     "title": "\u5f9e\u706b\u7206\u5c11\u5e74\u5230\u6559\u6703\u5c0e\u5e2b\uff0c\u5b78\u6703\u5c07\u5fc3\u6bd4\u5df1\u7684\u4eba\u751f\u8f49\u8b8a\uff5c\u5433\u601d\u6d69 Stephen Ng | TBTH S2 EP3",
     "published_at": "2025-07-24T07:00:05Z"
@@ -1100,9 +1085,24 @@
     "published_at": "2025-04-18T18:51:45Z"
   },
   {
-    "video_id": "xzObMJP7M9s",
-    "title": "\u5341\u5e74\u524d\u64e6\u80a9\u800c\u904e \u5341\u5e74\u5f8c\u7d42\u65bc\u76f8\u8a8d\uff5cCrystal Kwan \u9996\u64ad\u9810\u544a",
-    "published_at": "2026-06-12T04:28:14Z"
+    "video_id": "mtTkqXMKIzo",
+    "title": "#TBTH\uff5c\u9ec3\u6587\u541b\u8001\u5e2b Teaser 2",
+    "published_at": "2026-06-17T04:34:48Z"
+  },
+  {
+    "video_id": "9Y6lW52AVNw",
+    "title": "#TBTH\uff5c\u9ec3\u6587\u541b\u8001\u5e2b Teaser 1",
+    "published_at": "2026-06-17T04:29:36Z"
+  },
+  {
+    "video_id": "c_r3eHzv3nc",
+    "title": "\u6295\u5165\u6210\u4eba\u8db3\u7403\u8a13\u7df4\u73ed \u71b1\u611b\u8e22\u6ce2\u66f4\u4eab\u53d7\u8207\u6470\u53cb\u5011\u65c5\u904a| \u99f1\u5f65\u9716 Eric Lok | TBTH S5 EP6",
+    "published_at": "2026-02-08T22:42:12Z"
+  },
+  {
+    "video_id": "OCxYRTq2lZg",
+    "title": "#TBTH | \u66f9\u60e0\u5091 teaser",
+    "published_at": "2025-12-10T18:27:01Z"
   },
   {
     "video_id": "S9Hmn7nr4Yw",
@@ -1115,8 +1115,18 @@
     "published_at": "2025-12-01T00:44:14Z"
   },
   {
+    "video_id": "TZSFUE-qSqo",
+    "title": "Big Tech \u7cbe\u82f1\u5982\u4f55\u5e73\u8861\u500b\u4eba\u4e3b\u7fa9\u8207\u5718\u968a\u7cbe\u795e \u7d30\u8ac7\u7531\u9999\u6e2f\u5230\u77fd\u8c37\u7684\u7d93\u6b74| \u9ec3\u5b89\u8389 Janice Wong | TBTH S4 EP2",
+    "published_at": "2025-11-23T02:46:38Z"
+  },
+  {
     "video_id": "SGqZIlp7u9I",
     "title": "\u90a3\u4e9b\u5e74\u6211\u5011\u4e00\u8d77\uff08\u88ab\u5979\uff09\u6253\u904e\u7684\u5973\u5b69| \u9ec3\u51f1\u5be7 Helen Wong \ud83e\uddad |  TBTH S2 Ep2",
     "published_at": "2025-07-10T19:58:55Z"
+  },
+  {
+    "video_id": "VNFPxrwiyTs",
+    "title": "\u540c\u73ed\u540c\u5b78 - \u9ad8\u6069 teaser",
+    "published_at": "2025-06-26T21:20:41Z"
   }
 ]
