@@ -1,5 +1,25 @@
 [
   {
+    "video_id": "mI5e7z0z8Qc",
+    "title": "\u97f3\u6a02\u540c\u7c43\u7403\uff0c\u539f\u4f86\u53ef\u4ee5\u8b1b\u5230\u540c\u4e00\u6a23\u5622\uff1f\uff5cTBTH \u9996\u6b212\u5c0d1",
+    "published_at": "2026-09-09T05:34:51Z"
+  },
+  {
+    "video_id": "cetZBjTmz3k",
+    "title": "Alex Cheng P2 rev2",
+    "published_at": "2026-09-08T16:26:18Z"
+  },
+  {
+    "video_id": "oLM0Sfmc7NQ",
+    "title": "Alex Cheng P1 rev2",
+    "published_at": "2026-09-08T16:23:58Z"
+  },
+  {
+    "video_id": "tPmFI1qgRZ4",
+    "title": "SPCC \u6559\u8b58\u6211\u8ffd\u6c42\u5353\u8d8a\uff0c\u4f46\u6211\u5f8c\u4f86\u8981\u5b78\u8b58\u300c\u4e0d\u5b8c\u7f8e\u300d\uff5c\u8881\u4f69\u6b23 Joyce Yuen (\u4e0a\u96c6)\uff5cTBTH \u540c\u73ed\u540c\u5b78 S8 EP9",
+    "published_at": "2026-09-08T14:00:06Z"
+  },
+  {
     "video_id": "OvU6yD3lgJs",
     "title": "Alex Cheng P2 rev1",
     "published_at": "2026-09-07T07:11:28Z"
@@ -8,16 +28,6 @@
     "video_id": "h53J66jBsmc",
     "title": "Alex Cheng P1 rev1",
     "published_at": "2026-09-07T06:45:53Z"
-  },
-  {
-    "video_id": "aDZCFose2DQ",
-    "title": "Geoffrey Ko Part 2 rev4",
-    "published_at": "2026-09-04T17:50:05Z"
-  },
-  {
-    "video_id": "plhN-TUw9MA",
-    "title": "Geoffrey Ko Part 1 rev4",
-    "published_at": "2026-09-04T17:44:16Z"
   },
   {
     "video_id": "0UT53YHr9vo",
@@ -58,11 +68,6 @@
     "video_id": "aQ9SlhSsHys",
     "title": "\u505a\u5481\u591a\u5622\uff0c\u7a76\u7adf\u70ba\u5497\u4e5c\uff1f\uff5c\u8881\u4f69\u6b23 Joyce Yuen (\u4e0b\u96c6)\uff5cTBTH \u540c\u73ed\u540c\u5b78 S8 EP10",
     "published_at": "2026-08-27T17:27:04Z"
-  },
-  {
-    "video_id": "tPmFI1qgRZ4",
-    "title": "SPCC \u6559\u8b58\u6211\u8ffd\u6c42\u5353\u8d8a\uff0c\u4f46\u6211\u5f8c\u4f86\u8981\u5b78\u8b58\u300c\u4e0d\u5b8c\u7f8e\u300d\uff5c\u8881\u4f69\u6b23 Joyce Yuen (\u4e0a\u96c6)\uff5cTBTH \u540c\u73ed\u540c\u5b78 S8 EP9",
-    "published_at": "2026-08-27T17:12:58Z"
   },
   {
     "video_id": "_qVf1rfALrY",
@@ -485,9 +490,9 @@
     "published_at": "2026-02-12T23:35:46Z"
   },
   {
-    "video_id": "sLRzjY_XJXs",
-    "title": "#TBTH | \u7f85\u5ead\u6b23 + \u83ab\u744b\u6b23 teaser",
-    "published_at": "2026-02-12T23:01:10Z"
+    "video_id": "c_r3eHzv3nc",
+    "title": "\u6295\u5165\u6210\u4eba\u8db3\u7403\u8a13\u7df4\u73ed \u71b1\u611b\u8e22\u6ce2\u66f4\u4eab\u53d7\u8207\u6470\u53cb\u5011\u65c5\u904a| \u99f1\u5f65\u9716 Eric Lok | TBTH S5 EP6",
+    "published_at": "2026-02-11T22:06:30Z"
   },
   {
     "video_id": "zzVZDkcV7rE",
@@ -516,7 +521,7 @@
   },
   {
     "video_id": "8ZoxyA7XANo",
-    "title": "\u5f8b\u5e2b\u6b63\u8077\u5916\u4e0d\u907a\u9918\u529b\u63a8\u5ee3\u672c\u5730\u5287\u5718 \u5ef6\u7e8c\u5c0d\u6587\u85dd\u5275\u4f5c\u7684\u71b1\u60c5| \u674e\u4ee4\u55ac Jacqueline Lee | TBTH S5 EP4",
+    "title": "\u505a\u5514\u6210\u4f5c\u5bb6\uff0c\u5922\u60f3\u53ef\u4ee5\u7528\u53e6\u4e00\u7a2e\u65b9\u5f0f\u5be6\u73fe\u55ce\uff1f| \u674e\u4ee4\u55ac Jacqueline Lee | TBTH S5 EP4",
     "published_at": "2026-01-29T22:52:30Z"
   },
   {
@@ -728,11 +733,6 @@
     "video_id": "0RnmlVgT8H4",
     "title": "\u819d\u50b7\u7c89\u788e\u5317\u4eac\u5967\u904b\u5922 \u4f46\u6191\u7740\u8cfd\u8247\u751f\u6daf\u935b\u7df4\u51fa\u7684\u6bc5\u529b\u8e8b\u8eab\u4e9e\u6d32\u5ee3\u544a\u754c40 under 40 | \u66f9\u60e0\u5091 Adrian Tso | TBTH S4 EP3",
     "published_at": "2025-12-19T02:00:02Z"
-  },
-  {
-    "video_id": "C_Ben7R7jSs",
-    "title": "Welcome to our live show!",
-    "published_at": "2025-12-14T10:06:53Z"
   },
   {
     "video_id": "BbnAkLBQ9SQ",
@@ -960,9 +960,9 @@
     "published_at": "2025-07-31T07:00:22Z"
   },
   {
-    "video_id": "ZVOdS7J60ls",
-    "title": "\u7747\u91d1\u5eb8\u5b78\u4e2d\u6587\u7684\u9b3c\u59b9\uff0c\u6210\u70ba\u52a0\u62ff\u5927\u9ad8\u4e2d\u6559\u5e2b\u517c\u8a60\u6625\u7fd2\u6b66\u8005\uff5c\u9ad8\u6069 Natalie Ko | TBTH S2 EP4",
-    "published_at": "2025-07-30T16:47:18Z"
+    "video_id": "VNFPxrwiyTs",
+    "title": "\u540c\u73ed\u540c\u5b78 - \u9ad8\u6069 teaser",
+    "published_at": "2025-07-24T07:00:28Z"
   },
   {
     "video_id": "2DZrxHpEIsk",
@@ -1095,9 +1095,14 @@
     "published_at": "2026-06-17T04:29:36Z"
   },
   {
-    "video_id": "c_r3eHzv3nc",
-    "title": "\u6295\u5165\u6210\u4eba\u8db3\u7403\u8a13\u7df4\u73ed \u71b1\u611b\u8e22\u6ce2\u66f4\u4eab\u53d7\u8207\u6470\u53cb\u5011\u65c5\u904a| \u99f1\u5f65\u9716 Eric Lok | TBTH S5 EP6",
-    "published_at": "2026-02-08T22:42:12Z"
+    "video_id": "sLRzjY_XJXs",
+    "title": "#TBTH | \u7f85\u5ead\u6b23 + \u83ab\u744b\u6b23 teaser",
+    "published_at": "2026-02-10T17:54:57Z"
+  },
+  {
+    "video_id": "C_Ben7R7jSs",
+    "title": "Welcome to our live show!",
+    "published_at": "2025-12-14T08:56:07Z"
   },
   {
     "video_id": "OCxYRTq2lZg",
@@ -1125,8 +1130,8 @@
     "published_at": "2025-07-10T19:58:55Z"
   },
   {
-    "video_id": "VNFPxrwiyTs",
-    "title": "\u540c\u73ed\u540c\u5b78 - \u9ad8\u6069 teaser",
-    "published_at": "2025-06-26T21:20:41Z"
+    "video_id": "ZVOdS7J60ls",
+    "title": "\u7747\u91d1\u5eb8\u5b78\u4e2d\u6587\u7684\u9b3c\u59b9\uff0c\u6210\u70ba\u52a0\u62ff\u5927\u9ad8\u4e2d\u6559\u5e2b\u517c\u8a60\u6625\u7fd2\u6b66\u8005\uff5c\u9ad8\u6069 Natalie Ko | TBTH S2 EP4",
+    "published_at": "2025-06-26T21:22:50Z"
   }
 ]
