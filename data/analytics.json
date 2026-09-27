@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-09-26 05:51",
+  "fetched_at": "2026-09-27 06:13",
   "videos": [
     {
       "video_id": "FW2f3cAOSVg",
@@ -13,7 +13,7 @@
       "privacy_status": "unlisted",
       "is_short": false,
       "views_24h": 0,
-      "views_72h": null,
+      "views_72h": 0,
       "views_1wk": null,
       "views_2wk": null,
       "views_1mo": null,
@@ -24,6 +24,7 @@
       "new_subscribers": 0,
       "avd_over_time": {
         "24h": 0,
+        "72h": 0,
         "lifetime": 0
       },
       "last_24h_views": 0,
@@ -41,7 +42,7 @@
       "privacy_status": "unlisted",
       "is_short": false,
       "views_24h": 0,
-      "views_72h": null,
+      "views_72h": 0,
       "views_1wk": null,
       "views_2wk": null,
       "views_1mo": null,
@@ -52,6 +53,7 @@
       "new_subscribers": 0,
       "avd_over_time": {
         "24h": 0,
+        "72h": 0,
         "lifetime": 0
       },
       "last_24h_views": 0,
@@ -61,29 +63,29 @@
       "video_id": "cetZBjTmz3k",
       "title": "\u6559\u6ce2\u8981\u6709\u7d00\u5f8b\uff0c\u6559\u4ed4\u5973\u8981\u8b58\u653e\u624b\uff1f\uff5c\u912d\u5176\u5950 Alex Cheng (\u4e0b\u96c6)\uff5cTBTH \u540c\u73ed\u540c\u5b78 S8 EP14",
       "published_at": "2026-09-23T23:00:16Z",
-      "total_views": 181,
+      "total_views": 198,
       "likes": 4,
       "comments": 0,
       "duration_sec": 641,
       "thumbnail": "https://i.ytimg.com/vi/cetZBjTmz3k/mqdefault.jpg",
       "privacy_status": "public",
       "is_short": true,
-      "views_24h": 81,
-      "views_72h": 81,
+      "views_24h": 167,
+      "views_72h": 167,
       "views_1wk": null,
       "views_2wk": null,
       "views_1mo": null,
       "views_3mo": null,
-      "views_lifetime": 81,
-      "avg_view_duration_pct": 60.4,
-      "avg_view_time_sec": 386.0,
+      "views_lifetime": 167,
+      "avg_view_duration_pct": 45.8,
+      "avg_view_time_sec": 292.8,
       "new_subscribers": 0,
       "avd_over_time": {
-        "24h": 60.4,
-        "72h": 60.4,
-        "lifetime": 60.4
+        "24h": 45.8,
+        "72h": 45.8,
+        "lifetime": 45.8
       },
-      "last_24h_views": 81,
+      "last_24h_views": 86,
       "ad_views": 0
     },
     {
@@ -94,7 +96,7 @@
       "likes": 0,
       "comments": 0,
       "duration_sec": 1353,
-      "thumbnail": "https://i9.ytimg.com/vi/G-JuwPSvAxo/mqdefault.jpg?sqp=CIi63dUG&rs=AOn4CLAwOSNBuPcVjkHRqJr0a_w0ziGNRg",
+      "thumbnail": "https://i9.ytimg.com/vi/G-JuwPSvAxo/mqdefault.jpg?sqp=CLjm4tUG&rs=AOn4CLArm5OaeOHnCrYTfYg3hVSDedY55g",
       "privacy_status": "private",
       "is_short": true,
       "views_24h": 0,
@@ -123,7 +125,7 @@
       "likes": 0,
       "comments": 0,
       "duration_sec": 1263,
-      "thumbnail": "https://i9.ytimg.com/vi/vQHwOc1uCOQ/mqdefault.jpg?sqp=CIi63dUG&rs=AOn4CLBe5H5l8ADk7J8Is_zigyk9QLaW7Q",
+      "thumbnail": "https://i9.ytimg.com/vi/vQHwOc1uCOQ/mqdefault.jpg?sqp=CLjm4tUG&rs=AOn4CLC0aGPkxASJVocheuD8AgL0S0RqOw",
       "privacy_status": "private",
       "is_short": true,
       "views_24h": 0,
@@ -148,7 +150,7 @@
       "video_id": "oLM0Sfmc7NQ",
       "title": "\u81ea\u5df1\u90fd\u66fe\u7d93\u4fc2\u9811\u76ae\u5b78\u751f\uff0c\u9ede\u6a23\u5c07\u4e00\u73ed\u9811\u76ae\u5c11\u5e74\u8b8a\u6210\u4e00\u968a\u6ce2\uff1f\uff5c\u912d\u5176\u5950 Alex Cheng (\u4e0a\u96c6)\uff5cTBTH \u540c\u73ed\u540c\u5b78 S8 EP13",
       "published_at": "2026-09-22T14:00:08Z",
-      "total_views": 308,
+      "total_views": 322,
       "likes": 11,
       "comments": 1,
       "duration_sec": 1571,
@@ -156,21 +158,21 @@
       "privacy_status": "public",
       "is_short": true,
       "views_24h": 258,
-      "views_72h": 258,
+      "views_72h": 287,
       "views_1wk": null,
       "views_2wk": null,
       "views_1mo": null,
       "views_3mo": null,
-      "views_lifetime": 258,
-      "avg_view_duration_pct": 26.1,
-      "avg_view_time_sec": 409.0,
+      "views_lifetime": 287,
+      "avg_view_duration_pct": 26.8,
+      "avg_view_time_sec": 420.3,
       "new_subscribers": 3,
       "avd_over_time": {
         "24h": 26.1,
-        "72h": 26.1,
-        "lifetime": 26.1
+        "72h": 26.8,
+        "lifetime": 26.8
       },
-      "last_24h_views": 48,
+      "last_24h_views": 29,
       "ad_views": 0
     },
     {
@@ -207,7 +209,7 @@
       "video_id": "3vowqG6qCXA",
       "title": "\u5514\u8ffd\u51a0\u8ecd\uff0c\u9ede\u6a23\u55ba\u5b78\u6821\u7acb\u8db3\uff1f\uff5c\u9ad8\u60e0\u5145 Geoffrey Ko (\u4e0b\u96c6)\uff5cTBTH \u540c\u73ed\u540c\u5b78 S8 EP12",
       "published_at": "2026-09-16T23:00:08Z",
-      "total_views": 571,
+      "total_views": 589,
       "likes": 22,
       "comments": 4,
       "duration_sec": 1444,
@@ -216,21 +218,21 @@
       "is_short": true,
       "views_24h": 299,
       "views_72h": 412,
-      "views_1wk": 539,
+      "views_1wk": 538,
       "views_2wk": null,
       "views_1mo": null,
       "views_3mo": null,
-      "views_lifetime": 547,
-      "avg_view_duration_pct": 37.7,
-      "avg_view_time_sec": 543.3,
+      "views_lifetime": 561,
+      "avg_view_duration_pct": 37.1,
+      "avg_view_time_sec": 535.0,
       "new_subscribers": 2,
       "avd_over_time": {
         "24h": 36.0,
         "72h": 37.3,
-        "1wk": 37.6,
-        "lifetime": 37.7
+        "1wk": 37.7,
+        "lifetime": 37.1
       },
-      "last_24h_views": 8,
+      "last_24h_views": 15,
       "ad_views": 0
     },
     {
@@ -267,7 +269,7 @@
       "video_id": "No501RqjaFI",
       "title": "\u5e7e\u6b21\u96e2\u958b\uff0c\u53c8\u5e7e\u6b21\u56de\u4f86\uff1a\u9ad8\u60e0\u5145\u9ede\u89e3\u7e3d\u4fc2\u8fd4\u5230\u8056\u4fdd\u7f85\uff1f\uff5c\u9ad8\u60e0\u5145 Geoffrey Ko (\u4e0a\u96c6)\uff5cTBTH \u540c\u73ed\u540c\u5b78 S8 EP11",
       "published_at": "2026-09-15T14:00:06Z",
-      "total_views": 1013,
+      "total_views": 1049,
       "likes": 28,
       "comments": 5,
       "duration_sec": 1408,
@@ -280,24 +282,24 @@
       "views_2wk": null,
       "views_1mo": null,
       "views_3mo": null,
-      "views_lifetime": 946,
-      "avg_view_duration_pct": 28.7,
-      "avg_view_time_sec": 403.7,
+      "views_lifetime": 954,
+      "avg_view_duration_pct": 28.5,
+      "avg_view_time_sec": 400.7,
       "new_subscribers": 10,
       "avd_over_time": {
         "24h": 30.9,
         "72h": 29.3,
         "1wk": 28.9,
-        "lifetime": 28.7
+        "lifetime": 28.5
       },
-      "last_24h_views": 5,
+      "last_24h_views": 8,
       "ad_views": 0
     },
     {
       "video_id": "mI5e7z0z8Qc",
       "title": "\u97f3\u6a02\u540c\u7c43\u7403\uff0c\u539f\u4f86\u53ef\u4ee5\u8b1b\u5230\u540c\u4e00\u6a23\u5622\uff1f\uff5cTBTH \u9996\u6b212\u5c0d1",
       "published_at": "2026-09-11T23:00:12Z",
-      "total_views": 103,
+      "total_views": 108,
       "likes": 0,
       "comments": 0,
       "duration_sec": 65,
@@ -307,21 +309,21 @@
       "views_24h": 31,
       "views_72h": 36,
       "views_1wk": 65,
-      "views_2wk": 95,
-      "avg_view_duration_pct": 67.6,
-      "avg_view_time_sec": 43.2,
+      "views_2wk": 98,
+      "avg_view_duration_pct": 66.1,
+      "avg_view_time_sec": 42.3,
       "new_subscribers": 0,
       "views_1mo": null,
       "views_3mo": null,
-      "views_lifetime": 95,
+      "views_lifetime": 98,
       "avd_over_time": {
         "24h": 57.0,
         "72h": 62.8,
         "1wk": 68.9,
-        "2wk": 67.6,
-        "lifetime": 67.6
+        "2wk": 66.1,
+        "lifetime": 66.1
       },
-      "last_24h_views": 5,
+      "last_24h_views": 3,
       "ad_views": 0
     },
     {
@@ -375,13 +377,13 @@
       "new_subscribers": 0,
       "views_1mo": null,
       "views_3mo": null,
-      "views_lifetime": 122,
+      "views_lifetime": 123,
       "avd_over_time": {
         "24h": 33.9,
         "72h": 37.3,
         "1wk": 37.8,
         "2wk": 33.8,
-        "lifetime": 33.5
+        "lifetime": 33.2
       },
       "last_24h_views": 1,
       "ad_views": 0
@@ -414,7 +416,7 @@
         "2wk": 38.0,
         "lifetime": 37.4
       },
-      "last_24h_views": 1,
+      "last_24h_views": 0,
       "ad_views": 0
     },
     {
@@ -507,14 +509,14 @@
         "2wk": 32.9,
         "lifetime": 38.0
       },
-      "last_24h_views": 5,
+      "last_24h_views": 0,
       "ad_views": 0
     },
     {
       "video_id": "za8drZV2SSg",
       "title": "\u8001\u5e2b\u70ba\u300c\u6700\u5dee\u5b78\u751f\u300d\u505a\u5605\u4e00\u4ef6\u4e8b\uff0c\u5f9e\u4f86\u5187\u4eba\u77e5\u9053 \uff5c\u5289\u4fca\u5091 Jackie Lau (\u4e0a\u96c6)\uff5cTBTH \u540c\u73ed\u540c\u5b78 S8 EP7",
       "published_at": "2026-09-01T14:00:06Z",
-      "total_views": 370,
+      "total_views": 372,
       "likes": 8,
       "comments": 1,
       "duration_sec": 907,
@@ -530,7 +532,7 @@
       "new_subscribers": 1,
       "views_1mo": null,
       "views_3mo": null,
-      "views_lifetime": 367,
+      "views_lifetime": 368,
       "avd_over_time": {
         "24h": 42.3,
         "72h": 42.7,
@@ -538,7 +540,7 @@
         "2wk": 37.1,
         "lifetime": 35.6
       },
-      "last_24h_views": 3,
+      "last_24h_views": 1,
       "ad_views": 0
     },
     {
@@ -559,7 +561,7 @@
       "avg_view_duration_pct": 35.6,
       "avg_view_time_sec": 306.0,
       "new_subscribers": 0,
-      "views_1mo": null,
+      "views_1mo": 3,
       "views_3mo": null,
       "views_lifetime": 3,
       "avd_over_time": {
@@ -567,6 +569,7 @@
         "72h": 35.6,
         "1wk": 35.6,
         "2wk": 35.6,
+        "1mo": 35.6,
         "lifetime": 35.6
       },
       "last_24h_views": 0,
@@ -590,7 +593,7 @@
       "avg_view_duration_pct": 99.4,
       "avg_view_time_sec": 1070.0,
       "new_subscribers": 0,
-      "views_1mo": null,
+      "views_1mo": 2,
       "views_3mo": null,
       "views_lifetime": 2,
       "avd_over_time": {
@@ -598,6 +601,7 @@
         "72h": 99.4,
         "1wk": 99.4,
         "2wk": 99.4,
+        "1mo": 99.4,
         "lifetime": 99.4
       },
       "last_24h_views": 0,
@@ -607,7 +611,7 @@
       "video_id": "en9wKF4832Y",
       "title": "\u597d\u5b78\u751f\u4fc2\u64cd\u7df4\u51fa\u569f\uff0c\u5b9a\u4fc2\u300c\u81ea\u7531\u300d\u4ffe\u8fd4\u4f62\u54cb\uff1f\uff5cErica (\u4e0b\u96c6)\uff5cTBTH \u540c\u73ed\u540c\u5b78 S8 EP6",
       "published_at": "2026-08-28T08:00:08Z",
-      "total_views": 373,
+      "total_views": 374,
       "likes": 8,
       "comments": 4,
       "duration_sec": 971,
@@ -621,18 +625,18 @@
       "avg_view_duration_pct": 32.6,
       "avg_view_time_sec": 316.3,
       "new_subscribers": 3,
-      "views_1mo": 364,
+      "views_1mo": 367,
       "views_3mo": null,
-      "views_lifetime": 364,
+      "views_lifetime": 367,
       "avd_over_time": {
         "24h": 32.7,
         "72h": 31.3,
         "1wk": 30.8,
         "2wk": 32.6,
-        "1mo": 33.7,
-        "lifetime": 33.7
+        "1mo": 33.8,
+        "lifetime": 33.8
       },
-      "last_24h_views": 4,
+      "last_24h_views": 3,
       "ad_views": 0
     },
     {
@@ -783,23 +787,23 @@
       "new_subscribers": 2,
       "views_1mo": 517,
       "views_3mo": null,
-      "views_lifetime": 517,
+      "views_lifetime": 520,
       "avd_over_time": {
         "24h": 32.1,
         "72h": 30.9,
         "1wk": 27.1,
         "2wk": 26.4,
         "1mo": 27.3,
-        "lifetime": 27.3
+        "lifetime": 27.2
       },
-      "last_24h_views": 8,
+      "last_24h_views": 3,
       "ad_views": 0
     },
     {
       "video_id": "tQ7Lg69mNRk",
       "title": "\u5f9e\u6572\u64ca\u6a02\u624b\u5230\u8001\u5e2b\uff0c\u5979\u5982\u4f55\u627e\u5230\u81ea\u5df1\u7684\u65b9\u5411\uff1f\uff5c\u962e\u66fc\u9716 Lauren Yuen (\u4e0b\u96c6)\uff5cTBTH \u540c\u73ed\u540c\u5b78 S8 EP4",
       "published_at": "2026-08-19T23:00:36Z",
-      "total_views": 152,
+      "total_views": 153,
       "likes": 4,
       "comments": 0,
       "duration_sec": 928,
@@ -815,14 +819,14 @@
       "new_subscribers": 0,
       "views_1mo": 149,
       "views_3mo": null,
-      "views_lifetime": 151,
+      "views_lifetime": 152,
       "avd_over_time": {
         "24h": 29.3,
         "72h": 29.5,
         "1wk": 30.3,
         "2wk": 29.2,
         "1mo": 33.4,
-        "lifetime": 33.6
+        "lifetime": 33.4
       },
       "last_24h_views": 1,
       "ad_views": 0
@@ -831,7 +835,7 @@
       "video_id": "NyfrSxRwi2A",
       "title": "\u4e00\u6b21\u5927\u904e\uff0c\u80cc\u5f8c\u539f\u4f86\u6709\u4e00\u6bb5\u50b7\u5fc3\u6545\u4e8b\uff5c\u962e\u66fc\u9716 Lauren Yuen (\u4e0a\u96c6)\uff5cTBTH \u540c\u73ed\u540c\u5b78 S8 EP3",
       "published_at": "2026-08-18T14:00:06Z",
-      "total_views": 200,
+      "total_views": 201,
       "likes": 11,
       "comments": 0,
       "duration_sec": 887,
@@ -847,14 +851,14 @@
       "new_subscribers": 0,
       "views_1mo": 186,
       "views_3mo": null,
-      "views_lifetime": 196,
+      "views_lifetime": 197,
       "avd_over_time": {
         "24h": 35.8,
         "72h": 34.3,
         "1wk": 32.9,
         "2wk": 31.4,
         "1mo": 32.2,
-        "lifetime": 32.0
+        "lifetime": 32.3
       },
       "last_24h_views": 1,
       "ad_views": 0
@@ -863,7 +867,7 @@
       "video_id": "UjeuElrf2do",
       "title": "\u5e6b TBTH \u53bb\u5230 4,000 \u5c0f\u6642\uff01\u6211\u54cb\u9700\u8981\u4f60\u5605\u5e6b\u5fd9\uff5cTBTH \u540c\u73ed\u540c\u5b78",
       "published_at": "2026-08-17T07:00:08Z",
-      "total_views": 66,
+      "total_views": 67,
       "likes": 5,
       "comments": 0,
       "duration_sec": 106,
@@ -927,7 +931,7 @@
       "video_id": "miYzqCvSreg",
       "title": "\u524d\u8056\u4fdd\u7f85\u7537\u5973\u4e2d\u5b78\u9644\u5c6c\u5c0f\u5b78\u6821\u9577\u8ac7\u6536\u751f\u3001DSS\u6539\u9769\u8207\u6559\u80b2\u7406\u5ff5\uff5c\u674e\u7aef\u5100\u6821\u9577 \uff08\u4e0b\u96c6\uff09 | TBTH S8 EP2",
       "published_at": "2026-08-12T23:00:04Z",
-      "total_views": 898,
+      "total_views": 906,
       "likes": 20,
       "comments": 0,
       "duration_sec": 1395,
@@ -943,16 +947,16 @@
       "new_subscribers": 4,
       "views_1mo": 700,
       "views_3mo": null,
-      "views_lifetime": 875,
+      "views_lifetime": 891,
       "avd_over_time": {
         "24h": 34.2,
         "72h": 33.0,
         "1wk": 30.9,
         "2wk": 30.6,
         "1mo": 31.1,
-        "lifetime": 29.5
+        "lifetime": 29.0
       },
-      "last_24h_views": 7,
+      "last_24h_views": 16,
       "ad_views": 0
     },
     {
@@ -991,7 +995,7 @@
       "video_id": "h5hQvUmvriU",
       "title": "\u76f4\u8cc7\u5f8c\u771f\u7684\u8b8a\u4e86\u55ce\uff1f\uff5c\u674e\u7aef\u5100\u6821\u9577\u89aa\u8ac7\u8056\u4fdd\u7f85\u6539\u9769\u771f\u76f8\uff5cTBTH \u540c\u73ed\u540c\u5b78 S8 EP1",
       "published_at": "2026-08-11T14:00:06Z",
-      "total_views": 1024,
+      "total_views": 1027,
       "likes": 18,
       "comments": 0,
       "duration_sec": 1714,
@@ -1007,16 +1011,16 @@
       "new_subscribers": 3,
       "views_1mo": 922,
       "views_3mo": null,
-      "views_lifetime": 1015,
+      "views_lifetime": 1022,
       "avd_over_time": {
         "24h": 28.8,
         "72h": 27.6,
         "1wk": 27.5,
         "2wk": 26.7,
         "1mo": 26.5,
-        "lifetime": 26.1
+        "lifetime": 26.2
       },
-      "last_24h_views": 4,
+      "last_24h_views": 7,
       "ad_views": 0
     },
     {
@@ -1039,16 +1043,16 @@
       "new_subscribers": 1,
       "views_1mo": 147,
       "views_3mo": null,
-      "views_lifetime": 170,
+      "views_lifetime": 171,
       "avd_over_time": {
         "24h": 52.5,
         "72h": 46.8,
         "1wk": 40.3,
         "2wk": 38.1,
         "1mo": 40.0,
-        "lifetime": 41.0
+        "lifetime": 41.4
       },
-      "last_24h_views": 2,
+      "last_24h_views": 1,
       "ad_views": 0
     },
     {
@@ -1071,16 +1075,16 @@
       "new_subscribers": 1,
       "views_1mo": 218,
       "views_3mo": null,
-      "views_lifetime": 250,
+      "views_lifetime": 251,
       "avd_over_time": {
         "24h": 36.7,
         "72h": 32.8,
         "1wk": 34.4,
         "2wk": 32.7,
         "1mo": 32.3,
-        "lifetime": 34.4
+        "lifetime": 34.3
       },
-      "last_24h_views": 2,
+      "last_24h_views": 1,
       "ad_views": 0
     },
     {
@@ -1103,16 +1107,16 @@
       "new_subscribers": 0,
       "views_1mo": 173,
       "views_3mo": null,
-      "views_lifetime": 181,
+      "views_lifetime": 182,
       "avd_over_time": {
         "24h": 75.5,
         "72h": 71.9,
         "1wk": 52.2,
         "2wk": 52.6,
         "1mo": 53.2,
-        "lifetime": 53.0
+        "lifetime": 52.8
       },
-      "last_24h_views": 0,
+      "last_24h_views": 1,
       "ad_views": 0
     },
     {
@@ -1135,16 +1139,16 @@
       "new_subscribers": 0,
       "views_1mo": 245,
       "views_3mo": null,
-      "views_lifetime": 270,
+      "views_lifetime": 271,
       "avd_over_time": {
         "24h": 37.8,
         "72h": 36.8,
         "1wk": 33.0,
         "2wk": 30.4,
         "1mo": 27.4,
-        "lifetime": 28.2
+        "lifetime": 28.5
       },
-      "last_24h_views": 0,
+      "last_24h_views": 1,
       "ad_views": 0
     },
     {
@@ -1176,7 +1180,7 @@
         "1mo": 32.6,
         "lifetime": 34.1
       },
-      "last_24h_views": 4,
+      "last_24h_views": 0,
       "ad_views": 0
     },
     {
@@ -1295,23 +1299,23 @@
       "new_subscribers": 1,
       "views_1mo": 64,
       "views_3mo": null,
-      "views_lifetime": 71,
+      "views_lifetime": 73,
       "avd_over_time": {
         "24h": 10.2,
         "72h": 14.0,
         "1wk": 12.2,
         "2wk": 16.3,
         "1mo": 16.6,
-        "lifetime": 17.8
+        "lifetime": 20.1
       },
-      "last_24h_views": 0,
+      "last_24h_views": 2,
       "ad_views": 0
     },
     {
       "video_id": "ZZzY32xlcQs",
       "title": "\u7531\u7c43\u7403\u5834\u8d70\u51fa\u53bb\uff0c\u91cd\u65b0\u6435\u5230\u81ea\u5df1\uff5c\u674e\u986f\u90a6 Nick Lee \uff08\u4e0a\u96c6\uff09 | TBTH S7 EP13",
       "published_at": "2026-07-14T14:00:06Z",
-      "total_views": 198,
+      "total_views": 200,
       "likes": 8,
       "comments": 0,
       "duration_sec": 1048,
@@ -1336,7 +1340,7 @@
         "1mo": 26.1,
         "lifetime": 26.2
       },
-      "last_24h_views": 1,
+      "last_24h_views": 0,
       "ad_views": 0
     },
     {
@@ -1344,7 +1348,7 @@
       "title": "Nick Bong Lee Reel 1   SD 480p",
       "published_at": "2026-07-11T22:00:26Z",
       "total_views": 47,
-      "likes": 1,
+      "likes": 2,
       "comments": 0,
       "duration_sec": 60,
       "thumbnail": "https://i.ytimg.com/vi/5E7V_AQGFpo/mqdefault.jpg",
@@ -1359,16 +1363,16 @@
       "new_subscribers": 0,
       "views_1mo": 39,
       "views_3mo": null,
-      "views_lifetime": 45,
+      "views_lifetime": 47,
       "avd_over_time": {
         "24h": 54.0,
         "72h": 51.6,
         "1wk": 47.4,
         "2wk": 46.2,
         "1mo": 46.2,
-        "lifetime": 42.0
+        "lifetime": 40.2
       },
-      "last_24h_views": 0,
+      "last_24h_views": 2,
       "ad_views": 0
     },
     {
@@ -1400,7 +1404,7 @@
         "1mo": 38.0,
         "lifetime": 38.4
       },
-      "last_24h_views": 3,
+      "last_24h_views": 0,
       "ad_views": 0
     },
     {
@@ -1464,7 +1468,7 @@
         "1mo": 44.1,
         "lifetime": 44.0
       },
-      "last_24h_views": 2,
+      "last_24h_views": 0,
       "ad_views": 0
     },
     {
@@ -1528,7 +1532,7 @@
         "1mo": 52.5,
         "lifetime": 52.0
       },
-      "last_24h_views": 1,
+      "last_24h_views": 0,
       "ad_views": 0
     },
     {
@@ -1560,7 +1564,7 @@
         "1mo": 44.9,
         "lifetime": 43.2
       },
-      "last_24h_views": 1,
+      "last_24h_views": 0,
       "ad_views": 0
     },
     {
@@ -1614,7 +1618,7 @@
       "avg_view_time_sec": 271.1,
       "new_subscribers": 1,
       "views_1mo": 135,
-      "views_3mo": null,
+      "views_3mo": 149,
       "views_lifetime": 149,
       "avd_over_time": {
         "24h": 36.8,
@@ -1622,6 +1626,7 @@
         "1wk": 33.6,
         "2wk": 34.9,
         "1mo": 36.3,
+        "3mo": 38.0,
         "lifetime": 38.0
       },
       "last_24h_views": 0,
@@ -1679,18 +1684,18 @@
       "avg_view_time_sec": 39.8,
       "new_subscribers": 0,
       "views_1mo": 41,
-      "views_3mo": 52,
-      "views_lifetime": 52,
+      "views_3mo": 55,
+      "views_lifetime": 55,
       "avd_over_time": {
         "24h": 52.4,
         "72h": 49.4,
         "1wk": 49.6,
         "2wk": 48.4,
         "1mo": 47.3,
-        "3mo": 37.3,
-        "lifetime": 37.3
+        "3mo": 35.3,
+        "lifetime": 35.3
       },
-      "last_24h_views": 0,
+      "last_24h_views": 3,
       "ad_views": 0
     },
     {
@@ -1713,7 +1718,7 @@
       "new_subscribers": 0,
       "views_1mo": 44,
       "views_3mo": 53,
-      "views_lifetime": 53,
+      "views_lifetime": 54,
       "avd_over_time": {
         "24h": 41.9,
         "72h": 40.7,
@@ -1721,9 +1726,9 @@
         "2wk": 33.7,
         "1mo": 33.7,
         "3mo": 28.0,
-        "lifetime": 28.0
+        "lifetime": 27.4
       },
-      "last_24h_views": 0,
+      "last_24h_views": 1,
       "ad_views": 0
     },
     {
@@ -1789,7 +1794,7 @@
         "3mo": 31.6,
         "lifetime": 31.2
       },
-      "last_24h_views": 2,
+      "last_24h_views": 0,
       "ad_views": 0
     },
     {
@@ -1829,7 +1834,7 @@
       "video_id": "FGsIIEh8U6E",
       "title": "#TBTH\uff5c\u95dc\u5e57\u76c8 Teaser 1",
       "published_at": "2026-06-19T07:00:31Z",
-      "total_views": 20,
+      "total_views": 21,
       "likes": 0,
       "comments": 0,
       "duration_sec": 75,
@@ -1878,7 +1883,7 @@
       "new_subscribers": 3,
       "views_1mo": 237,
       "views_3mo": 283,
-      "views_lifetime": 290,
+      "views_lifetime": 291,
       "avd_over_time": {
         "24h": 40.8,
         "72h": 40.3,
@@ -1886,9 +1891,9 @@
         "2wk": 38.2,
         "1mo": 40.1,
         "3mo": 39.6,
-        "lifetime": 39.5
+        "lifetime": 39.7
       },
-      "last_24h_views": 2,
+      "last_24h_views": 1,
       "ad_views": 0
     },
     {
@@ -1961,7 +1966,7 @@
       "video_id": "afwOZHfK1Jw",
       "title": "\u56de\u61b6\u57f7\u6559\u6b72\u6708\uff1a\u7de3\u7e6b\u8056\u4fdd\u7f85 \u59cb\u65bc\u4e00\u500b\u6e05\u6668\u7684\u4f86\u96fb\uff5c\u9ec3\u6587\u541b\u8001\u5e2b Dorcas Wong\uff08\u4e0a\u96c6\uff09|  TBTH S7 EP 5",
       "published_at": "2026-06-16T14:00:05Z",
-      "total_views": 656,
+      "total_views": 657,
       "likes": 17,
       "comments": 5,
       "duration_sec": 823,
@@ -1987,7 +1992,7 @@
         "3mo": 30.1,
         "lifetime": 30.2
       },
-      "last_24h_views": 1,
+      "last_24h_views": 0,
       "ad_views": 0
     },
     {
@@ -2060,7 +2065,7 @@
       "video_id": "RVhtCeMdJFI",
       "title": "\u96f6\u916c\u52de\u4e0a\u771f\u4ebaShow\uff1f\u5e55\u5f8c\u88fd\u4f5c\u5168\u516c\u958b\uff5c\u6c88\u667a\u8f1d Jeffrey Sham\uff08\u4e0a\u96c6\uff09| TBTH S7 EP3",
       "published_at": "2026-06-10T14:00:06Z",
-      "total_views": 465,
+      "total_views": 467,
       "likes": 18,
       "comments": 0,
       "duration_sec": 692,
@@ -2086,7 +2091,7 @@
         "3mo": 40.5,
         "lifetime": 40.6
       },
-      "last_24h_views": 1,
+      "last_24h_views": 0,
       "ad_views": 0
     },
     {
@@ -2159,8 +2164,8 @@
       "video_id": "amwJy9Ga1kM",
       "title": "\u5927\u5f8b\u5e2b\u70ba\u4f55\u96f6\u916c\u52de\u4e0a\u771f\u4ebaShow\uff1f\uff5c\u6c88\u667a\u8f1d Jeffrey Sham \u9996\u64ad\u9810\u544a",
       "published_at": "2026-06-04T22:30:08Z",
-      "total_views": 856,
-      "likes": 6,
+      "total_views": 1058,
+      "likes": 8,
       "comments": 0,
       "duration_sec": 53,
       "thumbnail": "https://i.ytimg.com/vi/amwJy9Ga1kM/mqdefault.jpg",
@@ -2175,7 +2180,7 @@
       "new_subscribers": 2,
       "views_1mo": 192,
       "views_3mo": 238,
-      "views_lifetime": 253,
+      "views_lifetime": 708,
       "avd_over_time": {
         "24h": 73.2,
         "72h": 74.1,
@@ -2183,10 +2188,10 @@
         "2wk": 69.7,
         "1mo": 70.1,
         "3mo": 70.9,
-        "lifetime": 70.0
+        "lifetime": 82.8
       },
-      "last_24h_views": 0,
-      "ad_views": 0
+      "last_24h_views": 455,
+      "ad_views": 455
     },
     {
       "video_id": "wvOD2E97OAM",
@@ -2208,7 +2213,7 @@
       "new_subscribers": 0,
       "views_1mo": 38,
       "views_3mo": 42,
-      "views_lifetime": 47,
+      "views_lifetime": 48,
       "avd_over_time": {
         "24h": 90.9,
         "72h": 96.1,
@@ -2216,9 +2221,9 @@
         "2wk": 91.5,
         "1mo": 86.7,
         "3mo": 78.9,
-        "lifetime": 72.6
+        "lifetime": 71.1
       },
-      "last_24h_views": 0,
+      "last_24h_views": 1,
       "ad_views": 0
     },
     {
@@ -2307,7 +2312,7 @@
       "new_subscribers": 0,
       "views_1mo": 137,
       "views_3mo": 149,
-      "views_lifetime": 153,
+      "views_lifetime": 154,
       "avd_over_time": {
         "24h": 21.5,
         "72h": 23.5,
@@ -2315,9 +2320,9 @@
         "2wk": 18.8,
         "1mo": 18.1,
         "3mo": 19.7,
-        "lifetime": 19.3
+        "lifetime": 19.9
       },
-      "last_24h_views": 0,
+      "last_24h_views": 1,
       "ad_views": 0
     },
     {
@@ -2439,7 +2444,7 @@
       "new_subscribers": 0,
       "views_1mo": 40,
       "views_3mo": 46,
-      "views_lifetime": 52,
+      "views_lifetime": 53,
       "avd_over_time": {
         "24h": 1.4,
         "72h": 3.2,
@@ -2447,9 +2452,9 @@
         "2wk": 11.8,
         "1mo": 15.0,
         "3mo": 15.9,
-        "lifetime": 21.7
+        "lifetime": 23.2
       },
-      "last_24h_views": 0,
+      "last_24h_views": 1,
       "ad_views": 0
     },
     {
@@ -2637,7 +2642,7 @@
       "new_subscribers": 0,
       "views_1mo": 235,
       "views_3mo": 269,
-      "views_lifetime": 300,
+      "views_lifetime": 301,
       "avd_over_time": {
         "24h": 32.1,
         "72h": 30.5,
@@ -2645,7 +2650,7 @@
         "2wk": 27.0,
         "1mo": 26.5,
         "3mo": 29.1,
-        "lifetime": 29.3
+        "lifetime": 29.5
       },
       "last_24h_views": 1,
       "ad_views": 0
@@ -2670,7 +2675,7 @@
       "new_subscribers": 5,
       "views_1mo": 817,
       "views_3mo": 892,
-      "views_lifetime": 967,
+      "views_lifetime": 969,
       "avd_over_time": {
         "24h": 33.0,
         "72h": 31.2,
@@ -2678,9 +2683,9 @@
         "2wk": 31.1,
         "1mo": 30.7,
         "3mo": 30.5,
-        "lifetime": 29.0
+        "lifetime": 29.1
       },
-      "last_24h_views": 1,
+      "last_24h_views": 2,
       "ad_views": 0
     },
     {
@@ -2736,7 +2741,7 @@
       "new_subscribers": 18,
       "views_1mo": 2164,
       "views_3mo": 2329,
-      "views_lifetime": 2444,
+      "views_lifetime": 2446,
       "avd_over_time": {
         "24h": 34.5,
         "72h": 29.2,
@@ -2744,17 +2749,17 @@
         "2wk": 27.4,
         "1mo": 27.5,
         "3mo": 27.6,
-        "lifetime": 27.8
+        "lifetime": 27.7
       },
-      "last_24h_views": 1,
+      "last_24h_views": 2,
       "ad_views": 0
     },
     {
       "video_id": "UsGRKQjDPWs",
       "title": "\u5f9e\u7acb\u5fd7\u7576\u8001\u5e2b\u5230\u611f\u4eba\u6559\u80b2\u6545\u4e8b | \u6881\u9e97\u7f8e Lucilla Leung \u524d\u6821\u9577\u5c08\u8a2a (\u4e0a\u96c6) | TBTH S6 EP3",
       "published_at": "2026-04-15T14:00:06Z",
-      "total_views": 3765,
-      "likes": 77,
+      "total_views": 3767,
+      "likes": 78,
       "comments": 11,
       "duration_sec": 1030,
       "thumbnail": "https://i.ytimg.com/vi/UsGRKQjDPWs/mqdefault.jpg",
@@ -2769,7 +2774,7 @@
       "new_subscribers": 37,
       "views_1mo": 3171,
       "views_3mo": 3521,
-      "views_lifetime": 3746,
+      "views_lifetime": 3750,
       "avd_over_time": {
         "24h": 27.1,
         "72h": 26.1,
@@ -2779,14 +2784,14 @@
         "3mo": 23.8,
         "lifetime": 23.8
       },
-      "last_24h_views": 1,
+      "last_24h_views": 4,
       "ad_views": 0
     },
     {
       "video_id": "Bf2zbDZfnk8",
       "title": "#TBTH | \u6881\u9e97\u7f8e\u6821\u9577 Teaser",
       "published_at": "2026-04-12T23:00:10Z",
-      "total_views": 188,
+      "total_views": 189,
       "likes": 1,
       "comments": 0,
       "duration_sec": 31,
@@ -2852,7 +2857,7 @@
       "video_id": "zGWouUvd1H0",
       "title": "\u8056\u4fdd\u7f85\u7684\u6559\u80b2\u7406\u5ff5\u8207\u50b3\u627f | \u6881\u9e97\u7f8e \u9996\u64ad\u9810\u544a",
       "published_at": "2026-04-06T17:26:12Z",
-      "total_views": 640,
+      "total_views": 643,
       "likes": 7,
       "comments": 1,
       "duration_sec": 41,
@@ -2868,7 +2873,7 @@
       "new_subscribers": 0,
       "views_1mo": 535,
       "views_3mo": 575,
-      "views_lifetime": 636,
+      "views_lifetime": 637,
       "avd_over_time": {
         "24h": 61.7,
         "72h": 69.9,
@@ -2878,7 +2883,7 @@
         "3mo": 74.1,
         "lifetime": 70.9
       },
-      "last_24h_views": 0,
+      "last_24h_views": 1,
       "ad_views": 0
     },
     {
@@ -3033,7 +3038,7 @@
       "new_subscribers": 3,
       "views_1mo": 724,
       "views_3mo": 795,
-      "views_lifetime": 865,
+      "views_lifetime": 866,
       "avd_over_time": {
         "24h": 16.3,
         "72h": 13.4,
@@ -3041,9 +3046,9 @@
         "2wk": 14.0,
         "1mo": 16.6,
         "3mo": 17.5,
-        "lifetime": 18.7
+        "lifetime": 18.8
       },
-      "last_24h_views": 0,
+      "last_24h_views": 1,
       "ad_views": 0
     },
     {
@@ -3076,7 +3081,7 @@
         "3mo": 164.7,
         "lifetime": 160.7
       },
-      "last_24h_views": 1,
+      "last_24h_views": 0,
       "ad_views": 0
     },
     {
@@ -3198,7 +3203,7 @@
       "new_subscribers": 1,
       "views_1mo": 260,
       "views_3mo": 348,
-      "views_lifetime": 387,
+      "views_lifetime": 388,
       "avd_over_time": {
         "24h": 33.7,
         "72h": 31.9,
@@ -3206,9 +3211,9 @@
         "2wk": 29.8,
         "1mo": 29.2,
         "3mo": 29.5,
-        "lifetime": 29.3
+        "lifetime": 29.4
       },
-      "last_24h_views": 0,
+      "last_24h_views": 1,
       "ad_views": 0
     },
     {
@@ -3561,7 +3566,7 @@
       "new_subscribers": 1,
       "views_1mo": 307,
       "views_3mo": 460,
-      "views_lifetime": 696,
+      "views_lifetime": 699,
       "avd_over_time": {
         "24h": 25.9,
         "72h": 25.6,
@@ -3571,7 +3576,7 @@
         "3mo": 20.5,
         "lifetime": 23.5
       },
-      "last_24h_views": 0,
+      "last_24h_views": 3,
       "ad_views": 0
     },
     {
@@ -3941,7 +3946,7 @@
       "video_id": "kUDAlETq28Y",
       "title": "\u7559\u73ed\u4e0d\u662f\u4eba\u751f\u4f4e\u6f6e \u8207\u540c\u5b78\u4e92\u76f8\u6276\u6301\u91cd\u65b0\u51fa\u767c | \u6d2a\u5149\u6d69 Jerry Hung | TBTH S5 EP1",
       "published_at": "2026-01-08T22:56:25Z",
-      "total_views": 238,
+      "total_views": 239,
       "likes": 8,
       "comments": 2,
       "duration_sec": 1087,
@@ -4924,7 +4929,7 @@
         "3mo": 23.3,
         "lifetime": 28.1
       },
-      "last_24h_views": 1,
+      "last_24h_views": 0,
       "ad_views": 0
     },
     {
@@ -4957,7 +4962,7 @@
         "3mo": 25.7,
         "lifetime": 35.3
       },
-      "last_24h_views": 1,
+      "last_24h_views": 0,
       "ad_views": 0
     },
     {
@@ -5122,7 +5127,7 @@
         "3mo": 86.9,
         "lifetime": 86.7
       },
-      "last_24h_views": 1,
+      "last_24h_views": 0,
       "ad_views": 0
     },
     {
@@ -5178,7 +5183,7 @@
       "new_subscribers": 17,
       "views_1mo": 5413,
       "views_3mo": 5441,
-      "views_lifetime": 5666,
+      "views_lifetime": 5668,
       "avd_over_time": {
         "24h": 15.6,
         "72h": 15.5,
@@ -5188,7 +5193,7 @@
         "3mo": 2.9,
         "lifetime": 3.7
       },
-      "last_24h_views": 0,
+      "last_24h_views": 2,
       "ad_views": 5204
     },
     {
@@ -5386,7 +5391,7 @@
         "3mo": 15.4,
         "lifetime": 18.2
       },
-      "last_24h_views": 2,
+      "last_24h_views": 0,
       "ad_views": 0
     },
     {
@@ -5624,7 +5629,7 @@
       "video_id": "MiAhBZnQcno",
       "title": "MiNT Camera \u5275\u8fa6\u4eba\uff5c\u5fa9\u523b\u5bf6\u9e97\u4f86SX-70 \u83f2\u6797\u76f8\u6a5f\u7684\u6545\u4e8b\uff5c\u4f55\u5609\u7def Gary Ho\uff5c TBTH S3 EP6",
       "published_at": "2025-10-23T11:30:31Z",
-      "total_views": 3439,
+      "total_views": 3440,
       "likes": 20,
       "comments": 6,
       "duration_sec": 1285,
@@ -5640,7 +5645,7 @@
       "new_subscribers": 13,
       "views_1mo": 3222,
       "views_3mo": 3351,
-      "views_lifetime": 3438,
+      "views_lifetime": 3439,
       "avd_over_time": {
         "24h": 14.6,
         "72h": 11.0,
@@ -5650,7 +5655,7 @@
         "3mo": 3.8,
         "lifetime": 4.3
       },
-      "last_24h_views": 0,
+      "last_24h_views": 1,
       "ad_views": 2791
     },
     {
@@ -5706,7 +5711,7 @@
       "new_subscribers": 5,
       "views_1mo": 411,
       "views_3mo": 457,
-      "views_lifetime": 691,
+      "views_lifetime": 692,
       "avd_over_time": {
         "24h": 14.0,
         "72h": 13.4,
@@ -5714,9 +5719,9 @@
         "2wk": 12.4,
         "1mo": 13.7,
         "3mo": 13.8,
-        "lifetime": 15.5
+        "lifetime": 15.7
       },
-      "last_24h_views": 0,
+      "last_24h_views": 1,
       "ad_views": 0
     },
     {
@@ -5980,7 +5985,7 @@
         "3mo": 9.9,
         "lifetime": 13.1
       },
-      "last_24h_views": 1,
+      "last_24h_views": 0,
       "ad_views": 163
     },
     {
@@ -6112,7 +6117,7 @@
         "3mo": 10.6,
         "lifetime": 14.3
       },
-      "last_24h_views": 2,
+      "last_24h_views": 0,
       "ad_views": 150
     },
     {
@@ -6508,7 +6513,7 @@
         "3mo": 25.4,
         "lifetime": 7.2
       },
-      "last_24h_views": 2,
+      "last_24h_views": 0,
       "ad_views": 1464
     },
     {
@@ -6564,7 +6569,7 @@
       "new_subscribers": 0,
       "views_1mo": 100,
       "views_3mo": 134,
-      "views_lifetime": 342,
+      "views_lifetime": 345,
       "avd_over_time": {
         "24h": 20.9,
         "72h": 21.4,
@@ -6572,9 +6577,9 @@
         "2wk": 21.7,
         "1mo": 21.3,
         "3mo": 17.8,
-        "lifetime": 23.2
+        "lifetime": 23.6
       },
-      "last_24h_views": 0,
+      "last_24h_views": 3,
       "ad_views": 0
     },
     {
@@ -6630,7 +6635,7 @@
       "new_subscribers": 1,
       "views_1mo": 169,
       "views_3mo": 201,
-      "views_lifetime": 579,
+      "views_lifetime": 581,
       "avd_over_time": {
         "24h": 23.1,
         "72h": 19.5,
@@ -6638,9 +6643,9 @@
         "2wk": 18.4,
         "1mo": 19.5,
         "3mo": 19.1,
-        "lifetime": 21.2
+        "lifetime": 21.1
       },
-      "last_24h_views": 1,
+      "last_24h_views": 2,
       "ad_views": 39
     },
     {
@@ -6696,7 +6701,7 @@
       "new_subscribers": 0,
       "views_1mo": 111,
       "views_3mo": 127,
-      "views_lifetime": 279,
+      "views_lifetime": 280,
       "avd_over_time": {
         "24h": 13.0,
         "72h": 14.0,
@@ -6704,9 +6709,9 @@
         "2wk": 16.3,
         "1mo": 16.9,
         "3mo": 16.4,
-        "lifetime": 20.2
+        "lifetime": 20.5
       },
-      "last_24h_views": 2,
+      "last_24h_views": 1,
       "ad_views": 0
     },
     {
@@ -6805,7 +6810,7 @@
         "3mo": 26.6,
         "lifetime": 29.1
       },
-      "last_24h_views": 1,
+      "last_24h_views": 0,
       "ad_views": 0
     },
     {
@@ -6828,7 +6833,7 @@
       "new_subscribers": 0,
       "views_1mo": 113,
       "views_3mo": 141,
-      "views_lifetime": 280,
+      "views_lifetime": 281,
       "avd_over_time": {
         "24h": 36.6,
         "72h": 36.2,
@@ -6836,9 +6841,9 @@
         "2wk": 31.7,
         "1mo": 29.9,
         "3mo": 27.7,
-        "lifetime": 29.8
+        "lifetime": 30.1
       },
-      "last_24h_views": 0,
+      "last_24h_views": 1,
       "ad_views": 0
     },
     {
@@ -6960,7 +6965,7 @@
       "new_subscribers": 2,
       "views_1mo": 168,
       "views_3mo": 202,
-      "views_lifetime": 313,
+      "views_lifetime": 314,
       "avd_over_time": {
         "24h": 34.7,
         "72h": 25.4,
@@ -6968,9 +6973,9 @@
         "2wk": 16.8,
         "1mo": 17.3,
         "3mo": 16.7,
-        "lifetime": 21.1
+        "lifetime": 21.3
       },
-      "last_24h_views": 0,
+      "last_24h_views": 1,
       "ad_views": 0
     },
     {
@@ -7092,7 +7097,7 @@
       "new_subscribers": 0,
       "views_1mo": 109,
       "views_3mo": 145,
-      "views_lifetime": 300,
+      "views_lifetime": 301,
       "avd_over_time": {
         "24h": 25.3,
         "72h": 24.6,
@@ -7100,9 +7105,9 @@
         "2wk": 26.4,
         "1mo": 26.8,
         "3mo": 25.5,
-        "lifetime": 25.1
+        "lifetime": 25.3
       },
-      "last_24h_views": 0,
+      "last_24h_views": 1,
       "ad_views": 0
     },
     {
@@ -7274,7 +7279,7 @@
       "video_id": "UFofUOkmYhQ",
       "title": "\u8881\u5553\u667a\u8001\u5e2b \u6700\u7d42\u9810\u544a",
       "published_at": "2026-03-02T21:42:09Z",
-      "total_views": 1318,
+      "total_views": 1324,
       "likes": 2,
       "comments": 0,
       "duration_sec": 46,
@@ -7300,7 +7305,7 @@
         "3mo": 45.7,
         "lifetime": 48.0
       },
-      "last_24h_views": 6,
+      "last_24h_views": 0,
       "ad_views": 540
     },
     {
@@ -7377,7 +7382,7 @@
       "likes": 2,
       "comments": 0,
       "duration_sec": 4236,
-      "thumbnail": "https://i9.ytimg.com/vi/C_Ben7R7jSs/mqdefault.jpg?sqp=CIi63dUG&rs=AOn4CLCSqBtcaHm_xvSIAzbElo6gZ4x12w",
+      "thumbnail": "https://i9.ytimg.com/vi/C_Ben7R7jSs/mqdefault.jpg?sqp=CLjm4tUG&rs=AOn4CLCt8gVbpni5Yibd-OfuVhP0qNJ2gQ",
       "privacy_status": "private",
       "is_short": true,
       "views_24h": 73,
@@ -7465,7 +7470,7 @@
         "3mo": 17.4,
         "lifetime": 27.9
       },
-      "last_24h_views": 1,
+      "last_24h_views": 0,
       "ad_views": 0
     },
     {
@@ -7670,7 +7675,7 @@
       "video_id": "yChX-4kX7WU",
       "title": "\u540c\u73ed\u540c\u5b78 - \u76e7\u6620\u5f64 teaser",
       "published_at": "2025-07-24T18:36:17Z",
-      "total_views": 383,
+      "total_views": 384,
       "likes": 2,
       "comments": 0,
       "duration_sec": 18,
@@ -7686,7 +7691,7 @@
       "new_subscribers": 0,
       "views_1mo": 38,
       "views_3mo": 64,
-      "views_lifetime": 381,
+      "views_lifetime": 383,
       "avd_over_time": {
         "24h": 0,
         "72h": 0,
@@ -7694,18 +7699,13 @@
         "2wk": 0,
         "1mo": 116.4,
         "3mo": 104.4,
-        "lifetime": 76.9
+        "lifetime": 76.5
       },
-      "last_24h_views": 0,
+      "last_24h_views": 2,
       "ad_views": 0
     }
   ],
   "daily_watch_hours": [
-    {
-      "date": "2025-09-26",
-      "watch_hours": 0.15,
-      "views": 113
-    },
     {
       "date": "2025-09-27",
       "watch_hours": 1.72,
@@ -9515,15 +9515,20 @@
       "date": "2026-09-23",
       "watch_hours": 22.18,
       "views": 230
+    },
+    {
+      "date": "2026-09-24",
+      "watch_hours": 19.85,
+      "views": 681
     }
   ],
   "channel_summary": {
-    "subscribers": 4075,
-    "subs_30d_change": 42,
-    "subs_prev_30d_change": 35,
-    "unique_viewers_total": 148408,
-    "unique_viewers_30d": 6148,
-    "unique_viewers_prev_30d": 4027,
+    "subscribers": 4080,
+    "subs_30d_change": 46,
+    "subs_prev_30d_change": 34,
+    "unique_viewers_total": 149089,
+    "unique_viewers_30d": 6521,
+    "unique_viewers_prev_30d": 4159,
     "viewer_metric": "views"
   }
 }
