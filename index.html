@@ -3237,7 +3237,17 @@ function renderProductionCharts() {
     });
 
     // Class year chart
-    const sortedYears = Object.entries(yearCounts).sort((a, b) => b[1] - a[1]);
+    // Chronological: Staff first, then oldest → youngest class, unparseable labels last
+    const classYearRank = y => {
+      if (/staff/i.test(y)) return -Infinity;
+      const m = String(y).match(/\d+/);
+      if (!m) return Infinity;
+      let n = parseInt(m[0], 10);
+      if (m[0].length <= 2) n += n > (new Date().getFullYear() % 100) + 10 ? 1900 : 2000;
+      return n;
+    };
+    const sortedYears = Object.entries(yearCounts).sort((a, b) =>
+      (classYearRank(a[0]) - classYearRank(b[0])) || a[0].localeCompare(b[0]));
     const yearCtx = document.getElementById('prod-classyear-chart');
     if (yearCtx._chart) yearCtx._chart.destroy();
     yearCtx._chart = new Chart(yearCtx, {
