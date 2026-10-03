@@ -1873,13 +1873,7 @@ function renderWfSummary() {
   `;
 }
 
-function renderWfProjectTable() {
-  const container = document.getElementById('wf-project-table');
-  if (!wfProjects.length) {
-    container.innerHTML = '<p style="color:var(--text3);font-size:13px;padding:20px;">No projects yet. Click "+ New Project" to create one.</p>';
-    return;
-  }
-  const today = new Date().toISOString().slice(0, 10);
+function getFilteredWfProjects() {
   let filtered = wfHideAired ? wfProjects.filter(p => getProjectStage(p.id) !== 'Aired') : [...wfProjects];
   if (wfHideDeclined) filtered = filtered.filter(p => getProjectStage(p.id) !== 'Declined');
   if (wfSeasonFilter !== 'all') {
@@ -1895,6 +1889,17 @@ function renderWfProjectTable() {
     const q = wfSearchQuery.toLowerCase();
     filtered = filtered.filter(p => (p.name || '').toLowerCase().includes(q) || (p.host || '').toLowerCase().includes(q));
   }
+  return filtered;
+}
+
+function renderWfProjectTable() {
+  const container = document.getElementById('wf-project-table');
+  if (!wfProjects.length) {
+    container.innerHTML = '<p style="color:var(--text3);font-size:13px;padding:20px;">No projects yet. Click "+ New Project" to create one.</p>';
+    return;
+  }
+  const today = new Date().toISOString().slice(0, 10);
+  let filtered = getFilteredWfProjects();
 
   // Build season list for filter
   const allSeasons = [...new Set(wfProjects.map(p => p.season).filter(Boolean))].sort((a, b) => {
@@ -2012,8 +2017,8 @@ function renderWfProjectTable() {
         <td style="text-align:center;"><input type="text" value="${p.season || ''}" onchange="updateProjectField('${p.id}','season',this.value)" style="width:40px;text-align:center;font-size:12px;padding:2px 4px;border:1px solid var(--border);border-radius:4px;background:var(--bg);color:var(--text);"></td>
         <td style="text-align:center;"><input type="text" value="${p.episode || ''}" onchange="updateProjectField('${p.id}','episode',this.value)" style="width:40px;text-align:center;font-size:12px;padding:2px 4px;border:1px solid var(--border);border-radius:4px;background:var(--bg);color:var(--text);"></td>
         <td style="text-align:center;white-space:nowrap;">${p.air_date
-          ? `<input type="date" value="${p.air_date}" onchange="updateProjectField('${p.id}','air_date',this.value)" style="font-size:11px;padding:2px 4px;border:1px solid var(--border);border-radius:4px;background:var(--bg);color:var(--text);"><button onclick="clearAirDate('${p.id}')" style="border:none;background:none;color:var(--text3);cursor:pointer;font-size:11px;padding:0 2px;" title="Clear date">&times;</button>`
-          : `<input type="date" onfocus="this.showPicker&&this.showPicker();" onchange="updateProjectField('${p.id}','air_date',this.value);setTimeout(()=>renderWfProjectTable(),100);" style="width:110px;font-size:11px;padding:2px 4px;border:1px solid var(--border);border-radius:4px;background:var(--bg);color:var(--text3);text-align:center;">`
+          ? `<input type="date" value="${p.air_date}" onchange="updateProjectField('${p.id}','air_date',this.value);this.dataset.dirty=1" onblur="if(this.dataset.dirty)renderWorkflow()" style="font-size:11px;padding:2px 4px;border:1px solid var(--border);border-radius:4px;background:var(--bg);color:var(--text);"><button onmousedown="event.preventDefault()" onclick="clearAirDate('${p.id}')" style="border:none;background:none;color:var(--text3);cursor:pointer;font-size:11px;padding:0 2px;" title="Clear date">&times;</button>`
+          : `<input type="date" onfocus="this.showPicker&&this.showPicker();" onchange="updateProjectField('${p.id}','air_date',this.value);this.dataset.dirty=1" onblur="if(this.dataset.dirty)renderWorkflow()" style="width:110px;font-size:11px;padding:2px 4px;border:1px solid var(--border);border-radius:4px;background:var(--bg);color:var(--text3);text-align:center;">`
         }</td>
         <td style="text-align:center;"><input type="text" value="${p.class_year || ''}" onchange="updateProjectField('${p.id}','class_year',this.value)" style="width:50px;text-align:center;font-size:12px;padding:2px 4px;border:1px solid var(--border);border-radius:4px;background:var(--bg);color:var(--text);"></td>
         <td style="text-align:center;"><input type="text" value="${p.host || ''}" onchange="updateProjectField('${p.id}','host',this.value)" style="width:60px;text-align:center;font-size:12px;padding:2px 4px;border:1px solid var(--border);border-radius:4px;background:var(--bg);color:var(--text);"></td>
@@ -2087,10 +2092,8 @@ function toggleSelectProject(id, checked) {
 }
 
 function toggleSelectAll(checked) {
-  const today = new Date().toISOString().slice(0, 10);
-  const filtered = wfHideAired ? wfProjects.filter(p => getProjectStage(p.id) !== 'Aired') : wfProjects;
   if (checked) {
-    filtered.forEach(p => wfSelectedProjects.add(p.id));
+    getFilteredWfProjects().forEach(p => wfSelectedProjects.add(p.id));
   } else {
     wfSelectedProjects.clear();
   }
@@ -2102,22 +2105,36 @@ function clearSelection() {
   renderWfProjectTable();
 }
 
+// Upsert many tasks in one request; local state only changes once Supabase confirms
+let wfBulkSaving = false;
+async function bulkUpsertTasks(rows) {
+  if (wfBulkSaving || !rows.length) return false;
+  wfBulkSaving = true;
+  document.querySelectorAll('#wf-project-table .wf-btn').forEach(b => b.disabled = true);
+  const result = await sbFetch('project_tasks?on_conflict=project_id,task_key', {
+    method: 'POST',
+    body: rows,
+    prefer: 'return=representation,resolution=merge-duplicates',
+  });
+  wfBulkSaving = false;
+  if (!result || result.length !== rows.length) {
+    alert('Some tasks failed to save. Reloading to show the current state.');
+    await reloadWorkflow();
+    return false;
+  }
+  result.forEach(r => {
+    const idx = wfProjectTasks.findIndex(t => t.project_id === r.project_id && t.task_key === r.task_key);
+    if (idx >= 0) wfProjectTasks[idx] = r;
+    else wfProjectTasks.push(r);
+  });
+  return true;
+}
+
 async function bulkSetStatus(status) {
   if (!wfSelectedProjects.size) return;
-  const ids = [...wfSelectedProjects];
-  for (const projectId of ids) {
-    for (const wt of WORKFLOW_TASKS) {
-      const existing = getTaskForProject(projectId, wt.key);
-      if (existing) {
-        await sbFetch(`project_tasks?id=eq.${existing.id}`, { method: 'PATCH', body: { status } });
-        existing.status = status;
-      } else {
-        const result = await sbFetch('project_tasks', { method: 'POST', body: { project_id: projectId, task_key: wt.key, status } });
-        if (result && result.length) wfProjectTasks.push(result[0]);
-      }
-    }
-  }
-  wfSelectedProjects.clear();
+  const rows = [...wfSelectedProjects].flatMap(projectId =>
+    WORKFLOW_TASKS.map(wt => ({ project_id: projectId, task_key: wt.key, status })));
+  if (await bulkUpsertTasks(rows)) wfSelectedProjects.clear();
   renderWorkflow();
 }
 
@@ -2133,19 +2150,9 @@ async function applyBulkTask() {
   const taskKey = document.getElementById('wf-bulk-task').value;
   const status = document.getElementById('wf-bulk-status').value;
   if (!taskKey || !status) return;
-  const ids = [...wfSelectedProjects];
-  for (const projectId of ids) {
-    const existing = getTaskForProject(projectId, taskKey);
-    if (existing) {
-      await sbFetch(`project_tasks?id=eq.${existing.id}`, { method: 'PATCH', body: { status } });
-      existing.status = status;
-    } else {
-      const result = await sbFetch('project_tasks', { method: 'POST', body: { project_id: projectId, task_key: taskKey, status } });
-      if (result && result.length) wfProjectTasks.push(result[0]);
-    }
-  }
+  const rows = [...wfSelectedProjects].map(projectId => ({ project_id: projectId, task_key: taskKey, status }));
   document.getElementById('wf-bulk-modal').style.display = 'none';
-  wfSelectedProjects.clear();
+  if (await bulkUpsertTasks(rows)) wfSelectedProjects.clear();
   renderWorkflow();
 }
 
@@ -2178,15 +2185,22 @@ async function toggleContinuation(projectId, value) {
   renderWorkflow();
 }
 
-async function updateProjectField(projectId, field, value) {
-  const body = {};
-  body[field] = value || null;
-  await sbFetch(`projects?id=eq.${projectId}`, { method: 'PATCH', body });
+// Date inputs fire change on every keystroke/segment, so only the last value per field is saved
+const wfFieldSaveTimers = {};
+function updateProjectField(projectId, field, value) {
   const proj = wfProjects.find(p => p.id === projectId);
   if (proj) proj[field] = value || null;
+  const key = projectId + ':' + field;
+  clearTimeout(wfFieldSaveTimers[key]);
+  wfFieldSaveTimers[key] = setTimeout(async () => {
+    delete wfFieldSaveTimers[key];
+    const result = await sbFetch(`projects?id=eq.${projectId}`, { method: 'PATCH', body: { [field]: value || null } });
+    if (!result) alert(`Failed to save ${field.replace('_', ' ')}. Please try again.`);
+  }, 400);
 }
 
 async function clearAirDate(projectId) {
+  clearTimeout(wfFieldSaveTimers[projectId + ':air_date']);
   // Explicitly send null to Supabase
   await sbFetch(`projects?id=eq.${projectId}`, { method: 'PATCH', body: { air_date: null } });
   const proj = wfProjects.find(p => p.id === projectId);
