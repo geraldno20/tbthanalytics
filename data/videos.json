@@ -1,5 +1,10 @@
 [
   {
+    "video_id": "DKENf6wDnlA",
+    "title": "Riverside Tutorial for TBTH",
+    "published_at": "2026-10-08T17:16:21Z"
+  },
+  {
     "video_id": "UhORwsiKUZo",
     "title": "\u4eba\u751f\u53ef\u4ee5\u6539\u8b8a\uff0c\u4f46\u300c\u539f\u5ee0\u8a2d\u5b9a\u300d\u6539\u5514\u6539\u5230\uff1f\uff5c\u9127\u627f\u6771 Leo Tang (\u4e0b\u96c6)\uff5cTBTH \u540c\u73ed\u540c\u5b78 S8 EP18",
     "published_at": "2026-10-07T23:00:32Z"
@@ -26,12 +31,12 @@
   },
   {
     "video_id": "Wiee4M4BTp8",
-    "title": "Paul Lee P2 rev2",
+    "title": "\u8f38\u6ce2\u4e0d\u53ef\u6015\uff0c\u8f38\u6389\u4fe1\u5fc3\u624d\u53ef\u6015\uff1f\uff5c\u674e\u980c\u6977 Paul Lee (\u4e0b\u96c6)\uff5cTBTH \u540c\u73ed\u540c\u5b78 S9 EP2",
     "published_at": "2026-10-06T19:03:40Z"
   },
   {
     "video_id": "b8C1AHFlVWo",
-    "title": "Paul Lee P1 rev2",
+    "title": "\u6211\u6839\u672c\u5514\u5920\u8cc7\u683c\u6559\u8056\u4fdd\u7f85\uff1f\uff5c\u674e\u980c\u6977 Paul Lee (\u4e0a\u96c6)\uff5cTBTH \u540c\u73ed\u540c\u5b78 S9 EP1",
     "published_at": "2026-10-06T19:02:53Z"
   },
   {
@@ -260,6 +265,11 @@
     "published_at": "2026-07-08T23:00:11Z"
   },
   {
+    "video_id": "a8mKxYbPUBw",
+    "title": "\u7576\u300c\u8981\u5805\u5f37\u300d\u8b8a\u6210\u4e00\u7a2e\u67b7\u9396 \uff5c\u674e\u986f\u90a6 Nick Lee \uff08\u4e0b\u96c6\uff09 | TBTH S7 EP14",
+    "published_at": "2026-07-08T23:00:01Z"
+  },
+  {
     "video_id": "Ek0GL5Mxhow",
     "title": "\u8def\u898b\u4e0d\u5e73\uff0c\u7531\u5b78\u751f\u6642\u4ee3\u5230 Big 4 \u90fd\u5187\u8b8a\u904e\uff5c\u8521\u5b9a\u5e0c Anthony Choi\uff08\u4e0a\u96c6\uff09| TBTH S7 EP11",
     "published_at": "2026-07-07T14:00:06Z"
@@ -341,7 +351,7 @@
   },
   {
     "video_id": "afwOZHfK1Jw",
-    "title": "\u56de\u61b6\u57f7\u6559\u6b72\u6708\uff1a\u7de3\u7e6b\u8056\u4fdd\u7f85 \u59cb\u65bc\u4e00\u500b\u6e05\u6668\u7684\u4f86\u96fb\uff5c\u9ec3\u6587\u541b\u8001\u5e2b Dorcas Wong\uff08\u4e0a\u96c6\uff09|  TBTH S7 EP 5",
+    "title": "\u56de\u61b6\u57f7\u6559\u6b72\u6708\uff1a\u7de3\u7e6b\u8056\u4fdd\u7f85 \u59cb\u65bc\u4e00\u500b\u6e05\u6668\u7684\u4f86\u96fb\uff5c\u9ec3\u6587\u541b\u8001\u5e2b Dorcas Wong\uff08\u4e0a\u96c6\uff09|  TBTH S7 EP5",
     "published_at": "2026-06-16T14:00:05Z"
   },
   {
@@ -490,9 +500,9 @@
     "published_at": "2026-04-02T22:00:00Z"
   },
   {
-    "video_id": "9khEFM2AgLk",
-    "title": "Carpool Karaoke \u6df1\u8ac7 Pierre \u611f\u60c5\u4e16\u754c \uff5cTBTH \u611a\u4eba\u7bc02026",
-    "published_at": "2026-04-01T14:00:06Z"
+    "video_id": "TexvmIaYX80",
+    "title": "\u5b78\u751f\u9ede\u89e3\u5514\u80af\u540c\u793e\u5de5\u8b1b\u5fc3\u4e8b\uff1f\uff5c\u9ec3\u57f9\u9f8d #Shorts",
+    "published_at": "2026-03-19T21:00:39Z"
   },
   {
     "video_id": "F58MOieYySA",
@@ -732,6 +742,11 @@
   {
     "video_id": "dok8a2FyuS4",
     "title": "#TBTHU2 | \u7f85\u5ee3\u6e90 Mark Law | \u5c0f\u5b78\u300c\u65b9\u529b\u7533\u300d\u5982\u4f55\u8b8a\u8eab\u5927\u5b78 Mr. Hong Kong? | \u540c\u73ed\u540c\u5b78S3 EP1 Under 2 Minutes",
+    "published_at": "2025-12-21T20:43:52Z"
+  },
+  {
+    "video_id": "gYfHcRUcXoU",
+    "title": "#TBTHU2 | \u6797\u862d\u6d69 Andre Lin | \u5275\u6295\u4e0d\u4e00\u5b9a\u6703\u8c50\u6536 \u8461\u8404\u6210\u719f\u53ea\u80fd\u975c\u5019 | \u540c\u73ed\u540c\u5b78S3 EP8 Under 2 Minutes",
     "published_at": "2025-12-21T20:43:52Z"
   },
   {
@@ -1150,9 +1165,9 @@
     "published_at": "2025-04-18T18:51:45Z"
   },
   {
-    "video_id": "a8mKxYbPUBw",
-    "title": "\u7576\u300c\u8981\u5805\u5f37\u300d\u8b8a\u6210\u4e00\u7a2e\u67b7\u9396 \uff5c\u674e\u986f\u90a6 Nick Lee \uff08\u4e0b\u96c6\uff09 | TBTH S7 EP14",
-    "published_at": "2026-07-07T18:20:02Z"
+    "video_id": "9khEFM2AgLk",
+    "title": "Carpool Karaoke \u6df1\u8ac7 Pierre \u611f\u60c5\u4e16\u754c \uff5cTBTH \u611a\u4eba\u7bc02026",
+    "published_at": "2026-03-30T19:29:42Z"
   },
   {
     "video_id": "Dzzzru5gd6E",
@@ -1163,11 +1178,6 @@
     "video_id": "0Jt4W37xBGM",
     "title": "\u5b78\u751f\u58d3\u529b\u7206\u7172 \u904e\u4f86\u4eba\u6210\u70ba\u9996\u4efbSPCC\u793e\u5de5 \u652f\u63f4\u9762\u5c0d\u60c5\u7dd2\u6d77\u562f\u7684\u5e2b\u5f1f\u59b9\u5011 | \u9ec3\u57f9\u9f8d Pui Lung Wong | TBTH S6 EP1",
     "published_at": "2026-03-19T19:35:51Z"
-  },
-  {
-    "video_id": "TexvmIaYX80",
-    "title": "\u5b78\u751f\u9ede\u89e3\u5514\u80af\u540c\u793e\u5de5\u8b1b\u5fc3\u4e8b\uff1f\uff5c\u9ec3\u57f9\u9f8d #Shorts",
-    "published_at": "2026-03-17T23:51:24Z"
   },
   {
     "video_id": "iL-WBDd-0K8",
@@ -1198,11 +1208,6 @@
     "video_id": "hPduA5vo4UI",
     "title": "#TBTHU2 | \u4f55\u5609\u7def Gary Ho |\u4fee\u5fa9\u820a\u5f0f\u5bf6\u9e97\u4f86\u555f\u767c\u8a2d\u8a08\u5fa9\u523b\u83f2\u6797\u76f8\u6a5fMiNT Camera | \u540c\u73ed\u540c\u5b78S3 EP6 Under 2 Minutes",
     "published_at": "2025-12-05T18:22:29Z"
-  },
-  {
-    "video_id": "gYfHcRUcXoU",
-    "title": "#TBTHU2 | \u6797\u862d\u6d69 Andre Lin | \u5275\u6295\u4e0d\u4e00\u5b9a\u6703\u8c50\u6536 \u8461\u8404\u6210\u719f\u53ea\u80fd\u975c\u5019 | \u540c\u73ed\u540c\u5b78S3 EP8 Under 2 Minutes",
-    "published_at": "2025-12-04T22:55:24Z"
   },
   {
     "video_id": "EhgO0zGLRls",
