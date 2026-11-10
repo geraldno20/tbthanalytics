@@ -1967,7 +1967,7 @@ function renderWfProjectTable() {
       <button class="wf-btn" onclick="bulkSetStatus('complete')" style="font-size:11px;padding:4px 10px;">Set Complete</button>
       <button class="wf-btn" onclick="bulkSetStatus('not_started')" style="font-size:11px;padding:4px 10px;">Set Not Started</button>
       <button class="wf-btn" onclick="showBulkTaskModal()" style="font-size:11px;padding:4px 10px;">Set Task...</button>
-      <button class="wf-btn" onclick="duplicateSelected()" style="font-size:11px;padding:4px 10px;" title="Copy guest as a Part 2 row">Duplicate as Pt.2</button>
+      <button class="wf-btn" onclick="duplicateSelected()" style="font-size:11px;padding:4px 10px;" title="Copy as the next part (P2, P3, ...)">Duplicate as Next Part</button>
       <button class="wf-btn" onclick="clearSelection()" style="font-size:11px;padding:4px 10px;">Clear</button>` : ''}
     </div>
     <table>
@@ -2274,13 +2274,19 @@ async function saveProject() {
   closeWfModal();
 }
 
-// Duplicate selected rows as Part 2: copies name/season/episode/air date/class year/host,
+// "Guest" -> "Guest P2", "Guest P1" -> "Guest P2", "Guest P2" -> "Guest P3"
+function nextPartName(name) {
+  const m = name.trim().match(/^(.*?)\s*P(\d+)$/i);
+  return m ? `${m[1]} P${parseInt(m[2], 10) + 1}` : `${name.trim()} P2`;
+}
+
+// Duplicate selected rows as the next part: copies name/season/episode/air date/class year/host,
 // flags it as a continuation, and carries over ideation tasks (outreach/acceptance)
 async function duplicateSelected() {
   if (!wfSelectedProjects.size) return;
   const sources = wfProjects.filter(p => wfSelectedProjects.has(p.id));
   const body = sources.map(p => ({
-    name: /pt\.? ?2/i.test(p.name) ? p.name : `${p.name} (Pt. 2)`,
+    name: nextPartName(p.name),
     season: p.season || null,
     episode: p.episode || null,
     air_date: p.air_date || null,
