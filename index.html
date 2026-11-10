@@ -2181,6 +2181,7 @@ async function quickStatusChange(projectId, taskKey, newStatus) {
     const idx = wfProjectTasks.findIndex(t => t.project_id === projectId && t.task_key === taskKey);
     if (idx >= 0) wfProjectTasks[idx] = result[0];
     else wfProjectTasks.push(result[0]);
+    await completeLiveRow(projectId, taskKey, newStatus);
     renderWorkflow();
   } else if (existing) {
     existing.status = previousStatus;
@@ -2208,6 +2209,31 @@ async function applyFormatTasks(projectId, format) {
     else wfProjectTasks.push(r);
   });
   return true;
+}
+
+// Live/Studios: completing Publish completes every other task except N/A and Declined
+async function completeLiveRow(projectId, taskKey, status) {
+  const proj = wfProjects.find(p => p.id === projectId);
+  if (taskKey !== 'publish' || status !== 'complete' || !proj || (proj.format || 'Interview') === 'Interview') return;
+  const rows = WORKFLOW_TASKS.map(t => t.key)
+    .filter(key => key !== 'publish' && !['na', 'declined', 'complete'].includes((getTaskForProject(projectId, key) || {}).status))
+    .map(key => ({ project_id: projectId, task_key: key, status: 'complete' }));
+  if (!rows.length) return;
+  const result = await sbFetch('project_tasks?on_conflict=project_id,task_key', {
+    method: 'POST',
+    body: rows,
+    prefer: 'return=representation,resolution=merge-duplicates',
+  });
+  if (!result || result.length !== rows.length) {
+    alert('Some tasks failed to update. Reloading to show the current state.');
+    await reloadWorkflow();
+    return;
+  }
+  result.forEach(r => {
+    const idx = wfProjectTasks.findIndex(t => t.project_id === r.project_id && t.task_key === r.task_key);
+    if (idx >= 0) wfProjectTasks[idx] = r;
+    else wfProjectTasks.push(r);
+  });
 }
 
 async function setProjectFormat(projectId, format) {
@@ -2283,6 +2309,7 @@ async function saveTaskEdit() {
     const result = await sbFetch('project_tasks', { method: 'POST', body });
     if (result && result.length) wfProjectTasks.push(result[0]);
   }
+  await completeLiveRow(project_id, task_key, body.status);
   closeWfModal();
   renderWorkflow();
 }
