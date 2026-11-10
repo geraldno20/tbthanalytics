@@ -48,7 +48,8 @@ async function buildAlerts(): Promise<string[]> {
     .from("project_tasks")
     .select("task_key, deadline, projects(name)")
     .lt("deadline", today)
-    .neq("status", "complete");
+    .neq("status", "complete")
+    .neq("status", "na");
 
   if (overdue && overdue.length > 0) {
     const lines = overdue.slice(0, 10).map((t: any) =>

@@ -249,6 +249,7 @@
     .wf-status-assigned select { border-color: #FF9500; background: #FF950010; }
     .wf-status-in_progress select { border-color: var(--blue); background: #007AFF10; }
     .wf-status-complete select { border-color: var(--green); background: #34C75910; }
+    .wf-status-na select { border-color: var(--border); color: var(--text3); opacity: 0.35; }
     .wf-status-declined select { border-color: #FF3B30; background: #FF3B3010; color: #FF3B30; }
     .wf-modal { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; z-index: 1000; }
     .wf-modal-content { background: var(--card); border-radius: 12px; padding: 24px; width: 90%; max-width: 400px; }
@@ -642,6 +643,7 @@
         <label>Air Date<input type="date" id="wf-proj-airdate"></label>
         <label>Class Year<input type="text" id="wf-proj-classyear" placeholder="e.g. 2003"></label>
         <label>Host<input type="text" id="wf-proj-host" placeholder="e.g. Gerald"></label>
+        <label>Type<select id="wf-proj-format"><option>Interview</option><option>Live</option><option>Studios</option></select></label>
         <div class="wf-modal-actions">
           <button class="wf-btn" onclick="closeWfModal()">Cancel</button>
           <button class="wf-btn wf-btn-primary" onclick="saveProject()">Create</button>
@@ -1694,7 +1696,11 @@ const TASK_STATUSES = [
   { key: 'in_progress', label: 'In Progress' },
   { key: 'complete', label: 'Complete' },
   { key: 'declined', label: 'Declined' },
+  { key: 'na', label: 'N/A' },
 ];
+
+const PROJECT_FORMATS = ['Interview', 'Live', 'Studios'];
+const PRODUCTION_TASK_KEYS = ['edit', 'thumbnail', 'intro', 'title', 'teaser_1', 'teaser_2', 'pre_ig_post', 'post_ig_post'];
 
 let wfTeamMembers = [];
 let wfProjects = [];
@@ -1831,7 +1837,7 @@ function renderWorkflow() {
 
 function updateOverdueBadge() {
   const today = new Date().toISOString().slice(0, 10);
-  const overdueCount = wfProjectTasks.filter(t => t.deadline && t.deadline < today && t.status !== 'complete').length;
+  const overdueCount = wfProjectTasks.filter(t => t.deadline && t.deadline < today && t.status !== 'complete' && t.status !== 'na').length;
   const badge = document.getElementById('wf-overdue-badge');
   if (badge) {
     if (overdueCount > 0) {
@@ -1982,6 +1988,7 @@ function renderWfProjectTable() {
       <th></th>
       <th></th>
       <th></th>
+      <th></th>
       <th colspan="2" style="text-align:center;font-size:10px;color:#fff;background:#FF9500;border-radius:6px 6px 0 0;">Ideation</th>
       <th colspan="3" style="text-align:center;font-size:10px;color:#fff;background:#5AC8FA;border-radius:6px 6px 0 0;">Planned</th>
       <th colspan="8" style="text-align:center;font-size:10px;color:#fff;background:#AF52DE;border-radius:6px 6px 0 0;">Production</th>
@@ -1998,6 +2005,7 @@ function renderWfProjectTable() {
       <th class="sortable" onclick="sortWfTable('air_date')" style="cursor:pointer;">Air Date${arrow('air_date')}</th>
       <th>Class Year</th>
       <th>Host</th>
+      <th>Type</th>
       <th style="font-size:10px;">Cont.</th>
       <th class="sortable" onclick="sortWfTable('updated_at')" style="cursor:pointer;">Updated${arrow('updated_at')}</th>
       ${WORKFLOW_TASKS.map(t => `<th>${t.label}</th>`).join('')}
@@ -2023,6 +2031,7 @@ function renderWfProjectTable() {
         }</td>
         <td style="text-align:center;"><input type="text" value="${p.class_year || ''}" onchange="updateProjectField('${p.id}','class_year',this.value)" style="width:50px;text-align:center;font-size:12px;padding:2px 4px;border:1px solid var(--border);border-radius:4px;background:var(--bg);color:var(--text);"></td>
         <td style="text-align:center;"><input type="text" value="${p.host || ''}" onchange="updateProjectField('${p.id}','host',this.value)" style="width:60px;text-align:center;font-size:12px;padding:2px 4px;border:1px solid var(--border);border-radius:4px;background:var(--bg);color:var(--text);"></td>
+        <td style="text-align:center;"><select onchange="setProjectFormat('${p.id}',this.value)" style="font-size:11px;padding:2px 4px;border:1px solid var(--border);border-radius:4px;background:var(--bg);color:var(--text);">${PROJECT_FORMATS.map(f => `<option ${f === (p.format || 'Interview') ? 'selected' : ''}>${f}</option>`).join('')}</select></td>
         <td style="text-align:center;"><button onclick="toggleContinuation('${p.id}',${!p.is_continuation})" style="border:1px solid ${p.is_continuation ? '#FF9500' : 'var(--border)'};background:${p.is_continuation ? '#FF950020' : 'transparent'};color:${p.is_continuation ? '#FF9500' : 'var(--text3)'};border-radius:4px;font-size:10px;padding:2px 6px;cursor:pointer;" title="Mark as continuation (excluded from class year count)">${p.is_continuation ? 'Pt.2' : '—'}</button></td>
         <td style="text-align:center;font-size:10px;color:var(--text3);white-space:nowrap;">${updatedAt}</td>
         ${WORKFLOW_TASKS.map(wt => {
@@ -2030,7 +2039,7 @@ function renderWfProjectTable() {
           const status = task ? task.status : 'not_started';
           const assignee = task ? getMemberName(task.assigned_to) : '';
           const deadline = task ? task.deadline : '';
-          const overdue = deadline && deadline < today && status !== 'complete' ? ' overdue' : '';
+          const overdue = deadline && deadline < today && status !== 'complete' && status !== 'na' ? ' overdue' : '';
           return `<td class="wf-task-cell wf-status-${status}" onclick="openTaskEdit('${p.id}','${wt.key}')">
             <select onclick="event.stopPropagation()" onchange="quickStatusChange('${p.id}','${wt.key}',this.value)">
               ${TASK_STATUSES.map(s => `<option value="${s.key}" ${s.key === status ? 'selected' : ''}>${s.label}</option>`).join('')}
@@ -2179,6 +2188,41 @@ async function quickStatusChange(projectId, taskKey, newStatus) {
   }
 }
 
+// Live/Studios shoots have no production pipeline: mark those tasks N/A.
+// Switching back to Interview resets any N/A production tasks to Not Started.
+async function applyFormatTasks(projectId, format) {
+  const toNa = format !== 'Interview';
+  const rows = PRODUCTION_TASK_KEYS
+    .filter(key => toNa || (getTaskForProject(projectId, key) || {}).status === 'na')
+    .map(key => ({ project_id: projectId, task_key: key, status: toNa ? 'na' : 'not_started' }));
+  if (!rows.length) return true;
+  const result = await sbFetch('project_tasks?on_conflict=project_id,task_key', {
+    method: 'POST',
+    body: rows,
+    prefer: 'return=representation,resolution=merge-duplicates',
+  });
+  if (!result || result.length !== rows.length) return false;
+  result.forEach(r => {
+    const idx = wfProjectTasks.findIndex(t => t.project_id === r.project_id && t.task_key === r.task_key);
+    if (idx >= 0) wfProjectTasks[idx] = r;
+    else wfProjectTasks.push(r);
+  });
+  return true;
+}
+
+async function setProjectFormat(projectId, format) {
+  const result = await sbFetch(`projects?id=eq.${projectId}`, { method: 'PATCH', body: { format } });
+  if (!result) { alert('Failed to save type. Reloading.'); await reloadWorkflow(); return; }
+  const proj = wfProjects.find(p => p.id === projectId);
+  if (proj) proj.format = format;
+  if (!(await applyFormatTasks(projectId, format))) {
+    alert('Some tasks failed to update. Reloading to show the current state.');
+    await reloadWorkflow();
+    return;
+  }
+  renderWorkflow();
+}
+
 async function toggleContinuation(projectId, value) {
   await sbFetch(`projects?id=eq.${projectId}`, { method: 'PATCH', body: { is_continuation: value } });
   const proj = wfProjects.find(p => p.id === projectId);
@@ -2250,6 +2294,7 @@ function showAddProject() {
   document.getElementById('wf-proj-airdate').value = '';
   document.getElementById('wf-proj-classyear').value = '';
   document.getElementById('wf-proj-host').value = '';
+  document.getElementById('wf-proj-format').value = 'Interview';
   document.getElementById('wf-project-modal').style.display = 'flex';
 }
 
@@ -2263,12 +2308,14 @@ async function saveProject() {
     air_date: document.getElementById('wf-proj-airdate').value || null,
     class_year: document.getElementById('wf-proj-classyear').value.trim() || null,
     host: document.getElementById('wf-proj-host').value.trim() || null,
+    format: document.getElementById('wf-proj-format').value,
   };
   const result = await sbFetch('projects', { method: 'POST', body });
   if (result && result.length) {
     wfProjects.unshift(result[0]);
     const taskResult = await sbFetch('project_tasks', { method: 'POST', body: { project_id: result[0].id, task_key: 'outreach', status: 'not_started' } });
     if (taskResult && taskResult.length) wfProjectTasks.push(taskResult[0]);
+    if (body.format !== 'Interview') await applyFormatTasks(result[0].id, body.format);
     renderWorkflow();
   }
   closeWfModal();
@@ -2292,6 +2339,7 @@ async function duplicateSelected() {
     air_date: p.air_date || null,
     class_year: p.class_year || null,
     host: p.host || null,
+    format: p.format || 'Interview',
     is_continuation: true,
   }));
   const created = await sbFetch('projects', { method: 'POST', body });
@@ -2308,6 +2356,7 @@ async function duplicateSelected() {
   const tasks = await sbFetch('project_tasks', { method: 'POST', body: taskRows });
   wfProjects.unshift(...created);
   if (tasks) wfProjectTasks.push(...tasks);
+  for (const np of created) if (np.format && np.format !== 'Interview') await applyFormatTasks(np.id, np.format);
   wfSelectedProjects.clear();
   renderWorkflow();
 }
