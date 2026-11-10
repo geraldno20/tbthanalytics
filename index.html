@@ -1967,6 +1967,7 @@ function renderWfProjectTable() {
       <button class="wf-btn" onclick="bulkSetStatus('complete')" style="font-size:11px;padding:4px 10px;">Set Complete</button>
       <button class="wf-btn" onclick="bulkSetStatus('not_started')" style="font-size:11px;padding:4px 10px;">Set Not Started</button>
       <button class="wf-btn" onclick="showBulkTaskModal()" style="font-size:11px;padding:4px 10px;">Set Task...</button>
+      <button class="wf-btn" onclick="duplicateSelected()" style="font-size:11px;padding:4px 10px;" title="Copy guest as a Part 2 row">Duplicate as Pt.2</button>
       <button class="wf-btn" onclick="clearSelection()" style="font-size:11px;padding:4px 10px;">Clear</button>` : ''}
     </div>
     <table>
@@ -2271,6 +2272,35 @@ async function saveProject() {
     renderWorkflow();
   }
   closeWfModal();
+}
+
+// Duplicate selected rows as Part 2: same guest/class year/host, flagged continuation,
+// season/episode/air date left blank, ideation tasks (outreach/acceptance) carried over
+async function duplicateSelected() {
+  if (!wfSelectedProjects.size) return;
+  const sources = wfProjects.filter(p => wfSelectedProjects.has(p.id));
+  const body = sources.map(p => ({
+    name: /pt\.? ?2/i.test(p.name) ? p.name : `${p.name} (Pt. 2)`,
+    class_year: p.class_year || null,
+    host: p.host || null,
+    is_continuation: true,
+  }));
+  const created = await sbFetch('projects', { method: 'POST', body });
+  if (!created || created.length !== body.length) {
+    alert('Duplicate failed. Reloading to show the current state.');
+    await reloadWorkflow();
+    return;
+  }
+  const taskRows = created.flatMap((np, i) =>
+    ['outreach', 'acceptance'].map(key => {
+      const t = getTaskForProject(sources[i].id, key);
+      return { project_id: np.id, task_key: key, status: t ? t.status : 'not_started', assigned_to: t ? t.assigned_to : null };
+    }));
+  const tasks = await sbFetch('project_tasks', { method: 'POST', body: taskRows });
+  wfProjects.unshift(...created);
+  if (tasks) wfProjectTasks.push(...tasks);
+  wfSelectedProjects.clear();
+  renderWorkflow();
 }
 
 async function deleteProject(id) {
